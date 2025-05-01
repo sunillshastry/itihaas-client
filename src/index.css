@@ -45,3 +45,31 @@
 		background-color: var(--color-brown-background);
 	}
 }
+
+@layer components {
+	.home-main {
+		background-image:
+			linear-gradient(
+				to right bottom,
+				rgba(118, 83, 56, 0.5),
+				rgba(118, 83, 56, 0.5)
+			),
+			url('/background.jpg');
+		background-position: center bottom;
+		background-size: cover;
+		background-repeat: no-repeat;
+
+		/* TODO: Remove the styles below */
+		min-height: 100vh;
+		overflow-y: scroll;
+		/* TODO: Remove the styles above */
+
+		background-size: cover;
+	}
+
+	section.home-main-primary-section {
+		box-shadow:
+			10px 0 5px 0 var(--color-brown-background),
+			-10px 0 5px 0 var(--color-brown-background);
+	}
+}
