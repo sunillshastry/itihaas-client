@@ -7,7 +7,41 @@
 	--color-primary: #946846;
 	--color-brown-background: #dfd2c8;
 
+	--color-primary-100: #855e3f;
+	--color-primary-200: #765338;
+	--color-primary-300: #684931;
+	--color-primary-400: #593e2a;
+	--color-primary-500: #4a3423;
+	--color-primary-600: #3b2a1c;
+	--color-primary-700: #2c1f15;
+	--color-primary-800: #1e150e;
+	--color-primary-900: #0f0a07;
+
+	--color-primary-10: #9f7759;
+	--color-primary-20: #a9866b;
+	--color-primary-30: #b4957e;
+	--color-primary-40: #bfa490;
+	--color-primary-50: #cab4a3;
+	--color-primary-60: #d4c3b5;
+	--color-primary-70: #dfd2c8;
+	--color-primary-80: #eae1da;
+	--color-primary-90: #f4f0ed;
+
 	--font-primary: 'Jost', sans-serif;
 	--font-heading: 'Prata', serif;
 	--font-logo: 'Macondo', monospace;
+}
+
+@layer base {
+	*::selection {
+		background-color: var(--color-dark-shade-1);
+		color: var(--color-white);
+	}
+
+	body {
+		width: 100%;
+		overflow-x: hidden;
+		font-family: var(--font-primary);
+		background-color: var(--color-brown-background);
+	}
 }
