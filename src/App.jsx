@@ -8,9 +8,12 @@ import Search from './pages/Search';
 import Docs from './pages/Docs';
 import NotFound from './pages/NotFound';
 
+import Navbar from './components/Navbar';
+
 function App() {
 	return (
 		<>
+			<Navbar />
 			<Routes>
 				<Route
 					path="/"
