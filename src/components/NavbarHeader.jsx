@@ -8,7 +8,7 @@ function NavbarHeader() {
 			</NavLink>
 			<div>
 				<input
-					className="bg-primary-90 font-primary w-sm rounded-sm px-4 py-2 shadow-md"
+					className="bg-primary-90 font-primary w-sm rounded-sm px-4 py-2 text-sm shadow-md"
 					type="text"
 					placeholder="Search for dynasties, rulers..."
 				/>

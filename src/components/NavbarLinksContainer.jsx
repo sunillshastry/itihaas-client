@@ -2,7 +2,7 @@ import NavbarLink from './NavbarLink';
 
 function NavbarLinksContainer() {
 	return (
-		<ul className="border-primary mt-15 flex min-w-6xl items-center justify-evenly border-b-2 pb-6">
+		<ul className="border-primary text-md mt-15 flex min-w-6xl items-center justify-evenly border-b-2 pb-6">
 			<li>
 				<NavbarLink to="/dynasties">Dynasties</NavbarLink>
 			</li>

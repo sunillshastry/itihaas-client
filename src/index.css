@@ -76,9 +76,16 @@
 	a.nav__link {
 		color: var(--color-primary-500);
 	}
+
 	a.nav__link:hover {
 		text-decoration: underline;
 		color: var(--color-primary-10);
+	}
+
+	a.nav__link.active {
+		font-weight: 600;
+		color: var(--color-primary-400);
+		text-decoration: underline;
 	}
 
 	input:focus {
