@@ -20,41 +20,35 @@ function App() {
 					element={<Home />}
 				/>
 
-				<Routes>
-					<Route
-						path="/dynasties"
-						element={<DynastiesPage />}
-					/>
+				<Route
+					path="/dynasties"
+					element={<DynastiesPage />}
+				/>
 
-					<Route
-						path="/dynasties/:dynastySlug"
-						element={<DynastyPage />}
-					/>
-				</Routes>
+				<Route
+					path="/dynasties/:dynastySlug"
+					element={<DynastyPage />}
+				/>
 
-				<Routes>
-					<Route
-						path="/rulers"
-						element={<RulersPage />}
-					/>
+				<Route
+					path="/rulers"
+					element={<RulersPage />}
+				/>
 
-					<Route
-						path="/rulers/:rulerSlug"
-						element={<RulerPage />}
-					/>
-				</Routes>
+				<Route
+					path="/rulers/:rulerSlug"
+					element={<RulerPage />}
+				/>
 
-				<Routes>
-					<Route
-						path="/wars"
-						element={<WarsPage />}
-					/>
+				<Route
+					path="/wars"
+					element={<WarsPage />}
+				/>
 
-					<Route
-						path="/wars/:warSlug"
-						element={<WarPage />}
-					/>
-				</Routes>
+				<Route
+					path="/wars/:warSlug"
+					element={<WarPage />}
+				/>
 
 				<Route
 					path="/issues"
