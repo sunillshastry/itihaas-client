@@ -47,7 +47,7 @@
 }
 
 @layer components {
-	.home-main {
+	.home__main {
 		background-image:
 			linear-gradient(
 				to right bottom,
@@ -67,7 +67,7 @@
 		background-size: cover;
 	}
 
-	section.home-main-primary-section {
+	section.home__main--primary {
 		box-shadow:
 			10px 0 5px 0 var(--color-brown-background),
 			-10px 0 5px 0 var(--color-brown-background);
