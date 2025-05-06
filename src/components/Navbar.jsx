@@ -16,7 +16,7 @@ function Navbar() {
 				</div>
 			</div>
 
-			<ul className="border-primary mt-15 flex min-w-4xl items-center justify-evenly border-b-2 pb-6">
+			<ul className="border-primary mt-15 flex min-w-6xl items-center justify-evenly border-b-2 pb-6">
 				<li>
 					<NavLink
 						className="nav__link"
