@@ -1,8 +1,13 @@
+import Navbar from '../components/Navbar';
+
 function Issues() {
 	return (
-		<div>
-			<h1>Issues</h1>
-		</div>
+		<>
+			<Navbar />
+			<main>
+				<h1>Issues</h1>
+			</main>
+		</>
 	);
 }
 

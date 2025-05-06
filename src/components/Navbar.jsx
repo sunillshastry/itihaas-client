@@ -1,8 +1,12 @@
+import NavbarHeader from './NavbarHeader';
+import NavbarLinksContainer from './NavbarLinksContainer';
+
 function Navbar() {
 	return (
-		<div>
-			<h1>Navbar</h1>
-		</div>
+		<nav className="flex flex-col items-center justify-center pt-10 pb-5">
+			<NavbarHeader />
+			<NavbarLinksContainer />
+		</nav>
 	);
 }
 

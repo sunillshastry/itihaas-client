@@ -47,7 +47,7 @@
 }
 
 @layer components {
-	.home-main {
+	.home__main {
 		background-image:
 			linear-gradient(
 				to right bottom,
@@ -67,9 +67,21 @@
 		background-size: cover;
 	}
 
-	section.home-main-primary-section {
+	section.home__main--primary {
 		box-shadow:
 			10px 0 5px 0 var(--color-brown-background),
 			-10px 0 5px 0 var(--color-brown-background);
+	}
+
+	a.nav__link {
+		color: var(--color-primary-500);
+	}
+	a.nav__link:hover {
+		text-decoration: underline;
+		color: var(--color-primary-10);
+	}
+
+	input:focus {
+		outline: 3px solid var(--color-primary-20);
 	}
 }

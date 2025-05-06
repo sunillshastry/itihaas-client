@@ -2,8 +2,8 @@ import Navbar from '../components/Navbar';
 
 function Home() {
 	return (
-		<main className="home-main px-28">
-			<section className="bg-brown-background home-main-primary-section">
+		<main className="home__main px-20">
+			<section className="home__main--primary bg-brown-background">
 				<Navbar />
 			</section>
 		</main>

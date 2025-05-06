@@ -1,14 +1,14 @@
 import Navbar from '../components/Navbar';
 
-function RulersPage() {
+function RulerPage() {
 	return (
 		<>
 			<Navbar />
 			<main>
-				<h1>RulersPage</h1>
+				<h1>RulerPage</h1>
 			</main>
 		</>
 	);
 }
 
-export default RulersPage;
+export default RulerPage;

@@ -1,8 +1,13 @@
+import Navbar from '../components/Navbar';
+
 function Docs() {
 	return (
-		<div>
-			<h1>Docs</h1>
-		</div>
+		<>
+			<Navbar />
+			<main>
+				<h1>Docs</h1>
+			</main>
+		</>
 	);
 }
 
