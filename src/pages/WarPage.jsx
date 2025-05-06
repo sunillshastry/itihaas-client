@@ -1,8 +1,13 @@
+import Navbar from '../components/Navbar';
+
 function WarPage() {
 	return (
-		<div>
-			<h1>WarPage</h1>
-		</div>
+		<>
+			<Navbar />
+			<main>
+				<h1>WarPage</h1>
+			</main>
+		</>
 	);
 }
 

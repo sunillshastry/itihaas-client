@@ -1,8 +1,13 @@
+import Navbar from '../components/Navbar';
+
 function RulerPage() {
 	return (
-		<div>
-			<h1>RulerPage</h1>
-		</div>
+		<>
+			<Navbar />
+			<main>
+				<h1>RulerPage</h1>
+			</main>
+		</>
 	);
 }
 
