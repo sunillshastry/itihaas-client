@@ -7,6 +7,9 @@ import Issues from './pages/Issues';
 import Search from './pages/Search';
 import Docs from './pages/Docs';
 import NotFound from './pages/NotFound';
+import DynastyPage from './pages/DynastyPage';
+import WarPage from './pages/WarPage';
+import RulerPage from './pages/RulerPage';
 
 function App() {
 	return (
@@ -16,26 +19,53 @@ function App() {
 					path="/"
 					element={<Home />}
 				/>
-				<Route
-					path="/dynasties"
-					element={<DynastiesPage />}
-				/>
-				<Route
-					path="/rulers"
-					element={<RulersPage />}
-				/>
-				<Route
-					path="/wars"
-					element={<WarsPage />}
-				/>
+
+				<Routes>
+					<Route
+						path="/dynasties"
+						element={<DynastiesPage />}
+					/>
+
+					<Route
+						path="/dynasties/:dynastySlug"
+						element={<DynastyPage />}
+					/>
+				</Routes>
+
+				<Routes>
+					<Route
+						path="/rulers"
+						element={<RulersPage />}
+					/>
+
+					<Route
+						path="/rulers/:rulerSlug"
+						element={<RulerPage />}
+					/>
+				</Routes>
+
+				<Routes>
+					<Route
+						path="/wars"
+						element={<WarsPage />}
+					/>
+
+					<Route
+						path="/wars/:warSlug"
+						element={<WarPage />}
+					/>
+				</Routes>
+
 				<Route
 					path="/issues"
 					element={<Issues />}
 				/>
+
 				<Route
 					path="/search"
 					element={<Search />}
 				/>
+
 				<Route
 					path="/docs"
 					element={<Docs />}
