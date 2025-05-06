@@ -1,8 +1,11 @@
+import Navbar from '../components/Navbar';
+
 function Search() {
 	return (
-		<div>
+		<main>
+			<Navbar />
 			<h1>Search</h1>
-		</div>
+		</main>
 	);
 }
 

@@ -1,8 +1,11 @@
+import Navbar from '../components/Navbar';
+
 function DynastiesPage() {
 	return (
-		<div>
+		<main>
+			<Navbar />
 			<h1>DynastiesPage</h1>
-		</div>
+		</main>
 	);
 }
 
