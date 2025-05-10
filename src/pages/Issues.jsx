@@ -1,12 +1,14 @@
+import MainContainer from '../components/MainContainer';
 import Navbar from '../components/Navbar';
+import PrimaryHeader from '../components/PrimaryHeader';
 
 function Issues() {
 	return (
 		<>
 			<Navbar />
-			<main>
-				<h1>Issues</h1>
-			</main>
+			<MainContainer>
+				<PrimaryHeader>Submit an Issue</PrimaryHeader>
+			</MainContainer>
 		</>
 	);
 }
