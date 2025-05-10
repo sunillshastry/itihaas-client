@@ -1,7 +1,8 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import SearchAutocompleteTab from './SearchAutocompleteTab';
 import { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
+import Logo from './Logo';
 
 function NavbarHeader() {
 	const [isAutocompleteEnabled, setIsAutocompleteEnabled] = useState(false);
@@ -38,9 +39,12 @@ function NavbarHeader() {
 
 	return (
 		<div className="flex min-w-4xl items-center justify-between">
-			<NavLink to="/">
-				<h1 className="font-logo text-3xl">Itihaas</h1>
-			</NavLink>
+			<Link
+				to="/"
+				className="flex items-center justify-center"
+			>
+				<Logo />
+			</Link>
 			<div className="relative">
 				<SearchBar
 					value={searchQuery}
