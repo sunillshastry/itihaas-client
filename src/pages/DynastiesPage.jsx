@@ -1,3 +1,4 @@
+import MainContainer from '../components/MainContainer';
 import Navbar from '../components/Navbar';
 import PrimaryHeader from '../components/PrimaryHeader';
 
@@ -5,9 +6,9 @@ function DynastiesPage() {
 	return (
 		<>
 			<Navbar />
-			<main className="mx-36 mt-5">
+			<MainContainer>
 				<PrimaryHeader>Dynasties</PrimaryHeader>
-			</main>
+			</MainContainer>
 		</>
 	);
 }
