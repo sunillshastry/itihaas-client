@@ -75,16 +75,7 @@
 			-10px 0 5px 0 var(--color-brown-background);
 	}
 
-	a.nav__link {
-		color: var(--color-primary-500);
-	}
-
-	a.nav__link:hover {
-		text-decoration: underline;
-		color: var(--color-primary-10);
-	}
-
-	a.nav__link.active {
+	a.active {
 		font-weight: 600;
 		color: var(--color-primary-400);
 		text-decoration: underline;
