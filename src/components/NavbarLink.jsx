@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 function NavbarLink({ to, children }) {
 	return (
 		<NavLink
-			className="nav__link"
+			className="text-primary-500 hover:text-primary-10 hover:underline"
 			to={to}
 		>
 			{children}
