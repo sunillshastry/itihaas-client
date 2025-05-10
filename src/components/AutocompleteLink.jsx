@@ -13,7 +13,7 @@ function AutocompleteLink({ queryResult, handleLinkClick }) {
 
 	return (
 		<li
-			className="autocomplete__link"
+			className="text-primary-400 border-primary-90 ease hover:bg-primary-70 hover:text-primary-800 my-1 rounded-sm border-b p-2 transition-all duration-150 last:border-b-0 hover:underline"
 			key={queryResult._id}
 		>
 			<Link onClick={click}>{queryResult.name}</Link>
