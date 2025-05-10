@@ -4,10 +4,18 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
 
-createRoot(document.getElementById('root')).render(
-	<StrictMode>
+if (import.meta.env.VITE_APP_ENV === 'development') {
+	createRoot(document.getElementById('root')).render(
+		<StrictMode>
+			<Router>
+				<App />
+			</Router>
+		</StrictMode>
+	);
+} else {
+	createRoot(document.getElementById('root')).render(
 		<Router>
 			<App />
 		</Router>
-	</StrictMode>
-);
+	);
+}
