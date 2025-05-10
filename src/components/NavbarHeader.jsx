@@ -39,7 +39,7 @@ function NavbarHeader() {
 	return (
 		<div className="flex min-w-4xl items-center justify-between">
 			<Link to="/">
-				<h1 className="font-logo text-3xl">Itihaas</h1>
+				<h1 className="font-logo text-primary-500 text-3xl">Itihaas</h1>
 			</Link>
 			<div className="relative">
 				<SearchBar
