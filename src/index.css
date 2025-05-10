@@ -30,6 +30,8 @@
 	--font-primary: 'Jost', sans-serif;
 	--font-heading: 'Prata', serif;
 	--font-logo: 'Macondo', monospace;
+
+	--default-transition: all 0.2s ease;
 }
 
 @layer base {
@@ -90,5 +92,19 @@
 
 	input:focus {
 		outline: 3px solid var(--color-primary-20);
+	}
+
+	li.autocomplete__link {
+		margin: 4px 0;
+		padding: 4px 10px;
+		border-radius: 4px;
+		color: var(--color-primary-400);
+		transition: var(--default-transition);
+	}
+
+	li.autocomplete__link:hover {
+		background-color: var(--color-primary-80);
+		text-decoration: underline;
+		color: var(--color-primary-800);
 	}
 }
