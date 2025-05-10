@@ -31,6 +31,10 @@ function NavbarHeader() {
 		};
 	}, []);
 
+	function handleLinkClick() {
+		setIsAutocompleteEnabled(false);
+	}
+
 	return (
 		<div className="flex min-w-4xl items-center justify-between">
 			<NavLink to="/">
@@ -47,6 +51,7 @@ function NavbarHeader() {
 				<SearchAutocompleteTab
 					displayed={isAutocompleteEnabled}
 					query={searchQuery}
+					handleLinkClick={handleLinkClick}
 				/>
 			</div>
 		</div>
