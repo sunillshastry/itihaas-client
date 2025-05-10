@@ -81,10 +81,6 @@
 		text-decoration: underline;
 	}
 
-	input:focus {
-		outline: 3px solid var(--color-primary-20);
-	}
-
 	h1.primary__header {
 		background-image: linear-gradient(
 			90deg,
