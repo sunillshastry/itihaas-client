@@ -13,10 +13,17 @@ function DynastyPage() {
 
 	const { dynastySlug: slug } = useParams();
 	const [dynasty, setDynasty] = useState({});
+	const [title, setTitle] = useState(
+		'Itihaas | The Front Page of Indian History'
+	);
 	const navigate = useNavigate();
 
 	useEffect(
 		function () {
+			function updateTitle(name) {
+				setTitle(`Itihaas | ${name} | The Front Page of Indian History`);
+			}
+
 			async function fetchDynasty() {
 				try {
 					setLoading(true);
@@ -27,9 +34,9 @@ function DynastyPage() {
 
 					if (response.ok && data?.success) {
 						setDynasty(data.data.dynasty);
+						updateTitle(data.data.dynasty?.name);
 					} else {
-						setDynasty({});
-						navigate('/not-found');
+						throw new Error();
 					}
 					setLoading(false);
 				} catch {
@@ -43,6 +50,17 @@ function DynastyPage() {
 			fetchDynasty();
 		},
 		[slug, navigate]
+	);
+
+	useEffect(
+		function () {
+			window.document.title = title;
+
+			return () => {
+				window.document.title = 'Itihaas | The Front Page of Indian History';
+			};
+		},
+		[title]
 	);
 
 	// console.log(dynasty);
