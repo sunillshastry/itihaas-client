@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 function Loader({ size = 'medium' }) {
+	// Default styles
 	const styles = {
 		border: '8px solid #b4957e',
 		borderTop: '8px solid #4a3423',
@@ -11,6 +12,7 @@ function Loader({ size = 'medium' }) {
 		margin: '0 auto',
 	};
 
+	// Conditional styles based on size prop
 	if (size === 'small') {
 		styles.border = '5px solid #b4957e';
 		styles.borderTop = '5px solid #4a3423';
@@ -28,6 +30,7 @@ function Loader({ size = 'medium' }) {
 		styles.height = '75px';
 	}
 
+	// Single div render for UI
 	return <div style={styles}></div>;
 }
 
