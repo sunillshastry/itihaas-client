@@ -30,6 +30,8 @@
 	--font-primary: 'Jost', sans-serif;
 	--font-heading: 'Prata', serif;
 	--font-logo: 'Macondo', monospace;
+
+	--default-transition: all 0.2s ease;
 }
 
 @layer base {
@@ -73,16 +75,7 @@
 			-10px 0 5px 0 var(--color-brown-background);
 	}
 
-	a.nav__link {
-		color: var(--color-primary-500);
-	}
-
-	a.nav__link:hover {
-		text-decoration: underline;
-		color: var(--color-primary-10);
-	}
-
-	a.nav__link.active {
+	a.active {
 		font-weight: 600;
 		color: var(--color-primary-400);
 		text-decoration: underline;
@@ -90,5 +83,18 @@
 
 	input:focus {
 		outline: 3px solid var(--color-primary-20);
+	}
+
+	h1.primary__header {
+		background-image: linear-gradient(
+			90deg,
+			var(--color-primary-100),
+			var(--color-primary-500)
+		);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+		padding: 2px 0;
+		display: inline-block;
 	}
 }
