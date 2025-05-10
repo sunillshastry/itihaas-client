@@ -6,6 +6,7 @@ import PrimaryHeader from '../components/PrimaryHeader';
 import SecondaryHeader from '../components/SecondaryHeader';
 import formatArrayToString from '../utils/formatArrayToString';
 import Loader from '../components/Loader';
+import QuickFacts from '../components/QuickFacts';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -67,6 +68,8 @@ function DynastyPage() {
 								{dynasty?.timeline && dynasty.timeline.end}
 							</SecondaryHeader>
 						</div>
+
+						<QuickFacts />
 					</>
 				)}
 			</MainContainer>
