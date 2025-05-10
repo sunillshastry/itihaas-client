@@ -1,12 +1,14 @@
+import MainContainer from '../components/MainContainer';
 import Navbar from '../components/Navbar';
+import PrimaryHeader from '../components/PrimaryHeader';
 
 function WarsPage() {
 	return (
 		<>
 			<Navbar />
-			<main>
-				<h1>WarsPage</h1>
-			</main>
+			<MainContainer>
+				<PrimaryHeader>Wars</PrimaryHeader>
+			</MainContainer>
 		</>
 	);
 }
