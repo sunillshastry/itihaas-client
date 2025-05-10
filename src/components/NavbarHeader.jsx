@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import SearchAutocompleteTab from './SearchAutocompleteTab';
 import { useEffect, useState } from 'react';
+import SearchBar from './SearchBar';
 
 function NavbarHeader() {
 	const [isAutocompleteEnabled, setIsAutocompleteEnabled] = useState(false);
@@ -41,12 +42,11 @@ function NavbarHeader() {
 				<h1 className="font-logo text-3xl">Itihaas</h1>
 			</NavLink>
 			<div className="relative">
-				<input
-					className="bg-primary-90 font-primary w-sm rounded-sm px-4 py-2 text-sm shadow-md"
-					type="text"
-					placeholder="Search for dynasties, rulers..."
+				<SearchBar
 					value={searchQuery}
 					onChange={toggleAutocomplete}
+					setSearchQuery={setSearchQuery}
+					setIsAutocompleteEnabled={setIsAutocompleteEnabled}
 				/>
 				<SearchAutocompleteTab
 					displayed={isAutocompleteEnabled}
