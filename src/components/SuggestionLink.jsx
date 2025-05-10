@@ -1,14 +1,17 @@
 import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 
-function AutocompleteLink({ queryResult, handleLinkClick }) {
+function SuggestionLink({ queryResult, handleLinkClick }) {
 	const navigate = useNavigate();
 
-	function click(e) {
+	function handleClick(e) {
 		e.preventDefault();
 		handleLinkClick();
 
-		navigate(`/dynasties/${queryResult.slug}`);
+		// Navigate to respective page(s)
+		if (queryResult?.type === 'dynasty') {
+			navigate(`/dynasties/${queryResult.slug}`);
+		}
 	}
 
 	return (
@@ -16,18 +19,19 @@ function AutocompleteLink({ queryResult, handleLinkClick }) {
 			className="text-primary-400 border-primary-90 ease hover:bg-primary-70 hover:text-primary-800 my-1 rounded-sm border-b p-2 transition-all duration-150 last:border-b-0 hover:underline"
 			key={queryResult._id}
 		>
-			<Link onClick={click}>{queryResult.name}</Link>
+			<Link onClick={handleClick}>{queryResult.name}</Link>
 		</li>
 	);
 }
 
-AutocompleteLink.propTypes = {
+SuggestionLink.propTypes = {
 	queryResult: {
 		_id: PropTypes.string.isRequired,
 		name: PropTypes.string.isRequired,
 		slug: PropTypes.string.isRequired,
+		type: PropTypes.string.isRequired,
 	},
 	handleLinkClick: PropTypes.func,
 };
 
-export default AutocompleteLink;
+export default SuggestionLink;

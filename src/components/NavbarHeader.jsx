@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import SearchAutocompleteTab from './SearchAutocompleteTab';
+import SearchSuggestionTab from './SearchSuggestionTab';
 import { useEffect, useState } from 'react';
 import SearchBar from './SearchBar';
 import Logo from './Logo';
@@ -12,6 +12,7 @@ function NavbarHeader() {
 		const status = e.target.value;
 		setSearchQuery(status);
 
+		// Check if the number of characters in search is at least 3 characters long
 		if (status.length >= 3) {
 			setIsAutocompleteEnabled(true);
 		} else {
@@ -19,6 +20,7 @@ function NavbarHeader() {
 		}
 	}
 
+	// Custom useEffect to handle 'Escape' key event to remove suggestions from display
 	useEffect(function () {
 		function handleEscapeAutocomplete(e) {
 			if (e.key === 'Escape' || e.code === 'Escape') {
@@ -52,7 +54,7 @@ function NavbarHeader() {
 					setSearchQuery={setSearchQuery}
 					setIsAutocompleteEnabled={setIsAutocompleteEnabled}
 				/>
-				<SearchAutocompleteTab
+				<SearchSuggestionTab
 					displayed={isAutocompleteEnabled}
 					query={searchQuery}
 					handleLinkClick={handleLinkClick}
