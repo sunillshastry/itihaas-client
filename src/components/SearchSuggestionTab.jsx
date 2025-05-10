@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import NoResultsText from './NoResultsText';
 import SuggestionLink from './SuggestionLink';
 import Loader from './Loader';
+import SearchTotalResults from './SearchTotalResults';
 
 function SearchSuggestionTab({ displayed, query, handleLinkClick }) {
 	const [queriedResults, setQueriedResults] = useState([]);
@@ -62,7 +63,9 @@ function SearchSuggestionTab({ displayed, query, handleLinkClick }) {
 			) : (
 				<>
 					{queriedResults.length === 0 && <NoResultsText query={query} />}
-
+					{queriedResults.length > 0 && (
+						<SearchTotalResults length={queriedResults.length} />
+					)}
 					<ul className="list-none">
 						{queriedResults.map(function (queriedResult) {
 							return (
