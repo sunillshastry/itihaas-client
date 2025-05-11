@@ -36,9 +36,9 @@ function Footer() {
 			<section className="flex w-[40%] items-start justify-around">
 				<FooterLinksTab title="Product">
 					<ul>
-						<FooterLink to="#">Dynasties</FooterLink>
-						<FooterLink to="#">Rulers</FooterLink>
-						<FooterLink to="#">Wars</FooterLink>
+						<FooterLink to="/dynasties">Dynasties</FooterLink>
+						<FooterLink to="/rulers">Rulers</FooterLink>
+						<FooterLink to="/wars">Wars</FooterLink>
 					</ul>
 				</FooterLinksTab>
 
