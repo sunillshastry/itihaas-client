@@ -1,6 +1,6 @@
 import FooterLinksTab from './FooterLinksTab';
 import FooterLink from './FooterLink';
-import { Copyright } from 'lucide-react';
+import { Copyright, SquareArrowOutUpRight } from 'lucide-react';
 
 function Footer() {
 	const year = new Date().getFullYear();
@@ -44,9 +44,9 @@ function Footer() {
 
 				<FooterLinksTab title="Developer">
 					<ul>
-						<FooterLink to="#">Issues</FooterLink>
-						<FooterLink to="#">Docs</FooterLink>
-						<FooterLink to="#">GitHub</FooterLink>
+						<FooterLink to="/issues">Issues</FooterLink>
+						<FooterLink to="/docs">Docs</FooterLink>
+						<FooterLink to="/github">GitHub</FooterLink>
 					</ul>
 				</FooterLinksTab>
 			</section>
