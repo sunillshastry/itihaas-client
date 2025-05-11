@@ -6,7 +6,7 @@ function Footer() {
 	const year = new Date().getFullYear();
 
 	return (
-		<footer className="bg-primary-700 flex justify-between px-14 pt-10 pb-8">
+		<footer className="bg-primary-700 mt-36 flex justify-between px-14 pt-10 pb-8">
 			<section className="w-[60%]">
 				<div>
 					<h3 className="font-logo text-primary-90 text-3xl">Itihaas</h3>
