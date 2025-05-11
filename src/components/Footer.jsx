@@ -6,7 +6,7 @@ function Footer() {
 	const year = new Date().getFullYear();
 
 	return (
-		<footer className="bg-primary-600 flex justify-between px-14 py-6 pb-8">
+		<footer className="bg-primary-700 flex justify-between px-14 pt-10 pb-8">
 			<section className="w-[60%]">
 				<div>
 					<h3 className="font-logo text-primary-90 text-3xl">Itihaas</h3>
@@ -46,7 +46,16 @@ function Footer() {
 					<ul>
 						<FooterLink to="/issues">Issues</FooterLink>
 						<FooterLink to="/docs">Docs</FooterLink>
-						<FooterLink to="/github">GitHub</FooterLink>
+						<a
+							href="https://github.com/sunillshastry/itihaas-api/"
+							target="_blank"
+							className="text-primary-30 hover:text-primary-60 mt-4 inline-flex items-center hover:underline"
+						>
+							<span>GitHub</span>
+							<span className="ml-1">
+								<SquareArrowOutUpRight size={15} />
+							</span>
+						</a>
 					</ul>
 				</FooterLinksTab>
 			</section>
