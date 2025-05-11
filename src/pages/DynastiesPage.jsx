@@ -65,6 +65,7 @@ function DynastiesPage() {
 						placeholder="Search all dynasties..."
 						value={searchQuery}
 						onChange={setSearchQuery}
+						setSearchQuery={setSearchQuery}
 					/>
 				</div>
 
