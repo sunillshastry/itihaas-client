@@ -27,7 +27,7 @@ function DynastyPageItem({ dynasty }) {
 
 				<Link
 					to={`${dynasty?.slug}`}
-					className="text-primary-200 mt-2 inline-flex items-center underline"
+					className="text-primary-200 hover:bg-primary-600 hover:text-primary-70 mt-2 inline-flex items-center underline"
 				>
 					<span>Read more</span>
 					<span>

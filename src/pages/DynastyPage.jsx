@@ -7,6 +7,7 @@ import SecondaryHeader from '../components/SecondaryHeader';
 import formatArrayToString from '../utils/formatArrayToString';
 import Loader from '../components/Loader';
 import QuickFacts from '../components/QuickFacts';
+import Footer from '../components/Footer';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -91,6 +92,7 @@ function DynastyPage() {
 					</>
 				)}
 			</MainContainer>
+			<Footer />
 		</>
 	);
 }

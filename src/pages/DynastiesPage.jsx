@@ -5,6 +5,7 @@ import PageSearchBar from '../components/PageSearchBar';
 import PrimaryHeader from '../components/PrimaryHeader';
 import Loader from '../components/Loader';
 import DynastyPageList from '../components/DynastyPageList';
+import Footer from '../components/Footer';
 
 function DynastiesPage() {
 	const [dynasties, setDynasties] = useState([]);
@@ -53,7 +54,6 @@ function DynastiesPage() {
 		[dynasties, searchQuery]
 	);
 
-	console.log(queriedDynasties);
 	return (
 		<>
 			<Navbar />
@@ -79,6 +79,7 @@ function DynastiesPage() {
 					/>
 				)}
 			</MainContainer>
+			<Footer />
 		</>
 	);
 }
