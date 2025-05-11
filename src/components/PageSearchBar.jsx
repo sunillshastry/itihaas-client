@@ -2,7 +2,13 @@ import { X } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-function PageSearchBar({ className, placeholder, value, onChange }) {
+function PageSearchBar({
+	className,
+	placeholder,
+	value,
+	onChange,
+	setSearchQuery,
+}) {
 	const [isCloseDisplayed, setIsCloseDisplayed] = useState(false);
 
 	function handleOnChange(e) {
@@ -28,7 +34,13 @@ function PageSearchBar({ className, placeholder, value, onChange }) {
 			/>
 
 			{isCloseDisplayed && (
-				<button className="text-primary-400 hover:text-primary-600 hover:cursor-pointer">
+				<button
+					className="text-primary-400 hover:text-primary-600 hover:cursor-pointer"
+					onClick={() => {
+						setSearchQuery('');
+						setIsCloseDisplayed(false);
+					}}
+				>
 					<X size={18} />
 				</button>
 			)}
@@ -41,6 +53,7 @@ PageSearchBar.propTypes = {
 	placeholder: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired,
+	setSearchQuery: PropTypes.func,
 };
 
 export default PageSearchBar;
