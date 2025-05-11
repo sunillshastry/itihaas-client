@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function Loader({ size = 'medium' }) {
+function Loader({ size = 'medium', className }) {
 	// Default styles
 	const styles = {
 		border: '8px solid #b4957e',
@@ -31,11 +31,17 @@ function Loader({ size = 'medium' }) {
 	}
 
 	// Single div render for UI
-	return <div style={styles}></div>;
+	return (
+		<div
+			style={styles}
+			className={`${className}`}
+		></div>
+	);
 }
 
 Loader.propTypes = {
 	size: PropTypes.oneOf(['small', 'medium', 'large']),
+	className: PropTypes.string,
 };
 
 export default Loader;
