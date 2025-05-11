@@ -53,7 +53,6 @@ function DynastiesPage() {
 		[dynasties, searchQuery]
 	);
 
-	console.log(queriedDynasties);
 	return (
 		<>
 			<Navbar />
