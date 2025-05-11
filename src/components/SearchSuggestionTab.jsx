@@ -17,7 +17,7 @@ function SearchSuggestionTab({ displayed, query, handleLinkClick }) {
 					// Fetch dynasties
 					const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
 					const response = await fetch(
-						`${BASE_URL}/dynasties/search/titles?include=id,slug`
+						`${BASE_URL}/dynasties/search/titles?include=id,slug,type`
 					);
 					const data = await response.json();
 
