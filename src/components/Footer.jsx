@@ -1,5 +1,6 @@
 import FooterLinksTab from './FooterLinksTab';
 import FooterLink from './FooterLink';
+import { Copyright } from 'lucide-react';
 
 function Footer() {
 	const year = new Date().getFullYear();
@@ -9,12 +10,15 @@ function Footer() {
 			<section className="w-[60%]">
 				<div>
 					<h3 className="font-logo text-primary-90 text-3xl">Itihaas</h3>
-					<p className="text-primary-10 text-sm">
-						&copy; {year} Itihaas | Licensed under the{' '}
+					<p className="text-primary-10 flex items-center text-sm">
+						<span>
+							<Copyright size={16} />
+						</span>
+						<span className="ml-1">{year} Itihaas | Licensed under the </span>
 						<a
 							href="#"
 							target="_blank"
-							className="underline"
+							className="ml-1 underline"
 						>
 							GNU GPL v3
 						</a>
