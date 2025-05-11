@@ -16,9 +16,9 @@ function Footer() {
 						</span>
 						<span className="ml-1">{year} Itihaas | Licensed under the </span>
 						<a
-							href="#"
+							href="https://github.com/sunillshastry/itihaas-client/blob/master/LICENSE"
 							target="_blank"
-							className="ml-1 underline"
+							className="hover:text-primary-30 ml-1 underline"
 						>
 							GNU GPL v3
 						</a>
