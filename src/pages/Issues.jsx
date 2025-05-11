@@ -1,3 +1,4 @@
+import Footer from '../components/Footer';
 import MainContainer from '../components/MainContainer';
 import Navbar from '../components/Navbar';
 import PrimaryHeader from '../components/PrimaryHeader';
@@ -9,6 +10,7 @@ function Issues() {
 			<MainContainer>
 				<PrimaryHeader>Submit an Issue</PrimaryHeader>
 			</MainContainer>
+			<Footer />
 		</>
 	);
 }
