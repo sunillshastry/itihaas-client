@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import DynastyQuickFieldsContainer from './DynastyQuickFieldsContainer';
 
 function QuickFacts({ dynasty }) {
-	console.log(dynasty);
 	return (
 		<section className="from-primary-100 via-primary-300 to-primary-500 mt-6 rounded-lg bg-gradient-to-br px-5 py-8 shadow-lg">
 			<h2 className="text-primary-70 font-heading border-primary-70/35 border-b pb-3 text-2xl">

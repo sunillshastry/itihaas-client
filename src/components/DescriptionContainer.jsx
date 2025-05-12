@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import Description from './Description';
 
 function DescriptionContainer({ descriptionList }) {
-	console.log(descriptionList);
 	return (
 		<section className="mt-10">
 			{descriptionList &&

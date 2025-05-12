@@ -66,8 +66,6 @@ function DynastyPage() {
 		[title]
 	);
 
-	// console.log(dynasty);
-
 	return (
 		<>
 			<Navbar />
