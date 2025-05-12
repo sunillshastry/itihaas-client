@@ -37,6 +37,15 @@ function DynastiesPage() {
 		fetchAllDynasties();
 	}, []);
 
+	useEffect(function () {
+		window.document.title =
+			'Itihaas | Dynasties | The Front Page of Indian History';
+
+		return () => {
+			window.document.title = 'Itihaas | The Front Page of Indian History';
+		};
+	}, []);
+
 	useEffect(
 		function () {
 			if (searchQuery.length >= 3) {
