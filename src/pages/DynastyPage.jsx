@@ -97,6 +97,10 @@ function DynastyPage() {
 						/>
 
 						<SourcesContainer sources={dynasty?.sources} />
+
+						{/* TODO: RULERS CONTAINER */}
+
+						{/* TODO: WARS CONTAINER */}
 					</>
 				)}
 			</MainContainer>
