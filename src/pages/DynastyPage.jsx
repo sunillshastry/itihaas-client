@@ -8,6 +8,9 @@ import formatArrayToString from '../utils/formatArrayToString';
 import Loader from '../components/Loader';
 import QuickFacts from '../components/QuickFacts';
 import Footer from '../components/Footer';
+import DescriptionContainer from '../components/DescriptionContainer';
+import SourcesContainer from '../components/SourcesContainer';
+import BackButton from '../components/BackButton';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -64,8 +67,6 @@ function DynastyPage() {
 		[title]
 	);
 
-	// console.log(dynasty);
-
 	return (
 		<>
 			<Navbar />
@@ -75,6 +76,7 @@ function DynastyPage() {
 				) : (
 					<>
 						<div>
+							<BackButton />
 							<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
 
 							<SecondaryHeader>
@@ -88,7 +90,17 @@ function DynastyPage() {
 							</SecondaryHeader>
 						</div>
 
-						<QuickFacts />
+						<QuickFacts dynasty={dynasty} />
+
+						<DescriptionContainer
+							descriptionList={dynasty?.description?.long}
+						/>
+
+						<SourcesContainer sources={dynasty?.sources} />
+
+						{/* TODO: RULERS CONTAINER */}
+
+						{/* TODO: WARS CONTAINER */}
 					</>
 				)}
 			</MainContainer>

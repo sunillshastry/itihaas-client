@@ -46,6 +46,10 @@
 		font-family: var(--font-primary);
 		background-color: var(--color-brown-background);
 	}
+
+	a:focus-visible {
+		outline: 2px solid var(--color-primary-20);
+	}
 }
 
 @layer components {

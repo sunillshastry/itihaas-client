@@ -1,0 +1,32 @@
+import PropTypes from 'prop-types';
+import SubHeader from './SubHeader';
+import PageLinkField from './PageLinkField';
+
+function SourcesContainer({ sources }) {
+	return (
+		<section>
+			<SubHeader>Sources</SubHeader>
+			<div className="mt-3 flex flex-col items-start justify-start">
+				{sources &&
+					sources.map(function (source, i) {
+						return (
+							<PageLinkField
+								key={i}
+								className="my-1"
+								native={true}
+								to={source}
+							>
+								{source}
+							</PageLinkField>
+						);
+					})}
+			</div>
+		</section>
+	);
+}
+
+SourcesContainer.propTypes = {
+	sources: PropTypes.array.isRequired,
+};
+
+export default SourcesContainer;
