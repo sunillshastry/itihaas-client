@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import Description from './QuickFactsDescription';
+import Description from './Description';
 
 function DescriptionContainer({ descriptionList }) {
 	console.log(descriptionList);
