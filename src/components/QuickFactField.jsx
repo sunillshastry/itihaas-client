@@ -6,7 +6,11 @@ function QuickFactField({ title, content }) {
 			<h3 className="text-primary-70 text-sm font-semibold uppercase underline underline-offset-2">
 				{title}
 			</h3>
-			<p className="text-primary-90 text-md mt-1 font-semibold">{content}</p>
+			<p
+				className={`text-primary-90 ${content.length > 60 ? 'text-sm' : 'text-md'} mt-1 font-semibold`}
+			>
+				{content}
+			</p>
 		</li>
 	);
 }
