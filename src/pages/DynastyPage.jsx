@@ -10,6 +10,7 @@ import QuickFacts from '../components/QuickFacts';
 import Footer from '../components/Footer';
 import DescriptionContainer from '../components/DescriptionContainer';
 import SourcesContainer from '../components/SourcesContainer';
+import BackButton from '../components/BackButton';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -75,6 +76,7 @@ function DynastyPage() {
 				) : (
 					<>
 						<div>
+							<BackButton />
 							<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
 
 							<SecondaryHeader>
