@@ -8,6 +8,7 @@ import formatArrayToString from '../utils/formatArrayToString';
 import Loader from '../components/Loader';
 import QuickFacts from '../components/QuickFacts';
 import Footer from '../components/Footer';
+import QuickFactsDescriptionContainer from '../components/QuickFactsDescriptionContainer';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -89,6 +90,10 @@ function DynastyPage() {
 						</div>
 
 						<QuickFacts dynasty={dynasty} />
+
+						<QuickFactsDescriptionContainer
+							descriptionList={dynasty?.description?.long}
+						/>
 					</>
 				)}
 			</MainContainer>
