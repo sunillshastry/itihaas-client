@@ -10,6 +10,7 @@ import NotFound from './pages/NotFound';
 import DynastyPage from './pages/DynastyPage';
 import WarPage from './pages/WarPage';
 import RulerPage from './pages/RulerPage';
+import BackToTopButton from './components/BackToTopButton';
 
 function App() {
 	return (
@@ -70,6 +71,7 @@ function App() {
 					element={<NotFound />}
 				/>
 			</Routes>
+			<BackToTopButton />
 		</>
 	);
 }
