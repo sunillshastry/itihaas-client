@@ -88,7 +88,7 @@ function DynastyPage() {
 							</SecondaryHeader>
 						</div>
 
-						<QuickFacts />
+						<QuickFacts dynasty={dynasty} />
 					</>
 				)}
 			</MainContainer>
