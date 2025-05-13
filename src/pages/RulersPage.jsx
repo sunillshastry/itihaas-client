@@ -6,6 +6,7 @@ import PageSearchBar from '../components/PageSearchBar';
 import PrimaryHeader from '../components/PrimaryHeader';
 import Loader from '../components/Loader';
 import RulerPageList from '../components/RulerPageList';
+import FetchFailComponent from '../components/FetchFailComponent';
 
 function RulersPage() {
 	const [rulers, setRulers] = useState([]);
@@ -13,9 +14,20 @@ function RulersPage() {
 	const [searchQuery, setSearchQuery] = useState('');
 	const [loading, setLoading] = useState(false);
 
+	const [error, setError] = useState({
+		state: null,
+		prompt: '',
+	});
 	useEffect(function () {
 		async function fetchAllRulers() {
 			try {
+				setError(function (current) {
+					return {
+						...current,
+						state: null,
+						prompt: '',
+					};
+				});
 				setLoading(true);
 				const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
 				const response = await fetch(`${BASE_URL}/rulers`);
@@ -29,6 +41,14 @@ function RulersPage() {
 			} catch {
 				setQueriedRulers([]);
 				setRulers([]);
+
+				setError(function (current) {
+					return {
+						...current,
+						state: true,
+						prompt: 'Failed to fetch data from the backend. Please try again',
+					};
+				});
 			} finally {
 				setLoading(false);
 			}
@@ -69,6 +89,7 @@ function RulersPage() {
 					/>
 				</div>
 
+				{error.state && <FetchFailComponent />}
 				{loading ? (
 					<Loader />
 				) : (
