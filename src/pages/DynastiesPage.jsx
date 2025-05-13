@@ -15,7 +15,7 @@ function DynastiesPage() {
 	const [searchQuery, setSearchQuery] = useState('');
 
 	const [error, setError] = useState({
-		state: null,
+		state: false,
 		prompt: '',
 	});
 
@@ -25,7 +25,7 @@ function DynastiesPage() {
 				setError(function (current) {
 					return {
 						...current,
-						state: null,
+						state: false,
 						prompt: '',
 					};
 				});
