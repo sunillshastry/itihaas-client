@@ -61,10 +61,8 @@ function RulersPage() {
 		function () {
 			if (searchQuery.length >= 3) {
 				setQueriedRulers(
-					rulers.filter((dynasty) =>
-						dynasty.name
-							.toLowerCase()
-							.includes(searchQuery.trim().toLowerCase())
+					rulers.filter((ruler) =>
+						ruler.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
 					)
 				);
 			} else {
