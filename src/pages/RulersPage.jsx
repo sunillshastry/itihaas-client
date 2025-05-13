@@ -15,7 +15,7 @@ function RulersPage() {
 	const [loading, setLoading] = useState(false);
 
 	const [error, setError] = useState({
-		state: null,
+		state: false,
 		prompt: '',
 	});
 	useEffect(function () {
@@ -24,7 +24,7 @@ function RulersPage() {
 				setError(function (current) {
 					return {
 						...current,
-						state: null,
+						state: false,
 						prompt: '',
 					};
 				});
