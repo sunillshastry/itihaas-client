@@ -44,7 +44,7 @@ function FetchFailComponent({
 				</BasicButton>
 
 				<BasicButton onClick={handleNavigateToIssues}>
-					<span>Submit an Issue</span>
+					<span>Send Feedback</span>
 					<span className="ml-1">
 						<Bug size={14} />
 					</span>
