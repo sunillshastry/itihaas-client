@@ -48,7 +48,7 @@ function DynastiesPage() {
 					return {
 						...current,
 						state: true,
-						prompt: 'Unable to fetch data from the backend. Please try again',
+						prompt: 'Failed to fetch data from the backend. Please try again',
 					};
 				});
 			} finally {
