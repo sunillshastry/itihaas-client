@@ -6,6 +6,7 @@ import PrimaryHeader from '../components/PrimaryHeader';
 import Loader from '../components/Loader';
 import DynastyPageList from '../components/DynastyPageList';
 import Footer from '../components/Footer';
+import FetchFailComponent from '../components/FetchFailComponent';
 
 function DynastiesPage() {
 	const [dynasties, setDynasties] = useState([]);
@@ -13,9 +14,22 @@ function DynastiesPage() {
 	const [loading, setLoading] = useState(false);
 	const [searchQuery, setSearchQuery] = useState('');
 
+	const [error, setError] = useState({
+		state: null,
+		prompt: '',
+	});
+
 	useEffect(function () {
 		async function fetchAllDynasties() {
 			try {
+				setError(function (current) {
+					return {
+						...current,
+						state: null,
+						prompt: '',
+					};
+				});
+
 				setLoading(true);
 				const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
 				const response = await fetch(`${BASE_URL}/dynasties`);
@@ -29,6 +43,14 @@ function DynastiesPage() {
 			} catch {
 				setQueriedDynasties([]);
 				setDynasties([]);
+
+				setError(function (current) {
+					return {
+						...current,
+						state: true,
+						prompt: 'Unable to fetch data from the backend. Please try again',
+					};
+				});
 			} finally {
 				setLoading(false);
 			}
@@ -77,6 +99,8 @@ function DynastiesPage() {
 						setSearchQuery={setSearchQuery}
 					/>
 				</div>
+
+				{error.state && <FetchFailComponent />}
 
 				{loading ? (
 					<Loader />
