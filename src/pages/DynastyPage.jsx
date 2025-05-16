@@ -11,6 +11,7 @@ import Footer from '../components/Footer';
 import DescriptionContainer from '../components/DescriptionContainer';
 import SourcesContainer from '../components/SourcesContainer';
 import BackButton from '../components/BackButton';
+import ArticlesContainer from '../components/ArticlesContainer';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -101,6 +102,8 @@ function DynastyPage() {
 						{/* TODO: RULERS CONTAINER */}
 
 						{/* TODO: WARS CONTAINER */}
+
+						<ArticlesContainer articles={dynasty?.articles} />
 					</>
 				)}
 			</MainContainer>
