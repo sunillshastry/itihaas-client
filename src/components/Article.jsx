@@ -40,9 +40,9 @@ function Article({ title, link, publisher, authors = [] }) {
 }
 
 Article.propTypes = {
-	title: PropTypes.string,
+	title: PropTypes.string.isRequired,
 	authors: PropTypes.array,
-	link: PropTypes.string,
+	link: PropTypes.string.isRequired,
 	publisher: PropTypes.string,
 };
 
