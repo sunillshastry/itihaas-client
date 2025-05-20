@@ -12,6 +12,7 @@ import DescriptionContainer from '../components/DescriptionContainer';
 import SourcesContainer from '../components/SourcesContainer';
 import BackButton from '../components/BackButton';
 import ArticlesContainer from '../components/ArticlesContainer';
+import FurtherReadingContainer from '../components/FurtherReadingContainer';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -98,6 +99,8 @@ function DynastyPage() {
 						/>
 
 						<SourcesContainer sources={dynasty?.sources} />
+
+						<FurtherReadingContainer readings={dynasty?.furtherReading} />
 
 						{/* TODO: RULERS CONTAINER */}
 
