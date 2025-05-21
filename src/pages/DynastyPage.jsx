@@ -56,6 +56,8 @@ function DynastyPage() {
 					if (response.ok && data?.success) {
 						setDynasty(data.data.dynasty);
 						updateWindowTitle(data.data.dynasty?.name);
+					} else if (!response.ok && response.status === 404) {
+						navigate('/not-found');
 					} else {
 						throw new Error();
 					}
