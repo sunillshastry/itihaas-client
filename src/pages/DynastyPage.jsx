@@ -15,6 +15,7 @@ import ArticlesContainer from '../components/ArticlesContainer';
 import FurtherReadingContainer from '../components/FurtherReadingContainer';
 import LastUpdateMessage from '../components/LastUpdateMessage';
 import MissingInfoDialog from '../components/MissingInfoDialog';
+import FetchFailComponent from '../components/FetchFailComponent';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -24,6 +25,10 @@ function DynastyPage() {
 	const [title, setTitle] = useState(
 		'Itihaas | The Front Page of Indian History'
 	);
+	const [error, setError] = useState({
+		state: false,
+		prompt: '',
+	});
 	const navigate = useNavigate();
 
 	function updateWindowTitle(name) {
@@ -35,6 +40,14 @@ function DynastyPage() {
 			async function fetchDynasty() {
 				try {
 					setLoading(true);
+					setError(function (current) {
+						return {
+							...current,
+							state: false,
+							prompt: '',
+						};
+					});
+
 					const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
 
 					const response = await fetch(`${BASE_URL}/dynasties/${slug}`);
@@ -49,7 +62,13 @@ function DynastyPage() {
 					setLoading(false);
 				} catch {
 					setDynasty({});
-					navigate('/not-found');
+					setError(function (current) {
+						return {
+							...current,
+							state: true,
+							prompt: 'Failed to fetch data from the backend. Please try again',
+						};
+					});
 				} finally {
 					setLoading(false);
 				}
@@ -79,40 +98,46 @@ function DynastyPage() {
 					<Loader />
 				) : (
 					<>
-						<div>
-							<BackButton />
-							<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
+						{error.state ? (
+							<FetchFailComponent />
+						) : (
+							<>
+								<div>
+									<BackButton />
+									<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
 
-							<SecondaryHeader>
-								{dynasty?.otherNames &&
-									formatArrayToString(dynasty?.otherNames)}
-							</SecondaryHeader>
+									<SecondaryHeader>
+										{dynasty?.otherNames &&
+											formatArrayToString(dynasty?.otherNames)}
+									</SecondaryHeader>
 
-							<SecondaryHeader className="mt-4">
-								{dynasty?.timeline && dynasty.timeline.begin} -{' '}
-								{dynasty?.timeline && dynasty.timeline.end}
-							</SecondaryHeader>
-						</div>
+									<SecondaryHeader className="mt-4">
+										{dynasty?.timeline && dynasty.timeline.begin} -{' '}
+										{dynasty?.timeline && dynasty.timeline.end}
+									</SecondaryHeader>
+								</div>
 
-						<QuickFacts dynasty={dynasty} />
+								<QuickFacts dynasty={dynasty} />
 
-						<DescriptionContainer
-							descriptionList={dynasty?.description?.long}
-						/>
+								<DescriptionContainer
+									descriptionList={dynasty?.description?.long}
+								/>
 
-						<SourcesContainer sources={dynasty?.sources} />
+								<SourcesContainer sources={dynasty?.sources} />
 
-						<FurtherReadingContainer readings={dynasty?.furtherReading} />
+								<FurtherReadingContainer readings={dynasty?.furtherReading} />
 
-						{/* TODO: RULERS CONTAINER */}
+								{/* TODO: RULERS CONTAINER */}
 
-						{/* TODO: WARS CONTAINER */}
+								{/* TODO: WARS CONTAINER */}
 
-						<ArticlesContainer articles={dynasty?.articles} />
+								<ArticlesContainer articles={dynasty?.articles} />
 
-						<MissingInfoDialog />
+								<MissingInfoDialog />
 
-						<LastUpdateMessage date={dynasty?.updatedAt} />
+								<LastUpdateMessage date={dynasty?.updatedAt} />
+							</>
+						)}
 					</>
 				)}
 			</MainContainer>
