@@ -11,30 +11,53 @@ function SearchSuggestionTab({ displayed, query, handleLinkClick }) {
 
 	useEffect(
 		function () {
+			const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
+
+			async function fetchDynastyAutocomplete() {
+				const response = await fetch(
+					`${BASE_URL}/dynasties/search/titles?include=id,slug,type`
+				);
+				return response.json();
+			}
+
+			async function fetchRulerAutocomplete() {
+				const response = await fetch(
+					`${BASE_URL}/rulers/search/titles?include=id,slug,type`
+				);
+				return response.json();
+			}
+
 			async function fetchAutocompleteOptions() {
 				try {
 					setLoading(true);
+					let totalResults = [];
+
 					// Fetch dynasties
-					const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
-					const response = await fetch(
-						`${BASE_URL}/dynasties/search/titles?include=id,slug,type`
-					);
-					const data = await response.json();
+					const dynastyData = await fetchDynastyAutocomplete();
+					if (dynastyData?.success) {
+						const filtered = dynastyData.data.dynasties.filter((dynasty) =>
+							dynasty.name.toLowerCase().includes(query.toLowerCase())
+						);
+						totalResults = [...totalResults, ...filtered];
+					} else {
+						throw new Error('Failed to fetch dynasty autocomplete options');
+					}
 
 					// Fetch rulers
+					const rulerData = await fetchRulerAutocomplete();
+					if (rulerData?.success) {
+						const filtered = rulerData.data.rulers.filter((ruler) =>
+							ruler.name.toLowerCase().includes(query.toLowerCase())
+						);
+						totalResults = [...totalResults, ...filtered];
+					} else {
+						throw new Error('Failed to fetch ruler autocomplete options');
+					}
+
 					// Fetch wars
 
 					// Add to query list
-					if (response.ok && data?.success) {
-						setQueriedResults(
-							data.data.dynasties.filter((dynasty) =>
-								dynasty.name.toLowerCase().includes(query.toLowerCase())
-							)
-						);
-						setLoading(false);
-					} else {
-						throw new Error();
-					}
+					setQueriedResults(totalResults);
 				} catch {
 					setQueriedResults([]);
 					setLoading(false);
