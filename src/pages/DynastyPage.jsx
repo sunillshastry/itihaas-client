@@ -13,6 +13,7 @@ import SourcesContainer from '../components/SourcesContainer';
 import BackButton from '../components/BackButton';
 import ArticlesContainer from '../components/ArticlesContainer';
 import FurtherReadingContainer from '../components/FurtherReadingContainer';
+import LastUpdateMessage from '../components/LastUpdateMessage';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -107,6 +108,8 @@ function DynastyPage() {
 						{/* TODO: WARS CONTAINER */}
 
 						<ArticlesContainer articles={dynasty?.articles} />
+
+						<LastUpdateMessage date={dynasty?.updatedAt} />
 					</>
 				)}
 			</MainContainer>
