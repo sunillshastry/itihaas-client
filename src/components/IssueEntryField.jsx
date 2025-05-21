@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function IssueEntryField({
 	label,
 	required = false,
@@ -20,5 +22,12 @@ function IssueEntryField({
 		</div>
 	);
 }
+
+IssueEntryField.propTypes = {
+	label: PropTypes.string.isRequired,
+	required: PropTypes.string,
+	placeholder: PropTypes.string,
+	className: PropTypes.string,
+};
 
 export default IssueEntryField;
