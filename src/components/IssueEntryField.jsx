@@ -5,6 +5,7 @@ function IssueEntryField({
 	required = false,
 	placeholder = '',
 	className,
+	variant = 'small',
 }) {
 	return (
 		<div
@@ -15,7 +16,7 @@ function IssueEntryField({
 				{required && '*'}
 			</label>
 			<input
-				className="bg-primary-90 text-md text-primary-400 focus:outline-primary-20 mt-1 w-2xs rounded-sm px-2 py-2 focus:outline-3"
+				className={`bg-primary-90 text-md text-primary-400 focus:outline-primary-20 mt-1 rounded-sm px-2 py-2 focus:outline-3 ${variant === 'small' ? 'w-2xs' : 'w-sm'}`}
 				type="text"
 				placeholder={placeholder}
 			/>
@@ -28,6 +29,7 @@ IssueEntryField.propTypes = {
 	required: PropTypes.string,
 	placeholder: PropTypes.string,
 	className: PropTypes.string,
+	variant: PropTypes.string,
 };
 
 export default IssueEntryField;
