@@ -15,10 +15,12 @@ function IssuesUserDetails() {
 				<IssueEntryField
 					label="Full Name"
 					required={true}
+					variant="small"
 				/>
 				<IssueEntryField
 					className="ml-10"
 					label="Email"
+					variant="small"
 					required={true}
 				/>
 			</div>
