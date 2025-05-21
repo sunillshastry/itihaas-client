@@ -14,6 +14,7 @@ import BackButton from '../components/BackButton';
 import ArticlesContainer from '../components/ArticlesContainer';
 import FurtherReadingContainer from '../components/FurtherReadingContainer';
 import LastUpdateMessage from '../components/LastUpdateMessage';
+import MissingInfoDialog from '../components/MissingInfoDialog';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -108,6 +109,8 @@ function DynastyPage() {
 						{/* TODO: WARS CONTAINER */}
 
 						<ArticlesContainer articles={dynasty?.articles} />
+
+						<MissingInfoDialog />
 
 						<LastUpdateMessage date={dynasty?.updatedAt} />
 					</>
