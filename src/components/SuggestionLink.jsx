@@ -11,6 +11,8 @@ function SuggestionLink({ queryResult, handleLinkClick }) {
 		// Navigate to respective page(s)
 		if (queryResult?.type === 'dynasty') {
 			navigate(`/dynasties/${queryResult.slug}`);
+		} else if (queryResult?.type === 'ruler') {
+			navigate(`/rulers/${queryResult.slug}`);
 		}
 	}
 
