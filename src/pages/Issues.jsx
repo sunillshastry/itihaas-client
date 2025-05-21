@@ -1,4 +1,5 @@
 import Footer from '../components/Footer';
+import IssueInfo from '../components/IssueInfo';
 import MainContainer from '../components/MainContainer';
 import Navbar from '../components/Navbar';
 import PrimaryHeader from '../components/PrimaryHeader';
@@ -8,7 +9,8 @@ function Issues() {
 		<>
 			<Navbar />
 			<MainContainer>
-				<PrimaryHeader>Submit an Issue</PrimaryHeader>
+				<PrimaryHeader>Submit Issue</PrimaryHeader>
+				<IssueInfo />
 			</MainContainer>
 			<Footer />
 		</>
