@@ -3,8 +3,6 @@ import SubHeader from './SubHeader';
 import Article from './Article';
 
 function ArticlesContainer({ articles }) {
-	console.log(articles);
-
 	return (
 		<section className="mt-5">
 			<SubHeader>Articles</SubHeader>

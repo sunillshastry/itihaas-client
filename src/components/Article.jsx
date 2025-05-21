@@ -26,13 +26,7 @@ function Article({ title, link, publisher, authors = [] }) {
 						<p className="text-primary text-sm">Publisher unavailable</p>
 					)}
 
-					<a
-						className="text-primary-300 mt-2 underline"
-						href={link}
-						target="_blank"
-					>
-						{link}
-					</a>
+					<p className="text-primary-300 mt-2 text-sm underline">{link}</p>
 				</div>
 			</a>
 		</li>
