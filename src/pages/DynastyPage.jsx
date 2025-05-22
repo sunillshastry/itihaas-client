@@ -16,6 +16,7 @@ import FurtherReadingContainer from '../components/FurtherReadingContainer';
 import LastUpdateMessage from '../components/LastUpdateMessage';
 import MissingInfoDialog from '../components/MissingInfoDialog';
 import FetchFailComponent from '../components/FetchFailComponent';
+import DynastyQuickFieldsContainer from '../components/DynastyQuickFieldsContainer';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -119,7 +120,9 @@ function DynastyPage() {
 									</SecondaryHeader>
 								</div>
 
-								<QuickFacts dynasty={dynasty} />
+								<QuickFacts>
+									<DynastyQuickFieldsContainer dynasty={dynasty} />
+								</QuickFacts>
 
 								<DescriptionContainer
 									descriptionList={dynasty?.description?.long}
