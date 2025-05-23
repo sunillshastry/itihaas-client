@@ -13,6 +13,7 @@ import Loader from '../components/Loader';
 import FetchFailComponent from '../components/FetchFailComponent';
 import formatArrayToString from '../utils/formatArrayToString';
 import SourcesContainer from '../components/SourcesContainer';
+import FurtherReadingContainer from '../components/FurtherReadingContainer';
 
 function RulerPage() {
 	const navigate = useNavigate();
@@ -122,6 +123,8 @@ function RulerPage() {
 								/>
 
 								<SourcesContainer sources={ruler?.sources} />
+
+								<FurtherReadingContainer readings={ruler?.furtherReading} />
 							</>
 						)}
 					</>
