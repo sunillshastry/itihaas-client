@@ -125,6 +125,8 @@ function RulerPage() {
 								<SourcesContainer sources={ruler?.sources} />
 
 								<FurtherReadingContainer readings={ruler?.furtherReading} />
+
+								{/* TODO: WARS CONTAINER */}
 							</>
 						)}
 					</>
