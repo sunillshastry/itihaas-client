@@ -25,11 +25,14 @@ function Footer() {
 					</p>
 				</div>
 
-				<p className="text-primary-50 mt-4 leading-8">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Id tenetur
-					fugiat iure nesciunt, corrupti itaque quasi dolor reiciendis dolorem
-					nemo eligendi quisquam quos sapiente. Accusamus explicabo similique
-					repudiandae deleniti et praesentium harum, alias dolore ipsam!
+				<p className="text-primary-50 mt-4 text-sm leading-8">
+					Itihaas is a platform to help individuals and researchers explore the
+					vast history of the Indian subcontinent. Explore a rich catalog of
+					dynasties, rulers, and wars, search for specific topics, browse the
+					historical timeline, or help build Itihaas even further by providing
+					credible information and insights. Whether you&apos;re a student,
+					researcher, curious reader, or a developer, Itihaas makes discovering
+					the extensive history of India simple and engaging.
 				</p>
 			</section>
 
