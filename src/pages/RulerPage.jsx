@@ -41,7 +41,6 @@ function RulerPage() {
 					const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
 					const response = await fetch(`${BASE_URL}/rulers/${slug}`);
 					const data = await response.json();
-					console.log(data);
 
 					if (response?.ok && data?.success) {
 						setRuler(data?.data?.ruler);
@@ -68,6 +67,17 @@ function RulerPage() {
 			fetchRuler();
 		},
 		[slug, navigate]
+	);
+
+	useEffect(
+		function () {
+			window.document.title = title;
+
+			return () => {
+				window.document.title = 'Itihaas | The Front Page of Indian History';
+			};
+		},
+		[title]
 	);
 
 	return (
