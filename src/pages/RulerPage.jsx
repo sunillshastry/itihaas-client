@@ -17,6 +17,7 @@ import FurtherReadingContainer from '../components/FurtherReadingContainer';
 import ArticlesContainer from '../components/ArticlesContainer';
 import MissingInfoDialog from '../components/MissingInfoDialog';
 import LastUpdateMessage from '../components/LastUpdateMessage';
+import Footer from '../components/Footer';
 
 function RulerPage() {
 	const navigate = useNavigate();
@@ -141,6 +142,7 @@ function RulerPage() {
 					</>
 				)}
 			</MainContainer>
+			<Footer />
 		</>
 	);
 }
