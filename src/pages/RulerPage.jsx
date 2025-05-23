@@ -16,6 +16,7 @@ import SourcesContainer from '../components/SourcesContainer';
 import FurtherReadingContainer from '../components/FurtherReadingContainer';
 import ArticlesContainer from '../components/ArticlesContainer';
 import MissingInfoDialog from '../components/MissingInfoDialog';
+import LastUpdateMessage from '../components/LastUpdateMessage';
 
 function RulerPage() {
 	const navigate = useNavigate();
@@ -133,6 +134,8 @@ function RulerPage() {
 								<ArticlesContainer articles={ruler?.articles} />
 
 								<MissingInfoDialog />
+
+								<LastUpdateMessage date={ruler?.updatedAt} />
 							</>
 						)}
 					</>
