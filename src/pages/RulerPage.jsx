@@ -14,6 +14,7 @@ import FetchFailComponent from '../components/FetchFailComponent';
 import formatArrayToString from '../utils/formatArrayToString';
 import SourcesContainer from '../components/SourcesContainer';
 import FurtherReadingContainer from '../components/FurtherReadingContainer';
+import ArticlesContainer from '../components/ArticlesContainer';
 
 function RulerPage() {
 	const navigate = useNavigate();
@@ -127,6 +128,8 @@ function RulerPage() {
 								<FurtherReadingContainer readings={ruler?.furtherReading} />
 
 								{/* TODO: WARS CONTAINER */}
+
+								<ArticlesContainer articles={ruler?.articles} />
 							</>
 						)}
 					</>
