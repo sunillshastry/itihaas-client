@@ -17,6 +17,7 @@ import LastUpdateMessage from '../components/LastUpdateMessage';
 import MissingInfoDialog from '../components/MissingInfoDialog';
 import FetchFailComponent from '../components/FetchFailComponent';
 import DynastyQuickFieldsContainer from '../components/DynastyQuickFieldsContainer';
+import updateWindowTitle from '../utils/updateWindowTitle';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -31,10 +32,6 @@ function DynastyPage() {
 		prompt: '',
 	});
 	const navigate = useNavigate();
-
-	function updateWindowTitle(name) {
-		setTitle(`Itihaas | ${name} | The Front Page of Indian History`);
-	}
 
 	useEffect(
 		function () {
@@ -56,7 +53,7 @@ function DynastyPage() {
 
 					if (response.ok && data?.success) {
 						setDynasty(data.data.dynasty);
-						updateWindowTitle(data.data.dynasty?.name);
+						updateWindowTitle(setTitle, data.data.dynasty?.name);
 					} else if (!response.ok && response.status === 404) {
 						navigate('/not-found');
 					} else {
