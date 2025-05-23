@@ -115,6 +115,10 @@ function RulerPage() {
 								<QuickFacts>
 									<RulerQuickFieldsContainer ruler={ruler} />
 								</QuickFacts>
+
+								<DescriptionContainer
+									descriptionList={ruler?.description?.long}
+								/>
 							</>
 						)}
 					</>
