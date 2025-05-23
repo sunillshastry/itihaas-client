@@ -15,6 +15,7 @@ import formatArrayToString from '../utils/formatArrayToString';
 import SourcesContainer from '../components/SourcesContainer';
 import FurtherReadingContainer from '../components/FurtherReadingContainer';
 import ArticlesContainer from '../components/ArticlesContainer';
+import MissingInfoDialog from '../components/MissingInfoDialog';
 
 function RulerPage() {
 	const navigate = useNavigate();
@@ -130,6 +131,8 @@ function RulerPage() {
 								{/* TODO: WARS CONTAINER */}
 
 								<ArticlesContainer articles={ruler?.articles} />
+
+								<MissingInfoDialog />
 							</>
 						)}
 					</>
