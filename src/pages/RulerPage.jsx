@@ -12,6 +12,7 @@ import updateWindowTitle from '../utils/updateWindowTitle';
 import Loader from '../components/Loader';
 import FetchFailComponent from '../components/FetchFailComponent';
 import formatArrayToString from '../utils/formatArrayToString';
+import SourcesContainer from '../components/SourcesContainer';
 
 function RulerPage() {
 	const navigate = useNavigate();
@@ -119,6 +120,8 @@ function RulerPage() {
 								<DescriptionContainer
 									descriptionList={ruler?.description?.long}
 								/>
+
+								<SourcesContainer sources={ruler?.sources} />
 							</>
 						)}
 					</>
