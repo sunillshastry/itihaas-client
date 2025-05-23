@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
 import SubHeader from './SubHeader';
 import PageLinkField from './PageLinkField';
+import NoSectionDialog from './NoSectionDialog';
 
 function FurtherReadingContainer({ readings }) {
+	if (readings && readings.length === 0) {
+		return <NoSectionDialog name="Further Readings" />;
+	}
 	return (
 		<section className="mt-5">
 			<SubHeader>Further Reading</SubHeader>
