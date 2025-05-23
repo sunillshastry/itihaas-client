@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types';
 import SubHeader from './SubHeader';
 import PageLinkField from './PageLinkField';
+import NoSectionDialog from './NoSectionDialog';
 
 function SourcesContainer({ sources }) {
+	if (sources && sources.length === 0) {
+		return <NoSectionDialog name="Sources" />;
+	}
+
 	return (
 		<section className="mt-5">
 			<SubHeader>Sources</SubHeader>
