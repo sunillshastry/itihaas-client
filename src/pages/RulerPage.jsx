@@ -9,6 +9,9 @@ import RulerQuickFieldsContainer from '../components/RulerQuickFieldsContainer';
 import SecondaryHeader from '../components/SecondaryHeader';
 import { useNavigate, useParams } from 'react-router-dom';
 import updateWindowTitle from '../utils/updateWindowTitle';
+import Loader from '../components/Loader';
+import FetchFailComponent from '../components/FetchFailComponent';
+import formatArrayToString from '../utils/formatArrayToString';
 
 function RulerPage() {
 	const navigate = useNavigate();
@@ -80,25 +83,42 @@ function RulerPage() {
 		[title]
 	);
 
+	console.log(ruler);
+
 	return (
 		<>
 			<Navbar />
 			<MainContainer>
-				<>
-					<div>
-						<BackButton />
-						<PrimaryHeader>Pandu</PrimaryHeader>
+				{loading ? (
+					<Loader />
+				) : (
+					<>
+						{error.state ? (
+							<FetchFailComponent />
+						) : (
+							<>
+								<div>
+									<BackButton />
+									<PrimaryHeader>{ruler?.name}</PrimaryHeader>
 
-						<SecondaryHeader>Pāṇḍu, Pandu of Chandravamsha</SecondaryHeader>
-						<SecondaryHeader className="mt-4">
-							1200 BCE - 800 BCE
-						</SecondaryHeader>
-					</div>
+									<SecondaryHeader>
+										{ruler?.otherNames &&
+											formatArrayToString(ruler?.otherNames)}
+									</SecondaryHeader>
 
-					<QuickFacts>
-						<RulerQuickFieldsContainer />
-					</QuickFacts>
-				</>
+									<SecondaryHeader className="mt-4">
+										{ruler?.born && ruler.born} -&nbsp;
+										{ruler?.died && ruler.died}
+									</SecondaryHeader>
+								</div>
+
+								<QuickFacts>
+									<RulerQuickFieldsContainer ruler={ruler} />
+								</QuickFacts>
+							</>
+						)}
+					</>
+				)}
 			</MainContainer>
 		</>
 	);
