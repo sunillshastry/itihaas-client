@@ -18,8 +18,8 @@ class Citations {
 	 * @param {object} details Includes various information about the page/site/source
 	 * @returns The APA formatted citation
 	 */
-	static getAPAFormat() {
-		return '';
+	static getAPAFormat({ year, date, page, url }) {
+		return `Itihaas. (${year}, ${date}). Itihaas | ${page} | The Front Page of Indian History. Itihaas. ${url}`;
 	}
 
 	/**
@@ -28,8 +28,8 @@ class Citations {
 	 * @param {object} details Includes various information about the page/site/source
 	 * @returns The Harvard formatted citation
 	 */
-	static getHarvardFormat() {
-		return '';
+	static getHarvardFormat({ page, updated, url, accessed }) {
+		return `Itihaas, 2025. Itihaas | ${page} | The Front Page of Indian History. Itihaas, last updated ${updated}. Available at: ${url} (Accessed: ${accessed}).`;
 	}
 
 	/**
@@ -38,8 +38,8 @@ class Citations {
 	 * @param {object} details Includes various information about the page/site/source
 	 * @returns The Chicago formatted citation
 	 */
-	static getChicagoFormat() {
-		return '';
+	static getChicagoFormat({ page, updated, url }) {
+		return `Itihaas. 2025. "Itihaas | ${page} | The Front Page of Indian History." Itihaas. Last modified ${updated}. ${url}.`;
 	}
 }
 
