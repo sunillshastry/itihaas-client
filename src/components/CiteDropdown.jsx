@@ -1,14 +1,29 @@
 import { ClipboardCopy, MessageSquareQuote } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CiteListDropdown from './CiteListDropdown';
 
 function CiteDropdown() {
 	const [isCiteTabOpen, setIsCiteTabOpen] = useState(false);
 
+	useEffect(
+		function () {
+			function hideCiteTab(e) {
+				if (e.key === 'Escape' || (e.code === 'Escape' && isCiteTabOpen)) {
+					setIsCiteTabOpen(false);
+				}
+			}
+
+			document.addEventListener('keyup', hideCiteTab);
+
+			return () => document.removeEventListener('keyup', hideCiteTab);
+		},
+		[isCiteTabOpen]
+	);
+
 	return (
 		<div className="relative">
 			<button
-				className="border-primary text-primary from-primary-80 to-primary-90 hover:text-primary-200 hover:border-primary-200 flex items-center rounded-sm border bg-linear-to-r px-5 py-2 font-medium hover:cursor-pointer"
+				className="border-primary text-primary from-primary-80 to-primary-90 hover:text-primary-200 hover:border-primary-200 focus-visible:outline-primary-20 focus-visible::outline-2 flex items-center rounded-sm border bg-linear-to-r px-5 py-2 font-medium hover:cursor-pointer"
 				onClick={() => setIsCiteTabOpen((current) => !current)}
 			>
 				<span className="pointer-events-none">Cite Page</span>
