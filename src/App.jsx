@@ -12,6 +12,11 @@ import WarPage from './pages/WarPage';
 import RulerPage from './pages/RulerPage';
 import BackToTopButton from './components/BackToTopButton';
 
+/**
+ * Base App component of the application, which is mounted on the 'root' div component
+ *
+ * @returns The singleton JSX for App component with react-router setup, managing the router system
+ */
 function App() {
 	return (
 		<>
@@ -66,6 +71,7 @@ function App() {
 					element={<Docs />}
 				/>
 
+				{/* Wildcard route(s) to handle all other routes as 404 state */}
 				<Route
 					path="*"
 					element={<NotFound />}
