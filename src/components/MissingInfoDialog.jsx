@@ -7,14 +7,18 @@ function MissingInfoDialog() {
 	return (
 		<div className="bg-primary-400 mt-10 rounded-sm px-6 py-4">
 			<h3 className="font-heading text-primary-90 text-xl">
-				Wish to update missing information?
+				Spot any incorrect or missing information?
 			</h3>
 
 			<p className="text-primary-80 text-md mt-2 leading-8">
-				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-				corrupti ut nobis earum modi dolorem sunt libero animi tempore ratione
-				eius necessitatibus aliquid, non nemo accusantium fugit hic illo quidem
-				possimus. Numquam nam nostrum iure libero ab, vero voluptas fuga.
+				Help improve the quality of <strong>Itihaas</strong> and its contents by
+				filling in any missing information you&apos;ve noticed. Whether
+				it&apos;s a small detail, a broken link, or missing information, your
+				contributions ensure the content stays accurate, up-to-date, credible
+				and useful for everyone. If you have relevant insights, sources, or
+				updates, feel free to submit an issue. Every update makes a difference
+				and helps others get the full picture. Thank you for being a part of
+				keeping this platform informative and complete!
 			</p>
 
 			<button

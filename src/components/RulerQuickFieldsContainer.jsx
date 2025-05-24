@@ -1,40 +1,50 @@
+import PropTypes from 'prop-types';
 import QuickFactField from './QuickFactField';
+import QuickFactsNoField from './QuickFactsNoField';
 
-function RulerQuickFieldsContainer() {
+function RulerQuickFieldsContainer({ ruler }) {
 	return (
 		<>
 			<QuickFactField
 				title="dynasty"
-				content="Kuru Dynasty"
+				content={ruler?.dynasty ? ruler?.dynasty : <QuickFactsNoField />}
 			/>
 
 			<QuickFactField
 				title="predecessor"
-				content="Vichitravirya"
+				content={ruler?.predecessor ? ruler.predecessor : <QuickFactsNoField />}
 			/>
 
 			<QuickFactField
 				title="family"
-				content="Update this"
+				content={ruler?.family ? 'Update family!' : <QuickFactsNoField />}
 			/>
 			<QuickFactField
 				title="religion"
-				content="Hinduism"
+				content={ruler?.religion ? ruler.religion : <QuickFactsNoField />}
 			/>
 			<QuickFactField
 				title="successor"
-				content="Dhritarashtra II"
+				content={ruler?.successor ? ruler.successor : <QuickFactsNoField />}
 			/>
 			<QuickFactField
 				title="reign"
-				content="-"
+				content={
+					ruler?.timeline?.begin ? ruler.timeline.begin : <QuickFactsNoField />
+				}
 			/>
 			<QuickFactField
 				title="reign end"
-				content="-"
+				content={
+					ruler?.timeline?.end ? ruler.timeline.end : <QuickFactsNoField />
+				}
 			/>
 		</>
 	);
 }
+
+RulerQuickFieldsContainer.propTypes = {
+	ruler: PropTypes.object.isRequired,
+};
 
 export default RulerQuickFieldsContainer;
