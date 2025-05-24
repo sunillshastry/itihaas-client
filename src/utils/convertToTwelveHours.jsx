@@ -1,3 +1,9 @@
+/**
+ * Convert 24 hour value to its 12 hour equivalent
+ *
+ * @param {number} hours The 24-hour value
+ * @returns The twelve hour equivalent of a 24-hour value
+ */
 function convertToTwelveHours(hours) {
 	const time = ['', ''];
 	const meridian = hours >= 12 ? 'PM' : 'AM';
