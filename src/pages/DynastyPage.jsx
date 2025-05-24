@@ -18,6 +18,7 @@ import MissingInfoDialog from '../components/MissingInfoDialog';
 import FetchFailComponent from '../components/FetchFailComponent';
 import DynastyQuickFieldsContainer from '../components/DynastyQuickFieldsContainer';
 import updateWindowTitle from '../utils/updateWindowTitle';
+import CiteDropdown from '../components/CiteDropdown';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
@@ -103,7 +104,10 @@ function DynastyPage() {
 						) : (
 							<>
 								<div>
-									<BackButton />
+									<div className="flex items-baseline justify-between">
+										<BackButton />
+										<CiteDropdown />
+									</div>
 									<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
 
 									<SecondaryHeader>
