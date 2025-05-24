@@ -28,6 +28,7 @@ function CiteListDropdown({ onChange }) {
 							? '#9f7759'
 							: 'transparent',
 					fontWeight: '500',
+					cursor: 'pointer',
 				}),
 			}}
 		/>
