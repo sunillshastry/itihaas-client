@@ -5,6 +5,9 @@ import CiteListDropdown from './CiteListDropdown';
 function CiteDropdown() {
 	const [isCiteTabOpen, setIsCiteTabOpen] = useState(false);
 
+	const [citation, setCitation] = useState('');
+	const [format, setFormat] = useState('mla');
+
 	useEffect(
 		function () {
 			function hideCiteTab(e) {
@@ -20,6 +23,10 @@ function CiteDropdown() {
 		[isCiteTabOpen]
 	);
 
+	function onOptionChange() {
+		console.log('Change!');
+	}
+
 	return (
 		<div className="relative">
 			<button
@@ -34,11 +41,12 @@ function CiteDropdown() {
 
 			{isCiteTabOpen && (
 				<div className="bg-primary-90 after:border-r-primary-90 absolute -left-full mt-3 max-w-md -translate-x-0.5 rounded-xs p-3 shadow-md shadow-black/35 after:absolute after:top-[-10px] after:right-0 after:z-10 after:h-0 after:w-0 after:border-[10px] after:border-transparent after:content-['']">
-					<CiteListDropdown />
+					<CiteListDropdown onChange={onOptionChange} />
 
 					<p className="text-primary-200 mt-2 text-sm font-medium italic">
-						2025. Accessed May 24.
-						https://chatgpt.com/c/6831127f-a370-8000-9fbd-f66069494e2e.
+						Itihaas. &ldquo;Itihaas | Page | The Front Page of Indian
+						History.&rdquo; Itihaas, last updated 21 May 2025,
+						www.itihaas.dev/rulers/abc. Accessed 23 May 2025
 					</p>
 					<div className="flex items-center">
 						<button
