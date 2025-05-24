@@ -1,12 +1,12 @@
 import { ClipboardCopy, MessageSquareQuote } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import CiteListDropdown from './CiteListDropdown';
+// import Citations from '../services/Citations';
 
 function CiteDropdown() {
 	const [isCiteTabOpen, setIsCiteTabOpen] = useState(false);
 
-	const [citation, setCitation] = useState('');
-	const [format, setFormat] = useState('mla');
+	// const [citation, setCitation] = useState('');
 
 	useEffect(
 		function () {
@@ -23,8 +23,9 @@ function CiteDropdown() {
 		[isCiteTabOpen]
 	);
 
-	function onOptionChange() {
-		console.log('Change!');
+	function onOptionChange(e) {
+		const value = e?.value || 'mla';
+		console.log(value);
 	}
 
 	return (
@@ -44,9 +45,9 @@ function CiteDropdown() {
 					<CiteListDropdown onChange={onOptionChange} />
 
 					<p className="text-primary-200 mt-2 text-sm font-medium italic">
-						Itihaas. &ldquo;Itihaas | Page | The Front Page of Indian
+						`Itihaas. &ldquo;Itihaas | Page | The Front Page of Indian
 						History.&rdquo; Itihaas, last updated 21 May 2025,
-						www.itihaas.dev/rulers/abc. Accessed 23 May 2025
+						www.itihaas.dev/rulers/abc. Accessed 23 May 2025`
 					</p>
 					<div className="flex items-center">
 						<button
