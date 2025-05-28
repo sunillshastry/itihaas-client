@@ -18,6 +18,7 @@ import ArticlesContainer from '../components/ArticlesContainer';
 import MissingInfoDialog from '../components/MissingInfoDialog';
 import LastUpdateMessage from '../components/LastUpdateMessage';
 import Footer from '../components/Footer';
+import CiteDropdown from '../components/CiteDropdown';
 
 function RulerPage() {
 	const navigate = useNavigate();
@@ -89,8 +90,6 @@ function RulerPage() {
 		[title]
 	);
 
-	console.log(ruler);
-
 	return (
 		<>
 			<Navbar />
@@ -104,7 +103,14 @@ function RulerPage() {
 						) : (
 							<>
 								<div>
-									<BackButton />
+									<div className="flex items-baseline justify-between">
+										<BackButton />
+										<CiteDropdown
+											pageTitle={ruler?.name}
+											updatedDate={ruler?.updatedAt}
+											url={window.location.href}
+										/>
+									</div>
 									<PrimaryHeader>{ruler?.name}</PrimaryHeader>
 
 									<SecondaryHeader>
