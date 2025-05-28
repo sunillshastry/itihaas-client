@@ -16,7 +16,7 @@ function IssueEntryField({
 				{required && '*'}
 			</label>
 			<input
-				className={`bg-primary-90 text-md text-primary-400 focus:outline-primary-20 mt-1 rounded-sm px-2 py-2 focus:outline-3 ${variant === 'small' ? 'w-2xs' : 'w-sm'}`}
+				className={`bg-primary-80 text-md text-primary-400 focus:outline-primary-20 mt-1 rounded-sm px-2 py-2 focus:outline-3 ${variant === 'small' ? 'w-2xs' : 'w-sm'}`}
 				type="text"
 				placeholder={placeholder}
 			/>
