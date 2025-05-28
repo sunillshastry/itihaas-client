@@ -1,5 +1,6 @@
 import Footer from '../components/Footer';
 import IssueInfo from '../components/IssueInfo';
+import IssuesSubjectDetails from '../components/IssuesSubjectDetails';
 import IssuesUserDetails from '../components/IssuesUserDetails';
 import MainContainer from '../components/MainContainer';
 import Navbar from '../components/Navbar';
@@ -14,6 +15,7 @@ function Issues() {
 				<IssueInfo />
 
 				<IssuesUserDetails />
+				<IssuesSubjectDetails />
 			</MainContainer>
 			<Footer />
 		</>
