@@ -7,7 +7,8 @@ function IssuesUserDetails() {
 				<h2 className="font-heading text-primary-400 text-xl">User Details</h2>
 				<p className="text-primary-400/60 text-sm">
 					For any potential contact purposes regarding issues, sources, etc.
-					Your information will not be shared to anyone
+					Your information will not be shared to anyone. Fields marked with *
+					are required
 				</p>
 			</div>
 
