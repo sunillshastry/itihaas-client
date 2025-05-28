@@ -1,12 +1,26 @@
-import { ClipboardCopy, MessageSquareQuote } from 'lucide-react';
+import { MessageSquareQuote } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import CiteListDropdown from './CiteListDropdown';
-// import Citations from '../services/Citations';
+import Citations from '../services/Citations';
+import PropTypes from 'prop-types';
+import formattedMonthName from '../utils/formattedMonthName';
+import CitationContent from './CitationContent';
 
-function CiteDropdown() {
+function CiteDropdown({ pageTitle, updatedDate, url }) {
+	const update = new Date(updatedDate);
+	const formattedUpdateDate = `${update.getUTCDate()} ${formattedMonthName(update.getUTCMonth() + 1)} ${update.getUTCFullYear()}`;
+
+	const accessed = new Date();
+	const formattedAccessDate = `${accessed.getUTCDate()} ${formattedMonthName(accessed.getUTCMonth() + 1)} ${accessed.getUTCFullYear()}`;
+
 	const [isCiteTabOpen, setIsCiteTabOpen] = useState(false);
-
-	// const [citation, setCitation] = useState('');
+	const [citation, setCitation] = useState(
+		Citations.getMLAFormat({
+			page: pageTitle,
+			updated: formattedUpdateDate,
+			url,
+			accessed: formattedAccessDate,
+		})
+	);
 
 	useEffect(
 		function () {
@@ -25,7 +39,53 @@ function CiteDropdown() {
 
 	function onOptionChange(e) {
 		const value = e?.value || 'mla';
-		console.log(value);
+		updateCitationContent(value);
+	}
+
+	function updateCitationContent(format) {
+		switch (format) {
+			case 'mla':
+				setCitation(
+					Citations.getMLAFormat({
+						page: pageTitle,
+						updated: formattedUpdateDate,
+						url,
+						accessed: formattedAccessDate,
+					})
+				);
+				break;
+			case 'apa':
+				setCitation(
+					Citations.getAPAFormat({
+						year: new Date().getUTCFullYear(),
+						date: `${new Date().getUTCDate()} ${formattedMonthName(new Date().getUTCMonth() + 1)}`,
+						page: pageTitle,
+						url,
+					})
+				);
+				break;
+			case 'chicago':
+				setCitation(
+					Citations.getChicagoFormat({
+						page: pageTitle,
+						updated: formattedUpdateDate,
+						url,
+					})
+				);
+				break;
+			case 'harvard':
+				setCitation(
+					Citations.getHarvardFormat({
+						page: pageTitle,
+						updated: formattedUpdateDate,
+						url,
+						accessed: formattedAccessDate,
+					})
+				);
+				break;
+			default:
+				throw new Error(`Invalid citation format: ${format}`);
+		}
 	}
 
 	return (
@@ -41,29 +101,19 @@ function CiteDropdown() {
 			</button>
 
 			{isCiteTabOpen && (
-				<div className="bg-primary-90 after:border-r-primary-90 absolute -left-full mt-3 max-w-md -translate-x-0.5 rounded-xs p-3 shadow-md shadow-black/35 after:absolute after:top-[-10px] after:right-0 after:z-10 after:h-0 after:w-0 after:border-[10px] after:border-transparent after:content-['']">
-					<CiteListDropdown onChange={onOptionChange} />
-
-					<p className="text-primary-200 mt-2 text-sm font-medium italic">
-						`Itihaas. &ldquo;Itihaas | Page | The Front Page of Indian
-						History.&rdquo; Itihaas, last updated 21 May 2025,
-						www.itihaas.dev/rulers/abc. Accessed 23 May 2025`
-					</p>
-					<div className="flex items-center">
-						<button
-							className="text-primary border-primary hover:text-primary-300 mt-2 rounded-sm border bg-white p-1 hover:cursor-pointer"
-							title="Copy Citation"
-						>
-							<ClipboardCopy size={18} />
-						</button>
-						<label className="text-primary mt-2 ml-1 hidden text-xs font-bold uppercase">
-							Copied!
-						</label>
-					</div>
-				</div>
+				<CitationContent
+					citation={citation}
+					onOptionChange={onOptionChange}
+				/>
 			)}
 		</div>
 	);
 }
+
+CiteDropdown.propTypes = {
+	pageTitle: PropTypes.string.isRequired,
+	updatedDate: PropTypes.string.isRequired,
+	url: PropTypes.string.isRequired,
+};
 
 export default CiteDropdown;

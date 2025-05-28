@@ -106,7 +106,11 @@ function DynastyPage() {
 								<div>
 									<div className="flex items-baseline justify-between">
 										<BackButton />
-										<CiteDropdown />
+										<CiteDropdown
+											pageTitle={dynasty?.name}
+											updatedDate={dynasty?.updatedAt}
+											url={window.location.href}
+										/>
 									</div>
 									<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
 

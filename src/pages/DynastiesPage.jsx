@@ -8,7 +8,13 @@ import DynastyPageList from '../components/DynastyPageList';
 import Footer from '../components/Footer';
 import FetchFailComponent from '../components/FetchFailComponent';
 
+/**
+ * Main React.JSX page component for /dynasties: Dynasties page
+ *
+ * @returns The JSX for the dynasties page
+ */
 function DynastiesPage() {
+	// State
 	const [dynasties, setDynasties] = useState([]);
 	const [queriedDynasties, setQueriedDynasties] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -19,9 +25,14 @@ function DynastiesPage() {
 		prompt: '',
 	});
 
+	// Effects
 	useEffect(function () {
+		/**
+		 * Fetches all dynasties from the backend via async/await fetch request(s)
+		 */
 		async function fetchAllDynasties() {
 			try {
+				// Update error and loading to null, false respectively
 				setError(function (current) {
 					return {
 						...current,
@@ -31,16 +42,20 @@ function DynastiesPage() {
 				});
 
 				setLoading(true);
+
+				// Make a fetch request
 				const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
 				const response = await fetch(`${BASE_URL}/dynasties`);
 				const data = await response.json();
 
+				// Check for success/failure responses
 				if (response.ok && data?.success) {
 					setDynasties(data?.data?.dynasties);
 				} else {
 					throw new Error();
 				}
 			} catch {
+				// Handle failed fetch response
 				setQueriedDynasties([]);
 				setDynasties([]);
 
@@ -52,6 +67,7 @@ function DynastiesPage() {
 					};
 				});
 			} finally {
+				// Update loading status
 				setLoading(false);
 			}
 		}
@@ -60,6 +76,7 @@ function DynastiesPage() {
 	}, []);
 
 	useEffect(function () {
+		// Update document title field
 		window.document.title =
 			'Itihaas | Dynasties | The Front Page of Indian History';
 

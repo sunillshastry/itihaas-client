@@ -5,7 +5,7 @@ function Home() {
 	return (
 		<>
 			<main className="home__main px-20">
-				<section className="home__main--primary bg-brown-background">
+				<section className="home__main--primary bg-brown-background px-3">
 					<Navbar />
 				</section>
 			</main>

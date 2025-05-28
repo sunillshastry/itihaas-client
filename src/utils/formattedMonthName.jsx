@@ -1,4 +1,11 @@
+/**
+ * Get month string value via its numeric value
+ *
+ * @param {number} month The month value in its number format
+ * @returns The equivalent string value for the month provided
+ */
 function formattedMonthName(month) {
+	// List of all possible months
 	const months = [
 		'January',
 		'February',
@@ -18,6 +25,7 @@ function formattedMonthName(month) {
 		return months[month - 1];
 	}
 
+	// Invalid index
 	return '';
 }
 

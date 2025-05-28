@@ -98,6 +98,11 @@
 		display: inline-block;
 	}
 
+	.citation-tab {
+		left: 50%;
+		transform: translate(-78%, 0);
+	}
+
 	@keyframes spin {
 		0% {
 			transform: rotate(0deg);
