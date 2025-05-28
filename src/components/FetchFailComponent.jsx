@@ -36,14 +36,20 @@ function FetchFailComponent({
 			</h2>
 
 			<div className="mt-2 flex">
-				<BasicButton onClick={handleReloadPage}>
+				<BasicButton
+					onClick={handleReloadPage}
+					className="m-2"
+				>
 					<span>Refresh Page</span>
 					<span className="ml-1">
 						<RotateCw size={14} />
 					</span>
 				</BasicButton>
 
-				<BasicButton onClick={handleNavigateToIssues}>
+				<BasicButton
+					onClick={handleNavigateToIssues}
+					className="m-2"
+				>
 					<span>Send Feedback</span>
 					<span className="ml-1">
 						<Bug size={14} />
