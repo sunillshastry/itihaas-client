@@ -1,9 +1,26 @@
 import { ClipboardCopy, MessageSquareQuote } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import CiteListDropdown from './CiteListDropdown';
+import Citations from '../services/Citations';
+import PropTypes from 'prop-types';
+import formattedMonthName from '../utils/formattedMonthName';
 
-function CiteDropdown() {
+function CiteDropdown({ pageTitle, updatedDate, url }) {
+	const update = new Date(updatedDate);
+	const formattedUpdateDate = `${update.getUTCDate()} ${formattedMonthName(update.getUTCMonth() + 1)} ${update.getUTCFullYear()}`;
+
+	const accessed = new Date();
+	const formattedAccessDate = `${accessed.getUTCDate()} ${formattedMonthName(accessed.getUTCMonth() + 1)} ${accessed.getUTCFullYear()}`;
+
 	const [isCiteTabOpen, setIsCiteTabOpen] = useState(false);
+	const [citation, setCitation] = useState(
+		Citations.getMLAFormat({
+			page: pageTitle,
+			updated: formattedUpdateDate,
+			url,
+			accessed: formattedAccessDate,
+		})
+	);
 
 	useEffect(
 		function () {
@@ -22,7 +39,53 @@ function CiteDropdown() {
 
 	function onOptionChange(e) {
 		const value = e?.value || 'mla';
-		console.log(value);
+		updateCitationContent(value);
+	}
+
+	function updateCitationContent(format) {
+		switch (format) {
+			case 'mla':
+				setCitation(
+					Citations.getMLAFormat({
+						page: pageTitle,
+						updated: formattedUpdateDate,
+						url,
+						accessed: formattedAccessDate,
+					})
+				);
+				break;
+			case 'apa':
+				setCitation(
+					Citations.getAPAFormat({
+						year: new Date().getUTCFullYear(),
+						date: `${new Date().getUTCDate()} ${formattedMonthName(new Date().getUTCMonth() + 1)}`,
+						page: pageTitle,
+						url,
+					})
+				);
+				break;
+			case 'chicago':
+				setCitation(
+					Citations.getChicagoFormat({
+						page: pageTitle,
+						updated: formattedUpdateDate,
+						url,
+					})
+				);
+				break;
+			case 'harvard':
+				setCitation(
+					Citations.getHarvardFormat({
+						page: pageTitle,
+						updated: formattedUpdateDate,
+						url,
+						accessed: formattedAccessDate,
+					})
+				);
+				break;
+			default:
+				throw new Error(`Invalid citation format: ${format}`);
+		}
 	}
 
 	return (
@@ -38,11 +101,11 @@ function CiteDropdown() {
 			</button>
 
 			{isCiteTabOpen && (
-				<div className="bg-primary-90 after:border-r-primary-90 absolute -left-full mt-3 max-w-md -translate-x-0.5 rounded-xs p-3 shadow-md shadow-black/35 after:absolute after:top-[-10px] after:right-0 after:z-10 after:h-0 after:w-0 after:border-[10px] after:border-transparent after:content-['']">
+				<div className="bg-primary-90 after:border-r-primary-90 citation-tab absolute mt-3 min-w-2xs rounded-xs p-3 shadow-md shadow-black/35 after:absolute after:top-[-10px] after:right-0 after:z-10 after:h-0 after:w-0 after:border-[10px] after:border-transparent after:content-['']">
 					<CiteListDropdown onChange={onOptionChange} />
 
 					<p className="text-primary-200 mt-2 text-sm font-medium italic">
-						Citation
+						{citation}
 					</p>
 					<div className="flex items-center">
 						<button
@@ -60,5 +123,11 @@ function CiteDropdown() {
 		</div>
 	);
 }
+
+CiteDropdown.propTypes = {
+	pageTitle: PropTypes.string.isRequired,
+	updatedDate: PropTypes.string.isRequired,
+	url: PropTypes.string.isRequired,
+};
 
 export default CiteDropdown;
