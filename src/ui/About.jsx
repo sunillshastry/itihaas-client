@@ -41,7 +41,7 @@ function About() {
 			<a
 				href="https://github.com/sunillshastry/itihaas-api/"
 				target="_blank"
-				className="text-primary-300 hover:text-primary-10 flex items-center underline"
+				className="text-primary-300 hover:text-primary-10 mt-1 inline-flex items-center underline"
 			>
 				<span>View on GitHub</span>
 				<span className="ml-1">
