@@ -1,3 +1,5 @@
+import { ExternalLink } from 'lucide-react';
+
 function About() {
 	return (
 		<div className="text-primary-600 text-md mt-4 px-5 leading-10">
@@ -35,6 +37,17 @@ function About() {
 				the principle that historical knowledge should be free, accessible, and
 				open to all.
 			</p>
+
+			<a
+				href="https://github.com/sunillshastry/itihaas-api/"
+				target="_blank"
+				className="text-primary-300 hover:text-primary-10 flex items-center underline"
+			>
+				<span>View on GitHub</span>
+				<span className="ml-1">
+					<ExternalLink size={16} />
+				</span>
+			</a>
 		</div>
 	);
 }
