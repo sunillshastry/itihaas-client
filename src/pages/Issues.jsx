@@ -17,7 +17,7 @@ function Issues() {
 				<IssuesUserDetails />
 				<IssuesSubjectDetails />
 			</MainContainer>
-			<Footer />
+			<Footer className="mt-36" />
 		</>
 	);
 }

@@ -15,7 +15,7 @@ function Docs() {
 			<MainContainer>
 				<PrimaryHeader>Documentation</PrimaryHeader>
 			</MainContainer>
-			<Footer />
+			<Footer className="mt-36" />
 		</>
 	);
 }

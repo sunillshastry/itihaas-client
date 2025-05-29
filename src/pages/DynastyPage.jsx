@@ -151,7 +151,7 @@ function DynastyPage() {
 					</>
 				)}
 			</MainContainer>
-			<Footer />
+			<Footer className="mt-36" />
 		</>
 	);
 }
