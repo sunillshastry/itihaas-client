@@ -148,7 +148,7 @@ function RulerPage() {
 					</>
 				)}
 			</MainContainer>
-			<Footer />
+			<Footer className="mt-36" />
 		</>
 	);
 }

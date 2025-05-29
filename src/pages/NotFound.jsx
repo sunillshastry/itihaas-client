@@ -43,7 +43,7 @@ function NotFound() {
 					</div>
 				</div>
 			</MainContainer>
-			<Footer />
+			<Footer className="mt-36" />
 		</>
 	);
 }

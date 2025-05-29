@@ -10,7 +10,7 @@ function WarsPage() {
 			<MainContainer>
 				<PrimaryHeader>Wars</PrimaryHeader>
 			</MainContainer>
-			<Footer />
+			<Footer className="mt-36" />
 		</>
 	);
 }

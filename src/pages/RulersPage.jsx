@@ -96,7 +96,7 @@ function RulersPage() {
 					/>
 				)}
 			</MainContainer>
-			<Footer />
+			<Footer className="mt-36" />
 		</>
 	);
 }

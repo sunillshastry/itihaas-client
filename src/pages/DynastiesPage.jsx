@@ -129,7 +129,7 @@ function DynastiesPage() {
 					/>
 				)}
 			</MainContainer>
-			<Footer />
+			<Footer className="mt-36" />
 		</>
 	);
 }
