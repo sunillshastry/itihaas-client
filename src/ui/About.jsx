@@ -2,7 +2,7 @@ import { ExternalLink } from 'lucide-react';
 
 function About() {
 	return (
-		<div className="text-primary-600 text-md mt-4 px-5 leading-10">
+		<div className="text-primary-600 text-md mt-4 leading-10">
 			<p>
 				<strong>Itihaas</strong> is a comprehensive and accessible online
 				platform designed to showcase and help explore the rich and diverse
