@@ -2,6 +2,7 @@ import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 import About from '../ui/About';
 import Offers from '../ui/Offers';
+import TheWhy from '../ui/TheWhy';
 
 function Home() {
 	return (
@@ -11,6 +12,7 @@ function Home() {
 					<Navbar />
 					<About />
 					<Offers />
+					<TheWhy />
 				</section>
 			</main>
 			<Footer />
