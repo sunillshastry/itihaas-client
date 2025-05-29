@@ -1,12 +1,15 @@
 import FooterLinksTab from './FooterLinksTab';
 import FooterLink from './FooterLink';
 import { Copyright, SquareArrowOutUpRight } from 'lucide-react';
+import PropTypes from 'prop-types';
 
-function Footer() {
+function Footer({ className }) {
 	const year = new Date().getFullYear();
 
 	return (
-		<footer className="bg-primary-700 mt-36 flex justify-between px-14 pt-10 pb-8">
+		<footer
+			className={`bg-primary-700 flex justify-between px-14 pt-10 pb-8 ${className}`}
+		>
 			<section className="w-[60%] pr-8">
 				<div>
 					<h3 className="font-logo text-primary-90 text-3xl">Itihaas</h3>
@@ -65,5 +68,9 @@ function Footer() {
 		</footer>
 	);
 }
+
+Footer.propTypes = {
+	className: PropTypes.string,
+};
 
 export default Footer;
