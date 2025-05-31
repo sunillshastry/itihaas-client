@@ -10,7 +10,7 @@ function NoDescriptionDialog() {
 					<Clock3 size={20} />
 				</span>
 			</h2>
-			<p className="mt-3">
+			<p className="text-primary-500 mt-3">
 				This section is currently under development, or lacks the information.
 				Please check back later for updated content and new information
 			</p>
