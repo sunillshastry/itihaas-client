@@ -43,7 +43,7 @@ function NavbarHeader() {
 		<div className="flex min-w-4xl items-center justify-between">
 			<Link
 				to="/"
-				className="flex items-center justify-center"
+				className="flex items-center justify-center transition-all duration-100 ease-in hover:brightness-150"
 			>
 				<Logo />
 			</Link>
