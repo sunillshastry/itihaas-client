@@ -126,7 +126,7 @@ function DynastiesPage() {
 					<Loader />
 				) : (
 					<>
-						{queriedDynasties.length === 0 && searchQuery.length > 3 && (
+						{queriedDynasties.length === 0 && searchQuery.length >= 3 && (
 							<EntitiesPageNoResult query={searchQuery} />
 						)}
 
