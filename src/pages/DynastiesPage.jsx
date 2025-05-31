@@ -109,13 +109,15 @@ function DynastiesPage() {
 			<MainContainer>
 				<div>
 					<PrimaryHeader>Dynasties</PrimaryHeader>
-					<PageSearchBar
-						className="mt-5"
-						placeholder="Search all dynasties..."
-						value={searchQuery}
-						onChange={setSearchQuery}
-						setSearchQuery={setSearchQuery}
-					/>
+					{!error.state && (
+						<PageSearchBar
+							className="mt-5"
+							placeholder="Search all dynasties..."
+							value={searchQuery}
+							onChange={setSearchQuery}
+							setSearchQuery={setSearchQuery}
+						/>
+					)}
 				</div>
 
 				{error.state && <FetchFailComponent />}
