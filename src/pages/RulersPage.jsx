@@ -7,6 +7,7 @@ import PrimaryHeader from '../components/PrimaryHeader';
 import Loader from '../components/Loader';
 import RulerPageList from '../components/RulerPageList';
 import FetchFailComponent from '../components/FetchFailComponent';
+import EntitiesPageNoResult from '../components/EntitiesPageNoResult';
 
 function RulersPage() {
 	const [rulers, setRulers] = useState([]);
@@ -93,9 +94,14 @@ function RulersPage() {
 				{loading ? (
 					<Loader />
 				) : (
-					<RulerPageList
-						rulers={queriedRulers.length > 0 ? queriedRulers : rulers}
-					/>
+					<>
+						{queriedRulers.length === 0 && searchQuery.length >= 3 && (
+							<EntitiesPageNoResult query={searchQuery} />
+						)}
+						<RulerPageList
+							rulers={queriedRulers.length > 0 ? queriedRulers : rulers}
+						/>
+					</>
 				)}
 			</MainContainer>
 			<Footer className="mt-36" />
