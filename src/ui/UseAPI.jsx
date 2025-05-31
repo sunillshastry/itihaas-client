@@ -9,20 +9,21 @@ function UseAPI() {
 			</h2>
 			<div>
 				<p className="text-primary-70 mt-3 leading-10">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-					tempore mollitia fuga reprehenderit tenetur, itaque sequi aspernatur
-					voluptas corporis exercitationem est non culpa accusamus illo eius
-					iure ratione qui repellat cum rerum porro a. Laboriosam tenetur
-					dolorem earum explicabo adipisci ullam dignissimos numquam voluptates
-					ipsam, repellendus omnis, nam libero ipsum impedit. Sit ducimus unde
-					vitae! Illum cupiditate ea tenetur voluptate unde temporibus neque
-					nesciunt eaque quidem atque, minus a distinctio labore facere nisi
-					quae libero dignissimos excepturi. Error architecto totam officiis?
-					Qui, architecto amet ex nam ut rerum minima sapiente.
+					Are you passionate about history or building educational tools?
+					Itihaas offers a robust, read-only public API that gives you access to
+					a rich dataset covering Indian dynasties, rulers, battles, timelines,
+					and more. Whether you are working on a personal project, building a
+					commercial application, or conducting academic research, our API makes
+					it easy to integrate authentic historical data into your platform.
+					With comprehensive filtering, sorting, and search capabilities, you
+					can tailor the data to suit your needs. Best of all, Itihaas is free
+					and safe to use with API key access and rate-limiting for added
+					security and usage tracking. Start building today and bring the story
+					of India&apos;s past to life in your apps, websites, and tools.
 				</p>
 				<Link
 					to="/docs"
-					className="bg-primary-30 text-primary-400 hover:bg-primary-50 mt-3 inline-flex items-center justify-start rounded-sm px-3 py-2 transition-all duration-150 ease-in"
+					className="bg-primary-30 text-primary-400 hover:bg-primary-50 mt-4 inline-flex items-center justify-start rounded-sm px-3 py-2 transition-all duration-150 ease-in"
 				>
 					<span>View Docs</span>
 					<span className="ml-1">

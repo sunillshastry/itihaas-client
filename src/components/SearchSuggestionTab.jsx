@@ -79,7 +79,7 @@ function SearchSuggestionTab({ displayed, query, handleLinkClick }) {
 
 	return (
 		<div
-			className={`absolute max-h-[250px] w-full overflow-y-scroll bg-white p-2 text-sm ${displayed ? 'block' : 'hidden'}`}
+			className={`shadow-primary-800/50 absolute z-10 max-h-[250px] w-full overflow-y-scroll rounded-b-md bg-white p-2 text-sm shadow-sm ${displayed ? 'block' : 'hidden'}`}
 		>
 			{loading ? (
 				<Loader size="small" />

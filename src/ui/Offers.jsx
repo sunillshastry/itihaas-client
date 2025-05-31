@@ -21,7 +21,7 @@ function Offers() {
 							timelines, contributions, articles, and significance.&nbsp;
 						</span>
 						<span className="hover:text-primary-10 underline">
-							<Link to="/dynasties">View all available dynasties</Link>
+							<Link to="/dynasties">View dynasties catalog</Link>
 						</span>
 					</li>
 
@@ -33,7 +33,7 @@ function Offers() {
 							conquests.&nbsp;
 						</span>
 						<span className="hover:text-primary-10 underline">
-							<Link to="/rulers">View all available rulers</Link>
+							<Link to="/rulers">View rulers catalog</Link>
 						</span>
 					</li>
 
@@ -45,7 +45,7 @@ function Offers() {
 							colonial resistance.&nbsp;
 						</span>
 						<span className="hover:text-primary-10 underline">
-							<Link to="/wars">View all available wars</Link>
+							<Link to="/wars">View wars catalog</Link>
 						</span>
 					</li>
 				</ul>

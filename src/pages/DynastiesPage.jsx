@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import DynastyPageList from '../components/DynastyPageList';
 import Footer from '../components/Footer';
 import FetchFailComponent from '../components/FetchFailComponent';
+import EntitiesPageNoResult from '../components/EntitiesPageNoResult';
 
 /**
  * Main React.JSX page component for /dynasties: Dynasties page
@@ -108,13 +109,15 @@ function DynastiesPage() {
 			<MainContainer>
 				<div>
 					<PrimaryHeader>Dynasties</PrimaryHeader>
-					<PageSearchBar
-						className="mt-5"
-						placeholder="Search all dynasties..."
-						value={searchQuery}
-						onChange={setSearchQuery}
-						setSearchQuery={setSearchQuery}
-					/>
+					{!error.state && (
+						<PageSearchBar
+							className="mt-5"
+							placeholder="Search all dynasties..."
+							value={searchQuery}
+							onChange={setSearchQuery}
+							setSearchQuery={setSearchQuery}
+						/>
+					)}
 				</div>
 
 				{error.state && <FetchFailComponent />}
@@ -122,11 +125,17 @@ function DynastiesPage() {
 				{loading ? (
 					<Loader />
 				) : (
-					<DynastyPageList
-						dynasties={
-							queriedDynasties.length > 0 ? queriedDynasties : dynasties
-						}
-					/>
+					<>
+						{queriedDynasties.length === 0 && searchQuery.length >= 3 && (
+							<EntitiesPageNoResult query={searchQuery} />
+						)}
+
+						<DynastyPageList
+							dynasties={
+								queriedDynasties.length > 0 ? queriedDynasties : dynasties
+							}
+						/>
+					</>
 				)}
 			</MainContainer>
 			<Footer className="mt-36" />
