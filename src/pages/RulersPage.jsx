@@ -78,13 +78,15 @@ function RulersPage() {
 			<MainContainer>
 				<div>
 					<PrimaryHeader>Rulers</PrimaryHeader>
-					<PageSearchBar
-						className="mt-5"
-						placeholder="Search all rulers..."
-						value={searchQuery}
-						onChange={setSearchQuery}
-						setSearchQuery={setSearchQuery}
-					/>
+					{!error.state && (
+						<PageSearchBar
+							className="mt-5"
+							placeholder="Search all rulers..."
+							value={searchQuery}
+							onChange={setSearchQuery}
+							setSearchQuery={setSearchQuery}
+						/>
+					)}
 				</div>
 
 				{error.state && <FetchFailComponent />}
