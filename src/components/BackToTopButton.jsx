@@ -1,5 +1,5 @@
-import { ArrowBigUpDash } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { ArrowBigUpDash } from 'lucide-react';
 
 function BackToTopButton() {
 	const [visible, setVisible] = useState(false);

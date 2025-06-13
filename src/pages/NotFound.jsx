@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+
 import MainContainer from '../components/MainContainer';
 import Navbar from '../components/Navbar';
 import NotFound404Title from '../components/NotFound404Title';
 import Footer from '../components/Footer';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 function NotFound() {
 	return (

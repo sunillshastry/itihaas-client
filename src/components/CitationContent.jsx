@@ -1,8 +1,9 @@
-import { ClipboardCopy } from 'lucide-react';
-import CiteListDropdown from './CiteListDropdown';
-import PropTypes from 'prop-types';
-import CopyToClipboard from 'react-copy-to-clipboard';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+import { ClipboardCopy } from 'lucide-react';
+import CopyToClipboard from 'react-copy-to-clipboard';
+
+import CiteListDropdown from './CiteListDropdown';
 
 function CitationContent({ citation, onOptionChange }) {
 	const [copied, setCopied] = useState(false);

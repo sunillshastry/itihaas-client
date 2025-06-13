@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import SearchSuggestionTab from './SearchSuggestionTab';
 import { useEffect, useState } from 'react';
+
+import SearchSuggestionTab from './SearchSuggestionTab';
 import SearchBar from './SearchBar';
 import Logo from './Logo';
 

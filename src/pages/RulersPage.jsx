@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import Footer from '../components/Footer';
 import MainContainer from '../components/MainContainer';
 import Navbar from '../components/Navbar';
