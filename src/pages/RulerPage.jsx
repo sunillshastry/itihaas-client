@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import BackButton from '../components/BackButton';
 import DescriptionContainer from '../components/DescriptionContainer';
 import MainContainer from '../components/MainContainer';
@@ -7,7 +9,6 @@ import PrimaryHeader from '../components/PrimaryHeader';
 import QuickFacts from '../components/QuickFacts';
 import RulerQuickFieldsContainer from '../components/RulerQuickFieldsContainer';
 import SecondaryHeader from '../components/SecondaryHeader';
-import { useNavigate, useParams } from 'react-router-dom';
 import updateWindowTitle from '../utils/updateWindowTitle';
 import Loader from '../components/Loader';
 import FetchFailComponent from '../components/FetchFailComponent';

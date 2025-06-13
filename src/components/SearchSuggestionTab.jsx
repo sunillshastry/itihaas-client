@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+
 import NoResultsText from './NoResultsText';
 import SuggestionLink from './SuggestionLink';
 import Loader from './Loader';

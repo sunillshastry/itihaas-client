@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import DynastyPageItem from './DynastyPageItem';
 
 function DynastyPageList({ dynasties }) {

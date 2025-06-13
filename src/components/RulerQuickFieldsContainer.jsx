@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import QuickFactField from './QuickFactField';
 import QuickFactsNoField from './QuickFactsNoField';
 

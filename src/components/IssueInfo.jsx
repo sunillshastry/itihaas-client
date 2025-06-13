@@ -1,4 +1,5 @@
 import { Cog, MessagesSquare, ScrollText, UserPlus } from 'lucide-react';
+
 import IssueInfoListItem from './IssueInfoListItem';
 
 function IssueInfo() {

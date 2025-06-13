@@ -4,9 +4,10 @@ import {
 	SquareArrowOutUpRight,
 	TriangleAlert,
 } from 'lucide-react';
-import PropTypes from 'prop-types';
-import BasicButton from './BasicButton';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import BasicButton from './BasicButton';
 
 function FetchFailComponent({
 	children = "We're having trouble fetching the data from the server. Refresh page, or try again soon.",

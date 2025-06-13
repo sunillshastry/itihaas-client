@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import SubHeader from './SubHeader';
 import Article from './Article';
 import NoSectionDialog from './NoSectionDialog';

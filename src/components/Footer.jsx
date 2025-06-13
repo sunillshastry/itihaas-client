@@ -1,7 +1,8 @@
-import FooterLinksTab from './FooterLinksTab';
-import FooterLink from './FooterLink';
 import { Copyright, SquareArrowOutUpRight } from 'lucide-react';
 import PropTypes from 'prop-types';
+
+import FooterLinksTab from './FooterLinksTab';
+import FooterLink from './FooterLink';
 
 function Footer({ className }) {
 	const year = new Date().getFullYear();

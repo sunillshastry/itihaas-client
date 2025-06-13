@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 
 function PageLinkField({ native = false, children, className, to }) {
 	if (native) {

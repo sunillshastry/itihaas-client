@@ -1,5 +1,6 @@
 import { SquarePen } from 'lucide-react';
 import PropTypes from 'prop-types';
+
 import formattedMonthName from '../utils/formattedMonthName';
 import convertToTwelveHours from '../utils/convertToTwelveHours';
 

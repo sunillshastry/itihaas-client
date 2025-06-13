@@ -1,7 +1,8 @@
-import { MessageSquareQuote } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import Citations from '../services/Citations';
+import { MessageSquareQuote } from 'lucide-react';
 import PropTypes from 'prop-types';
+
+import Citations from '../services/Citations';
 import formattedMonthName from '../utils/formattedMonthName';
 import CitationContent from './CitationContent';
 

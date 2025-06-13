@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import SubHeader from './SubHeader';
 import PageLinkField from './PageLinkField';
 import NoSectionDialog from './NoSectionDialog';
