@@ -18,7 +18,7 @@ async function getDynasty(slug) {
 
 				throw error;
 			}
-			throw new Error('Error: Failed to fetch all dynasties');
+			throw new Error('Error: Failed to fetch dynasty');
 		}
 
 		// Retrieve the data from response.json and return the main content
