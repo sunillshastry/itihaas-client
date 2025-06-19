@@ -35,7 +35,6 @@ function DynastyPage() {
 		data: dynasty,
 		error,
 		isPending,
-		isError,
 	} = useQuery({
 		queryKey: ['dynasty'],
 		queryFn: () => getDynasty(slug),
@@ -63,77 +62,79 @@ function DynastyPage() {
 		[dynasty]
 	);
 
-	useEffect(
-		function () {
-			if (
-				(isError && error.name === 'NotFoundError') ||
-				!dynasty?.name === 'NotFoundError'
-			) {
-				navigate('/not-found');
-			}
-		},
-		[isError, error, dynasty, navigate]
-	);
+	// Error State
+	if (error || dynasty?.name === 'TypeError') {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<FetchFailComponent />
+				</MainContainer>
+			</>
+		);
+	}
+
+	// NotFound state
+	if (dynasty?.name === 'NotFoundError') {
+		return navigate('/not-found');
+	}
+
+	// Loading state
+	if (isPending) {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<Loader />
+				</MainContainer>
+			</>
+		);
+	}
 
 	return (
 		<>
 			<Navbar />
 			<MainContainer>
-				{isPending ? (
-					<Loader />
-				) : (
-					<>
-						{dynasty?.name === 'TypeError' ? (
-							<FetchFailComponent />
-						) : (
-							<>
-								<div>
-									<div className="flex items-baseline justify-between">
-										<BackButton />
-										<CiteDropdown
-											pageTitle={dynasty?.name}
-											updatedDate={dynasty?.updatedAt}
-											url={window.location.href}
-										/>
-									</div>
-									<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
+				<div>
+					<div className="flex items-baseline justify-between">
+						<BackButton />
+						<CiteDropdown
+							pageTitle={dynasty?.name}
+							updatedDate={dynasty?.updatedAt}
+							url={window.location.href}
+						/>
+					</div>
+					<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
 
-									<SecondaryHeader>
-										{dynasty?.otherNames &&
-											formatArrayToString(dynasty?.otherNames)}
-									</SecondaryHeader>
+					<SecondaryHeader>
+						{dynasty?.otherNames && formatArrayToString(dynasty?.otherNames)}
+					</SecondaryHeader>
 
-									<SecondaryHeader className="mt-4">
-										{dynasty?.timeline && dynasty.timeline.begin} -{' '}
-										{dynasty?.timeline && dynasty.timeline.end}
-									</SecondaryHeader>
-								</div>
+					<SecondaryHeader className="mt-4">
+						{dynasty?.timeline && dynasty.timeline.begin} -{' '}
+						{dynasty?.timeline && dynasty.timeline.end}
+					</SecondaryHeader>
+				</div>
 
-								<QuickFacts>
-									<DynastyQuickFieldsContainer dynasty={dynasty} />
-								</QuickFacts>
+				<QuickFacts>
+					<DynastyQuickFieldsContainer dynasty={dynasty} />
+				</QuickFacts>
 
-								<DescriptionContainer
-									descriptionList={dynasty?.description?.long}
-								/>
+				<DescriptionContainer descriptionList={dynasty?.description?.long} />
 
-								<SourcesContainer sources={dynasty?.sources} />
+				<SourcesContainer sources={dynasty?.sources} />
 
-								<FurtherReadingContainer readings={dynasty?.furtherReading} />
+				<FurtherReadingContainer readings={dynasty?.furtherReading} />
 
-								{/* TODO: RULERS CONTAINER */}
+				{/* TODO: RULERS CONTAINER */}
 
-								{/* TODO: WARS CONTAINER */}
+				{/* TODO: WARS CONTAINER */}
 
-								<ArticlesContainer articles={dynasty?.articles} />
+				<ArticlesContainer articles={dynasty?.articles} />
 
-								<MissingInfoDialog />
+				<MissingInfoDialog />
 
-								<LastUpdateMessage date={dynasty?.updatedAt} />
-							</>
-						)}
-					</>
-				)}
+				<LastUpdateMessage date={dynasty?.updatedAt} />
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>
