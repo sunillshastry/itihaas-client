@@ -24,6 +24,7 @@ import getDynasty from '@/api/getDynasty';
 import updateWindowTitle from '@/utils/updateWindowTitle';
 
 function DynastyPage() {
+	// State
 	const { dynastySlug: slug } = useParams();
 	const [title, setTitle] = useState(
 		'Itihaas | The Front Page of Indian History'
@@ -31,6 +32,7 @@ function DynastyPage() {
 
 	const navigate = useNavigate();
 
+	// Data Fetching (React Query)
 	const {
 		data: dynasty,
 		error,
@@ -40,6 +42,7 @@ function DynastyPage() {
 		queryFn: () => getDynasty(slug),
 	});
 
+	// Effects
 	useEffect(
 		function () {
 			window.document.title = title;
