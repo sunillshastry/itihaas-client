@@ -59,40 +59,54 @@ function DynastiesPage() {
 		[dynasties, searchQuery]
 	);
 
+	// Error State
+	if (error || dynasties?.name === 'TypeError') {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<FetchFailComponent />
+				</MainContainer>
+			</>
+		);
+	}
+
+	// Loading State
+	if (isPending) {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<Loader />
+				</MainContainer>
+			</>
+		);
+	}
+
 	return (
 		<>
 			<Navbar />
 			<MainContainer>
 				<div>
 					<PrimaryHeader>Dynasties</PrimaryHeader>
-					{!error && (
-						<PageSearchBar
-							className="mt-5"
-							placeholder="Search all dynasties..."
-							value={searchQuery}
-							onChange={setSearchQuery}
-							setSearchQuery={setSearchQuery}
-						/>
-					)}
+					<PageSearchBar
+						className="mt-5"
+						placeholder="Search all dynasties..."
+						value={searchQuery}
+						onChange={setSearchQuery}
+						setSearchQuery={setSearchQuery}
+					/>
 				</div>
 
-				{error && <FetchFailComponent />}
-
-				{isPending ? (
-					<Loader />
-				) : (
-					<>
-						{queriedDynasties.length === 0 && searchQuery.length >= 3 && (
-							<EntitiesPageNoResult query={searchQuery} />
-						)}
-
-						<DynastyPageList
-							dynasties={
-								queriedDynasties.length > 0 ? queriedDynasties : dynasties
-							}
-						/>
-					</>
+				{queriedDynasties?.length === 0 && searchQuery?.length >= 3 && (
+					<EntitiesPageNoResult query={searchQuery} />
 				)}
+
+				<DynastyPageList
+					dynasties={
+						queriedDynasties?.length > 0 ? queriedDynasties : dynasties
+					}
+				/>
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>
