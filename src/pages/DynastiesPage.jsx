@@ -32,6 +32,7 @@ function DynastiesPage() {
 		queryFn: getDynasties,
 	});
 
+	// Effects
 	useEffect(function () {
 		// Update document title field
 		window.document.title =
