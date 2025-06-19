@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import formatArrayToString from '../utils/formatArrayToString';
-import QuickFactField from './QuickFactField';
-import QuickFactsNoField from './QuickFactsNoField';
+import formatArrayToString from '@/utils/formatArrayToString';
+import QuickFactField from '@/components/QuickFactField';
+import QuickFactsNoField from '@/components/QuickFactsNoField';
 
 function DynastyQuickFieldsContainer({ dynasty }) {
 	return (

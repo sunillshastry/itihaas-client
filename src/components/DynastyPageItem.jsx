@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { MapPin, MoveRight } from 'lucide-react';
 import PropTypes from 'prop-types';
 
-import formatArrayToString from '../utils/formatArrayToString';
+import formatArrayToString from '@/utils/formatArrayToString';
 
 function DynastyPageItem({ dynasty }) {
 	return (

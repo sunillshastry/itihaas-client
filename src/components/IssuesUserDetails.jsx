@@ -1,4 +1,4 @@
-import IssueEntryField from './IssueEntryField';
+import IssueEntryField from '@/components/IssueEntryField';
 
 function IssuesUserDetails() {
 	return (

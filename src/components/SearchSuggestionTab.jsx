@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 
-import NoResultsText from './NoResultsText';
-import SuggestionLink from './SuggestionLink';
-import Loader from './Loader';
-import SearchTotalResults from './SearchTotalResults';
+import NoResultsText from '@/components/NoResultsText';
+import SuggestionLink from '@/components/SuggestionLink';
+import Loader from '@/components/Loader';
+import SearchTotalResults from '@/components/SearchTotalResults';
 
 function SearchSuggestionTab({ displayed, query, handleLinkClick }) {
 	const [queriedResults, setQueriedResults] = useState([]);

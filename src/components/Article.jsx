@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import formatArrayToString from '../utils/formatArrayToString';
+import formatArrayToString from '@/utils/formatArrayToString';
 
 function Article({ title, link, publisher, authors = [] }) {
 	return (

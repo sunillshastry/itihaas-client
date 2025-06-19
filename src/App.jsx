@@ -1,16 +1,16 @@
 import { Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import DynastiesPage from './pages/DynastiesPage';
-import RulersPage from './pages/RulersPage';
-import WarsPage from './pages/WarsPage';
-import Issues from './pages/Issues';
-import Search from './pages/Search';
-import Docs from './pages/Docs';
-import NotFound from './pages/NotFound';
-import DynastyPage from './pages/DynastyPage';
-import WarPage from './pages/WarPage';
-import RulerPage from './pages/RulerPage';
-import BackToTopButton from './components/BackToTopButton';
+import Home from '@/pages/Home';
+import DynastiesPage from '@/pages/DynastiesPage';
+import RulersPage from '@/pages/RulersPage';
+import WarsPage from '@/pages/WarsPage';
+import Issues from '@/pages/Issues';
+import Search from '@/pages/Search';
+import Docs from '@/pages/Docs';
+import NotFound from '@/pages/NotFound';
+import DynastyPage from '@/pages/DynastyPage';
+import WarPage from '@/pages/WarPage';
+import RulerPage from '@/pages/RulerPage';
+import BackToTopButton from '@/components/BackToTopButton';
 
 /**
  * Base App component of the application, which is mounted on the 'root' div component

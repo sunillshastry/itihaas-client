@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ArrowRight } from 'lucide-react';
 
-import SubHeader from './SubHeader';
+import SubHeader from '@/components/SubHeader';
 
 function NoSectionDialog({ name }) {
 	return (

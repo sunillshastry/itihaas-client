@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
-import dropdownOptions from '../data/citationOptions';
+import dropdownOptions from '@/data/citationOptions';
 
 function CiteListDropdown({ onChange }) {
 	return (

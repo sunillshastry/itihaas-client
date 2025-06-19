@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import BackButton from '../components/BackButton';
-import DescriptionContainer from '../components/DescriptionContainer';
-import MainContainer from '../components/MainContainer';
-import Navbar from '../components/Navbar';
-import PrimaryHeader from '../components/PrimaryHeader';
-import QuickFacts from '../components/QuickFacts';
-import RulerQuickFieldsContainer from '../components/RulerQuickFieldsContainer';
-import SecondaryHeader from '../components/SecondaryHeader';
-import updateWindowTitle from '../utils/updateWindowTitle';
-import Loader from '../components/Loader';
-import FetchFailComponent from '../components/FetchFailComponent';
-import formatArrayToString from '../utils/formatArrayToString';
-import SourcesContainer from '../components/SourcesContainer';
-import FurtherReadingContainer from '../components/FurtherReadingContainer';
-import ArticlesContainer from '../components/ArticlesContainer';
-import MissingInfoDialog from '../components/MissingInfoDialog';
-import LastUpdateMessage from '../components/LastUpdateMessage';
-import Footer from '../components/Footer';
-import CiteDropdown from '../components/CiteDropdown';
+import BackButton from '@/components/BackButton';
+import DescriptionContainer from '@/components/DescriptionContainer';
+import MainContainer from '@/components/MainContainer';
+import Navbar from '@/components/Navbar';
+import PrimaryHeader from '@/components/PrimaryHeader';
+import QuickFacts from '@/components/QuickFacts';
+import RulerQuickFieldsContainer from '@/components/RulerQuickFieldsContainer';
+import SecondaryHeader from '@/components/SecondaryHeader';
+import updateWindowTitle from '@/utils/updateWindowTitle';
+import Loader from '@/components/Loader';
+import FetchFailComponent from '@/components/FetchFailComponent';
+import formatArrayToString from '@/utils/formatArrayToString';
+import SourcesContainer from '@/components/SourcesContainer';
+import FurtherReadingContainer from '@/components/FurtherReadingContainer';
+import ArticlesContainer from '@/components/ArticlesContainer';
+import MissingInfoDialog from '@/components/MissingInfoDialog';
+import LastUpdateMessage from '@/components/LastUpdateMessage';
+import Footer from '@/components/Footer';
+import CiteDropdown from '@/components/CiteDropdown';
 
 function RulerPage() {
 	const navigate = useNavigate();

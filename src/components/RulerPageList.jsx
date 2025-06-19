@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import RulerPageItem from './RulerPageItem';
+import RulerPageItem from '@/components/RulerPageItem';
 
 function RulerPageList({ rulers }) {
 	return (
