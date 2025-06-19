@@ -1,9 +1,9 @@
-import Footer from '../components/Footer';
-import Navbar from '../components/Navbar';
-import About from '../ui/About';
-import Offers from '../ui/Offers';
-import TheWhy from '../ui/TheWhy';
-import UseAPI from '../ui/UseAPI';
+import Footer from '@/components/elements/Footer';
+import Navbar from '@/components/elements/Navbar';
+import About from '@/ui/About';
+import Offers from '@/ui/Offers';
+import TheWhy from '@/ui/TheWhy';
+import UseAPI from '@/ui/UseAPI';
 
 function Home() {
 	return (

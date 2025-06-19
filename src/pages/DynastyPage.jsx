@@ -1,25 +1,25 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import Navbar from '../components/Navbar';
-import MainContainer from '../components/MainContainer';
-import PrimaryHeader from '../components/PrimaryHeader';
-import SecondaryHeader from '../components/SecondaryHeader';
-import formatArrayToString from '../utils/formatArrayToString';
-import Loader from '../components/Loader';
-import QuickFacts from '../components/QuickFacts';
-import Footer from '../components/Footer';
-import DescriptionContainer from '../components/DescriptionContainer';
-import SourcesContainer from '../components/SourcesContainer';
-import BackButton from '../components/BackButton';
-import ArticlesContainer from '../components/ArticlesContainer';
-import FurtherReadingContainer from '../components/FurtherReadingContainer';
-import LastUpdateMessage from '../components/LastUpdateMessage';
-import MissingInfoDialog from '../components/MissingInfoDialog';
-import FetchFailComponent from '../components/FetchFailComponent';
-import DynastyQuickFieldsContainer from '../components/DynastyQuickFieldsContainer';
-import updateWindowTitle from '../utils/updateWindowTitle';
-import CiteDropdown from '../components/CiteDropdown';
+import Navbar from '@/components/elements/Navbar';
+import MainContainer from '@/components/elements/MainContainer';
+import PrimaryHeader from '@/components/elements/PrimaryHeader';
+import SecondaryHeader from '@/components/elements/SecondaryHeader';
+import formatArrayToString from '@/utils/formatArrayToString';
+import Loader from '@/components/elements/Loader';
+import QuickFacts from '@/components/elements/QuickFacts';
+import Footer from '@/components/elements/Footer';
+import DescriptionContainer from '@/components/elements/DescriptionContainer';
+import SourcesContainer from '@/components/elements/SourcesContainer';
+import BackButton from '@/components/elements/BackButton';
+import ArticlesContainer from '@/components/elements/ArticlesContainer';
+import FurtherReadingContainer from '@/components/elements/FurtherReadingContainer';
+import LastUpdateMessage from '@/components/views/LastUpdateMessage';
+import MissingInfoDialog from '@/components/views/MissingInfoDialog';
+import FetchFailComponent from '@/components/elements/FetchFailComponent';
+import DynastyQuickFieldsContainer from '@/components/dynasty/DynastyQuickFieldsContainer';
+import updateWindowTitle from '@/utils/updateWindowTitle';
+import CiteDropdown from '@/components/views/CiteDropdown';
 
 function DynastyPage() {
 	const [loading, setLoading] = useState(false);
