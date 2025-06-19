@@ -18,68 +18,28 @@ import LastUpdateMessage from '@/components/views/LastUpdateMessage';
 import MissingInfoDialog from '@/components/views/MissingInfoDialog';
 import FetchFailComponent from '@/components/elements/FetchFailComponent';
 import DynastyQuickFieldsContainer from '@/components/dynasty/DynastyQuickFieldsContainer';
-import updateWindowTitle from '@/utils/updateWindowTitle';
 import CiteDropdown from '@/components/views/CiteDropdown';
+import { useQuery } from '@tanstack/react-query';
+import getDynasty from '@/api/getDynasty';
+import updateWindowTitle from '@/utils/updateWindowTitle';
 
 function DynastyPage() {
-	const [loading, setLoading] = useState(false);
-
 	const { dynastySlug: slug } = useParams();
-	const [dynasty, setDynasty] = useState({});
 	const [title, setTitle] = useState(
 		'Itihaas | The Front Page of Indian History'
 	);
-	const [error, setError] = useState({
-		state: false,
-		prompt: '',
-	});
+
 	const navigate = useNavigate();
 
-	useEffect(
-		function () {
-			async function fetchDynasty() {
-				try {
-					setLoading(true);
-					setError(function (current) {
-						return {
-							...current,
-							state: false,
-							prompt: '',
-						};
-					});
-
-					const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
-
-					const response = await fetch(`${BASE_URL}/dynasties/${slug}`);
-					const data = await response.json();
-
-					if (response.ok && data?.success) {
-						setDynasty(data.data.dynasty);
-						updateWindowTitle(setTitle, data.data.dynasty?.name);
-					} else if (!response.ok && response.status === 404) {
-						navigate('/not-found');
-					} else {
-						throw new Error();
-					}
-					setLoading(false);
-				} catch {
-					setDynasty({});
-					setError(function (current) {
-						return {
-							...current,
-							state: true,
-							prompt: 'Failed to fetch data from the backend. Please try again',
-						};
-					});
-				} finally {
-					setLoading(false);
-				}
-			}
-
-			fetchDynasty();
-		},
-		[slug, navigate]
-	);
+	const {
+		data: dynasty,
+		error,
+		isPending,
+		isError,
+	} = useQuery({
+		queryKey: ['dynasty'],
+		queryFn: () => getDynasty(slug),
+	});
 
 	useEffect(
 		function () {
@@ -92,15 +52,38 @@ function DynastyPage() {
 		[title]
 	);
 
+	useEffect(
+		function () {
+			updateWindowTitle(setTitle, dynasty?.name);
+
+			return () => {
+				window.document.title = 'Itihaas | The Front Page of Indian History';
+			};
+		},
+		[dynasty]
+	);
+
+	useEffect(
+		function () {
+			if (
+				(isError && error.name === 'NotFoundError') ||
+				!dynasty?.name === 'NotFoundError'
+			) {
+				navigate('/not-found');
+			}
+		},
+		[isError, error, dynasty, navigate]
+	);
+
 	return (
 		<>
 			<Navbar />
 			<MainContainer>
-				{loading ? (
+				{isPending ? (
 					<Loader />
 				) : (
 					<>
-						{error.state ? (
+						{dynasty?.name === 'TypeError' ? (
 							<FetchFailComponent />
 						) : (
 							<>
