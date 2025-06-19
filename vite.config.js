@@ -8,12 +8,12 @@ import path from 'path';
 export default defineConfig({
 	plugins: [react(), tailwindcss(), ViteMinifyPlugin()],
 	server: {
-		host: import.meta.env.VITE_SERVER_HOST,
-		port: import.meta.env.VITE_SERVER_PORT,
+		host: '0.0.0.0',
+		port: 3000,
 	},
 	preview: {
-		host: import.meta.env.VITE_PREVIEW_HOST,
-		port: import.meta.env.VITE_PREVIEW_PORT,
+		host: '0.0.0.0',
+		port: 3001,
 	},
 	resolve: {
 		alias: {
