@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { twMerge } from 'tailwind-merge';
 
 function MainContainer({ children, className }) {
-	return <main className={`mx-36 mt-5 ${className}`}>{children}</main>;
+	return <main className={twMerge('mx-36 mt-5', className)}>{children}</main>;
 }
 
 MainContainer.propTypes = {

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { SquareArrowOutUpRight } from 'lucide-react';
 import PropTypes from 'prop-types';
+import { twMerge } from 'tailwind-merge';
 
 function PageLinkField({ native = false, children, className, to }) {
 	if (native) {
@@ -8,7 +9,10 @@ function PageLinkField({ native = false, children, className, to }) {
 			<a
 				href={to}
 				target="_blank"
-				className={`text-primary-400 hover:text-primary-10 flex items-center underline ${className}`}
+				className={twMerge(
+					'text-primary-400 hover:text-primary-10 flex items-center underline',
+					className
+				)}
 			>
 				<span>{children}</span>
 				<span className="ml-1">
@@ -21,7 +25,10 @@ function PageLinkField({ native = false, children, className, to }) {
 	return (
 		<Link
 			to={to}
-			className={`text-primary-400 hover:text-primary-10 underline ${className}`}
+			className={twMerge(
+				'text-primary-400 hover:text-primary-10 underline',
+				className
+			)}
 		>
 			{children}
 		</Link>

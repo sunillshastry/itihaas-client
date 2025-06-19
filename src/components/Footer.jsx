@@ -3,13 +3,17 @@ import PropTypes from 'prop-types';
 
 import FooterLinksTab from './FooterLinksTab';
 import FooterLink from './FooterLink';
+import { twMerge } from 'tailwind-merge';
 
 function Footer({ className }) {
 	const year = new Date().getFullYear();
 
 	return (
 		<footer
-			className={`bg-primary-700 flex justify-between px-14 pt-10 pb-8 ${className}`}
+			className={twMerge(
+				'bg-primary-700 flex justify-between px-14 pt-10 pb-8',
+				className
+			)}
 		>
 			<section className="w-[60%] pr-8">
 				<div>

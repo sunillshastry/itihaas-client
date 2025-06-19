@@ -1,6 +1,7 @@
 import { X } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 function PageSearchBar({
 	className,
@@ -23,7 +24,10 @@ function PageSearchBar({
 
 	return (
 		<div
-			className={`bg-primary-90 focus-within:outline-primary-20 flex w-lg items-center rounded-sm py-2 pr-1 shadow-md focus-within:outline-3 ${className}`}
+			className={twMerge(
+				'bg-primary-90 focus-within:outline-primary-20 flex w-lg items-center rounded-sm py-2 pr-1 shadow-md focus-within:outline-3',
+				className
+			)}
 		>
 			<input
 				type="text"

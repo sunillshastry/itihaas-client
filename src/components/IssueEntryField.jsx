@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { twMerge } from 'tailwind-merge';
 
 function IssueEntryField({
 	label,
@@ -10,7 +11,10 @@ function IssueEntryField({
 }) {
 	return (
 		<div
-			className={`my-2 flex flex-col items-start justify-start ${className}`}
+			className={twMerge(
+				'my-2 flex flex-col items-start justify-start',
+				className
+			)}
 		>
 			<label className="text-primary text-sm font-bold uppercase">
 				{label}
