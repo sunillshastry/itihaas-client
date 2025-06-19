@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
 import SubHeader from '@/components/SubHeader';
-import Article from '@/components/Article';
 import NoSectionDialog from '@/components/NoSectionDialog';
+import Article from '@/components/views/Article';
 
 function ArticlesContainer({ articles }) {
 	if (articles && articles.length === 0) {
