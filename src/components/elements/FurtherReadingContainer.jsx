@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
-import SubHeader from '@/components/SubHeader';
-import PageLinkField from '@/components/PageLinkField';
-import NoSectionDialog from '@/components/NoSectionDialog';
+import SubHeader from '@/components/elements/SubHeader';
+import PageLinkField from '@/components/views/PageLinkField';
+import NoSectionDialog from '@/components/views/NoSectionDialog';
 
 function FurtherReadingContainer({ readings }) {
 	if (readings && readings.length === 0) {

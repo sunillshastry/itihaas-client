@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import SubHeader from '@/components/SubHeader';
-import NoSectionDialog from '@/components/NoSectionDialog';
+import SubHeader from '@/components/elements/SubHeader';
+import NoSectionDialog from '@/components/views/NoSectionDialog';
 import Article from '@/components/views/Article';
 
 function ArticlesContainer({ articles }) {

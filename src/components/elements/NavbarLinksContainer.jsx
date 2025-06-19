@@ -1,4 +1,4 @@
-import NavbarLink from '@/components/NavbarLink';
+import NavbarLink from '@/components/views/NavbarLink';
 
 function NavbarLinksContainer() {
 	return (

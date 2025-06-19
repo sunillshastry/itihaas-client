@@ -2,8 +2,8 @@ import { Copyright, SquareArrowOutUpRight } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { twMerge } from 'tailwind-merge';
 
-import FooterLinksTab from '@/components/FooterLinksTab';
-import FooterLink from '@/components/FooterLink';
+import FooterLinksTab from '@/components/views/FooterLinksTab';
+import FooterLink from '@/components/views/FooterLink';
 
 function Footer({ className }) {
 	const year = new Date().getFullYear();

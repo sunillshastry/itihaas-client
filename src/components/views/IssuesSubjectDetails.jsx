@@ -1,7 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 
-import BasicButton from '@/components/BasicButton';
-import IssueEntryField from '@/components/IssueEntryField';
+import BasicButton from '@/components/elements/BasicButton';
+import IssueEntryField from '@/components/views/IssueEntryField';
 
 function IssuesSubjectDetails() {
 	return (

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Citations from '@/services/Citations';
 import formattedMonthName from '@/utils/formattedMonthName';
-import CitationContent from '@/components/CitationContent';
+import CitationContent from '@/components/views/CitationContent';
 
 function CiteDropdown({ pageTitle, updatedDate, url }) {
 	const update = new Date(updatedDate);

@@ -7,7 +7,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import BasicButton from '@/components/BasicButton';
+import BasicButton from '@/components/elements/BasicButton';
 
 function FetchFailComponent({
 	children = "We're having trouble fetching the data from the server. Refresh page, or try again soon.",

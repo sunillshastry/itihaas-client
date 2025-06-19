@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
-import Footer from '@/components/Footer';
-import MainContainer from '@/components/MainContainer';
-import Navbar from '@/components/Navbar';
-import PageSearchBar from '@/components/PageSearchBar';
-import PrimaryHeader from '@/components/PrimaryHeader';
-import Loader from '@/components/Loader';
-import RulerPageList from '@/components/RulerPageList';
-import FetchFailComponent from '@/components/FetchFailComponent';
-import EntitiesPageNoResult from '@/components/EntitiesPageNoResult';
+import Footer from '@/components/elements/Footer';
+import MainContainer from '@/components/elements/MainContainer';
+import Navbar from '@/components/elements/Navbar';
+import PageSearchBar from '@/components/elements/PageSearchBar';
+import PrimaryHeader from '@/components/elements/PrimaryHeader';
+import Loader from '@/components/elements/Loader';
+import RulerPageList from '@/components/ruler/RulerPageList';
+import FetchFailComponent from '@/components/elements/FetchFailComponent';
+import EntitiesPageNoResult from '@/components/views/EntitiesPageNoResult';
 
 function RulersPage() {
 	const [rulers, setRulers] = useState([]);

@@ -1,5 +1,5 @@
-import Footer from '@/components/Footer';
-import Navbar from '@/components/Navbar';
+import Footer from '@/components/elements/Footer';
+import Navbar from '@/components/elements/Navbar';
 import About from '@/ui/About';
 import Offers from '@/ui/Offers';
 import TheWhy from '@/ui/TheWhy';

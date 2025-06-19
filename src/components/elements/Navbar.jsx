@@ -1,5 +1,5 @@
-import NavbarHeader from '@/components/NavbarHeader';
-import NavbarLinksContainer from '@/components/NavbarLinksContainer';
+import NavbarHeader from '@/components/views/NavbarHeader';
+import NavbarLinksContainer from '@/components/elements/NavbarLinksContainer';
 
 function Navbar() {
 	return (

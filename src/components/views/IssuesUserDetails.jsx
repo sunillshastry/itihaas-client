@@ -1,4 +1,4 @@
-import IssueEntryField from '@/components/IssueEntryField';
+import IssueEntryField from '@/components/views/IssueEntryField';
 
 function IssuesUserDetails() {
 	return (

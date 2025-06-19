@@ -1,9 +1,9 @@
 import { v4 as uuid } from 'uuid';
 import PropTypes from 'prop-types';
 
-import SubHeader from '@/components/SubHeader';
-import PageLinkField from '@/components/PageLinkField';
-import NoSectionDialog from '@/components/NoSectionDialog';
+import SubHeader from '@/components/elements/SubHeader';
+import PageLinkField from '@/components/views/PageLinkField';
+import NoSectionDialog from '@/components/views/NoSectionDialog';
 
 function SourcesContainer({ sources }) {
 	if (sources && sources.length === 0) {

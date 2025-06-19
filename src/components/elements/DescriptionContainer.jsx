@@ -1,8 +1,8 @@
 import { v4 as uuid } from 'uuid';
 import PropTypes from 'prop-types';
 
-import Description from '@/components/Description';
-import NoDescriptionDialog from '@/components/NoDescriptionDialog';
+import Description from '@/components/views/Description';
+import NoDescriptionDialog from '@/components/views/NoDescriptionDialog';
 
 function DescriptionContainer({ descriptionList }) {
 	if (descriptionList && descriptionList.length === 0) {

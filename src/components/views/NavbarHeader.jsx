@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import SearchSuggestionTab from '@/components/SearchSuggestionTab';
-import SearchBar from '@/components/SearchBar';
-import Logo from '@/components/Logo';
+import SearchSuggestionTab from '@/components/views/SearchSuggestionTab';
+import SearchBar from '@/components/elements/SearchBar';
+import Logo from '@/components/elements/Logo';
 
 function NavbarHeader() {
 	const [isAutocompleteEnabled, setIsAutocompleteEnabled] = useState(false);

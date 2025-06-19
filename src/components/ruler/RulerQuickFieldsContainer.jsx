@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import QuickFactField from '@/components/QuickFactField';
-import QuickFactsNoField from '@/components/QuickFactsNoField';
+import QuickFactField from '@/components/views/QuickFactField';
+import QuickFactsNoField from '@/components/views/QuickFactsNoField';
 
 function RulerQuickFieldsContainer({ ruler }) {
 	return (

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import DynastyPageItem from '@/components/DynastyPageItem';
+import DynastyPageItem from '@/components/dynasty/DynastyPageItem';
 
 function DynastyPageList({ dynasties }) {
 	return (
