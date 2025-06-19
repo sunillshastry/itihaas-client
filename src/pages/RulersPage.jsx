@@ -1,62 +1,41 @@
 import { useEffect, useState } from 'react';
 
-import Footer from '../components/Footer';
-import MainContainer from '../components/MainContainer';
-import Navbar from '../components/Navbar';
-import PageSearchBar from '../components/PageSearchBar';
-import PrimaryHeader from '../components/PrimaryHeader';
-import Loader from '../components/Loader';
-import RulerPageList from '../components/RulerPageList';
-import FetchFailComponent from '../components/FetchFailComponent';
-import EntitiesPageNoResult from '../components/EntitiesPageNoResult';
+import Footer from '@/components/elements/Footer';
+import MainContainer from '@/components/elements/MainContainer';
+import Navbar from '@/components/elements/Navbar';
+import PageSearchBar from '@/components/elements/PageSearchBar';
+import PrimaryHeader from '@/components/elements/PrimaryHeader';
+import Loader from '@/components/elements/Loader';
+import RulerPageList from '@/components/ruler/RulerPageList';
+import FetchFailComponent from '@/components/elements/FetchFailComponent';
+import EntitiesPageNoResult from '@/components/views/EntitiesPageNoResult';
+import { useQuery } from '@tanstack/react-query';
+import getRulers from '@/api/getRulers';
 
 function RulersPage() {
-	const [rulers, setRulers] = useState([]);
+	// State
 	const [queriedRulers, setQueriedRulers] = useState([]);
 	const [searchQuery, setSearchQuery] = useState('');
-	const [loading, setLoading] = useState(false);
 
-	const [error, setError] = useState({
-		state: false,
-		prompt: '',
+	// Data fetching (React Query)
+	const {
+		data: rulers,
+		error,
+		isPending,
+	} = useQuery({
+		queryKey: ['rulers'],
+		queryFn: getRulers,
 	});
+
+	// Effects
 	useEffect(function () {
-		async function fetchAllRulers() {
-			try {
-				setError(function (current) {
-					return {
-						...current,
-						state: false,
-						prompt: '',
-					};
-				});
-				setLoading(true);
-				const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
-				const response = await fetch(`${BASE_URL}/rulers`);
-				const data = await response.json();
+		// Update document title field
+		window.document.title =
+			'Itihaas | Rulers | The Front Page of Indian History';
 
-				if (response.ok && data?.success) {
-					setRulers(data?.data?.rulers);
-				} else {
-					throw new Error();
-				}
-			} catch {
-				setQueriedRulers([]);
-				setRulers([]);
-
-				setError(function (current) {
-					return {
-						...current,
-						state: true,
-						prompt: 'Failed to fetch data from the backend. Please try again',
-					};
-				});
-			} finally {
-				setLoading(false);
-			}
-		}
-
-		fetchAllRulers();
+		return () => {
+			window.document.title = 'Itihaas | The Front Page of Indian History';
+		};
 	}, []);
 
 	useEffect(
@@ -74,36 +53,51 @@ function RulersPage() {
 		[rulers, searchQuery]
 	);
 
+	// Error State
+	if (error || rulers?.name === 'TypeError') {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<FetchFailComponent />
+				</MainContainer>
+			</>
+		);
+	}
+
+	// Loading State
+	if (isPending) {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<Loader />
+				</MainContainer>
+			</>
+		);
+	}
+
 	return (
 		<>
 			<Navbar />
 			<MainContainer>
 				<div>
 					<PrimaryHeader>Rulers</PrimaryHeader>
-					{!error.state && (
-						<PageSearchBar
-							className="mt-5"
-							placeholder="Search all rulers..."
-							value={searchQuery}
-							onChange={setSearchQuery}
-							setSearchQuery={setSearchQuery}
-						/>
-					)}
+					<PageSearchBar
+						className="mt-5"
+						placeholder="Search all rulers..."
+						value={searchQuery}
+						onChange={setSearchQuery}
+						setSearchQuery={setSearchQuery}
+					/>
 				</div>
 
-				{error.state && <FetchFailComponent />}
-				{loading ? (
-					<Loader />
-				) : (
-					<>
-						{queriedRulers.length === 0 && searchQuery.length >= 3 && (
-							<EntitiesPageNoResult query={searchQuery} />
-						)}
-						<RulerPageList
-							rulers={queriedRulers.length > 0 ? queriedRulers : rulers}
-						/>
-					</>
+				{queriedRulers.length === 0 && searchQuery.length >= 3 && (
+					<EntitiesPageNoResult query={searchQuery} />
 				)}
+				<RulerPageList
+					rulers={queriedRulers.length > 0 ? queriedRulers : rulers}
+				/>
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>

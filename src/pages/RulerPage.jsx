@@ -1,83 +1,57 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import BackButton from '../components/BackButton';
-import DescriptionContainer from '../components/DescriptionContainer';
-import MainContainer from '../components/MainContainer';
-import Navbar from '../components/Navbar';
-import PrimaryHeader from '../components/PrimaryHeader';
-import QuickFacts from '../components/QuickFacts';
-import RulerQuickFieldsContainer from '../components/RulerQuickFieldsContainer';
-import SecondaryHeader from '../components/SecondaryHeader';
-import updateWindowTitle from '../utils/updateWindowTitle';
-import Loader from '../components/Loader';
-import FetchFailComponent from '../components/FetchFailComponent';
-import formatArrayToString from '../utils/formatArrayToString';
-import SourcesContainer from '../components/SourcesContainer';
-import FurtherReadingContainer from '../components/FurtherReadingContainer';
-import ArticlesContainer from '../components/ArticlesContainer';
-import MissingInfoDialog from '../components/MissingInfoDialog';
-import LastUpdateMessage from '../components/LastUpdateMessage';
-import Footer from '../components/Footer';
-import CiteDropdown from '../components/CiteDropdown';
+import BackButton from '@/components/elements/BackButton';
+import DescriptionContainer from '@/components/elements/DescriptionContainer';
+import MainContainer from '@/components/elements/MainContainer';
+import Navbar from '@/components/elements/Navbar';
+import PrimaryHeader from '@/components/elements/PrimaryHeader';
+import QuickFacts from '@/components/elements/QuickFacts';
+import RulerQuickFieldsContainer from '@/components/ruler/RulerQuickFieldsContainer';
+import SecondaryHeader from '@/components/elements/SecondaryHeader';
+import Loader from '@/components/elements/Loader';
+import FetchFailComponent from '@/components/elements/FetchFailComponent';
+import formatArrayToString from '@/utils/formatArrayToString';
+import SourcesContainer from '@/components/elements/SourcesContainer';
+import FurtherReadingContainer from '@/components/elements/FurtherReadingContainer';
+import ArticlesContainer from '@/components/elements/ArticlesContainer';
+import MissingInfoDialog from '@/components/views/MissingInfoDialog';
+import LastUpdateMessage from '@/components/views/LastUpdateMessage';
+import Footer from '@/components/elements/Footer';
+import CiteDropdown from '@/components/views/CiteDropdown';
+import { useQuery } from '@tanstack/react-query';
+import getRuler from '@/api/getRuler';
+import updateWindowTitle from '@/utils/updateWindowTitle';
 
 function RulerPage() {
+	// State
 	const navigate = useNavigate();
 	const { rulerSlug: slug } = useParams();
 
-	const [loading, setLoading] = useState(false);
-	const [ruler, setRuler] = useState({});
 	const [title, setTitle] = useState(
 		'Itihaas | The Front Page of Indian History'
 	);
 
-	const [error, setError] = useState({
-		state: false,
-		prompt: '',
+	// Data Fetching (React Query)
+	const {
+		data: ruler,
+		isPending,
+		error,
+	} = useQuery({
+		queryKey: ['ruler'],
+		queryFn: () => getRuler(slug),
 	});
 
+	// Effects
 	useEffect(
 		function () {
-			async function fetchRuler() {
-				try {
-					setLoading(true);
-					setError(function (current) {
-						return {
-							...current,
-							state: false,
-							prompt: '',
-						};
-					});
+			updateWindowTitle(setTitle, ruler?.name);
 
-					const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
-					const response = await fetch(`${BASE_URL}/rulers/${slug}`);
-					const data = await response.json();
-
-					if (response?.ok && data?.success) {
-						setRuler(data?.data?.ruler);
-						updateWindowTitle(setTitle, data?.data?.ruler?.name);
-					} else if (!response.ok && response.status === 404) {
-						navigate('/not-found');
-					} else {
-						throw new Error();
-					}
-				} catch {
-					setRuler({});
-					setError(function (current) {
-						return {
-							...current,
-							state: false,
-							prompt: '',
-						};
-					});
-				} finally {
-					setLoading(false);
-				}
-			}
-
-			fetchRuler();
+			return () => {
+				window.document.title = 'Itihaas | The Front Page of Indian History';
+			};
 		},
-		[slug, navigate]
+		[ruler]
 	);
 
 	useEffect(
@@ -91,63 +65,77 @@ function RulerPage() {
 		[title]
 	);
 
+	// Error State
+	if (error || ruler?.name === 'TypeError') {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<FetchFailComponent />
+				</MainContainer>
+			</>
+		);
+	}
+
+	// NotFound state
+	if (ruler?.name === 'NotFoundError') {
+		return navigate('/not-found');
+	}
+
+	// Loading state
+	if (isPending) {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<Loader />
+				</MainContainer>
+			</>
+		);
+	}
+
 	return (
 		<>
 			<Navbar />
 			<MainContainer>
-				{loading ? (
-					<Loader />
-				) : (
-					<>
-						{error.state ? (
-							<FetchFailComponent />
-						) : (
-							<>
-								<div>
-									<div className="flex items-baseline justify-between">
-										<BackButton />
-										<CiteDropdown
-											pageTitle={ruler?.name}
-											updatedDate={ruler?.updatedAt}
-											url={window.location.href}
-										/>
-									</div>
-									<PrimaryHeader>{ruler?.name}</PrimaryHeader>
+				<div>
+					<div className="flex items-baseline justify-between">
+						<BackButton />
+						<CiteDropdown
+							pageTitle={ruler?.name}
+							updatedDate={ruler?.updatedAt}
+							url={window.location.href}
+						/>
+					</div>
+					<PrimaryHeader>{ruler?.name}</PrimaryHeader>
 
-									<SecondaryHeader>
-										{ruler?.otherNames &&
-											formatArrayToString(ruler?.otherNames)}
-									</SecondaryHeader>
+					<SecondaryHeader>
+						{ruler?.otherNames && formatArrayToString(ruler?.otherNames)}
+					</SecondaryHeader>
 
-									<SecondaryHeader className="mt-4">
-										{ruler?.born && ruler.born} -&nbsp;
-										{ruler?.died && ruler.died}
-									</SecondaryHeader>
-								</div>
+					<SecondaryHeader className="mt-4">
+						{ruler?.born && ruler.born} -&nbsp;
+						{ruler?.died && ruler.died}
+					</SecondaryHeader>
+				</div>
 
-								<QuickFacts>
-									<RulerQuickFieldsContainer ruler={ruler} />
-								</QuickFacts>
+				<QuickFacts>
+					<RulerQuickFieldsContainer ruler={ruler} />
+				</QuickFacts>
 
-								<DescriptionContainer
-									descriptionList={ruler?.description?.long}
-								/>
+				<DescriptionContainer descriptionList={ruler?.description?.long} />
 
-								<SourcesContainer sources={ruler?.sources} />
+				<SourcesContainer sources={ruler?.sources} />
 
-								<FurtherReadingContainer readings={ruler?.furtherReading} />
+				<FurtherReadingContainer readings={ruler?.furtherReading} />
 
-								{/* TODO: WARS CONTAINER */}
+				{/* TODO: WARS CONTAINER */}
 
-								<ArticlesContainer articles={ruler?.articles} />
+				<ArticlesContainer articles={ruler?.articles} />
 
-								<MissingInfoDialog />
+				<MissingInfoDialog />
 
-								<LastUpdateMessage date={ruler?.updatedAt} />
-							</>
-						)}
-					</>
-				)}
+				<LastUpdateMessage date={ruler?.updatedAt} />
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>

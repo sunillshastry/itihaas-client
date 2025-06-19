@@ -1,10 +1,10 @@
-import Footer from '../components/Footer';
-import IssueInfo from '../components/IssueInfo';
-import IssuesSubjectDetails from '../components/IssuesSubjectDetails';
-import IssuesUserDetails from '../components/IssuesUserDetails';
-import MainContainer from '../components/MainContainer';
-import Navbar from '../components/Navbar';
-import PrimaryHeader from '../components/PrimaryHeader';
+import Footer from '@/components/elements/Footer';
+import IssueInfo from '@/components/views/IssueInfo';
+import IssuesSubjectDetails from '@/components/views/IssuesSubjectDetails';
+import IssuesUserDetails from '@/components/views/IssuesUserDetails';
+import MainContainer from '@/components/elements/MainContainer';
+import Navbar from '@/components/elements/Navbar';
+import PrimaryHeader from '@/components/elements/PrimaryHeader';
 
 function Issues() {
 	return (
