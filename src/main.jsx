@@ -3,19 +3,32 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import '@/index.css';
 import App from '@/App.jsx';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import REACT_QUERY_DEV_TOOLS_POSITION from '@/data/reactQueryDevToolsPosition';
+
+const queryClient = new QueryClient();
 
 if (import.meta.env.VITE_APP_ENV === 'development') {
 	createRoot(document.getElementById('root')).render(
 		<StrictMode>
-			<Router>
-				<App />
-			</Router>
+			<QueryClientProvider client={queryClient}>
+				<ReactQueryDevtools
+					initialIsOpen={false}
+					buttonPosition={REACT_QUERY_DEV_TOOLS_POSITION}
+				/>
+				<Router>
+					<App />
+				</Router>
+			</QueryClientProvider>
 		</StrictMode>
 	);
 } else {
 	createRoot(document.getElementById('root')).render(
-		<Router>
-			<App />
-		</Router>
+		<QueryClientProvider client={queryClient}>
+			<Router>
+				<App />
+			</Router>
+		</QueryClientProvider>
 	);
 }
