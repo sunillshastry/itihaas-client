@@ -11,6 +11,7 @@ import FetchFailComponent from '@/components/elements/FetchFailComponent';
 import EntitiesPageNoResult from '@/components/views/EntitiesPageNoResult';
 import { useQuery } from '@tanstack/react-query';
 import getDynasties from '@/api/getDynasties';
+import AddingNewContentUI from '@/components/elements/AddingNewContentUI';
 
 /**
  * Main React.JSX page component for /dynasties: Dynasties page
@@ -89,6 +90,7 @@ function DynastiesPage() {
 			<Navbar />
 			<MainContainer>
 				<div>
+					<AddingNewContentUI />
 					<PrimaryHeader>Dynasties</PrimaryHeader>
 					<PageSearchBar
 						className="mt-5"

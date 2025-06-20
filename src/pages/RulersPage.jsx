@@ -11,6 +11,7 @@ import FetchFailComponent from '@/components/elements/FetchFailComponent';
 import EntitiesPageNoResult from '@/components/views/EntitiesPageNoResult';
 import { useQuery } from '@tanstack/react-query';
 import getRulers from '@/api/getRulers';
+import AddingNewContentUI from '@/components/elements/AddingNewContentUI';
 
 function RulersPage() {
 	// State
@@ -82,6 +83,7 @@ function RulersPage() {
 			<Navbar />
 			<MainContainer>
 				<div>
+					<AddingNewContentUI />
 					<PrimaryHeader>Rulers</PrimaryHeader>
 					<PageSearchBar
 						className="mt-5"
