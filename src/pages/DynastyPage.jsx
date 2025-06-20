@@ -22,6 +22,7 @@ import CiteDropdown from '@/components/views/CiteDropdown';
 import { useQuery } from '@tanstack/react-query';
 import getDynasty from '@/api/getDynasty';
 import updateWindowTitle from '@/utils/updateWindowTitle';
+import HashContainer from '@/components/elements/HashContainer';
 
 function DynastyPage() {
 	// State
@@ -125,15 +126,20 @@ function DynastyPage() {
 
 				<DescriptionContainer descriptionList={dynasty?.description?.long} />
 
-				<SourcesContainer sources={dynasty?.sources} />
+				<HashContainer id="sources">
+					<SourcesContainer sources={dynasty?.sources} />
+				</HashContainer>
 
-				<FurtherReadingContainer readings={dynasty?.furtherReading} />
-
+				<HashContainer id="reading">
+					<FurtherReadingContainer readings={dynasty?.furtherReading} />
+				</HashContainer>
 				{/* TODO: RULERS CONTAINER */}
 
 				{/* TODO: WARS CONTAINER */}
 
-				<ArticlesContainer articles={dynasty?.articles} />
+				<HashContainer id="articles">
+					<ArticlesContainer articles={dynasty?.articles} />
+				</HashContainer>
 
 				<MissingInfoDialog />
 
