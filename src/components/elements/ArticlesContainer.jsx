@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SubHeader from '@/components/elements/SubHeader';
 import NoSectionDialog from '@/components/views/NoSectionDialog';
 import Article from '@/components/views/Article';
+import SubHeaderLink from '../views/SubHeaderLink';
 
 function ArticlesContainer({ articles }) {
 	if (articles && articles.length === 0) {
@@ -11,7 +12,9 @@ function ArticlesContainer({ articles }) {
 
 	return (
 		<section className="mt-5">
-			<SubHeader>Articles</SubHeader>
+			<SubHeader>
+				<SubHeaderLink to="#articles">Articles</SubHeaderLink>
+			</SubHeader>
 			<ul>
 				{articles &&
 					articles.map(function (article) {

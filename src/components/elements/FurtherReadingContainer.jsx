@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SubHeader from '@/components/elements/SubHeader';
 import PageLinkField from '@/components/views/PageLinkField';
 import NoSectionDialog from '@/components/views/NoSectionDialog';
+import SubHeaderLink from '../views/SubHeaderLink';
 
 function FurtherReadingContainer({ readings }) {
 	if (readings && readings.length === 0) {
@@ -10,7 +11,9 @@ function FurtherReadingContainer({ readings }) {
 	}
 	return (
 		<section className="mt-5">
-			<SubHeader>Further Reading</SubHeader>
+			<SubHeader>
+				<SubHeaderLink to="#reading">Further Readings</SubHeaderLink>
+			</SubHeader>
 			<div className="mt-3 flex flex-col items-start justify-start">
 				{readings &&
 					readings.map(function (reading) {
