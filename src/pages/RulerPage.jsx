@@ -22,6 +22,7 @@ import CiteDropdown from '@/components/views/CiteDropdown';
 import { useQuery } from '@tanstack/react-query';
 import getRuler from '@/api/getRuler';
 import updateWindowTitle from '@/utils/updateWindowTitle';
+import HashContainer from '@/components/elements/HashContainer';
 
 function RulerPage() {
 	// State
@@ -125,13 +126,19 @@ function RulerPage() {
 
 				<DescriptionContainer descriptionList={ruler?.description?.long} />
 
-				<SourcesContainer sources={ruler?.sources} />
+				<HashContainer id="sources">
+					<SourcesContainer sources={ruler?.sources} />
+				</HashContainer>
 
-				<FurtherReadingContainer readings={ruler?.furtherReading} />
+				<HashContainer id="reading">
+					<FurtherReadingContainer readings={ruler?.furtherReading} />
+				</HashContainer>
 
 				{/* TODO: WARS CONTAINER */}
 
-				<ArticlesContainer articles={ruler?.articles} />
+				<HashContainer id="articles">
+					<ArticlesContainer articles={ruler?.articles} />
+				</HashContainer>
 
 				<MissingInfoDialog />
 
