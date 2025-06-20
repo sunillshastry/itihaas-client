@@ -10,7 +10,7 @@ function PlatformGrowthButton({ click }) {
 			<span>
 				<Database size={15} />
 			</span>
-			<span className="ml-1">About Platform Growth</span>
+			<span className="ml-1">Platform Growth</span>
 		</button>
 	);
 }
