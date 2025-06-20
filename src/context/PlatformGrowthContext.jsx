@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
-import { createContext, useReducer } from 'react';
+import { useContext, createContext, useReducer } from 'react';
 
 // Creating the primary Context
 const PlatformGrowthContext = createContext();

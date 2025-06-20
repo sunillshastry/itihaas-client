@@ -6,7 +6,7 @@ import App from '@/App.jsx';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import REACT_QUERY_DEV_TOOLS_POSITION from '@/data/reactQueryDevToolsPosition';
-import PlatformGrowthProvider from './context/PlatformGrowthContext';
+import PlatformGrowthProvider from '@/context/PlatformGrowthContext';
 
 const queryClient = new QueryClient();
 

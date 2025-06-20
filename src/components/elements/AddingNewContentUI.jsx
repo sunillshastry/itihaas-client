@@ -1,4 +1,4 @@
-import PlatformGrowthButton from '../views/PlatformGrowthButton';
+import PlatformGrowthButton from '@/components/views/PlatformGrowthButton';
 import { usePlatformGrowth } from '@/context/PlatformGrowthContext';
 
 function AddingNewContentUI() {
