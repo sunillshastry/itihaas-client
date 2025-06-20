@@ -1,12 +1,14 @@
-import { useState } from 'react';
 import PlatformGrowthButton from '../views/PlatformGrowthButton';
+import { usePlatformGrowth } from '@/context/PlatformGrowthContext';
 
 function AddingNewContentUI() {
-	const [hidden, setHidden] = useState(false);
+	const { hidden, dispatch } = usePlatformGrowth();
 
 	return (
 		<>
-			<PlatformGrowthButton click={() => setHidden((current) => !current)} />
+			<PlatformGrowthButton
+				click={() => dispatch({ type: hidden ? 'unhide' : 'hide' })}
+			/>
 			{!hidden && (
 				<div className="bg-primary-600 rounded-sm p-3 text-primary-50 mb-5">
 					<h3 className="text-primary-70 uppercase font-medium">
