@@ -24,6 +24,7 @@ import getDynasty from '@/api/getDynasty';
 import updateWindowTitle from '@/utils/updateWindowTitle';
 import HashContainer from '@/components/elements/HashContainer';
 import { useCitation } from '@/context/CitationContext';
+import usePageURL from '@/hooks/usePageURL';
 
 function DynastyPage() {
 	// State
@@ -35,6 +36,7 @@ function DynastyPage() {
 	const navigate = useNavigate();
 	const [params, setParams] = useSearchParams();
 	const { open, format } = useCitation();
+	const pageURL = usePageURL();
 
 	// Data Fetching (React Query)
 	const {
@@ -126,7 +128,7 @@ function DynastyPage() {
 						<CiteDropdown
 							pageTitle={dynasty?.name}
 							updatedDate={dynasty?.updatedAt}
-							url={window.location.href}
+							url={pageURL || window.location.href}
 						/>
 					</div>
 					<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
