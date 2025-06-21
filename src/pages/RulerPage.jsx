@@ -44,7 +44,7 @@ function RulerPage() {
 		isPending,
 		error,
 	} = useQuery({
-		queryKey: ['ruler'],
+		queryKey: ['ruler', slug],
 		queryFn: () => getRuler(slug),
 	});
 
