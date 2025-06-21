@@ -1,14 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowBigLeft } from 'lucide-react';
+import PropTypes from 'prop-types';
 
-function BackButton() {
+function BackButton({ to }) {
 	const navigate = useNavigate();
 
 	function goToPreviousPage() {
-		try {
-			navigate(-1);
-		} catch {
-			navigate('/');
+		if (to) {
+			try {
+				navigate(to);
+			} catch {
+				navigate('/');
+			}
+		} else {
+			try {
+				navigate(-1);
+			} catch {
+				navigate('/');
+			}
 		}
 	}
 
@@ -24,5 +33,9 @@ function BackButton() {
 		</button>
 	);
 }
+
+BackButton.propTypes = {
+	to: PropTypes.string,
+};
 
 export default BackButton;
