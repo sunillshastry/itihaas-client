@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import Citations from '@/services/Citations';
 import formattedMonthName from '@/utils/formattedMonthName';
 import CitationContent from '@/components/views/CitationContent';
+import { useCitation } from '@/context/CitationContext';
+import { useSearchParams } from 'react-router-dom';
 
 function CiteDropdown({ pageTitle, updatedDate, url }) {
 	const update = new Date(updatedDate);
@@ -12,6 +14,9 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 
 	const accessed = new Date();
 	const formattedAccessDate = `${accessed.getUTCDate()} ${formattedMonthName(accessed.getUTCMonth() + 1)} ${accessed.getUTCFullYear()}`;
+
+	const { dispatch } = useCitation();
+	const [params] = useSearchParams();
 
 	const [isCiteTabOpen, setIsCiteTabOpen] = useState(false);
 	const [citation, setCitation] = useState(
@@ -36,6 +41,18 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 			return () => document.removeEventListener('keyup', hideCiteTab);
 		},
 		[isCiteTabOpen]
+	);
+
+	useEffect(
+		function () {
+			const citationTab = params.get('citationTab');
+			if (citationTab === 'open') {
+				setIsCiteTabOpen(true);
+			} else if (citationTab === 'close') {
+				setIsCiteTabOpen(false);
+			}
+		},
+		[params]
 	);
 
 	function onOptionChange(e) {
@@ -89,11 +106,23 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 		}
 	}
 
+	function handleCitationToggle() {
+		const opposite = !isCiteTabOpen;
+
+		setIsCiteTabOpen((current) => !current);
+
+		if (opposite) {
+			dispatch({ type: 'open/true' });
+		} else {
+			dispatch({ type: 'open/false' });
+		}
+	}
+
 	return (
 		<div className="relative">
 			<button
 				className="border-primary text-primary from-primary-80 to-primary-90 hover:text-primary-200 hover:border-primary-200 focus-visible:outline-primary-20 focus-visible::outline-2 flex items-center rounded-sm border bg-linear-to-r px-5 py-2 font-medium hover:cursor-pointer"
-				onClick={() => setIsCiteTabOpen((current) => !current)}
+				onClick={handleCitationToggle}
 			>
 				<span className="pointer-events-none">Cite Page</span>
 				<span className="pointer-events-none ml-1">
