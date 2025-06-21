@@ -30,7 +30,7 @@ function RulerPage() {
 	const navigate = useNavigate();
 	const { rulerSlug: slug } = useParams();
 	const [params, setParams] = useSearchParams();
-	const { open, format, dispatch } = useCitation();
+	const { open, format } = useCitation();
 
 	const [title, setTitle] = useState(
 		'Itihaas | The Front Page of Indian History'
@@ -60,13 +60,20 @@ function RulerPage() {
 
 	useEffect(
 		function () {
-			if (open) {
-				setParams({ citationTab: 'open' });
-			} else {
-				setParams({ citationTab: 'close' });
-			}
+			const newSearchParams = new URLSearchParams(params.toString());
+			newSearchParams.set('citationTab', open ? 'open' : 'close');
+			setParams(newSearchParams);
 		},
-		[open, setParams]
+		[open, setParams, params]
+	);
+
+	useEffect(
+		function () {
+			const newSearchParams = new URLSearchParams(params.toString());
+			newSearchParams.set('citationFormat', format);
+			setParams(newSearchParams);
+		},
+		[format, params, setParams]
 	);
 
 	useEffect(
