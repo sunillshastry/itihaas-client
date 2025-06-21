@@ -62,7 +62,6 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 		const citationContextDispatchValue = `format/${value}`;
 
 		dispatch({ type: citationContextDispatchValue });
-		console.log(format);
 	}
 
 	const updateCitationContent = useCallback(
