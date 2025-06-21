@@ -24,6 +24,7 @@ import getRuler from '@/api/getRuler';
 import updateWindowTitle from '@/utils/updateWindowTitle';
 import HashContainer from '@/components/elements/HashContainer';
 import { useCitation } from '@/context/CitationContext';
+import usePageURL from '@/hooks/usePageURL';
 
 function RulerPage() {
 	// State
@@ -31,6 +32,7 @@ function RulerPage() {
 	const { rulerSlug: slug } = useParams();
 	const [params, setParams] = useSearchParams();
 	const { open, format } = useCitation();
+	const pageURL = usePageURL();
 
 	const [title, setTitle] = useState(
 		'Itihaas | The Front Page of Indian History'
@@ -126,7 +128,7 @@ function RulerPage() {
 						<CiteDropdown
 							pageTitle={ruler?.name}
 							updatedDate={ruler?.updatedAt}
-							url={window.location.href}
+							url={pageURL || window.location.href}
 						/>
 					</div>
 					<PrimaryHeader>{ruler?.name}</PrimaryHeader>
