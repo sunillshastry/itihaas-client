@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import Navbar from '@/components/elements/Navbar';
 import MainContainer from '@/components/elements/MainContainer';
@@ -23,6 +23,7 @@ import { useQuery } from '@tanstack/react-query';
 import getDynasty from '@/api/getDynasty';
 import updateWindowTitle from '@/utils/updateWindowTitle';
 import HashContainer from '@/components/elements/HashContainer';
+import { useCitation } from '@/context/CitationContext';
 
 function DynastyPage() {
 	// State
@@ -32,6 +33,8 @@ function DynastyPage() {
 	);
 
 	const navigate = useNavigate();
+	const [params, setParams] = useSearchParams();
+	const { open, format, dispatch } = useCitation();
 
 	// Data Fetching (React Query)
 	const {
@@ -53,6 +56,17 @@ function DynastyPage() {
 			};
 		},
 		[title]
+	);
+
+	useEffect(
+		function () {
+			if (open) {
+				setParams({ citationTab: 'open' });
+			} else {
+				setParams({ citationTab: 'close' });
+			}
+		},
+		[open, setParams]
 	);
 
 	useEffect(
@@ -101,7 +115,7 @@ function DynastyPage() {
 			<MainContainer>
 				<div>
 					<div className="flex items-baseline justify-between">
-						<BackButton />
+						<BackButton to="/dynasties" />
 						<CiteDropdown
 							pageTitle={dynasty?.name}
 							updatedDate={dynasty?.updatedAt}
