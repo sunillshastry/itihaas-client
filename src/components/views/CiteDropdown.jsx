@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { MessageSquareQuote } from 'lucide-react';
 import PropTypes from 'prop-types';
 
@@ -15,7 +15,7 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 	const accessed = new Date();
 	const formattedAccessDate = `${accessed.getUTCDate()} ${formattedMonthName(accessed.getUTCMonth() + 1)} ${accessed.getUTCFullYear()}`;
 
-	const { dispatch } = useCitation();
+	const { dispatch, format } = useCitation();
 	const [params] = useSearchParams();
 
 	const [isCiteTabOpen, setIsCiteTabOpen] = useState(false);
@@ -58,53 +58,61 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 	function onOptionChange(e) {
 		const value = e?.value || 'mla';
 		updateCitationContent(value);
+
+		const citationContextDispatchValue = `format/${value}`;
+
+		dispatch({ type: citationContextDispatchValue });
+		console.log(format);
 	}
 
-	function updateCitationContent(format) {
-		switch (format) {
-			case 'mla':
-				setCitation(
-					Citations.getMLAFormat({
-						page: pageTitle,
-						updated: formattedUpdateDate,
-						url,
-						accessed: formattedAccessDate,
-					})
-				);
-				break;
-			case 'apa':
-				setCitation(
-					Citations.getAPAFormat({
-						year: new Date().getUTCFullYear(),
-						date: `${new Date().getUTCDate()} ${formattedMonthName(new Date().getUTCMonth() + 1)}`,
-						page: pageTitle,
-						url,
-					})
-				);
-				break;
-			case 'chicago':
-				setCitation(
-					Citations.getChicagoFormat({
-						page: pageTitle,
-						updated: formattedUpdateDate,
-						url,
-					})
-				);
-				break;
-			case 'harvard':
-				setCitation(
-					Citations.getHarvardFormat({
-						page: pageTitle,
-						updated: formattedUpdateDate,
-						url,
-						accessed: formattedAccessDate,
-					})
-				);
-				break;
-			default:
-				throw new Error(`Invalid citation format: ${format}`);
-		}
-	}
+	const updateCitationContent = useCallback(
+		(format) => {
+			switch (format) {
+				case 'mla':
+					setCitation(
+						Citations.getMLAFormat({
+							page: pageTitle,
+							updated: formattedUpdateDate,
+							url,
+							accessed: formattedAccessDate,
+						})
+					);
+					break;
+				case 'apa':
+					setCitation(
+						Citations.getAPAFormat({
+							year: new Date().getUTCFullYear(),
+							date: `${new Date().getUTCDate()} ${formattedMonthName(new Date().getUTCMonth() + 1)}`,
+							page: pageTitle,
+							url,
+						})
+					);
+					break;
+				case 'chicago':
+					setCitation(
+						Citations.getChicagoFormat({
+							page: pageTitle,
+							updated: formattedUpdateDate,
+							url,
+						})
+					);
+					break;
+				case 'harvard':
+					setCitation(
+						Citations.getHarvardFormat({
+							page: pageTitle,
+							updated: formattedUpdateDate,
+							url,
+							accessed: formattedAccessDate,
+						})
+					);
+					break;
+				default:
+					throw new Error(`Invalid citation format: ${format}`);
+			}
+		},
+		[formattedAccessDate, formattedUpdateDate, pageTitle, url]
+	);
 
 	function handleCitationToggle() {
 		const opposite = !isCiteTabOpen;
@@ -117,6 +125,18 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 			dispatch({ type: 'open/false' });
 		}
 	}
+
+	useEffect(
+		function () {
+			const citationFormat = params.get('citationFormat');
+			if (citationFormat) {
+				updateCitationContent(citationFormat);
+			} else {
+				updateCitationContent('mla');
+			}
+		},
+		[params, updateCitationContent]
+	);
 
 	return (
 		<div className="relative">
