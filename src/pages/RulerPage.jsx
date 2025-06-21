@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import BackButton from '@/components/elements/BackButton';
 import DescriptionContainer from '@/components/elements/DescriptionContainer';
@@ -23,11 +23,14 @@ import { useQuery } from '@tanstack/react-query';
 import getRuler from '@/api/getRuler';
 import updateWindowTitle from '@/utils/updateWindowTitle';
 import HashContainer from '@/components/elements/HashContainer';
+import { useCitation } from '@/context/CitationContext';
 
 function RulerPage() {
 	// State
 	const navigate = useNavigate();
 	const { rulerSlug: slug } = useParams();
+	const [params, setParams] = useSearchParams();
+	const { open, format, dispatch } = useCitation();
 
 	const [title, setTitle] = useState(
 		'Itihaas | The Front Page of Indian History'
@@ -53,6 +56,17 @@ function RulerPage() {
 			};
 		},
 		[ruler]
+	);
+
+	useEffect(
+		function () {
+			if (open) {
+				setParams({ citationTab: 'open' });
+			} else {
+				setParams({ citationTab: 'close' });
+			}
+		},
+		[open, setParams]
 	);
 
 	useEffect(
@@ -101,7 +115,7 @@ function RulerPage() {
 			<MainContainer>
 				<div>
 					<div className="flex items-baseline justify-between">
-						<BackButton />
+						<BackButton to="/rulers" />
 						<CiteDropdown
 							pageTitle={ruler?.name}
 							updatedDate={ruler?.updatedAt}
