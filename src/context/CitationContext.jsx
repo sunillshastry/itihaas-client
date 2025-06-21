@@ -1,3 +1,4 @@
+import CitationReducer from '@/reducers/CitationReducer';
 import PropTypes from 'prop-types';
 import { createContext, useContext, useReducer } from 'react';
 
@@ -10,59 +11,12 @@ const initialState = {
 	format: 'mla',
 };
 
-// Reducer function(s)
-function reducer(state, action) {
-	switch (action.type) {
-		// Open settings
-		case 'open/true':
-			return {
-				...state,
-				open: true,
-			};
-
-		case 'open/false':
-			return {
-				...state,
-				open: false,
-			};
-
-		// Format settings
-		case 'format/mla':
-			return {
-				...state,
-				format: 'mla',
-			};
-
-		case 'format/apa':
-			return {
-				...state,
-				format: 'apa',
-			};
-
-		case 'format/chicago':
-			return {
-				...state,
-				format: 'chicago',
-			};
-
-		case 'format/harvard':
-			return {
-				...state,
-				format: 'harvard',
-			};
-
-		default:
-			return {
-				...state,
-				open: false,
-				format: 'mla',
-			};
-	}
-}
-
 // Context Provider
 function CitationContextProvider({ children }) {
-	const [{ open, format }, dispatch] = useReducer(reducer, initialState);
+	const [{ open, format }, dispatch] = useReducer(
+		CitationReducer,
+		initialState
+	);
 
 	return (
 		<CitationContext.Provider value={{ open, format, dispatch }}>
