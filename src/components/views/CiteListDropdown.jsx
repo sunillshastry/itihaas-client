@@ -2,13 +2,20 @@ import PropTypes from 'prop-types';
 import Select from 'react-select';
 
 import dropdownOptions from '@/data/citationOptions';
+import { useCitation } from '@/context/CitationContext';
 
 function CiteListDropdown({ onChange }) {
+	const { format } = useCitation();
+
+	const defaultOption = dropdownOptions.filter(
+		(option) => option.value === format
+	);
+
 	return (
 		<Select
 			onChange={onChange}
 			options={dropdownOptions}
-			defaultValue={dropdownOptions[2]}
+			defaultValue={defaultOption.at(0) || dropdownOptions[2]}
 			styles={{
 				control: (base, state) => ({
 					...base,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import Navbar from '@/components/elements/Navbar';
 import MainContainer from '@/components/elements/MainContainer';
@@ -22,6 +22,9 @@ import CiteDropdown from '@/components/views/CiteDropdown';
 import { useQuery } from '@tanstack/react-query';
 import getDynasty from '@/api/getDynasty';
 import updateWindowTitle from '@/utils/updateWindowTitle';
+import HashContainer from '@/components/elements/HashContainer';
+import { useCitation } from '@/context/CitationContext';
+import usePageURL from '@/hooks/usePageURL';
 
 function DynastyPage() {
 	// State
@@ -31,6 +34,9 @@ function DynastyPage() {
 	);
 
 	const navigate = useNavigate();
+	const [params, setParams] = useSearchParams();
+	const { open, format } = useCitation();
+	const pageURL = usePageURL();
 
 	// Data Fetching (React Query)
 	const {
@@ -52,6 +58,24 @@ function DynastyPage() {
 			};
 		},
 		[title]
+	);
+
+	useEffect(
+		function () {
+			const newSearchParams = new URLSearchParams(params.toString());
+			newSearchParams.set('citationTab', open ? 'open' : 'close');
+			setParams(newSearchParams);
+		},
+		[open, setParams, params]
+	);
+
+	useEffect(
+		function () {
+			const newSearchParams = new URLSearchParams(params.toString());
+			newSearchParams.set('citationFormat', format);
+			setParams(newSearchParams);
+		},
+		[format, params, setParams]
 	);
 
 	useEffect(
@@ -100,11 +124,11 @@ function DynastyPage() {
 			<MainContainer>
 				<div>
 					<div className="flex items-baseline justify-between">
-						<BackButton />
+						<BackButton to="/dynasties" />
 						<CiteDropdown
 							pageTitle={dynasty?.name}
 							updatedDate={dynasty?.updatedAt}
-							url={window.location.href}
+							url={pageURL || window.location.href}
 						/>
 					</div>
 					<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
@@ -125,15 +149,20 @@ function DynastyPage() {
 
 				<DescriptionContainer descriptionList={dynasty?.description?.long} />
 
-				<SourcesContainer sources={dynasty?.sources} />
+				<HashContainer id="sources">
+					<SourcesContainer sources={dynasty?.sources} />
+				</HashContainer>
 
-				<FurtherReadingContainer readings={dynasty?.furtherReading} />
-
+				<HashContainer id="reading">
+					<FurtherReadingContainer readings={dynasty?.furtherReading} />
+				</HashContainer>
 				{/* TODO: RULERS CONTAINER */}
 
 				{/* TODO: WARS CONTAINER */}
 
-				<ArticlesContainer articles={dynasty?.articles} />
+				<HashContainer id="articles">
+					<ArticlesContainer articles={dynasty?.articles} />
+				</HashContainer>
 
 				<MissingInfoDialog />
 

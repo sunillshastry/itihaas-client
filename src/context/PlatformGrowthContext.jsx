@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useContext, createContext, useReducer } from 'react';
+import PlatformGrowthReducer from '@/reducers/PlatformGrowthReducer';
 
 // Creating the primary Context
 const PlatformGrowthContext = createContext();
@@ -9,30 +10,12 @@ const initialState = {
 	hidden: false,
 };
 
-// Reducer function(s)
-function reducer(state, action) {
-	switch (action.type) {
-		case 'hide':
-			return {
-				...state,
-				hidden: true,
-			};
-		case 'unhide':
-			return {
-				...state,
-				hidden: false,
-			};
-		default:
-			return {
-				...state,
-				hidden: true,
-			};
-	}
-}
-
 // Context Provider
 function PlatformGrowthProvider({ children }) {
-	const [{ hidden }, dispatch] = useReducer(reducer, initialState);
+	const [{ hidden }, dispatch] = useReducer(
+		PlatformGrowthReducer,
+		initialState
+	);
 
 	return (
 		<PlatformGrowthContext.Provider value={{ hidden, dispatch }}>

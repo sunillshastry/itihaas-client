@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import SubHeader from '@/components/elements/SubHeader';
 import PageLinkField from '@/components/views/PageLinkField';
 import NoSectionDialog from '@/components/views/NoSectionDialog';
+import SubHeaderLink from '../views/SubHeaderLink';
 
 function SourcesContainer({ sources }) {
 	if (sources && sources.length === 0) {
@@ -12,7 +13,9 @@ function SourcesContainer({ sources }) {
 
 	return (
 		<section className="mt-5">
-			<SubHeader>Sources</SubHeader>
+			<SubHeader>
+				<SubHeaderLink to="#sources">Sources</SubHeaderLink>
+			</SubHeader>
 			<div className="mt-3 flex flex-col items-start justify-start">
 				{sources &&
 					sources.map(function (source) {

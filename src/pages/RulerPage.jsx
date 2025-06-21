@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import BackButton from '@/components/elements/BackButton';
 import DescriptionContainer from '@/components/elements/DescriptionContainer';
@@ -22,11 +22,17 @@ import CiteDropdown from '@/components/views/CiteDropdown';
 import { useQuery } from '@tanstack/react-query';
 import getRuler from '@/api/getRuler';
 import updateWindowTitle from '@/utils/updateWindowTitle';
+import HashContainer from '@/components/elements/HashContainer';
+import { useCitation } from '@/context/CitationContext';
+import usePageURL from '@/hooks/usePageURL';
 
 function RulerPage() {
 	// State
 	const navigate = useNavigate();
 	const { rulerSlug: slug } = useParams();
+	const [params, setParams] = useSearchParams();
+	const { open, format } = useCitation();
+	const pageURL = usePageURL();
 
 	const [title, setTitle] = useState(
 		'Itihaas | The Front Page of Indian History'
@@ -52,6 +58,24 @@ function RulerPage() {
 			};
 		},
 		[ruler]
+	);
+
+	useEffect(
+		function () {
+			const newSearchParams = new URLSearchParams(params.toString());
+			newSearchParams.set('citationTab', open ? 'open' : 'close');
+			setParams(newSearchParams);
+		},
+		[open, setParams, params]
+	);
+
+	useEffect(
+		function () {
+			const newSearchParams = new URLSearchParams(params.toString());
+			newSearchParams.set('citationFormat', format);
+			setParams(newSearchParams);
+		},
+		[format, params, setParams]
 	);
 
 	useEffect(
@@ -100,11 +124,11 @@ function RulerPage() {
 			<MainContainer>
 				<div>
 					<div className="flex items-baseline justify-between">
-						<BackButton />
+						<BackButton to="/rulers" />
 						<CiteDropdown
 							pageTitle={ruler?.name}
 							updatedDate={ruler?.updatedAt}
-							url={window.location.href}
+							url={pageURL || window.location.href}
 						/>
 					</div>
 					<PrimaryHeader>{ruler?.name}</PrimaryHeader>
@@ -125,13 +149,19 @@ function RulerPage() {
 
 				<DescriptionContainer descriptionList={ruler?.description?.long} />
 
-				<SourcesContainer sources={ruler?.sources} />
+				<HashContainer id="sources">
+					<SourcesContainer sources={ruler?.sources} />
+				</HashContainer>
 
-				<FurtherReadingContainer readings={ruler?.furtherReading} />
+				<HashContainer id="reading">
+					<FurtherReadingContainer readings={ruler?.furtherReading} />
+				</HashContainer>
 
 				{/* TODO: WARS CONTAINER */}
 
-				<ArticlesContainer articles={ruler?.articles} />
+				<HashContainer id="articles">
+					<ArticlesContainer articles={ruler?.articles} />
+				</HashContainer>
 
 				<MissingInfoDialog />
 
