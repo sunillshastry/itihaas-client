@@ -7,8 +7,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import REACT_QUERY_DEV_TOOLS_POSITION from '@/data/reactQueryDevToolsPosition';
 import PlatformGrowthProvider from '@/context/PlatformGrowthContext';
-import CitationContextProvider from './context/CitationContext';
-import ScrollToTop from './hooks/useScrollToTop';
+import CitationContextProvider from '@/context/CitationContext';
+import ScrollToTop from '@/hooks/useScrollToTop';
 
 const queryClient = new QueryClient();
 
