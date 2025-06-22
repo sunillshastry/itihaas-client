@@ -14,16 +14,16 @@ function NotFound() {
 				<NotFound404Title />
 
 				<div className="flex flex-col items-center text-center">
-					<h3 className="text-primary-400 font-heading text-6xl">
+					<h3 className="text-primary-400 font-heading text-6xl text-shadow-lg">
 						Page not found!
 					</h3>
-					<p className="text-primary-400 mt-4 text-lg font-medium">
+					<p className="text-primary-400 mt-4 text-lg font-medium text-shadow-2xs">
 						The resource you are looking for is not found
 					</p>
 
 					<div className="mt-10 flex">
 						<Link
-							className="text-primary-500 flex items-center underline"
+							className="text-primary-500 flex items-center underline text-shadow-2xs"
 							to="/"
 						>
 							<span>
@@ -34,7 +34,7 @@ function NotFound() {
 
 						<Link
 							to="/docs"
-							className="text-primary-500 ml-6 flex items-center underline"
+							className="text-primary-500 ml-6 flex items-center underline text-shadow-2xs"
 						>
 							<span>View docs</span>
 							<span className="ml-1">
