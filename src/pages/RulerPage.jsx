@@ -26,6 +26,7 @@ import HashContainer from '@/components/elements/HashContainer';
 import { useCitation } from '@/context/CitationContext';
 import usePageURL from '@/hooks/usePageURL';
 import NotFound from '@/pages/NotFound';
+import CopyURLButton from '@/components/views/CopyURLButton';
 
 function RulerPage() {
 	// State
@@ -126,11 +127,14 @@ function RulerPage() {
 				<div>
 					<div className="flex items-baseline justify-between">
 						<BackButton to="/rulers" />
-						<CiteDropdown
-							pageTitle={ruler?.name}
-							updatedDate={ruler?.updatedAt}
-							url={pageURL || window.location.href}
-						/>
+						<div className="flex items-baseline gap-2">
+							<CopyURLButton />
+							<CiteDropdown
+								pageTitle={ruler?.name}
+								updatedDate={ruler?.updatedAt}
+								url={pageURL || window.location.href}
+							/>
+						</div>
 					</div>
 					<PrimaryHeader>{ruler?.name}</PrimaryHeader>
 
