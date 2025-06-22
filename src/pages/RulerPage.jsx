@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import BackButton from '@/components/elements/BackButton';
 import DescriptionContainer from '@/components/elements/DescriptionContainer';
@@ -25,10 +25,10 @@ import updateWindowTitle from '@/utils/updateWindowTitle';
 import HashContainer from '@/components/elements/HashContainer';
 import { useCitation } from '@/context/CitationContext';
 import usePageURL from '@/hooks/usePageURL';
+import NotFound from '@/pages/NotFound';
 
 function RulerPage() {
 	// State
-	const navigate = useNavigate();
 	const { rulerSlug: slug } = useParams();
 	const [params, setParams] = useSearchParams();
 	const { open, format } = useCitation();
@@ -103,7 +103,8 @@ function RulerPage() {
 
 	// NotFound state
 	if (ruler?.name === 'NotFoundError') {
-		return navigate('/not-found');
+		// return navigate('/not-found');
+		return <NotFound />;
 	}
 
 	// Loading state
