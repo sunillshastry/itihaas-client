@@ -5,88 +5,50 @@ import NoResultsText from '@/components/views/NoResultsText';
 import SuggestionLink from '@/components/views/SuggestionLink';
 import Loader from '@/components/elements/Loader';
 import SearchTotalResults from '@/components/views/SearchTotalResults';
+import { useQuery } from '@tanstack/react-query';
+import getSearchResults from '@/api/getSearchResults';
 
 function SearchSuggestionTab({ displayed, query, handleLinkClick }) {
 	const [queriedResults, setQueriedResults] = useState([]);
 	const [loading, setLoading] = useState(false);
 
+	const { refetch, isPending, isFetching, isError } = useQuery({
+		queryKey: ['search'],
+		queryFn: () => getSearchResults(query),
+		enabled: false,
+	});
+
 	useEffect(
 		function () {
-			const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
-
-			async function fetchDynastyAutocomplete() {
-				const response = await fetch(
-					`${BASE_URL}/dynasties/search/titles?include=id,slug,type`
-				);
-				return response.json();
+			if (query.length < 3) {
+				setQueriedResults([]);
+				return;
 			}
 
-			async function fetchRulerAutocomplete() {
-				const response = await fetch(
-					`${BASE_URL}/rulers/search/titles?include=id,slug,type`
-				);
-				return response.json();
-			}
-
-			async function fetchAutocompleteOptions() {
-				try {
-					setLoading(true);
-					let totalResults = [];
-
-					// Fetch dynasties
-					const dynastyData = await fetchDynastyAutocomplete();
-					if (dynastyData?.success) {
-						const filtered = dynastyData.data.dynasties.filter((dynasty) =>
-							dynasty.name.toLowerCase().includes(query.toLowerCase())
-						);
-						totalResults = [...totalResults, ...filtered];
-					} else {
-						throw new Error('Failed to fetch dynasty autocomplete options');
-					}
-
-					// Fetch rulers
-					const rulerData = await fetchRulerAutocomplete();
-					if (rulerData?.success) {
-						const filtered = rulerData.data.rulers.filter((ruler) =>
-							ruler.name.toLowerCase().includes(query.toLowerCase())
-						);
-						totalResults = [...totalResults, ...filtered];
-					} else {
-						throw new Error('Failed to fetch ruler autocomplete options');
-					}
-
-					// Fetch wars
-
-					// Add to query list
-					setQueriedResults(totalResults);
-				} catch {
-					setQueriedResults([]);
-					setLoading(false);
-				} finally {
-					setLoading(false);
-				}
-			}
-
+			setLoading(true);
 			const timeout = setTimeout(function () {
-				if (query.length >= 3) {
-					fetchAutocompleteOptions();
-				}
+				refetch().then(function (response) {
+					setQueriedResults(response.data || []);
+					setLoading(false);
+				});
 			}, 300);
 
 			return () => clearTimeout(timeout);
 		},
-		[query]
+		[query, refetch]
 	);
 
 	return (
 		<div
 			className={`shadow-primary-800/50 absolute z-10 max-h-[250px] w-full overflow-y-scroll rounded-b-md bg-white p-2 text-sm shadow-sm ${displayed ? 'block' : 'hidden'}`}
 		>
-			{loading ? (
+			{loading || isFetching || isPending ? (
 				<Loader size="small" />
 			) : (
 				<>
-					{queriedResults.length === 0 && <NoResultsText query={query} />}
+					{(queriedResults.length === 0 || isError) && (
+						<NoResultsText query={query} />
+					)}
 					{queriedResults.length > 0 && (
 						<SearchTotalResults length={queriedResults.length} />
 					)}

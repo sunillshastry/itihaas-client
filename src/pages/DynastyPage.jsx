@@ -44,7 +44,7 @@ function DynastyPage() {
 		error,
 		isPending,
 	} = useQuery({
-		queryKey: ['dynasty'],
+		queryKey: ['dynasty', slug],
 		queryFn: () => getDynasty(slug),
 	});
 
