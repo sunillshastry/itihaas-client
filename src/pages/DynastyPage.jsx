@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 import Navbar from '@/components/elements/Navbar';
 import MainContainer from '@/components/elements/MainContainer';
@@ -25,6 +25,8 @@ import updateWindowTitle from '@/utils/updateWindowTitle';
 import HashContainer from '@/components/elements/HashContainer';
 import { useCitation } from '@/context/CitationContext';
 import usePageURL from '@/hooks/usePageURL';
+import NotFound from '@/pages/NotFound';
+import CopyURLButton from '@/components/views/CopyURLButton';
 
 function DynastyPage() {
 	// State
@@ -33,7 +35,6 @@ function DynastyPage() {
 		'Itihaas | The Front Page of Indian History'
 	);
 
-	const navigate = useNavigate();
 	const [params, setParams] = useSearchParams();
 	const { open, format } = useCitation();
 	const pageURL = usePageURL();
@@ -103,7 +104,7 @@ function DynastyPage() {
 
 	// NotFound state
 	if (dynasty?.name === 'NotFoundError') {
-		return navigate('/not-found');
+		return <NotFound />;
 	}
 
 	// Loading state
@@ -125,11 +126,14 @@ function DynastyPage() {
 				<div>
 					<div className="flex items-baseline justify-between">
 						<BackButton to="/dynasties" />
-						<CiteDropdown
-							pageTitle={dynasty?.name}
-							updatedDate={dynasty?.updatedAt}
-							url={pageURL || window.location.href}
-						/>
+						<div className="flex items-baseline gap-2">
+							<CopyURLButton />
+							<CiteDropdown
+								pageTitle={dynasty?.name}
+								updatedDate={dynasty?.updatedAt}
+								url={pageURL || window.location.href}
+							/>
+						</div>
 					</div>
 					<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
 
