@@ -15,7 +15,7 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 	const accessed = new Date();
 	const formattedAccessDate = `${accessed.getUTCDate()} ${formattedMonthName(accessed.getUTCMonth() + 1)} ${accessed.getUTCFullYear()}`;
 
-	const { dispatch, format } = useCitation();
+	const { dispatch } = useCitation();
 	const [params] = useSearchParams();
 
 	const [isCiteTabOpen, setIsCiteTabOpen] = useState(false);
