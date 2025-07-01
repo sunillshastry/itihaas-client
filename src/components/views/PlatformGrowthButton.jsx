@@ -7,7 +7,7 @@ function PlatformGrowthButton({ click }) {
 
 	return (
 		<button
-			className="bg-primary-300 text-sm flex items-center py-1 px-2 rounded-xl mt-2 hover:cursor-pointer hover:bg-primary-200 text-primary-50 mb-5 font-medium"
+			className="bg-primary-300hover:bg-primary-200 text-primary-50 mt-2 mb-5 flex items-center rounded-xl px-2 py-1 text-sm font-medium hover:cursor-pointer"
 			onClick={click}
 		>
 			<span>
