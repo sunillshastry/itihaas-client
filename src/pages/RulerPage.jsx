@@ -98,6 +98,7 @@ function RulerPage() {
 				<MainContainer>
 					<FetchFailComponent />
 				</MainContainer>
+				<Footer className="mt-36" />
 			</>
 		);
 	}
@@ -116,6 +117,7 @@ function RulerPage() {
 				<MainContainer>
 					<Loader />
 				</MainContainer>
+				<Footer className="mt-36" />
 			</>
 		);
 	}

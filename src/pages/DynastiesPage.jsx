@@ -69,6 +69,7 @@ function DynastiesPage() {
 				<MainContainer>
 					<FetchFailComponent />
 				</MainContainer>
+				<Footer className="mt-36" />
 			</>
 		);
 	}
@@ -81,6 +82,7 @@ function DynastiesPage() {
 				<MainContainer>
 					<Loader />
 				</MainContainer>
+				<Footer className="mt-36" />
 			</>
 		);
 	}

@@ -62,6 +62,7 @@ function RulersPage() {
 				<MainContainer>
 					<FetchFailComponent />
 				</MainContainer>
+				<Footer className="mt-36" />
 			</>
 		);
 	}
@@ -74,6 +75,7 @@ function RulersPage() {
 				<MainContainer>
 					<Loader />
 				</MainContainer>
+				<Footer className="mt-36" />
 			</>
 		);
 	}
