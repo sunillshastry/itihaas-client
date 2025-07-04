@@ -24,11 +24,14 @@ function IssueEntryField({
 				<textarea
 					rows="5"
 					cols="60"
-					className="bg-primary-80 text-md text-primary-400 focus:outline-primary-20 mt-1 rounded-sm px-2 py-2 font-medium focus:outline-3"
+					className="bg-primary-80 text-primary-400 focus:outline-primary-20 mt-1 rounded-sm px-2 py-2 text-base font-medium focus:outline-3"
 				></textarea>
 			) : (
 				<input
-					className={`bg-primary-80 text-md text-primary-400 focus:outline-primary-20 mt-1 rounded-sm px-2 py-2 font-medium focus:outline-3 ${variant === 'small' ? 'w-2xs' : 'w-sm'}`}
+					className={twMerge(
+						'bg-primary-80 text-primary-400 focus:outline-primary-20 mt-1 rounded-sm px-2 py-2 text-base font-medium focus:outline-3',
+						variant === 'small' ? 'w-2xs' : 'w-sm'
+					)}
 					type="text"
 					placeholder={placeholder}
 				/>

@@ -10,7 +10,7 @@ function MissingInfoDialog() {
 				Spot any incorrect or missing information?
 			</h3>
 
-			<p className="text-primary-80 text-md mt-2 leading-8">
+			<p className="text-primary-80 mt-2 text-base leading-8">
 				Help improve the quality of <strong>Itihaas</strong> and its contents by
 				filling in any missing information you&apos;ve noticed. Whether
 				it&apos;s a small detail, a broken link, or missing information, your

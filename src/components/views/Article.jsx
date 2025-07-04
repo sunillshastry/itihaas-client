@@ -10,7 +10,7 @@ function Article({ title, link, publisher, authors = [] }) {
 				target="_blank"
 			>
 				<div>
-					<h4 className="text-primary-400 text-md mb-2 font-medium underline underline-offset-2">
+					<h4 className="text-primary-400 mb-2 text-base font-medium underline underline-offset-2">
 						{title}
 					</h4>
 					{authors.length > 0 ? (
