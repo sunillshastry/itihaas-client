@@ -1,4 +1,4 @@
-import type { MLAFormat } from '@/interfaces/CitationMLAFormat';
+import type { MLAFormat } from '@/interfaces/citations/MLAFormat';
 
 /**
  * Service class to retrieve custom formatted citation using popular style guides
