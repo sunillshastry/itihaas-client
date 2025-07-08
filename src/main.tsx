@@ -13,7 +13,7 @@ import ScrollToTop from '@/hooks/useScrollToTop';
 const queryClient = new QueryClient();
 
 if (import.meta.env.VITE_APP_ENV === 'development') {
-	createRoot(document.getElementById('root')).render(
+	createRoot(document.getElementById('root')! as HTMLDivElement).render(
 		<StrictMode>
 			<QueryClientProvider client={queryClient}>
 				<PlatformGrowthProvider>
@@ -32,7 +32,7 @@ if (import.meta.env.VITE_APP_ENV === 'development') {
 		</StrictMode>
 	);
 } else {
-	createRoot(document.getElementById('root')).render(
+	createRoot(document.getElementById('root')! as HTMLDivElement).render(
 		<QueryClientProvider client={queryClient}>
 			<PlatformGrowthProvider>
 				<CitationContextProvider>
