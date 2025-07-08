@@ -1,3 +1,5 @@
+import { APAFormat } from '@/interfaces/citations/APAFormat';
+import { HarvardFormat } from '@/interfaces/citations/HarvardFormat';
 import type { MLAFormat } from '@/interfaces/citations/MLAFormat';
 
 /**
@@ -20,7 +22,7 @@ class Citations {
 	 * @param {object} details Includes various information about the page/site/source
 	 * @returns The APA formatted citation
 	 */
-	static getAPAFormat({ year, date, page, url }) {
+	static getAPAFormat({ year, date, page, url }: APAFormat) {
 		return `Itihaas. (${year}, ${date}). Itihaas | ${page} | The Front Page of Indian History. Itihaas. ${url}`;
 	}
 
@@ -30,7 +32,7 @@ class Citations {
 	 * @param {object} details Includes various information about the page/site/source
 	 * @returns The Harvard formatted citation
 	 */
-	static getHarvardFormat({ page, updated, url, accessed }) {
+	static getHarvardFormat({ page, updated, url, accessed }: HarvardFormat) {
 		return `Itihaas, 2025. Itihaas | ${page} | The Front Page of Indian History. Itihaas, last updated ${updated}. Available at: ${url} (Accessed: ${accessed}).`;
 	}
 
