@@ -1,18 +1,28 @@
+import type { CitationContextState } from '@/interfaces/CitationContextState';
+import type { Action } from '@/interfaces/ContextAction';
 import CitationReducer from '@/reducers/CitationReducer';
 import PropTypes from 'prop-types';
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, type Dispatch, useContext, useReducer } from 'react';
 
-// Creating the primary Context
-const CitationContext = createContext();
+interface FunctionProps {
+	children: Readonly<React.ReactNode>;
+}
 
 // Initial state value(s)
-const initialState = {
+const initialState: CitationContextState = {
 	open: false,
 	format: 'mla',
 };
 
+interface Context extends CitationContextState {
+	dispatch: Dispatch<Action<string>>;
+}
+
+// Creating the primary Context
+const CitationContext = createContext<Context | null>(null);
+
 // Context Provider
-function CitationContextProvider({ children }) {
+function CitationContextProvider({ children }: FunctionProps) {
 	const [{ open, format }, dispatch] = useReducer(
 		CitationReducer,
 		initialState
@@ -26,7 +36,7 @@ function CitationContextProvider({ children }) {
 }
 
 // useContext hook
-function useCitation() {
+function useCitation(): null | Context {
 	const context = useContext(CitationContext);
 	if (context === undefined) {
 		throw new Error(
