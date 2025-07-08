@@ -1,4 +1,10 @@
-function PlatformGrowthReducer(state, action) {
+import type { Action } from '@/interfaces/ContextAction';
+import type { PlatformGrowthState } from '@/interfaces/PlatformGrowthState';
+
+function PlatformGrowthReducer(
+	state: PlatformGrowthState,
+	action: Action<boolean>
+) {
 	switch (action.type) {
 		case 'hide':
 			return {
