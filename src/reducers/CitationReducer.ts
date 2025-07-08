@@ -1,4 +1,10 @@
-function CitationReducer(state, action) {
+import type { CitationContextState } from '@/interfaces/CitationContextState';
+import type { Action } from '@/interfaces/ContextAction';
+
+function CitationReducer(
+	state: CitationContextState,
+	action: Action<string>
+): CitationContextState {
 	switch (action.type) {
 		// Open settings
 		case 'open/true':
