@@ -1,7 +1,7 @@
 import { APAFormat } from '@/interfaces/citations/APAFormat';
 import { ChicagoFormat } from '@/interfaces/citations/ChicagoFormat';
 import { HarvardFormat } from '@/interfaces/citations/HarvardFormat';
-import type { MLAFormat } from '@/interfaces/citations/MLAFormat';
+import { MLAFormat } from '@/interfaces/citations/MLAFormat';
 
 /**
  * Service class to retrieve custom formatted citation using popular style guides
