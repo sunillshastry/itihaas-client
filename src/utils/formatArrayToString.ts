@@ -4,7 +4,7 @@
  * @param {array} array A list of arrays
  * @returns Combined values of the array as a single string
  */
-function formatArrayToString(array) {
+function formatArrayToString<T>(array: T[]) {
 	return array.join(', ');
 }
 
