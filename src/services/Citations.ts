@@ -1,4 +1,5 @@
 import { APAFormat } from '@/interfaces/citations/APAFormat';
+import { ChicagoFormat } from '@/interfaces/citations/ChicagoFormat';
 import { HarvardFormat } from '@/interfaces/citations/HarvardFormat';
 import type { MLAFormat } from '@/interfaces/citations/MLAFormat';
 
@@ -42,7 +43,7 @@ class Citations {
 	 * @param {object} details Includes various information about the page/site/source
 	 * @returns The Chicago formatted citation
 	 */
-	static getChicagoFormat({ page, updated, url }) {
+	static getChicagoFormat({ page, updated, url }: ChicagoFormat) {
 		return `Itihaas. 2025. "Itihaas | ${page} | The Front Page of Indian History." Itihaas. Last modified ${updated}. ${url}.`;
 	}
 }
