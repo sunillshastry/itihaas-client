@@ -1,17 +1,27 @@
 import PropTypes from 'prop-types';
-import { useContext, createContext, useReducer } from 'react';
+import { useContext, createContext, useReducer, type Dispatch } from 'react';
 import PlatformGrowthReducer from '@/reducers/PlatformGrowthReducer';
+import type { PlatformGrowthState } from '@/interfaces/PlatformGrowthState';
+import type { Action } from '@/interfaces/ContextAction';
 
-// Creating the primary Context
-const PlatformGrowthContext = createContext();
+interface FunctionProps {
+	children: Readonly<React.ReactNode>;
+}
 
 // Initial state value(s)
-const initialState = {
+const initialState: PlatformGrowthState = {
 	hidden: false,
 };
 
+interface Context extends PlatformGrowthState {
+	dispatch: Dispatch<Action<boolean>>;
+}
+
+// Creating the primary Context
+const PlatformGrowthContext = createContext<Context | null>(null);
+
 // Context Provider
-function PlatformGrowthProvider({ children }) {
+function PlatformGrowthProvider({ children }: FunctionProps) {
 	const [{ hidden }, dispatch] = useReducer(
 		PlatformGrowthReducer,
 		initialState
@@ -25,7 +35,7 @@ function PlatformGrowthProvider({ children }) {
 }
 
 // useContext hook
-function usePlatformGrowth() {
+function usePlatformGrowth(): null | Context {
 	const context = useContext(PlatformGrowthContext);
 	if (context === undefined) {
 		throw new Error(
