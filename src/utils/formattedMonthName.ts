@@ -4,7 +4,7 @@
  * @param {number} month The month value in its number format
  * @returns The equivalent string value for the month provided
  */
-function formattedMonthName(month) {
+function formattedMonthName(month: number): string {
 	// List of all possible months
 	const months = [
 		'January',
