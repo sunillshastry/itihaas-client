@@ -47,6 +47,7 @@ interface StandaloneDynasty {
 
 	createdAt: Date;
 	updatedAt: Date;
+	__v?: number;
 }
 
 export type { StandaloneDynasty };
