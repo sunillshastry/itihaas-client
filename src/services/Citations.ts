@@ -1,3 +1,5 @@
+import type { MLAFormat } from '@/interfaces/CitationMLAFormat';
+
 /**
  * Service class to retrieve custom formatted citation using popular style guides
  */
@@ -8,7 +10,7 @@ class Citations {
 	 * @param {object} details Includes various information about the page/site/source
 	 * @returns The MLA formatted citation
 	 */
-	static getMLAFormat({ page, updated, url, accessed }) {
+	static getMLAFormat({ page, updated, url, accessed }: MLAFormat) {
 		return `Itihaas. “Itihaas | ${page} | The Front Page of Indian History.” Itihaas, last updated ${updated}, ${url}. Accessed ${accessed}`;
 	}
 
