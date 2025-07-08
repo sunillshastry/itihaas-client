@@ -1,14 +1,11 @@
 import type { Data } from '@/interfaces/APIData';
-import { StandaloneDynasty } from '@/interfaces/StandaloneDynasty';
 
 /**
  * Get all dynasty from the server API
  *
  * @returns A Promise consisting of the API response
  */
-async function getDynasty(
-	slug: string
-): Promise<StandaloneDynasty | undefined | Error> {
+async function getDynasty(slug: string) {
 	const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
 
 	try {

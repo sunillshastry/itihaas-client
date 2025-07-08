@@ -1,3 +1,5 @@
+import { Data } from '@/interfaces/APIData';
+
 /**
  * Get all dynasties from the server API
  *
@@ -8,7 +10,7 @@ async function getDynasties() {
 
 	try {
 		// Get the initial response
-		const response = await fetch(`${BASE_URL}/dynasties`);
+		const response: Response = await fetch(`${BASE_URL}/dynasties`);
 
 		// Check for failed response
 		if (!response.ok) {
@@ -16,11 +18,11 @@ async function getDynasties() {
 		}
 
 		// Retrieve the data from response.json and return the main content
-		const data = await response.json();
+		const data: Data = await response.json();
 		return data?.data?.dynasties;
 	} catch (e) {
 		// Catch block: return the error object itself
-		return e;
+		if (e instanceof Error) return e;
 	}
 }
 
