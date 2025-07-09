@@ -1,8 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { ArrowBigLeft } from 'lucide-react';
 import PropTypes from 'prop-types';
+import { ComponentPropsWithoutRef } from 'react';
 
-function BackButton({ to }) {
+interface FunctionProps extends ComponentPropsWithoutRef<'button'> {
+	to?: string;
+}
+
+function BackButton({ to }: FunctionProps) {
 	const navigate = useNavigate();
 
 	function goToPreviousPage() {
