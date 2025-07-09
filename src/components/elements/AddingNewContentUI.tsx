@@ -7,7 +7,7 @@ function AddingNewContentUI() {
 	return (
 		<>
 			<PlatformGrowthButton
-				click={() => dispatch({ type: hidden ? 'unhide' : 'hide' })}
+				onClick={() => dispatch({ type: hidden ? 'unhide' : 'hide' })}
 			/>
 			{!hidden && (
 				<div className="bg-primary-600 text-primary-50 mb-5 rounded-sm p-3">
