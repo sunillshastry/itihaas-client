@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 
-function IssueInfoListItem({ icon, bolded, content }) {
+interface FunctionProps {
+	icon: React.ReactNode;
+	bolded: string;
+	content: string;
+}
+function IssueInfoListItem({ icon, bolded, content }: FunctionProps) {
 	return (
 		<li className="my-6 flex items-center">
 			<span>{icon}</span>

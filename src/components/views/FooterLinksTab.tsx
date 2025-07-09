@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 
-function FooterLinksTab({ title, children }) {
+interface FunctionProps {
+	title: string;
+	children: Readonly<React.ReactNode>;
+}
+
+function FooterLinksTab({ title, children }: FunctionProps) {
 	return (
 		<div>
 			<h4 className="font-heading text-primary-60 border-b-primary-60/20 border-b text-xl">

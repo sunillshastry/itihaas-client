@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import formattedMonthName from '@/utils/formattedMonthName';
 import convertToTwelveHours from '@/utils/convertToTwelveHours';
 
-function LastUpdateMessage({ date }) {
+interface FunctionProps {
+	date: Date;
+}
+
+function LastUpdateMessage({ date }: FunctionProps) {
 	const updated = new Date(date);
 	const unformattedMonth = updated.getUTCMonth() + 1;
 	const unformattedHour = updated.getUTCHours();

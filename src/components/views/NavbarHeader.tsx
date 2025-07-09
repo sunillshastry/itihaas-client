@@ -9,7 +9,7 @@ function NavbarHeader() {
 	const [isAutocompleteEnabled, setIsAutocompleteEnabled] = useState(false);
 	const [searchQuery, setSearchQuery] = useState('');
 
-	function toggleAutocomplete(e) {
+	function toggleAutocomplete(e: React.ChangeEvent<HTMLInputElement>) {
 		const status = e.target.value;
 		setSearchQuery(status);
 
@@ -23,7 +23,7 @@ function NavbarHeader() {
 
 	// Custom useEffect to handle 'Escape' key event to remove suggestions from display
 	useEffect(function () {
-		function handleEscapeAutocomplete(e) {
+		function handleEscapeAutocomplete(e: KeyboardEvent) {
 			if (e.key === 'Escape' || e.code === 'Escape') {
 				setIsAutocompleteEnabled(false);
 			}

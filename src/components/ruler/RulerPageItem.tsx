@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Minus, MoveRight, Network } from 'lucide-react';
+import { Ruler } from '@/interfaces/Ruler';
 
-function RulerPageItem({ ruler }) {
+interface FunctionProps {
+	ruler: Ruler;
+}
+
+function RulerPageItem({ ruler }: FunctionProps) {
 	return (
 		<li className="my-10 first:my-5">
 			<h3 className="text-primary-400 border-primary-40 border-b pb-2 text-xl font-bold">

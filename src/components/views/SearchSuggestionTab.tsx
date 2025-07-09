@@ -7,9 +7,20 @@ import Loader from '@/components/elements/Loader';
 import SearchTotalResults from '@/components/views/SearchTotalResults';
 import { useQuery } from '@tanstack/react-query';
 import getSearchResults from '@/api/getSearchResults';
+import { SearchTitle } from '@/interfaces/SearchTitle';
 
-function SearchSuggestionTab({ displayed, query, handleLinkClick }) {
-	const [queriedResults, setQueriedResults] = useState([]);
+interface FunctionProps {
+	displayed: boolean;
+	query: string;
+	handleLinkClick: () => void;
+}
+
+function SearchSuggestionTab({
+	displayed,
+	query,
+	handleLinkClick,
+}: FunctionProps) {
+	const [queriedResults, setQueriedResults] = useState<SearchTitle[]>([]);
 	const [loading, setLoading] = useState(false);
 
 	const { refetch, isPending, isFetching, isError } = useQuery({
@@ -28,7 +39,7 @@ function SearchSuggestionTab({ displayed, query, handleLinkClick }) {
 			setLoading(true);
 			const timeout = setTimeout(function () {
 				refetch().then(function (response) {
-					setQueriedResults(response.data || []);
+					setQueriedResults(response.data as SearchTitle[]);
 					setLoading(false);
 				});
 			}, 300);

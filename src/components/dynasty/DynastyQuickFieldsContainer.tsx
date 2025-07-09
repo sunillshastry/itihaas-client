@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import formatArrayToString from '@/utils/formatArrayToString';
 import QuickFactField from '@/components/views/QuickFactField';
 import QuickFactsNoField from '@/components/views/QuickFactsNoField';
+import { StandaloneDynasty } from '@/interfaces/StandaloneDynasty';
 
-function DynastyQuickFieldsContainer({ dynasty }) {
+interface FunctionProps {
+	dynasty: StandaloneDynasty;
+}
+
+function DynastyQuickFieldsContainer({ dynasty }: FunctionProps) {
 	return (
 		<>
 			<QuickFactField

@@ -7,8 +7,20 @@ import formattedMonthName from '@/utils/formattedMonthName';
 import CitationContent from '@/components/views/CitationContent';
 import { useCitation } from '@/context/CitationContext';
 import { useSearchParams } from 'react-router-dom';
+import { SingleValue } from 'react-select';
 
-function CiteDropdown({ pageTitle, updatedDate, url }) {
+interface FunctionProps {
+	pageTitle: string;
+	updatedDate: string | Date;
+	url: string;
+}
+
+interface DropdownOption {
+	value: string;
+	label: string;
+}
+
+function CiteDropdown({ pageTitle, updatedDate, url }: FunctionProps) {
 	const update = new Date(updatedDate);
 	const formattedUpdateDate = `${update.getUTCDate()} ${formattedMonthName(update.getUTCMonth() + 1)} ${update.getUTCFullYear()}`;
 
@@ -18,8 +30,8 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 	const { dispatch } = useCitation();
 	const [params] = useSearchParams();
 
-	const [isCiteTabOpen, setIsCiteTabOpen] = useState(false);
-	const [citation, setCitation] = useState(
+	const [isCiteTabOpen, setIsCiteTabOpen] = useState<boolean>(false);
+	const [citation, setCitation] = useState<string>(
 		Citations.getMLAFormat({
 			page: pageTitle,
 			updated: formattedUpdateDate,
@@ -30,7 +42,7 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 
 	useEffect(
 		function () {
-			function hideCiteTab(e) {
+			function hideCiteTab(e: KeyboardEvent) {
 				if (e.key === 'Escape' || (e.code === 'Escape' && isCiteTabOpen)) {
 					setIsCiteTabOpen(false);
 				}
@@ -55,8 +67,12 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 		[params]
 	);
 
-	function onOptionChange(e) {
-		const value = e?.value || 'mla';
+	function onOptionChange(
+		newValue: SingleValue<DropdownOption>
+		// actionMeta: ActionMeta<DropdownOption>
+	) {
+		const value = newValue?.value || 'mla';
+
 		updateCitationContent(value);
 
 		const citationContextDispatchValue = `format/${value}`;
@@ -65,7 +81,7 @@ function CiteDropdown({ pageTitle, updatedDate, url }) {
 	}
 
 	const updateCitationContent = useCallback(
-		(format) => {
+		(format: string) => {
 			switch (format) {
 				case 'mla':
 					setCitation(

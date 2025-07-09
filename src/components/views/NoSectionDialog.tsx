@@ -4,7 +4,11 @@ import { ArrowRight } from 'lucide-react';
 
 import SubHeader from '@/components/elements/SubHeader';
 
-function NoSectionDialog({ name }) {
+interface FunctionProps {
+	name: string;
+}
+
+function NoSectionDialog({ name }: FunctionProps) {
 	return (
 		<section className="mt-5">
 			<SubHeader>{name}</SubHeader>

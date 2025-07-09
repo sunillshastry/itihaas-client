@@ -1,9 +1,19 @@
 import { Link } from 'react-router-dom';
 import { SquareArrowOutUpRight } from 'lucide-react';
-import PropTypes from 'prop-types';
 import { twMerge } from 'tailwind-merge';
+import { ComponentPropsWithoutRef } from 'react';
 
-function PageLinkField({ native = false, children, className, to }) {
+interface FunctionProps extends ComponentPropsWithoutRef<'a'> {
+	native?: boolean;
+	to: string;
+}
+
+function PageLinkField({
+	native = false,
+	children,
+	className,
+	to,
+}: FunctionProps) {
 	if (native) {
 		return (
 			<a
@@ -34,16 +44,5 @@ function PageLinkField({ native = false, children, className, to }) {
 		</Link>
 	);
 }
-
-PageLinkField.propTypes = {
-	native: PropTypes.boolean,
-	children: PropTypes.oneOfType([
-		PropTypes.element,
-		PropTypes.node,
-		PropTypes.string,
-	]),
-	className: PropTypes.string,
-	to: PropTypes.string.isRequired,
-};
 
 export default PageLinkField;

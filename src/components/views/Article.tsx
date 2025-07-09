@@ -2,7 +2,14 @@ import PropTypes from 'prop-types';
 
 import formatArrayToString from '@/utils/formatArrayToString';
 
-function Article({ title, link, publisher, authors = [] }) {
+interface FunctionProps {
+	title: string;
+	link: string;
+	publisher: string;
+	authors: string[];
+}
+
+function Article({ title, link, publisher, authors = [] }: FunctionProps) {
 	return (
 		<li className="bg-primary-60 shadow-primary my-4 rounded-sm px-3 py-2 shadow-xs transition-all duration-150 ease-in hover:shadow-md">
 			<a

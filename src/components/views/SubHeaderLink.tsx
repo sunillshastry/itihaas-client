@@ -1,7 +1,12 @@
 import { Hash } from 'lucide-react';
 import PropTypes from 'prop-types';
 
-function SubHeaderLink({ to, children }) {
+interface FunctionProps {
+	to: string;
+	children: Readonly<React.ReactNode>;
+}
+
+function SubHeaderLink({ to, children }: FunctionProps) {
 	return (
 		<a
 			href={to}

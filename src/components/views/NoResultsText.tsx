@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 
-function NoResultsText({ query }) {
+interface FunctionProps {
+	query: string;
+}
+
+function NoResultsText({ query }: FunctionProps) {
 	return (
 		<p className="text-center font-medium italic">
 			No results for &lsquo;{query}&rsquo;

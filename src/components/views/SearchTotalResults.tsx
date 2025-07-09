@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 
-function SearchTotalResults({ length }) {
+interface FunctionProps {
+	length: number;
+}
+
+function SearchTotalResults({ length }: FunctionProps) {
 	return (
 		<p className="text-primary-30 text-right text-xs font-bold uppercase">
 			Showing {length < 10 ? `0${length}` : length} matches

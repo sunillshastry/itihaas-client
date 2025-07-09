@@ -3,8 +3,13 @@ import { MapPin, MoveRight } from 'lucide-react';
 import PropTypes from 'prop-types';
 
 import formatArrayToString from '@/utils/formatArrayToString';
+import { Dynasty } from '@/interfaces/Dynasty';
 
-function DynastyPageItem({ dynasty }) {
+interface FunctionProps {
+	dynasty: Dynasty;
+}
+
+function DynastyPageItem({ dynasty }: FunctionProps) {
 	return (
 		<li className="my-10 first:my-5">
 			<h3 className="text-primary-400 border-primary-40 border-b pb-2 text-xl font-bold">

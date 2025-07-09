@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function FooterLink({ to, children }) {
+interface FunctionProps {
+	to: string;
+	children: Readonly<React.ReactNode>;
+}
+
+function FooterLink({ to, children }: FunctionProps) {
 	return (
 		<li>
 			<Link

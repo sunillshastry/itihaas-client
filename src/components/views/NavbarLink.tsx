@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-function NavbarLink({ to, children }) {
+interface FunctionProps {
+	to: string;
+	children: Readonly<React.ReactNode>;
+}
+
+function NavbarLink({ to, children }: FunctionProps) {
 	return (
 		<NavLink
 			className="text-primary-500 hover:text-primary-10 hover:underline"

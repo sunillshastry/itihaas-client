@@ -1,10 +1,20 @@
 import PropTypes from 'prop-types';
-import Select from 'react-select';
+import Select, { ActionMeta, SingleValue } from 'react-select';
 
 import dropdownOptions from '@/data/citationOptions';
 import { useCitation } from '@/context/CitationContext';
+interface DropdownOption {
+	value: string;
+	label: string;
+}
+interface FunctionProps {
+	onChange: (
+		newValue: SingleValue<DropdownOption>,
+		actionMeta: ActionMeta<DropdownOption>
+	) => void;
+}
 
-function CiteListDropdown({ onChange }) {
+function CiteListDropdown({ onChange }: FunctionProps) {
 	const { format } = useCitation();
 
 	const defaultOption = dropdownOptions.filter(
@@ -15,7 +25,7 @@ function CiteListDropdown({ onChange }) {
 		<Select
 			onChange={onChange}
 			options={dropdownOptions}
-			defaultValue={defaultOption.at(0) || dropdownOptions[2]}
+			defaultValue={defaultOption[0] || dropdownOptions[2]}
 			styles={{
 				control: (base, state) => ({
 					...base,

@@ -4,8 +4,21 @@ import { ClipboardCopy } from 'lucide-react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
 import CiteListDropdown from '@/components/views/CiteListDropdown';
+import { ActionMeta, SingleValue } from 'react-select';
 
-function CitationContent({ citation, onOptionChange }) {
+interface DropdownOption {
+	value: string;
+	label: string;
+}
+interface FunctionProps {
+	citation: string;
+	onOptionChange: (
+		newValue: SingleValue<DropdownOption>,
+		actionMeta: ActionMeta<DropdownOption>
+	) => void;
+}
+
+function CitationContent({ citation, onOptionChange }: FunctionProps) {
 	const [copied, setCopied] = useState(false);
 
 	return (

@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
 import RulerPageItem from '@/components/ruler/RulerPageItem';
+import { Ruler } from '@/interfaces/Ruler';
 
-function RulerPageList({ rulers }) {
+interface FunctionProps {
+	rulers: Ruler[];
+}
+
+function RulerPageList({ rulers }: FunctionProps) {
 	return (
 		<section className="mt-10">
 			<ul>

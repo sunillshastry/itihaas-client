@@ -1,10 +1,16 @@
+import { SearchTitle } from '@/interfaces/SearchTitle';
 import PropTypes from 'prop-types';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function SuggestionLink({ queryResult, handleLinkClick }) {
+interface FunctionProps {
+	queryResult: SearchTitle;
+	handleLinkClick: () => void;
+}
+
+function SuggestionLink({ queryResult, handleLinkClick }: FunctionProps) {
 	const navigate = useNavigate();
 
-	function handleClick(e) {
+	function handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		e.preventDefault();
 		handleLinkClick();
 
@@ -21,7 +27,7 @@ function SuggestionLink({ queryResult, handleLinkClick }) {
 			className="text-primary-400 border-primary-90 ease hover:bg-primary-70 hover:text-primary-800 my-1 rounded-sm border-b p-2 transition-all duration-150 last:border-b-0 hover:underline"
 			key={queryResult._id}
 		>
-			<Link onClick={handleClick}>{queryResult.name}</Link>
+			<button onClick={handleClick}>{queryResult.name}</button>
 		</li>
 	);
 }

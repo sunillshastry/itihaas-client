@@ -1,6 +1,15 @@
 import PropTypes from 'prop-types';
 import { twMerge } from 'tailwind-merge';
 
+interface FunctionProps {
+	label: string;
+	required?: boolean;
+	placeholder?: string;
+	className?: string;
+	variant?: 'small' | 'large';
+	textarea?: boolean;
+}
+
 function IssueEntryField({
 	label,
 	required = false,
@@ -8,7 +17,7 @@ function IssueEntryField({
 	className,
 	variant = 'small',
 	textarea = false,
-}) {
+}: FunctionProps) {
 	return (
 		<div
 			className={twMerge(
@@ -22,8 +31,8 @@ function IssueEntryField({
 			</label>
 			{textarea ? (
 				<textarea
-					rows="5"
-					cols="60"
+					rows={5}
+					cols={60}
 					className="bg-primary-80 text-primary-400 focus:outline-primary-20 mt-1 rounded-sm px-2 py-2 text-base font-medium focus:outline-3"
 				></textarea>
 			) : (
