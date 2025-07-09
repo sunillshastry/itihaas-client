@@ -11,4 +11,5 @@ module.exports = {
 	arrowParens: 'always',
 	endOfLine: 'lf',
 	singleAttributePerLine: true,
+	plugins: ['prettier-plugin-tailwindcss'],
 };
