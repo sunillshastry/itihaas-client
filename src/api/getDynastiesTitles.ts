@@ -1,11 +1,14 @@
 import { SearchData } from '@/interfaces/APISearchData';
+import { SearchTitle } from '@/interfaces/SearchTitle';
 
 /**
  * Get all dynasty titles from the server API
  *
  * @returns A Promise consisting of the API response
  */
-async function getDynastiesTitles(): Promise<string[] | Error | undefined> {
+async function getDynastiesTitles(): Promise<
+	SearchTitle[] | string[] | Error | undefined
+> {
 	const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
 
 	try {
