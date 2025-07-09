@@ -27,7 +27,7 @@ function DynastyPageItem({ dynasty }: FunctionProps) {
 						<MapPin size={18} />
 					</span>
 					<span className="ml-1">
-						{formatArrayToString(dynasty?.locations)}
+						{formatArrayToString<string>(dynasty?.locations)}
 					</span>
 				</p>
 

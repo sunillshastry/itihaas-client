@@ -15,7 +15,8 @@ function DynastyQuickFieldsContainer({ dynasty }: FunctionProps) {
 			<QuickFactField
 				title="capital"
 				content={
-					(dynasty?.capitals && formatArrayToString(dynasty?.capitals)) || (
+					(dynasty?.capitals &&
+						formatArrayToString<string>(dynasty?.capitals)) || (
 						<QuickFactsNoField />
 					)
 				}
@@ -24,7 +25,8 @@ function DynastyQuickFieldsContainer({ dynasty }: FunctionProps) {
 			<QuickFactField
 				title="currencies"
 				content={
-					(dynasty?.currencies && formatArrayToString(dynasty?.currencies)) || (
+					(dynasty?.currencies &&
+						formatArrayToString<string>(dynasty?.currencies)) || (
 						<QuickFactsNoField />
 					)
 				}
@@ -33,7 +35,8 @@ function DynastyQuickFieldsContainer({ dynasty }: FunctionProps) {
 			<QuickFactField
 				title="locations"
 				content={
-					(dynasty?.locations && formatArrayToString(dynasty?.locations)) || (
+					(dynasty?.locations &&
+						formatArrayToString<string>(dynasty?.locations)) || (
 						<QuickFactsNoField />
 					)
 				}
@@ -42,7 +45,8 @@ function DynastyQuickFieldsContainer({ dynasty }: FunctionProps) {
 			<QuickFactField
 				title="languages"
 				content={
-					(dynasty?.languages && formatArrayToString(dynasty?.languages)) || (
+					(dynasty?.languages &&
+						formatArrayToString<string>(dynasty?.languages)) || (
 						<QuickFactsNoField />
 					)
 				}
@@ -66,7 +70,8 @@ function DynastyQuickFieldsContainer({ dynasty }: FunctionProps) {
 			<QuickFactField
 				title="religions"
 				content={
-					(dynasty?.religions && formatArrayToString(dynasty?.religions)) || (
+					(dynasty?.religions &&
+						formatArrayToString<string>(dynasty?.religions)) || (
 						<QuickFactsNoField />
 					)
 				}

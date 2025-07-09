@@ -144,7 +144,8 @@ function DynastyPage() {
 						<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
 
 						<SecondaryHeader>
-							{dynasty?.otherNames && formatArrayToString(dynasty?.otherNames)}
+							{dynasty?.otherNames &&
+								formatArrayToString<string>(dynasty?.otherNames)}
 						</SecondaryHeader>
 
 						<SecondaryHeader className="mt-4">

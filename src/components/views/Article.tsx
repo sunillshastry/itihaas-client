@@ -22,7 +22,7 @@ function Article({ title, link, publisher, authors = [] }: FunctionProps) {
 					</h4>
 					{authors.length > 0 ? (
 						<p className="text-primary text-sm">
-							By {formatArrayToString(authors)}
+							By {formatArrayToString<string>(authors)}
 						</p>
 					) : (
 						<p className="text-primary text-sm">Author unavailable</p>

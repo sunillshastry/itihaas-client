@@ -142,7 +142,8 @@ function RulerPage() {
 						<PrimaryHeader>{ruler?.name}</PrimaryHeader>
 
 						<SecondaryHeader>
-							{ruler?.otherNames && formatArrayToString(ruler?.otherNames)}
+							{ruler?.otherNames &&
+								formatArrayToString<string>(ruler?.otherNames)}
 						</SecondaryHeader>
 
 						<SecondaryHeader className="mt-4">
