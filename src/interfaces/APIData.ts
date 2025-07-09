@@ -1,13 +1,14 @@
 import { Dynasty } from './Dynasty';
 import { StandaloneDynasty } from './StandaloneDynasty';
+import { StandaloneRuler } from './StandaloneRuler';
 
 interface DataValue {
 	dynasties?: Dynasty[];
 
 	dynasty?: StandaloneDynasty;
 
+	ruler?: StandaloneRuler;
 	// rulers?: null;
-	// ruler?: null;
 }
 
 interface Data {
