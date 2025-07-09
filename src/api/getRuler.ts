@@ -29,7 +29,7 @@ async function getRuler(slug: string) {
 		return data?.data?.ruler;
 	} catch (e) {
 		// Catch block: return the error object itself
-		return e;
+		if (e instanceof Error) return e;
 	}
 }
 

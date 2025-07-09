@@ -12,11 +12,12 @@ import EntitiesPageNoResult from '@/components/views/EntitiesPageNoResult';
 import { useQuery } from '@tanstack/react-query';
 import getRulers from '@/api/getRulers';
 import AddingNewContentUI from '@/components/elements/AddingNewContentUI';
+import { Ruler } from '@/interfaces/Ruler';
 
 function RulersPage() {
 	// State
-	const [queriedRulers, setQueriedRulers] = useState([]);
-	const [searchQuery, setSearchQuery] = useState('');
+	const [queriedRulers, setQueriedRulers] = useState<Ruler[]>([]);
+	const [searchQuery, setSearchQuery] = useState<string>('');
 
 	// Data fetching (React Query)
 	const {
@@ -42,11 +43,15 @@ function RulersPage() {
 	useEffect(
 		function () {
 			if (searchQuery.length >= 3) {
-				setQueriedRulers(
-					rulers.filter((ruler) =>
-						ruler.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
-					)
-				);
+				if (Array.isArray(rulers) && !(rulers instanceof Error)) {
+					setQueriedRulers(
+						rulers.filter((ruler) =>
+							ruler.name
+								.toLowerCase()
+								.includes(searchQuery.trim().toLowerCase())
+						)
+					);
+				}
 			} else {
 				setQueriedRulers([]);
 			}
@@ -55,7 +60,7 @@ function RulersPage() {
 	);
 
 	// Error State
-	if (error || rulers?.name === 'TypeError') {
+	if (error || (rulers instanceof Error && rulers?.name === 'TypeError')) {
 		return (
 			<>
 				<Navbar />
@@ -100,7 +105,11 @@ function RulersPage() {
 					<EntitiesPageNoResult query={searchQuery} />
 				)}
 				<RulerPageList
-					rulers={queriedRulers.length > 0 ? queriedRulers : rulers}
+					rulers={
+						queriedRulers.length > 0
+							? (queriedRulers as Ruler[])
+							: (rulers as Ruler[])
+					}
 				/>
 			</MainContainer>
 			<Footer className="mt-36" />

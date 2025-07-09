@@ -35,7 +35,7 @@ function RulerPage() {
 	const { open, format } = useCitation();
 	const pageURL = usePageURL();
 
-	const [title, setTitle] = useState(
+	const [title, setTitle] = useState<string>(
 		'Itihaas | The Front Page of Indian History'
 	);
 
@@ -46,13 +46,13 @@ function RulerPage() {
 		error,
 	} = useQuery({
 		queryKey: ['ruler', slug],
-		queryFn: () => getRuler(slug),
+		queryFn: () => getRuler(slug as string),
 	});
 
 	// Effects
 	useEffect(
 		function () {
-			updateWindowTitle(setTitle, ruler?.name);
+			updateWindowTitle(setTitle, ruler?.name as string);
 
 			return () => {
 				window.document.title = 'Itihaas | The Front Page of Indian History';
@@ -91,7 +91,7 @@ function RulerPage() {
 	);
 
 	// Error State
-	if (error || ruler?.name === 'TypeError') {
+	if (error || (ruler instanceof Error && ruler?.name === 'TypeError')) {
 		return (
 			<>
 				<Navbar />
@@ -122,61 +122,65 @@ function RulerPage() {
 		);
 	}
 
-	return (
-		<>
-			<Navbar />
-			<MainContainer>
-				<div>
-					<div className="flex items-baseline justify-between">
-						<BackButton to="/rulers" />
-						<div className="flex items-baseline gap-2">
-							<CopyURLButton />
-							<CiteDropdown
-								pageTitle={ruler?.name}
-								updatedDate={ruler?.updatedAt}
-								url={pageURL || window.location.href}
-							/>
+	if (ruler !== undefined && !(ruler instanceof Error)) {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<div>
+						<div className="flex items-baseline justify-between">
+							<BackButton to="/rulers" />
+							<div className="flex items-baseline gap-2">
+								<CopyURLButton />
+								<CiteDropdown
+									pageTitle={ruler?.name}
+									updatedDate={ruler?.updatedAt}
+									url={pageURL || window.location.href}
+								/>
+							</div>
 						</div>
+						<PrimaryHeader>{ruler?.name}</PrimaryHeader>
+
+						<SecondaryHeader>
+							{ruler?.otherNames && formatArrayToString(ruler?.otherNames)}
+						</SecondaryHeader>
+
+						<SecondaryHeader className="mt-4">
+							{ruler?.born && ruler.born} -&nbsp;
+							{ruler?.died && ruler.died}
+						</SecondaryHeader>
 					</div>
-					<PrimaryHeader>{ruler?.name}</PrimaryHeader>
 
-					<SecondaryHeader>
-						{ruler?.otherNames && formatArrayToString(ruler?.otherNames)}
-					</SecondaryHeader>
+					<QuickFacts>
+						<RulerQuickFieldsContainer ruler={ruler} />
+					</QuickFacts>
 
-					<SecondaryHeader className="mt-4">
-						{ruler?.born && ruler.born} -&nbsp;
-						{ruler?.died && ruler.died}
-					</SecondaryHeader>
-				</div>
+					<DescriptionContainer
+						descriptionList={ruler?.description?.long as string[]}
+					/>
 
-				<QuickFacts>
-					<RulerQuickFieldsContainer ruler={ruler} />
-				</QuickFacts>
+					<HashContainer id="sources">
+						<SourcesContainer sources={ruler?.sources} />
+					</HashContainer>
 
-				<DescriptionContainer descriptionList={ruler?.description?.long} />
+					<HashContainer id="reading">
+						<FurtherReadingContainer readings={ruler?.furtherReading} />
+					</HashContainer>
 
-				<HashContainer id="sources">
-					<SourcesContainer sources={ruler?.sources} />
-				</HashContainer>
+					{/* TODO: WARS CONTAINER */}
 
-				<HashContainer id="reading">
-					<FurtherReadingContainer readings={ruler?.furtherReading} />
-				</HashContainer>
+					<HashContainer id="articles">
+						<ArticlesContainer articles={ruler?.articles} />
+					</HashContainer>
 
-				{/* TODO: WARS CONTAINER */}
+					<MissingInfoDialog />
 
-				<HashContainer id="articles">
-					<ArticlesContainer articles={ruler?.articles} />
-				</HashContainer>
-
-				<MissingInfoDialog />
-
-				<LastUpdateMessage date={ruler?.updatedAt} />
-			</MainContainer>
-			<Footer className="mt-36" />
-		</>
-	);
+					<LastUpdateMessage date={ruler?.updatedAt} />
+				</MainContainer>
+				<Footer className="mt-36" />
+			</>
+		);
+	}
 }
 
 export default RulerPage;

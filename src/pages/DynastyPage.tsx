@@ -27,11 +27,12 @@ import { useCitation } from '@/context/CitationContext';
 import usePageURL from '@/hooks/usePageURL';
 import NotFound from '@/pages/NotFound';
 import CopyURLButton from '@/components/views/CopyURLButton';
+import { StandaloneDynasty } from '@/interfaces/StandaloneDynasty';
 
 function DynastyPage() {
 	// State
 	const { dynastySlug: slug } = useParams();
-	const [title, setTitle] = useState(
+	const [title, setTitle] = useState<string>(
 		'Itihaas | The Front Page of Indian History'
 	);
 
@@ -46,7 +47,7 @@ function DynastyPage() {
 		isPending,
 	} = useQuery({
 		queryKey: ['dynasty', slug],
-		queryFn: () => getDynasty(slug),
+		queryFn: () => getDynasty(slug as string),
 	});
 
 	// Effects
@@ -81,7 +82,7 @@ function DynastyPage() {
 
 	useEffect(
 		function () {
-			updateWindowTitle(setTitle, dynasty?.name);
+			updateWindowTitle(setTitle, dynasty?.name as string);
 
 			return () => {
 				window.document.title = 'Itihaas | The Front Page of Indian History';
@@ -91,7 +92,7 @@ function DynastyPage() {
 	);
 
 	// Error State
-	if (error || dynasty?.name === 'TypeError') {
+	if (error || (dynasty instanceof Error && dynasty?.name === 'TypeError')) {
 		return (
 			<>
 				<Navbar />
@@ -121,62 +122,68 @@ function DynastyPage() {
 		);
 	}
 
-	return (
-		<>
-			<Navbar />
-			<MainContainer>
-				<div>
-					<div className="flex items-baseline justify-between">
-						<BackButton to="/dynasties" />
-						<div className="flex items-baseline gap-2">
-							<CopyURLButton />
-							<CiteDropdown
-								pageTitle={dynasty?.name}
-								updatedDate={dynasty?.updatedAt}
-								url={pageURL || window.location.href}
-							/>
+	if (dynasty !== undefined && !(dynasty instanceof Error)) {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<div>
+						<div className="flex items-baseline justify-between">
+							<BackButton to="/dynasties" />
+							<div className="flex items-baseline gap-2">
+								<CopyURLButton />
+								<CiteDropdown
+									pageTitle={
+										(dynasty as StandaloneDynasty) && (dynasty?.name as string)
+									}
+									updatedDate={dynasty?.updatedAt as Date}
+									url={pageURL || window.location.href}
+								/>
+							</div>
 						</div>
+						<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
+
+						<SecondaryHeader>
+							{dynasty?.otherNames && formatArrayToString(dynasty?.otherNames)}
+						</SecondaryHeader>
+
+						<SecondaryHeader className="mt-4">
+							{dynasty?.timeline && dynasty.timeline.begin} -{' '}
+							{dynasty?.timeline && dynasty.timeline.end}
+						</SecondaryHeader>
 					</div>
-					<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
 
-					<SecondaryHeader>
-						{dynasty?.otherNames && formatArrayToString(dynasty?.otherNames)}
-					</SecondaryHeader>
+					<QuickFacts>
+						<DynastyQuickFieldsContainer dynasty={dynasty} />
+					</QuickFacts>
 
-					<SecondaryHeader className="mt-4">
-						{dynasty?.timeline && dynasty.timeline.begin} -{' '}
-						{dynasty?.timeline && dynasty.timeline.end}
-					</SecondaryHeader>
-				</div>
+					<DescriptionContainer
+						descriptionList={dynasty?.description?.long as string[]}
+					/>
 
-				<QuickFacts>
-					<DynastyQuickFieldsContainer dynasty={dynasty} />
-				</QuickFacts>
+					<HashContainer id="sources">
+						<SourcesContainer sources={dynasty?.sources} />
+					</HashContainer>
 
-				<DescriptionContainer descriptionList={dynasty?.description?.long} />
+					<HashContainer id="reading">
+						<FurtherReadingContainer readings={dynasty?.furtherReading} />
+					</HashContainer>
+					{/* TODO: RULERS CONTAINER */}
 
-				<HashContainer id="sources">
-					<SourcesContainer sources={dynasty?.sources} />
-				</HashContainer>
+					{/* TODO: WARS CONTAINER */}
 
-				<HashContainer id="reading">
-					<FurtherReadingContainer readings={dynasty?.furtherReading} />
-				</HashContainer>
-				{/* TODO: RULERS CONTAINER */}
+					<HashContainer id="articles">
+						<ArticlesContainer articles={dynasty?.articles} />
+					</HashContainer>
 
-				{/* TODO: WARS CONTAINER */}
+					<MissingInfoDialog />
 
-				<HashContainer id="articles">
-					<ArticlesContainer articles={dynasty?.articles} />
-				</HashContainer>
-
-				<MissingInfoDialog />
-
-				<LastUpdateMessage date={dynasty?.updatedAt} />
-			</MainContainer>
-			<Footer className="mt-36" />
-		</>
-	);
+					<LastUpdateMessage date={dynasty?.updatedAt} />
+				</MainContainer>
+				<Footer className="mt-36" />
+			</>
+		);
+	}
 }
 
 export default DynastyPage;

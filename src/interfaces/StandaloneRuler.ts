@@ -15,7 +15,7 @@ interface StandaloneRuler {
 		end: string;
 	} | null;
 
-	description: Description[] | null;
+	description: Description | null;
 
 	_id: string;
 	slug: string;

@@ -12,6 +12,7 @@ import EntitiesPageNoResult from '@/components/views/EntitiesPageNoResult';
 import { useQuery } from '@tanstack/react-query';
 import getDynasties from '@/api/getDynasties';
 import AddingNewContentUI from '@/components/elements/AddingNewContentUI';
+import { Dynasty } from '@/interfaces/Dynasty';
 
 /**
  * Main React.JSX page component for /dynasties: Dynasties page
@@ -20,8 +21,8 @@ import AddingNewContentUI from '@/components/elements/AddingNewContentUI';
  */
 function DynastiesPage() {
 	// State
-	const [queriedDynasties, setQueriedDynasties] = useState([]);
-	const [searchQuery, setSearchQuery] = useState('');
+	const [queriedDynasties, setQueriedDynasties] = useState<Dynasty[]>([]);
+	const [searchQuery, setSearchQuery] = useState<string>('');
 
 	// Data fetching (React Query)
 	const {
@@ -47,13 +48,15 @@ function DynastiesPage() {
 	useEffect(
 		function () {
 			if (searchQuery.length >= 3) {
-				setQueriedDynasties(
-					dynasties.filter((dynasty) =>
-						dynasty.name
-							.toLowerCase()
-							.includes(searchQuery.trim().toLowerCase())
-					)
-				);
+				if (Array.isArray(dynasties) && !(dynasties instanceof Error)) {
+					setQueriedDynasties(
+						dynasties.filter((dynasty) =>
+							dynasty.name
+								.toLowerCase()
+								.includes(searchQuery.trim().toLowerCase())
+						)
+					);
+				}
 			} else {
 				setQueriedDynasties([]);
 			}
@@ -62,7 +65,10 @@ function DynastiesPage() {
 	);
 
 	// Error State
-	if (error || dynasties?.name === 'TypeError') {
+	if (
+		error ||
+		(dynasties instanceof Error && dynasties?.name === 'TypeError')
+	) {
 		return (
 			<>
 				<Navbar />
@@ -109,7 +115,9 @@ function DynastiesPage() {
 
 				<DynastyPageList
 					dynasties={
-						queriedDynasties?.length > 0 ? queriedDynasties : dynasties
+						queriedDynasties?.length > 0
+							? (queriedDynasties as Dynasty[])
+							: (dynasties as Dynasty[])
 					}
 				/>
 			</MainContainer>

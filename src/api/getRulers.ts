@@ -22,7 +22,7 @@ async function getRulers() {
 		return data?.data?.rulers;
 	} catch (e) {
 		// Catch block: return the error object itself
-		return e;
+		if (e instanceof Error) return e;
 	}
 }
 
