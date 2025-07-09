@@ -10,7 +10,7 @@ interface FunctionProps {
 function SuggestionLink({ queryResult, handleLinkClick }: FunctionProps) {
 	const navigate = useNavigate();
 
-	function handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+	function handleClick(e: React.MouseEvent<HTMLLIElement, MouseEvent>) {
 		e.preventDefault();
 		handleLinkClick();
 
@@ -24,10 +24,11 @@ function SuggestionLink({ queryResult, handleLinkClick }: FunctionProps) {
 
 	return (
 		<li
-			className="text-primary-400 border-primary-90 ease hover:bg-primary-70 hover:text-primary-800 my-1 rounded-sm border-b p-2 transition-all duration-150 last:border-b-0 hover:underline"
+			className="text-primary-400 border-primary-90 ease hover:bg-primary-70 hover:text-primary-800 my-1 rounded-sm border-b p-2 transition-all duration-150 last:border-b-0 hover:cursor-pointer hover:underline"
 			key={queryResult._id}
+			onClick={handleClick}
 		>
-			<button onClick={handleClick}>{queryResult.name}</button>
+			<button className="hover:cursor-pointer">{queryResult.name}</button>
 		</li>
 	);
 }
