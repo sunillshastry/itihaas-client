@@ -52,6 +52,8 @@ interface StandaloneRuler {
 
 	createdAt: Date;
 	updatedAt: Date;
+
+	__v?: string;
 }
 
 export type { StandaloneRuler };
