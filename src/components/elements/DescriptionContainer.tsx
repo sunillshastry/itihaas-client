@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import Description from '@/components/views/Description';
 import NoDescriptionDialog from '@/components/views/NoDescriptionDialog';
 
-function DescriptionContainer({ descriptionList }) {
+interface FunctionProps {
+	descriptionList: string[];
+}
+
+function DescriptionContainer({ descriptionList }: FunctionProps) {
 	if (descriptionList && descriptionList.length === 0) {
 		return <NoDescriptionDialog />;
 	}

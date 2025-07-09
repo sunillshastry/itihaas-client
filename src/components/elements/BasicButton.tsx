@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types';
+import { ComponentPropsWithoutRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-function BasicButton({ children, onClick, className }) {
+interface FunctionProps extends ComponentPropsWithoutRef<'button'> {
+	children: Readonly<React.ReactNode>;
+}
+
+function BasicButton({ children, onClick, className }: FunctionProps) {
 	return (
 		<button
 			onClick={onClick}

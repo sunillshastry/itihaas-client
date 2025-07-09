@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
+import { ComponentPropsWithoutRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-function SecondaryHeader({ children, className }) {
+interface FunctionProps extends ComponentPropsWithoutRef<'h3'> {
+	children: Readonly<React.ReactNode>;
+}
+function SecondaryHeader({ children, className }: FunctionProps) {
 	return (
 		<h3 className={twMerge('text-primary-200 font-heading text-lg', className)}>
 			{children}

@@ -4,8 +4,9 @@ import { twMerge } from 'tailwind-merge';
 
 import FooterLinksTab from '@/components/views/FooterLinksTab';
 import FooterLink from '@/components/views/FooterLink';
+import { ComponentPropsWithoutRef } from 'react';
 
-function Footer({ className }) {
+function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 	const year = new Date().getFullYear();
 
 	return (

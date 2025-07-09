@@ -2,15 +2,22 @@ import { X } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
+interface FunctionProps {
+	value: string;
+	onChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
+	setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+	setIsAutocompleteEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 function SearchBar({
 	value,
 	onChange,
 	setSearchQuery,
 	setIsAutocompleteEnabled,
-}) {
+}: FunctionProps) {
 	const [isCloseDisplayed, setIsCloseDisplayed] = useState(false);
 
-	function handleOnChange(e) {
+	function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
 		if (e.target.value.length >= 3) {
 			setIsCloseDisplayed(true);
 		} else {

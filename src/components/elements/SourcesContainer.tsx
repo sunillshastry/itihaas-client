@@ -6,7 +6,11 @@ import PageLinkField from '@/components/views/PageLinkField';
 import NoSectionDialog from '@/components/views/NoSectionDialog';
 import SubHeaderLink from '../views/SubHeaderLink';
 
-function SourcesContainer({ sources }) {
+interface FunctionProps {
+	sources: string[];
+}
+
+function SourcesContainer({ sources }: FunctionProps) {
 	if (sources && sources.length === 0) {
 		return <NoSectionDialog name="Sources" />;
 	}

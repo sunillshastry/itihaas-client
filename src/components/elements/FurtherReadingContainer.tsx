@@ -4,11 +4,17 @@ import SubHeader from '@/components/elements/SubHeader';
 import PageLinkField from '@/components/views/PageLinkField';
 import NoSectionDialog from '@/components/views/NoSectionDialog';
 import SubHeaderLink from '../views/SubHeaderLink';
+import { FurtherReading } from '@/interfaces/FurtherReading';
 
-function FurtherReadingContainer({ readings }) {
+interface FunctionProps {
+	readings: FurtherReading[];
+}
+
+function FurtherReadingContainer({ readings }: FunctionProps) {
 	if (readings && readings.length === 0) {
 		return <NoSectionDialog name="Further Readings" />;
 	}
+
 	return (
 		<section className="mt-5">
 			<SubHeader>

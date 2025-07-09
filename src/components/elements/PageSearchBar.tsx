@@ -3,16 +3,24 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
+interface FunctionProps {
+	className?: string;
+	placeholder: string;
+	value: string;
+	onChange: (value: string) => void;
+	setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
+}
+
 function PageSearchBar({
 	className,
 	placeholder,
 	value,
 	onChange,
 	setSearchQuery,
-}) {
+}: FunctionProps) {
 	const [isCloseDisplayed, setIsCloseDisplayed] = useState(false);
 
-	function handleOnChange(e) {
+	function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
 		if (e.target.value.length >= 2) {
 			setIsCloseDisplayed(true);
 		} else {

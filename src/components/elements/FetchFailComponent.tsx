@@ -9,9 +9,13 @@ import PropTypes from 'prop-types';
 
 import BasicButton from '@/components/elements/BasicButton';
 
+interface FunctionProps {
+	children?: Readonly<React.ReactNode> | string;
+}
+
 function FetchFailComponent({
 	children = "We're having trouble fetching the data from the server. Refresh page, or try again soon.",
-}) {
+}: FunctionProps) {
 	const navigate = useNavigate();
 
 	function handleReloadPage() {

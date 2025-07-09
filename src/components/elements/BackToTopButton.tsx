@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { ArrowBigUpDash } from 'lucide-react';
 
 function BackToTopButton() {
-	const [visible, setVisible] = useState(false);
+	const [visible, setVisible] = useState<boolean>(false);
 
-	function toggleVisibility() {
+	function toggleVisibility(): void {
 		if (window.scrollY > window.innerHeight) {
 			setVisible(true);
 		} else {
@@ -12,7 +12,7 @@ function BackToTopButton() {
 		}
 	}
 
-	function scrollBackUp() {
+	function scrollBackUp(): void {
 		window.scrollTo({
 			top: 0,
 			behavior: 'smooth',

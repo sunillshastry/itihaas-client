@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
+import { ComponentPropsWithoutRef } from 'react';
 
-function Loader({ size = 'medium', className }) {
+interface FunctionProps extends ComponentPropsWithoutRef<'div'> {
+	size?: 'small' | 'medium' | 'large';
+}
+
+function Loader({ size = 'medium', className }: FunctionProps) {
 	// Default styles
 	const styles = {
 		border: '8px solid #b4957e',
@@ -34,7 +39,7 @@ function Loader({ size = 'medium', className }) {
 	return (
 		<div
 			style={styles}
-			className={`${className}`}
+			className={className}
 		></div>
 	);
 }

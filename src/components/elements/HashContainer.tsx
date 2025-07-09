@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
+import { ComponentPropsWithoutRef } from 'react';
 
-function HashContainer({ children, id }) {
+interface FunctionProps extends ComponentPropsWithoutRef<'div'> {
+	children: Readonly<React.ReactNode>;
+}
+
+function HashContainer({ children, id }: FunctionProps) {
 	return <div id={id}>{children}</div>;
 }
 
