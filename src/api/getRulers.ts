@@ -1,3 +1,5 @@
+import { Data } from '@/interfaces/APIData';
+
 /**
  * Get all dynasties from the server API
  *
@@ -8,7 +10,7 @@ async function getRulers() {
 
 	try {
 		// Get the initial response
-		const response = await fetch(`${BASE_URL}/rulers`);
+		const response: Response = await fetch(`${BASE_URL}/rulers`);
 
 		// Check for failed response
 		if (!response.ok) {
@@ -16,7 +18,7 @@ async function getRulers() {
 		}
 
 		// Retrieve the data from response.json and return the main content
-		const data = await response.json();
+		const data: Data = await response.json();
 		return data?.data?.rulers;
 	} catch (e) {
 		// Catch block: return the error object itself
