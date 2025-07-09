@@ -6,8 +6,9 @@ import SearchBar from '@/components/elements/SearchBar';
 import Logo from '@/components/elements/Logo';
 
 function NavbarHeader() {
-	const [isAutocompleteEnabled, setIsAutocompleteEnabled] = useState(false);
-	const [searchQuery, setSearchQuery] = useState('');
+	const [isAutocompleteEnabled, setIsAutocompleteEnabled] =
+		useState<boolean>(false);
+	const [searchQuery, setSearchQuery] = useState<string>('');
 
 	function toggleAutocomplete(e: React.ChangeEvent<HTMLInputElement>) {
 		const status = e.target.value;

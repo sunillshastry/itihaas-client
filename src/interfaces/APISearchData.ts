@@ -1,6 +1,5 @@
+import { ValidKeys } from '@/types/APISearchDataValidKeys';
 import { SearchTitle } from './SearchTitle';
-
-type ValidKeys = 'dynasties' | 'rulers';
 
 interface SearchData {
 	success: boolean;

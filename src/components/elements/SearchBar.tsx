@@ -15,7 +15,7 @@ function SearchBar({
 	setSearchQuery,
 	setIsAutocompleteEnabled,
 }: FunctionProps) {
-	const [isCloseDisplayed, setIsCloseDisplayed] = useState(false);
+	const [isCloseDisplayed, setIsCloseDisplayed] = useState<boolean>(false);
 
 	function handleOnChange(e: React.ChangeEvent<HTMLInputElement>) {
 		if (e.target.value.length >= 3) {
