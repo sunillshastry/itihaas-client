@@ -19,7 +19,7 @@ interface FunctionProps {
 }
 
 function CitationContent({ citation, onOptionChange }: FunctionProps) {
-	const [copied, setCopied] = useState(false);
+	const [copied, setCopied] = useState<boolean>(false);
 
 	return (
 		<div className="bg-primary-90 after:border-r-primary-90 citation-tab absolute mt-3 min-w-2xs rounded-xs p-3 shadow-md shadow-black/35 after:absolute after:top-[-10px] after:right-0 after:z-10 after:h-0 after:w-0 after:border-[10px] after:border-transparent after:content-['']">

@@ -21,7 +21,7 @@ function SearchSuggestionTab({
 	handleLinkClick,
 }: FunctionProps) {
 	const [queriedResults, setQueriedResults] = useState<SearchTitle[]>([]);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState<boolean>(false);
 
 	const { refetch, isPending, isFetching, isError } = useQuery({
 		queryKey: ['search'],

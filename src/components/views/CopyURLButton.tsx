@@ -5,7 +5,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 function CopyURLButton() {
 	const url = usePageURL();
-	const [copied, setCopied] = useState(false);
+	const [copied, setCopied] = useState<boolean>(false);
 
 	return (
 		<CopyToClipboard
