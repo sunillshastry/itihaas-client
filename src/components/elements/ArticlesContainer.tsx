@@ -4,8 +4,13 @@ import SubHeader from '@/components/elements/SubHeader';
 import NoSectionDialog from '@/components/views/NoSectionDialog';
 import Article from '@/components/views/Article';
 import SubHeaderLink from '../views/SubHeaderLink';
+import type { Article as ArticleType } from '@/interfaces/Article';
 
-function ArticlesContainer({ articles }) {
+interface FunctionProps {
+	articles: ArticleType[];
+}
+
+function ArticlesContainer({ articles }: FunctionProps) {
 	if (articles && articles.length === 0) {
 		return <NoSectionDialog name="Articles" />;
 	}
