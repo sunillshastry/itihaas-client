@@ -1,14 +1,16 @@
+import type { Data } from '@/interfaces/APIData';
+
 /**
  * Get all dynasty from the server API
  *
  * @returns A Promise consisting of the API response
  */
-async function getRuler(slug) {
+async function getRuler(slug: string) {
 	const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
 
 	try {
 		// Get the initial response
-		const response = await fetch(`${BASE_URL}/rulers/${slug}`);
+		const response: Response = await fetch(`${BASE_URL}/rulers/${slug}`);
 
 		// Check for failed response
 		if (!response.ok) {
@@ -22,7 +24,7 @@ async function getRuler(slug) {
 		}
 
 		// Retrieve the data from response.json and return the main content
-		const data = await response.json();
+		const data: Data = await response.json();
 
 		return data?.data?.ruler;
 	} catch (e) {
