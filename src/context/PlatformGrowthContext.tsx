@@ -35,9 +35,9 @@ function PlatformGrowthProvider({ children }: FunctionProps) {
 }
 
 // useContext hook
-function usePlatformGrowth(): null | Context {
+function usePlatformGrowth(): Context {
 	const context = useContext(PlatformGrowthContext);
-	if (context === undefined) {
+	if (!context) {
 		throw new Error(
 			'Error: PlatformGrowthContext was defined outside its Provider scope.'
 		);
