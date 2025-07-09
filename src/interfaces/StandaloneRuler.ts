@@ -1,3 +1,7 @@
+import { Article } from './Article';
+import { Description } from './Description';
+import { FurtherReading } from './FurtherReading';
+
 interface StandaloneRuler {
 	family: {
 		father: string;
@@ -11,10 +15,7 @@ interface StandaloneRuler {
 		end: string;
 	} | null;
 
-	description: {
-		oneline: string;
-		long: string[];
-	} | null;
+	description: Description[] | null;
 
 	_id: string;
 	slug: string;
@@ -32,23 +33,9 @@ interface StandaloneRuler {
 	wars: string[];
 	sources: string[];
 
-	furtherReading: [
-		{
-			publisher: string;
-			link: string;
-			_id: string;
-		},
-	];
+	furtherReading: FurtherReading[];
 
-	articles: [
-		{
-			title: string;
-			authors: string[];
-			publisher: string;
-			link: string;
-			_id: string;
-		},
-	];
+	articles: Article[];
 
 	createdAt: Date;
 	updatedAt: Date;
