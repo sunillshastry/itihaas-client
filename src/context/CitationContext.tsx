@@ -36,9 +36,9 @@ function CitationContextProvider({ children }: FunctionProps) {
 }
 
 // useContext hook
-function useCitation(): null | Context {
+function useCitation(): Context {
 	const context = useContext(CitationContext);
-	if (context === undefined) {
+	if (!context) {
 		throw new Error(
 			'Error: CitationContext was defined outside its Provider scope.'
 		);
