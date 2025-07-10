@@ -9,7 +9,7 @@ function Navbar() {
 	function handleSearchFormSubmit(e: FormEvent, value: string): void {
 		e.preventDefault();
 
-		if (value.length > 3) {
+		if (value.length >= 3) {
 			navigate(`/search?q=${value}`);
 		}
 	}
