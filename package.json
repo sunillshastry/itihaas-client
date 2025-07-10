@@ -26,7 +26,8 @@
 		"lint": "eslint .",
 		"preview": "vite preview",
 		"format": "prettier --write .",
-		"format-check": "prettier --check ."
+		"format-check": "prettier --check .",
+		"test": "jest"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.5",
