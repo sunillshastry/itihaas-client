@@ -1,6 +1,23 @@
 {
 	"name": "itihaas-client",
 	"private": true,
+	"author": "Sunil Shastry <sunil.shastry69@gmail.com> (https://sunilshastry.com)",
+	"description": "Frontend application with React and TypeScript integration for Itihaas",
+	"license": "GPL-3.0-only",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/sunillshastry/itihaas-client.git"
+	},
+	"keywords": [
+		"Itihaas",
+		"Itihaas - Front Page of Indian History",
+		"Indian History"
+	],
+	"homepage": "https://github.com/sunillshastry/itihaas-client#readme",
+	"bugs": {
+		"url": "https://github.com/sunillshastry/itihaas-client/issues",
+		"email": "support@itihaas.dev"
+	},
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
