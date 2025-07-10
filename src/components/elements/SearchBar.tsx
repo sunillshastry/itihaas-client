@@ -1,12 +1,14 @@
-import { X } from 'lucide-react';
+import { Search, X } from 'lucide-react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface FunctionProps {
 	value: string;
 	onChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
 	setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 	setIsAutocompleteEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+	onSubmit: (e: FormEvent, value: string) => void;
 }
 
 function SearchBar({
@@ -14,6 +16,7 @@ function SearchBar({
 	onChange,
 	setSearchQuery,
 	setIsAutocompleteEnabled,
+	onSubmit,
 }: FunctionProps) {
 	const [isCloseDisplayed, setIsCloseDisplayed] = useState<boolean>(false);
 
@@ -27,7 +30,10 @@ function SearchBar({
 	}
 
 	return (
-		<div className="bg-primary-90 focus-within:outline-primary-20 flex items-center rounded-sm pr-1 shadow-md focus-within:outline-3">
+		<form
+			className="bg-primary-90 focus-within:outline-primary-20 flex items-center rounded-sm pr-1 shadow-md focus-within:outline-3"
+			onSubmit={(e) => onSubmit(e, value)}
+		>
 			<input
 				className="font-primary text-primary-500 w-sm px-4 py-2 text-sm outline-0"
 				type="text"
@@ -37,16 +43,30 @@ function SearchBar({
 			/>
 
 			<button
-				className={`text-primary-400 hover:text-primary-600 hover:cursor-pointer ${isCloseDisplayed ? 'inline-block' : 'hidden'}`}
+				className={twMerge(
+					`text-primary-400 hover:text-primary-600 hover:cursor-pointer`,
+					isCloseDisplayed ? 'inline-block' : 'hidden'
+				)}
 				onClick={() => {
 					setSearchQuery('');
 					setIsAutocompleteEnabled(false);
 					setIsCloseDisplayed(false);
 				}}
+				type="button"
 			>
 				<X size={18} />
 			</button>
-		</div>
+
+			<button
+				className={twMerge(
+					'text-primary-400 hover:text-primary-600 ml-1 hover:cursor-pointer',
+					isCloseDisplayed ? 'inline-block' : 'hidden'
+				)}
+				type="submit"
+			>
+				<Search size={18} />
+			</button>
+		</form>
 	);
 }
 
