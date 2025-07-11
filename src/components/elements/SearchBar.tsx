@@ -1,6 +1,8 @@
 import { Search, X } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { FormEvent, useState } from 'react';
+import 'react-tooltip/dist/react-tooltip.css';
+import { Tooltip } from 'react-tooltip';
 import { twMerge } from 'tailwind-merge';
 
 interface FunctionProps {
@@ -31,7 +33,7 @@ function SearchBar({
 
 	return (
 		<form
-			className="bg-primary-90 focus-within:outline-primary-20 flex items-center rounded-sm pr-1 shadow-md focus-within:outline-3"
+			className="bg-primary-90 focus-within:outline-primary-20 relative flex items-center rounded-sm pr-1 shadow-md focus-within:outline-3"
 			onSubmit={(e) => onSubmit(e, value)}
 		>
 			<input
@@ -57,12 +59,15 @@ function SearchBar({
 				<X size={18} />
 			</button>
 
+			<Tooltip id="search-button-icon">Search more</Tooltip>
 			<button
 				className={twMerge(
-					'text-primary-400 hover:text-primary-600 ml-1 hover:cursor-pointer',
+					'bg-primary-200 hover:bg-primary-500 text-primary-60 ml-1 rounded-lg px-1.5 py-1 transition ease-in hover:cursor-pointer',
 					isCloseDisplayed ? 'inline-block' : 'hidden'
 				)}
 				type="submit"
+				data-tooltip-id="search-button-icon"
+				data-tooltip-place="top-start"
 			>
 				<Search size={18} />
 			</button>

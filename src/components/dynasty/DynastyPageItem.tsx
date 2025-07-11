@@ -1,19 +1,35 @@
 import { Link } from 'react-router-dom';
-import { MapPin, MoveRight } from 'lucide-react';
+import { Info, MapPin, MoveRight } from 'lucide-react';
 import PropTypes from 'prop-types';
 
 import formatArrayToString from '@/utils/formatArrayToString';
 import { Dynasty } from '@/interfaces/Dynasty';
+import 'react-tooltip/dist/react-tooltip.css';
+import { Tooltip } from 'react-tooltip';
+import useUpdateDate from '@/hooks/useUpdateDate';
 
 interface FunctionProps {
 	dynasty: Dynasty;
 }
 
 function DynastyPageItem({ dynasty }: FunctionProps) {
+	const updatedDate = useUpdateDate(new Date(dynasty?.updatedAt || ''));
+	const createdDate = useUpdateDate(new Date(dynasty?.createdAt || ''));
+
 	return (
 		<li className="my-10 first:my-5">
-			<h3 className="text-primary-400 border-primary-40 border-b pb-2 text-xl font-bold">
-				{dynasty?.name}
+			<Tooltip id={`dynasty-${dynasty._id}`}>
+				<p className="font-medium">Created: {createdDate}</p>
+				<p className="mt-1 font-medium">Last updated: {updatedDate}</p>
+			</Tooltip>
+			<h3 className="text-primary-400 border-primary-40 relative flex items-center justify-start gap-2 border-b pb-2 text-xl font-bold">
+				<span>{dynasty?.name}</span>
+				<span
+					data-tooltip-id={`dynasty-${dynasty._id}`}
+					data-tooltip-place="top"
+				>
+					<Info size={16} />
+				</span>
 			</h3>
 			<div className="mt-3">
 				<h5 className="text-primary-200 text-sm">
