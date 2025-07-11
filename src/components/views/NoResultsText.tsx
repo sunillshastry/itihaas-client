@@ -7,7 +7,7 @@ interface FunctionProps {
 function NoResultsText({ query }: FunctionProps) {
 	return (
 		<p className="text-center font-medium italic">
-			No results for &lsquo;{query}&rsquo;
+			No results for &lsquo;{query}&rsquo;. Press Enter to see more results
 		</p>
 	);
 }
