@@ -10,7 +10,9 @@ async function getRulerByQuery(query: string) {
 
 	try {
 		// Get the initial response from backend
-		const response: Response = await fetch(`${BASE_URL}/rulers/s/${query}`);
+		const response: Response = await fetch(
+			`${BASE_URL}/rulers/s/${query}?fields=articles,readings,sources`
+		);
 
 		// Check for a failed response
 		if (!response.ok) {
