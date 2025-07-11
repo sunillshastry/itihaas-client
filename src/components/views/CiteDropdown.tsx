@@ -131,10 +131,16 @@ function CiteDropdown({ pageTitle, updatedDate, url }: FunctionProps) {
 					updateCitationContent(format);
 					const dispatchValue = `format/${format?.toLowerCase()}`;
 					dispatch({ type: dispatchValue });
+				} else {
+					dispatch({ type: 'format/mla' });
+					setParams(function (current) {
+						current.set('citationFormat', 'mla');
+						return current;
+					});
 				}
 			}
 		},
-		[dispatch, params, updateCitationContent]
+		[dispatch, params, updateCitationContent, setParams]
 	);
 
 	function onOptionChange(
