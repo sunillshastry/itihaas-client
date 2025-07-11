@@ -64,7 +64,7 @@ function Search() {
 							{searchResults.length < 10 && searchResults.length !== 0
 								? `0${searchResults.length}`
 								: searchResults.length}{' '}
-							results for '{searchQuery}'
+							results for &lsquo;{searchQuery}&rsquo;
 						</PrimaryHeader>
 					</div>
 
