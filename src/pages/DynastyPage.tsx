@@ -129,7 +129,7 @@ function DynastyPage() {
 				<MainContainer>
 					<div>
 						<div className="flex items-baseline justify-between">
-							<BackButton to="/dynasties" />
+							<BackButton />
 							<div className="flex items-baseline gap-2">
 								<CopyURLButton />
 								<CiteDropdown

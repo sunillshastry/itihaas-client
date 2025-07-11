@@ -129,7 +129,7 @@ function RulerPage() {
 				<MainContainer>
 					<div>
 						<div className="flex items-baseline justify-between">
-							<BackButton to="/rulers" />
+							<BackButton />
 							<div className="flex items-baseline gap-2">
 								<CopyURLButton />
 								<CiteDropdown
