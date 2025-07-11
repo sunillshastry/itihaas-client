@@ -37,7 +37,7 @@ function DynastyPage() {
 	);
 
 	const [params, setParams] = useSearchParams();
-	const { open, format } = useCitation();
+	const { dispatch } = useCitation();
 	const pageURL = usePageURL();
 
 	// Data Fetching (React Query)
@@ -64,20 +64,36 @@ function DynastyPage() {
 
 	useEffect(
 		function () {
-			const newSearchParams = new URLSearchParams(params.toString());
-			newSearchParams.set('citationTab', open ? 'open' : 'close');
-			setParams(newSearchParams);
+			const isCitationTabOpen = params.get('citationTab');
+
+			if (isCitationTabOpen) {
+				setParams(function (searchParams) {
+					searchParams.set('citationTab', isCitationTabOpen);
+					return searchParams;
+				});
+
+				dispatch({
+					type: `open/${isCitationTabOpen === 'open' ? 'true' : 'false'}`,
+				});
+			}
 		},
-		[open, setParams, params]
+		[params, setParams, dispatch]
 	);
 
 	useEffect(
 		function () {
-			const newSearchParams = new URLSearchParams(params.toString());
-			newSearchParams.set('citationFormat', format);
-			setParams(newSearchParams);
+			const citationFormat = params.get('citationFormat');
+
+			if (citationFormat) {
+				setParams(function (searchParams) {
+					searchParams.set('citationFormat', citationFormat);
+					return searchParams;
+				});
+
+				dispatch({ type: `format/${citationFormat}` });
+			}
 		},
-		[format, params, setParams]
+		[params, setParams, dispatch]
 	);
 
 	useEffect(
