@@ -32,7 +32,7 @@ function RulerPage() {
 	// State
 	const { rulerSlug: slug } = useParams();
 	const [params, setParams] = useSearchParams();
-	const { open, format } = useCitation();
+	const { dispatch } = useCitation();
 	const pageURL = usePageURL();
 
 	const [title, setTitle] = useState<string>(
@@ -63,22 +63,42 @@ function RulerPage() {
 
 	useEffect(
 		function () {
-			const newSearchParams = new URLSearchParams(params.toString());
-			newSearchParams.set('citationTab', open ? 'open' : 'close');
-			setParams(newSearchParams);
+			const isCitationTabOpen = params.get('citationTab');
+
+			if (isCitationTabOpen) {
+				setParams(function (searchParams) {
+					searchParams.set('citationTab', isCitationTabOpen);
+					return searchParams;
+				});
+
+				dispatch({
+					type: `open/${isCitationTabOpen === 'open' ? 'true' : 'false'}`,
+				});
+			}
 		},
-		[open, setParams, params]
+		[params, setParams, dispatch]
 	);
 
 	useEffect(
 		function () {
-			const newSearchParams = new URLSearchParams(params.toString());
-			newSearchParams.set('citationFormat', format);
-			setParams(newSearchParams);
-		},
-		[format, params, setParams]
-	);
+			const citationFormat = params.get('citationFormat');
+			const allowedFormats = ['harvard', 'chicago', 'apa', 'mla'];
 
+			if (citationFormat) {
+				if (allowedFormats.includes(citationFormat)) {
+					setParams(function (searchParams) {
+						searchParams.set('citationFormat', citationFormat);
+						return searchParams;
+					});
+
+					dispatch({ type: `format/${citationFormat}` });
+				} else {
+					dispatch({ type: `format/mla` });
+				}
+			}
+		},
+		[params, setParams, dispatch]
+	);
 	useEffect(
 		function () {
 			window.document.title = title;
@@ -134,7 +154,7 @@ function RulerPage() {
 								<CopyURLButton />
 								<CiteDropdown
 									pageTitle={ruler?.name}
-									updatedDate={ruler?.updatedAt}
+									updatedDate={ruler?.updatedAt as Date}
 									url={pageURL || window.location.href}
 								/>
 							</div>
