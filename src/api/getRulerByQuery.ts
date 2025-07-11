@@ -19,6 +19,12 @@ async function getRulerByQuery(query: string) {
 
 		// Retrieve data from the response.json and return the main content
 		const data: Data = await response.json();
+		if (data && data.data.rulers) {
+			data.data.rulers.map(function (ruler) {
+				ruler.entity = data.entity || 'none';
+			});
+		}
+
 		return data?.data?.rulers;
 	} catch (e) {
 		// Catch block: return the error object itself
