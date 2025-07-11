@@ -59,10 +59,11 @@ function SearchBar({
 
 			<button
 				className={twMerge(
-					'text-primary-400 hover:text-primary-600 ml-1 hover:cursor-pointer',
+					'bg-primary-200 hover:bg-primary-500 text-primary-60 ml-1 rounded-lg px-1.5 py-1 transition ease-in hover:cursor-pointer',
 					isCloseDisplayed ? 'inline-block' : 'hidden'
 				)}
 				type="submit"
+				title="Search More"
 			>
 				<Search size={18} />
 			</button>
