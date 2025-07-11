@@ -27,7 +27,7 @@ import { useCitation } from '@/context/CitationContext';
 import usePageURL from '@/hooks/usePageURL';
 import NotFound from '@/pages/NotFound';
 import CopyURLButton from '@/components/views/CopyURLButton';
-import { StandaloneDynasty } from '@/interfaces/StandaloneDynasty';
+import { Dynasty } from '@/interfaces/Dynasty';
 
 function DynastyPage() {
 	// State
@@ -133,9 +133,7 @@ function DynastyPage() {
 							<div className="flex items-baseline gap-2">
 								<CopyURLButton />
 								<CiteDropdown
-									pageTitle={
-										(dynasty as StandaloneDynasty) && (dynasty?.name as string)
-									}
+									pageTitle={(dynasty as Dynasty) && (dynasty?.name as string)}
 									updatedDate={dynasty?.updatedAt as Date}
 									url={pageURL || window.location.href}
 								/>
