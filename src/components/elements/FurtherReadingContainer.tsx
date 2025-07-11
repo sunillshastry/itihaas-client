@@ -7,7 +7,7 @@ import SubHeaderLink from '../views/SubHeaderLink';
 import { FurtherReading } from '@/interfaces/FurtherReading';
 
 interface FunctionProps {
-	readings: FurtherReading[];
+	readings: FurtherReading[] | undefined;
 }
 
 function FurtherReadingContainer({ readings }: FunctionProps) {

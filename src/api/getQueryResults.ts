@@ -1,7 +1,7 @@
-import { Dynasty } from '@/interfaces/Dynasty';
 import getDynastyByQuery from './getDynastyByQuery';
 import getRulerByQuery from './getRulerByQuery';
 import { Ruler } from '@/interfaces/Ruler';
+import { Dynasty } from '@/interfaces/Dynasty';
 
 async function getQueryResults(query: string) {
 	try {

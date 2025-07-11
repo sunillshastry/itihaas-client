@@ -5,11 +5,11 @@ import formattedMonthName from '@/utils/formattedMonthName';
 import convertToTwelveHours from '@/utils/convertToTwelveHours';
 
 interface FunctionProps {
-	date: Date;
+	date: Date | undefined;
 }
 
 function LastUpdateMessage({ date }: FunctionProps) {
-	const updated = new Date(date);
+	const updated = new Date(date as Date);
 	const unformattedMonth = updated.getUTCMonth() + 1;
 	const unformattedHour = updated.getUTCHours();
 

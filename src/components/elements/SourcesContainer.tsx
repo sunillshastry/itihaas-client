@@ -7,7 +7,7 @@ import NoSectionDialog from '@/components/views/NoSectionDialog';
 import SubHeaderLink from '../views/SubHeaderLink';
 
 interface FunctionProps {
-	sources: string[];
+	sources: string[] | undefined;
 }
 
 function SourcesContainer({ sources }: FunctionProps) {

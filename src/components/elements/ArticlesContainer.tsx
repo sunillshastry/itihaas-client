@@ -7,7 +7,7 @@ import SubHeaderLink from '../views/SubHeaderLink';
 import type { Article as ArticleType } from '@/interfaces/Article';
 
 interface FunctionProps {
-	articles: ArticleType[];
+	articles: ArticleType[] | undefined;
 }
 
 function ArticlesContainer({ articles }: FunctionProps) {
