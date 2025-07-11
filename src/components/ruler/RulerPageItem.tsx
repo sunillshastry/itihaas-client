@@ -16,21 +16,13 @@ function RulerPageItem({ ruler }: FunctionProps) {
 
 	return (
 		<li className="my-10 first:my-5">
+			<Tooltip id={`ruler-${ruler._id}`}>
+				<p className="font-medium">Created: {createdDate}</p>
+				<p className="mt-1 font-medium">Last updated: {updatedDate}</p>
+			</Tooltip>
 			<h3 className="text-primary-400 border-primary-40 relative flex items-center justify-start gap-2 border-b pb-2 text-xl font-bold">
 				<span>{ruler?.name}</span>
-				<Tooltip
-					id={`ruler-${ruler._id}`}
-					style={{
-						backgroundColor: '#4a3423',
-						color: '#dfd2c8',
-						transition: 'all 0.2s ease-in',
-						fontSize: '0.875rem',
-						fontWeight: 600,
-					}}
-				>
-					<h4>Created: {createdDate}</h4>
-					<h4 className="mt-1">Last updated: {updatedDate}</h4>
-				</Tooltip>
+
 				<span
 					data-tooltip-id={`ruler-${ruler._id}`}
 					data-tooltip-place="top"
