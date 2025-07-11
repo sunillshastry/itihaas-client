@@ -16,6 +16,8 @@ interface Ruler {
 	died: string;
 	dynasty: string;
 
+	entity?: string;
+
 	__v?: string;
 }
 

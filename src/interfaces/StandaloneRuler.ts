@@ -40,6 +40,8 @@ interface StandaloneRuler {
 	createdAt: Date;
 	updatedAt: Date;
 
+	entity?: string;
+
 	__v?: string;
 }
 

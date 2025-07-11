@@ -15,6 +15,9 @@ interface Dynasty {
 	capitals: string[];
 	locations: string[];
 	population: string | null;
+
+	entity?: string;
+	__v?: string;
 }
 
 export type { Dynasty };

@@ -33,6 +33,8 @@ interface StandaloneDynasty {
 
 	articles: Article[];
 
+	entity?: string;
+
 	createdAt: Date;
 	updatedAt: Date;
 	__v?: number;
