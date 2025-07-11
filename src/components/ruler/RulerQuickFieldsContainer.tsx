@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 
 import QuickFactField from '@/components/views/QuickFactField';
 import QuickFactsNoField from '@/components/views/QuickFactsNoField';
-import { StandaloneRuler } from '@/interfaces/StandaloneRuler';
+import { Ruler } from '@/interfaces/Ruler';
 
 interface FunctionProps {
-	ruler: StandaloneRuler;
+	ruler: Ruler;
 }
 
 function RulerQuickFieldsContainer({ ruler }: FunctionProps) {

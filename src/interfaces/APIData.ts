@@ -1,13 +1,12 @@
+import { ValidKeys } from '@/types/APISearchDataValidKeys';
 import { Dynasty } from './Dynasty';
 import { Ruler } from './Ruler';
-import { StandaloneDynasty } from './StandaloneDynasty';
-import { StandaloneRuler } from './StandaloneRuler';
 
 interface DataValue {
 	dynasties?: Dynasty[];
-	dynasty?: StandaloneDynasty;
+	dynasty?: Dynasty;
 
-	ruler?: StandaloneRuler;
+	ruler?: Ruler;
 	rulers?: Ruler[];
 }
 
@@ -15,6 +14,7 @@ interface Data {
 	success: boolean;
 	size?: number;
 	data: DataValue;
+	entity?: ValidKeys;
 }
 
 export type { Data };

@@ -27,7 +27,7 @@ import { useCitation } from '@/context/CitationContext';
 import usePageURL from '@/hooks/usePageURL';
 import NotFound from '@/pages/NotFound';
 import CopyURLButton from '@/components/views/CopyURLButton';
-import { StandaloneDynasty } from '@/interfaces/StandaloneDynasty';
+import { Dynasty } from '@/interfaces/Dynasty';
 
 function DynastyPage() {
 	// State
@@ -37,7 +37,7 @@ function DynastyPage() {
 	);
 
 	const [params, setParams] = useSearchParams();
-	const { open, format } = useCitation();
+	const { dispatch } = useCitation();
 	const pageURL = usePageURL();
 
 	// Data Fetching (React Query)
@@ -64,20 +64,36 @@ function DynastyPage() {
 
 	useEffect(
 		function () {
-			const newSearchParams = new URLSearchParams(params.toString());
-			newSearchParams.set('citationTab', open ? 'open' : 'close');
-			setParams(newSearchParams);
+			const isCitationTabOpen = params.get('citationTab');
+
+			if (isCitationTabOpen) {
+				setParams(function (searchParams) {
+					searchParams.set('citationTab', isCitationTabOpen);
+					return searchParams;
+				});
+
+				dispatch({
+					type: `open/${isCitationTabOpen === 'open' ? 'true' : 'false'}`,
+				});
+			}
 		},
-		[open, setParams, params]
+		[params, setParams, dispatch]
 	);
 
 	useEffect(
 		function () {
-			const newSearchParams = new URLSearchParams(params.toString());
-			newSearchParams.set('citationFormat', format);
-			setParams(newSearchParams);
+			const citationFormat = params.get('citationFormat');
+
+			if (citationFormat) {
+				setParams(function (searchParams) {
+					searchParams.set('citationFormat', citationFormat);
+					return searchParams;
+				});
+
+				dispatch({ type: `format/${citationFormat}` });
+			}
 		},
-		[format, params, setParams]
+		[params, setParams, dispatch]
 	);
 
 	useEffect(
@@ -129,13 +145,11 @@ function DynastyPage() {
 				<MainContainer>
 					<div>
 						<div className="flex items-baseline justify-between">
-							<BackButton to="/dynasties" />
+							<BackButton />
 							<div className="flex items-baseline gap-2">
 								<CopyURLButton />
 								<CiteDropdown
-									pageTitle={
-										(dynasty as StandaloneDynasty) && (dynasty?.name as string)
-									}
+									pageTitle={(dynasty as Dynasty) && (dynasty?.name as string)}
 									updatedDate={dynasty?.updatedAt as Date}
 									url={pageURL || window.location.href}
 								/>

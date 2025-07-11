@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 import SearchSuggestionTab from '@/components/views/SearchSuggestionTab';
 import SearchBar from '@/components/elements/SearchBar';
 import Logo from '@/components/elements/Logo';
 
-function NavbarHeader() {
+interface FunctionProps {
+	onSubmit: (e: FormEvent, value: string) => void;
+}
+
+function NavbarHeader({ onSubmit }: FunctionProps) {
 	const [isAutocompleteEnabled, setIsAutocompleteEnabled] =
 		useState<boolean>(false);
 	const [searchQuery, setSearchQuery] = useState<string>('');
@@ -55,6 +59,7 @@ function NavbarHeader() {
 					onChange={toggleAutocomplete}
 					setSearchQuery={setSearchQuery}
 					setIsAutocompleteEnabled={setIsAutocompleteEnabled}
+					onSubmit={onSubmit}
 				/>
 				<SearchSuggestionTab
 					displayed={isAutocompleteEnabled}
