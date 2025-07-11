@@ -8,11 +8,16 @@ import Navbar from '@/components/elements/Navbar';
 import PrimaryHeader from '@/components/elements/PrimaryHeader';
 import SearchResult from '@/components/elements/SearchResult';
 import EmptySearchResult from '@/components/views/EmptySearchResult';
+import updateWindowTitle from '@/utils/updateWindowTitle';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 function Search() {
 	const [params] = useSearchParams();
+	const [title, setTitle] = useState<string>(
+		'Itihaas | The Front Page of Indian History'
+	);
 
 	const searchQuery = params.get('q')?.trim();
 
@@ -25,6 +30,30 @@ function Search() {
 		queryKey: ['full-search', searchQuery],
 		queryFn: () => getQueryResults(searchQuery as string),
 	});
+
+	useEffect(
+		function () {
+			window.document.title = title;
+
+			return () => {
+				window.document.title = 'Itihaas | The Front Page of Indian History';
+			};
+		},
+		[title]
+	);
+
+	useEffect(
+		function () {
+			if (searchResults && !(searchResults instanceof Error)) {
+				updateWindowTitle(setTitle, `Search '${searchQuery}'`);
+			}
+
+			return () => {
+				window.document.title = 'Itihaas | The Front Page of Indian History';
+			};
+		},
+		[searchResults, searchQuery]
+	);
 
 	// Error State (API not working or other internal error)
 	if (error || searchResults instanceof Error) {
