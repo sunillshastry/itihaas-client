@@ -28,7 +28,7 @@ function CiteDropdown({ pageTitle, updatedDate, url }: FunctionProps) {
 	const formattedAccessDate = `${accessed.getUTCDate()} ${formattedMonthName(accessed.getUTCMonth() + 1)} ${accessed.getUTCFullYear()}`;
 
 	const { dispatch } = useCitation();
-	const [params] = useSearchParams();
+	const [params, setParams] = useSearchParams();
 
 	const [isCiteTabOpen, setIsCiteTabOpen] = useState<boolean>(false);
 	const [citation, setCitation] = useState<string>(
@@ -39,46 +39,6 @@ function CiteDropdown({ pageTitle, updatedDate, url }: FunctionProps) {
 			accessed: formattedAccessDate,
 		})
 	);
-
-	useEffect(
-		function () {
-			function hideCiteTab(e: KeyboardEvent) {
-				if (e.key === 'Escape' || (e.code === 'Escape' && isCiteTabOpen)) {
-					setIsCiteTabOpen(false);
-				}
-			}
-
-			document.addEventListener('keyup', hideCiteTab);
-
-			return () => document.removeEventListener('keyup', hideCiteTab);
-		},
-		[isCiteTabOpen]
-	);
-
-	useEffect(
-		function () {
-			const citationTab = params.get('citationTab');
-			if (citationTab === 'open') {
-				setIsCiteTabOpen(true);
-			} else if (citationTab === 'close') {
-				setIsCiteTabOpen(false);
-			}
-		},
-		[params]
-	);
-
-	function onOptionChange(
-		newValue: SingleValue<DropdownOption>
-		// actionMeta: ActionMeta<DropdownOption>
-	) {
-		const value = newValue?.value || 'mla';
-
-		updateCitationContent(value);
-
-		const citationContextDispatchValue = `format/${value}`;
-
-		dispatch({ type: citationContextDispatchValue });
-	}
 
 	const updateCitationContent = useCallback(
 		(format: string) => {
@@ -129,15 +89,92 @@ function CiteDropdown({ pageTitle, updatedDate, url }: FunctionProps) {
 		[formattedAccessDate, formattedUpdateDate, pageTitle, url]
 	);
 
+	useEffect(
+		function () {
+			function hideCiteTab(e: KeyboardEvent) {
+				if (e.key === 'Escape' || (e.code === 'Escape' && isCiteTabOpen)) {
+					setIsCiteTabOpen(false);
+				}
+			}
+
+			document.addEventListener('keyup', hideCiteTab);
+
+			return () => document.removeEventListener('keyup', hideCiteTab);
+		},
+		[isCiteTabOpen]
+	);
+
+	useEffect(
+		function () {
+			const citationTab = params.get('citationTab');
+
+			if (citationTab) {
+				if (citationTab === 'open') {
+					setIsCiteTabOpen(true);
+				} else if (citationTab === 'close') {
+					setIsCiteTabOpen(false);
+				}
+			} else {
+				setIsCiteTabOpen(false);
+			}
+		},
+		[params]
+	);
+
+	useEffect(
+		function () {
+			const format = params.get('citationFormat');
+
+			if (format) {
+				const allowedFormats = ['harvard', 'mla', 'apa', 'chicago'];
+				if (allowedFormats.includes(format)) {
+					updateCitationContent(format);
+					const dispatchValue = `format/${format?.toLowerCase()}`;
+					dispatch({ type: dispatchValue });
+				}
+			}
+		},
+		[dispatch, params, updateCitationContent]
+	);
+
+	function onOptionChange(
+		newValue: SingleValue<DropdownOption>
+		// actionMeta: ActionMeta<DropdownOption>
+	) {
+		const value = newValue?.value || 'mla';
+
+		updateCitationContent(value);
+
+		const citationContextDispatchValue = `format/${value}`;
+
+		dispatch({ type: citationContextDispatchValue });
+
+		setParams(function (current) {
+			current.set('citationFormat', value);
+			return current;
+		});
+	}
+
 	function handleCitationToggle() {
 		const opposite = !isCiteTabOpen;
+		console.log('hello!');
 
 		setIsCiteTabOpen((current) => !current);
 
 		if (opposite) {
 			dispatch({ type: 'open/true' });
+
+			setParams(function (current) {
+				current.set('citationTab', 'open');
+				return current;
+			});
 		} else {
 			dispatch({ type: 'open/false' });
+
+			setParams(function (current) {
+				current.set('citationTab', 'close');
+				return current;
+			});
 		}
 	}
 
