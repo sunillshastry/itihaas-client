@@ -1,17 +1,42 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Minus, MoveRight, Network } from 'lucide-react';
+import { Info, Minus, MoveRight, Network } from 'lucide-react';
 import { Ruler } from '@/interfaces/Ruler';
+import 'react-tooltip/dist/react-tooltip.css';
+import { Tooltip } from 'react-tooltip';
+import useUpdateDate from '@/hooks/useUpdateDate';
 
 interface FunctionProps {
 	ruler: Ruler;
 }
 
 function RulerPageItem({ ruler }: FunctionProps) {
+	const updatedDate = useUpdateDate(new Date(ruler?.updatedAt || ''));
+	const createdDate = useUpdateDate(new Date(ruler?.createdAt || ''));
+
 	return (
 		<li className="my-10 first:my-5">
-			<h3 className="text-primary-400 border-primary-40 border-b pb-2 text-xl font-bold">
-				{ruler?.name}
+			<h3 className="text-primary-400 border-primary-40 relative flex items-center justify-start gap-2 border-b pb-2 text-xl font-bold">
+				<span>{ruler?.name}</span>
+				<Tooltip
+					id={`ruler-${ruler._id}`}
+					style={{
+						backgroundColor: '#4a3423',
+						color: '#dfd2c8',
+						transition: 'all 0.2s ease-in',
+						fontSize: '0.875rem',
+						fontWeight: 600,
+					}}
+				>
+					<h4>Created: {createdDate}</h4>
+					<h4 className="mt-1">Last updated: {updatedDate}</h4>
+				</Tooltip>
+				<span
+					data-tooltip-id={`ruler-${ruler._id}`}
+					data-tooltip-place="top"
+				>
+					<Info size={16} />
+				</span>
 			</h3>
 			<div className="mt-3">
 				<h5 className="text-primary-200 text-sm">
