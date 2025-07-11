@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function EmptySearchResult() {
 	return (
 		<div>
@@ -13,8 +15,28 @@ function EmptySearchResult() {
 				<ul className="mt-1 ml-5 list-disc">
 					<li>Make sure all the terms are spelled correctly.</li>
 					<li>
-						Manually view and search dynasties, rulers or wars catalog in their
-						dedicated pages.
+						Manually view and search{' '}
+						<Link
+							to="/dynasties"
+							className="text-primary-800 hover:text-primary-200 underline"
+						>
+							dynasties
+						</Link>
+						,{' '}
+						<Link
+							to="/rulers"
+							className="text-primary-800 hover:text-primary-200 underline"
+						>
+							rulers
+						</Link>{' '}
+						or{' '}
+						<Link
+							to="/wars"
+							className="text-primary-800 hover:text-primary-200 underline"
+						>
+							wars
+						</Link>{' '}
+						catalog in their dedicated pages.
 					</li>
 					<li>Try again with a different query term...</li>
 				</ul>
