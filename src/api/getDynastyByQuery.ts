@@ -19,6 +19,13 @@ async function getDynastyByQuery(query: string) {
 
 		// Retrieve data from the response.json and return the main content
 		const data: Data = await response.json();
+
+		if (data && data.data.dynasties) {
+			data.data.dynasties.map(function (dynasty) {
+				dynasty.entity = data.entity || 'none';
+			});
+		}
+
 		return data?.data?.dynasties;
 	} catch (e) {
 		// Catch block: return the error object itself
