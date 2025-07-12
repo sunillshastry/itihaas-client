@@ -1,5 +1,5 @@
 import { usePlatformGrowth } from '@/context/PlatformGrowthContext';
-import { Database, Dot } from 'lucide-react';
+import { Database } from 'lucide-react';
 import PropTypes from 'prop-types';
 
 interface FunctionProps {
@@ -18,8 +18,9 @@ function PlatformGrowthButton({ onClick }: FunctionProps) {
 			</span>
 			<span className="ml-1">Platform Growth</span>
 			{hidden && (
-				<span className="text-primary-70">
-					<Dot size={18} />
+				<span className="relative mx-2 flex size-2">
+					<span className="bg-primary-60 absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"></span>
+					<span className="bg-primary-70 relative inline-flex size-2 rounded-full"></span>
 				</span>
 			)}
 		</button>
