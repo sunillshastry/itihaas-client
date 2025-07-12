@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import QuickFactField from '@/components/views/QuickFactField';
 import QuickFactsNoField from '@/components/views/QuickFactsNoField';
 import { Ruler } from '@/interfaces/Ruler';
+import RulerFamilyField from './RulerFamilyField';
 
 interface FunctionProps {
 	ruler: Ruler;
@@ -23,7 +24,13 @@ function RulerQuickFieldsContainer({ ruler }: FunctionProps) {
 
 			<QuickFactField
 				title="family"
-				content={ruler?.family ? 'Update family!' : <QuickFactsNoField />}
+				content={
+					ruler?.family ? (
+						<RulerFamilyField family={ruler?.family} />
+					) : (
+						<QuickFactsNoField />
+					)
+				}
 			/>
 			<QuickFactField
 				title="religion"
