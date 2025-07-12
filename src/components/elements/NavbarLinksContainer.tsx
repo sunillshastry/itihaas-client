@@ -16,7 +16,7 @@ function NavbarLinksContainer() {
 				<NavbarLink to="/docs">Docs</NavbarLink>
 			</li>
 			<li>
-				<NavbarLink to="/issues">Issues</NavbarLink>
+				<NavbarLink to="/issues">Contributions</NavbarLink>
 			</li>
 		</ul>
 	);
