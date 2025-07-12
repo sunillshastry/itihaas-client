@@ -36,6 +36,8 @@ function DynastyPage() {
 		'Itihaas | The Front Page of Indian History'
 	);
 
+	const [refetchCount, setRefetchCount] = useState(0);
+
 	const [params, setParams] = useSearchParams();
 	const { dispatch } = useCitation();
 	const pageURL = usePageURL();
@@ -45,6 +47,7 @@ function DynastyPage() {
 		data: dynasty,
 		error,
 		isPending,
+		refetch,
 	} = useQuery({
 		queryKey: ['dynasty', slug],
 		queryFn: () => getDynasty(slug as string),
@@ -113,7 +116,11 @@ function DynastyPage() {
 			<>
 				<Navbar />
 				<MainContainer>
-					<FetchFailComponent />
+					<FetchFailComponent
+						refetchFn={refetch}
+						refetchCount={refetchCount}
+						refetchCountUpdate={setRefetchCount}
+					/>
 				</MainContainer>
 				<Footer className="mt-36" />
 			</>
