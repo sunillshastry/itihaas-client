@@ -26,6 +26,7 @@ function CiteListDropdown({ onChange }: FunctionProps) {
 			onChange={onChange}
 			options={dropdownOptions}
 			defaultValue={defaultOption[0] || dropdownOptions[2]}
+			isSearchable={false}
 			styles={{
 				control: (base, state) => ({
 					...base,

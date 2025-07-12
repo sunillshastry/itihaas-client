@@ -163,7 +163,6 @@ function CiteDropdown({ pageTitle, updatedDate, url }: FunctionProps) {
 
 	function handleCitationToggle() {
 		const opposite = !isCiteTabOpen;
-		console.log('hello!');
 
 		setIsCiteTabOpen((current) => !current);
 
