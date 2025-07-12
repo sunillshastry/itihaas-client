@@ -11,6 +11,10 @@ import DynastyPage from '@/pages/DynastyPage';
 import WarPage from '@/pages/WarPage';
 import RulerPage from '@/pages/RulerPage';
 import BackToTopButton from '@/components/elements/BackToTopButton';
+import NewContribution from './pages/contributions/NewContribution';
+import FixContribution from './pages/contributions/FixContribution';
+import APIContribution from './pages/contributions/APIContribution';
+import FeedbackContribution from './pages/contributions/FeedbackContribution';
 
 /**
  * Base App component of the application, which is mounted on the 'root' div component
@@ -59,6 +63,26 @@ function App() {
 				<Route
 					path="/issues"
 					element={<Issues />}
+				/>
+
+				<Route
+					path="/issues/new"
+					element={<NewContribution />}
+				/>
+
+				<Route
+					path="/issues/fix"
+					element={<FixContribution />}
+				/>
+
+				<Route
+					path="/issues/api"
+					element={<APIContribution />}
+				/>
+
+				<Route
+					path="/issues/feedback"
+					element={<FeedbackContribution />}
 				/>
 
 				<Route
