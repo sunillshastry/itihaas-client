@@ -1,5 +1,6 @@
 import {
 	Bug,
+	RefreshCw,
 	RotateCw,
 	SquareArrowOutUpRight,
 	TriangleAlert,
@@ -8,18 +9,47 @@ import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import BasicButton from '@/components/elements/BasicButton';
+import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
+import { Dynasty } from '@/interfaces/Dynasty';
+import { Ruler } from '@/interfaces/Ruler';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 interface FunctionProps {
 	children?: Readonly<React.ReactNode> | string;
+	refetchFn: (
+		options?: RefetchOptions
+	) => Promise<
+		QueryObserverResult<(Dynasty | Ruler)[] | Error | undefined, Error>
+	>;
+	refetchCount: number;
+	refetchCountUpdate: Dispatch<SetStateAction<number>>;
 }
 
+const MAX_REFETCH_ATTEMPTS = 3;
+
 function FetchFailComponent({
-	children = "We're having trouble fetching the data from the server. Refresh page, or try again soon.",
+	refetchFn,
+	refetchCount,
+	refetchCountUpdate,
 }: FunctionProps) {
+	const [message, setMessage] = useState(
+		`We're having trouble fetching the data from the server. Please try again.`
+	);
+	const [isRefresh, setIsRefresh] = useState(false);
 	const navigate = useNavigate();
 
-	function handleReloadPage() {
-		window.location.reload();
+	function handleRefetch() {
+		setIsRefresh(false);
+
+		if (refetchCount >= 3) {
+			setMessage(
+				`We tried a few times to reconnect, but the server's not responding. You can try refreshing the page manually, or try again later.`
+			);
+			setIsRefresh(true);
+			return;
+		}
+		refetchCountUpdate((current) => current + 1);
+		refetchFn();
 	}
 
 	function handleNavigateToIssues() {
@@ -33,7 +63,7 @@ function FetchFailComponent({
 	return (
 		<div className="flex flex-col items-center justify-center">
 			<h2 className="text-primary-600 mt-16 flex items-center justify-center text-center text-lg font-medium">
-				<span>{children}</span>
+				<span>{message}</span>
 
 				<span className="ml-1">
 					<TriangleAlert size={20} />
@@ -41,15 +71,30 @@ function FetchFailComponent({
 			</h2>
 
 			<div className="mt-2 flex">
-				<BasicButton
-					onClick={handleReloadPage}
-					className="m-2"
-				>
-					<span>Refresh Page</span>
-					<span className="ml-1">
-						<RotateCw size={14} />
-					</span>
-				</BasicButton>
+				{!isRefresh ? (
+					<BasicButton
+						onClick={handleRefetch}
+						className="m-2"
+					>
+						<span>
+							Retry{' '}
+							{refetchCount > 0 && `(${refetchCount}/${MAX_REFETCH_ATTEMPTS})`}
+						</span>
+						<span className="ml-1">
+							<RefreshCw size={14} />
+						</span>
+					</BasicButton>
+				) : (
+					<BasicButton
+						className="m-2"
+						onClick={() => window.location.reload()}
+					>
+						<span>Refresh Page</span>
+						<span className="ml-1">
+							<RotateCw size={14} />
+						</span>
+					</BasicButton>
+				)}
 
 				<BasicButton
 					onClick={handleNavigateToIssues}
