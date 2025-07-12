@@ -1,8 +1,17 @@
+import Footer from '@/components/elements/Footer';
+import MainContainer from '@/components/elements/MainContainer';
+import Navbar from '@/components/elements/Navbar';
+import SubHeader from '@/components/elements/SubHeader';
+
 function FixContribution() {
 	return (
-		<div>
-			<h1>Fix Contributions</h1>
-		</div>
+		<>
+			<Navbar />
+			<MainContainer>
+				<SubHeader>Correcting outdated and incorrect content</SubHeader>
+			</MainContainer>
+			<Footer className="mt-36" />
+		</>
 	);
 }
 
