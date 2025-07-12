@@ -6,13 +6,13 @@ function IssueInfo() {
 	return (
 		<div className="text-primary-400 border-primary/25 mt-5 border-b pb-10">
 			<p className="leading-8">
-				Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus
-				molestias qui exercitationem atque soluta et maiores veniam deleniti
-				voluptatem. Consequatur deserunt voluptas delectus iure enim
-				perspiciatis praesentium autem, alias voluptates id necessitatibus illum
-				tenetur illo ex iusto. Earum id, mollitia asperiores nisi debitis
-				doloremque iure ad minus alias consequuntur! Neque, sapiente voluptas!
-				Corporis neque dolorem possimus id maiores quod velit?
+				At <strong>Itihaas</strong>, we are building a platform that values
+				historical accuracy, community input, and shared knowledge. Whether
+				you're a casual user, researcher, developer, or history enthusiast, your
+				contributions help us maintain quality, fix errors, and grow our
+				dataset. This page offers several ways to contribute: from reporting
+				errors to suggesting new content or offering feedback. Every submission
+				is reviewed with care, and your involvement is deeply appreciated.
 			</p>
 
 			<ul className="mt-3">

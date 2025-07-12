@@ -56,7 +56,7 @@ function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 
 				<FooterLinksTab title="Developer">
 					<ul>
-						<FooterLink to="/issues">Issues</FooterLink>
+						<FooterLink to="/issues">Contributions</FooterLink>
 						<FooterLink to="/docs">Docs</FooterLink>
 						<a
 							href="https://github.com/sunillshastry/itihaas-api/"

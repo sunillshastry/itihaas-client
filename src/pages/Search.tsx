@@ -18,6 +18,7 @@ function Search() {
 	const [title, setTitle] = useState<string>(
 		'Itihaas | The Front Page of Indian History'
 	);
+	const [refetchCount, setRefetchCount] = useState(0);
 
 	const searchQuery = params.get('q')?.trim();
 
@@ -26,6 +27,7 @@ function Search() {
 		isPending,
 		error,
 		isLoading,
+		refetch,
 	} = useQuery({
 		queryKey: ['full-search', searchQuery],
 		queryFn: () => getQueryResults(searchQuery as string),
@@ -61,7 +63,11 @@ function Search() {
 			<>
 				<Navbar />
 				<MainContainer>
-					<FetchFailComponent />
+					<FetchFailComponent
+						refetchCount={refetchCount}
+						refetchFn={refetch}
+						refetchCountUpdate={setRefetchCount}
+					/>
 				</MainContainer>
 				<Footer className="mt-36" />
 			</>

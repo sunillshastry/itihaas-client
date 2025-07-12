@@ -16,9 +16,9 @@ function QuickFactsNoField() {
 
 			<Link
 				to="/issues"
-				className="text-primary-60 hover:text-primary-70 text-xs lowercase underline"
+				className="bg-primary-600 hover:bg-primary-20 rounded-full px-1.5 py-1 font-mono text-xs uppercase transition"
 			>
-				(update this)
+				update
 			</Link>
 		</span>
 	);

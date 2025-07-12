@@ -24,11 +24,14 @@ function DynastiesPage() {
 	const [queriedDynasties, setQueriedDynasties] = useState<Dynasty[]>([]);
 	const [searchQuery, setSearchQuery] = useState<string>('');
 
+	const [refetchCount, setRefetchCount] = useState(0);
+
 	// Data fetching (React Query)
 	const {
 		data: dynasties,
 		isPending,
 		error,
+		refetch,
 	} = useQuery({
 		queryKey: ['dynasties'],
 		queryFn: getDynasties,
@@ -73,7 +76,11 @@ function DynastiesPage() {
 			<>
 				<Navbar />
 				<MainContainer>
-					<FetchFailComponent />
+					<FetchFailComponent
+						refetchFn={refetch}
+						refetchCount={refetchCount}
+						refetchCountUpdate={setRefetchCount}
+					/>
 				</MainContainer>
 				<Footer className="mt-36" />
 			</>

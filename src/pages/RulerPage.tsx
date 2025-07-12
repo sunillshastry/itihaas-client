@@ -38,12 +38,14 @@ function RulerPage() {
 	const [title, setTitle] = useState<string>(
 		'Itihaas | The Front Page of Indian History'
 	);
+	const [refetchCount, setRefetchCount] = useState(0);
 
 	// Data Fetching (React Query)
 	const {
 		data: ruler,
 		isPending,
 		error,
+		refetch,
 	} = useQuery({
 		queryKey: ['ruler', slug],
 		queryFn: () => getRuler(slug as string),
@@ -116,7 +118,11 @@ function RulerPage() {
 			<>
 				<Navbar />
 				<MainContainer>
-					<FetchFailComponent />
+					<FetchFailComponent
+						refetchFn={refetch}
+						refetchCount={refetchCount}
+						refetchCountUpdate={setRefetchCount}
+					/>
 				</MainContainer>
 				<Footer className="mt-36" />
 			</>
