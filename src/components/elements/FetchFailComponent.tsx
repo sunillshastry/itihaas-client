@@ -19,7 +19,10 @@ interface FunctionProps {
 	refetchFn: (
 		options?: RefetchOptions
 	) => Promise<
-		QueryObserverResult<(Dynasty | Ruler)[] | Error | undefined, Error>
+		QueryObserverResult<
+			(Dynasty | Ruler)[] | Dynasty | Ruler | Error | undefined,
+			Error
+		>
 	>;
 	refetchCount: number;
 	refetchCountUpdate: Dispatch<SetStateAction<number>>;
