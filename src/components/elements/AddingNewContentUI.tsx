@@ -1,5 +1,6 @@
 import PlatformGrowthButton from '@/components/views/PlatformGrowthButton';
 import { usePlatformGrowth } from '@/context/PlatformGrowthContext';
+import { Link } from 'react-router-dom';
 
 function AddingNewContentUI() {
 	const { hidden, dispatch } = usePlatformGrowth();
@@ -21,6 +22,13 @@ function AddingNewContentUI() {
 						corrections to help ensure accuracy and inclusivity in our growing
 						historical archive.
 					</p>
+
+					<Link
+						to="/issues"
+						className="text-primary-70 hover:text-primary-90 mt-2 inline-block text-sm underline"
+					>
+						View contribution guide
+					</Link>
 				</div>
 			)}
 		</>
