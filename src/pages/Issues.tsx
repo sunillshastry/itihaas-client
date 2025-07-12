@@ -11,7 +11,7 @@ function Issues() {
 		<>
 			<Navbar />
 			<MainContainer>
-				<PrimaryHeader>Submit Issue</PrimaryHeader>
+				<PrimaryHeader>Contribution Guide</PrimaryHeader>
 				<IssueInfo />
 
 				<IssuesUserDetails />
