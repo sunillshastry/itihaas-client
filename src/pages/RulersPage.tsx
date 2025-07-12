@@ -18,12 +18,14 @@ function RulersPage() {
 	// State
 	const [queriedRulers, setQueriedRulers] = useState<Ruler[]>([]);
 	const [searchQuery, setSearchQuery] = useState<string>('');
+	const [refetchCount, setRefetchCount] = useState(0);
 
 	// Data fetching (React Query)
 	const {
 		data: rulers,
 		error,
 		isPending,
+		refetch,
 	} = useQuery({
 		queryKey: ['rulers'],
 		queryFn: getRulers,
@@ -65,7 +67,11 @@ function RulersPage() {
 			<>
 				<Navbar />
 				<MainContainer>
-					<FetchFailComponent />
+					<FetchFailComponent
+						refetchFn={refetch}
+						refetchCount={refetchCount}
+						refetchCountUpdate={setRefetchCount}
+					/>
 				</MainContainer>
 				<Footer className="mt-36" />
 			</>
