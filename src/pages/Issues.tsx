@@ -43,13 +43,14 @@ function Issues() {
 						linkContent="Propose a new entry"
 						to="new"
 					>
-						Use this form if you'd like to propose the addition of new
-						dynasties, rulers, battles, or other historical entities that are
-						not yet available on the platform. We welcome well researched
-						submissions that enhance our coverage of regional or lesser known
-						historical narratives, ensuring a more inclusive and comprehensive
-						resource for all users. Your submission will be reviewed by our
-						team, and if approved, added to our growing dataset.
+						Use this form if you'd like to propose the addition/updating of
+						sub-fields within existing entities (dynasty, ruler and war), or add
+						new entity (dynasty, ruler, war) or suggest new historical entities
+						that are not yet available on the platform. We welcome well
+						researched submissions that enhance our coverage of regional or
+						lesser known historical narratives, ensuring a more inclusive and
+						comprehensive resource for all users. Your submission will be
+						reviewed by our team, and if approved, added to our growing dataset.
 					</IssueTypeLink>
 
 					<IssueTypeLink
