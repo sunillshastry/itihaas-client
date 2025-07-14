@@ -148,7 +148,7 @@ function DynastiesPage() {
 				<div>
 					<AddingNewContentUI />
 					<PrimaryHeader>Dynasties</PrimaryHeader>
-					<div className="mt-5 flex items-center justify-between">
+					<div className="mt-5 flex items-end justify-between">
 						<PageSearchBar
 							placeholder="Search all dynasties..."
 							value={searchQuery}
@@ -167,7 +167,7 @@ function DynastiesPage() {
 								</span>
 							</label>
 							<Select
-								className="min-w-44"
+								className="mt-1 min-w-44"
 								options={SearchSortByOptions}
 								value={sortByValue}
 								onChange={handleSortChange}
