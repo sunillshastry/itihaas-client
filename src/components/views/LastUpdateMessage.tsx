@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import useUpdateDate from '@/hooks/useUpdateDate';
 
 interface FunctionProps {
-	date: Date | undefined;
+	date: Date | undefined | string;
 }
 
 function LastUpdateMessage({ date }: FunctionProps) {
-	const dateString = useUpdateDate(date as Date);
+	const dateString = useUpdateDate(date as string);
 
 	return (
 		<p className="text-primary-400 my-5 flex items-center text-sm font-semibold italic">

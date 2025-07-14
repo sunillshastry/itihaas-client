@@ -7,20 +7,33 @@ import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
 import PrimaryHeader from '@/components/elements/PrimaryHeader';
 import SearchResult from '@/components/elements/SearchResult';
+import Select from '@/components/elements/Select';
 import EmptySearchResult from '@/components/views/EmptySearchResult';
+import SearchFilterByOptions from '@/data/SearchFilterByOptions';
+import SearchSortByOptions from '@/data/SearchSortByOptions';
+import { Dynasty } from '@/interfaces/Dynasty';
+import { Ruler } from '@/interfaces/Ruler';
 import updateWindowTitle from '@/utils/updateWindowTitle';
 import { useQuery } from '@tanstack/react-query';
+import { ArrowDownNarrowWide, SlidersHorizontal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 function Search() {
-	const [params] = useSearchParams();
+	const [params, setParams] = useSearchParams();
 	const [title, setTitle] = useState<string>(
 		'Itihaas | The Front Page of Indian History'
 	);
 	const [refetchCount, setRefetchCount] = useState(0);
+	const [filterByValue, setFilterByValue] = useState<string>('');
+	const [sortByValue, setSortByValue] = useState<string>('');
+	const [queriedResults, setQueriedResults] = useState<
+		(Dynasty | Ruler)[] | null
+	>(null);
 
 	const searchQuery = params.get('q')?.trim();
+	const filterQuery = params.get('filter')?.trim();
+	const sortQuery = params.get('sort')?.trim();
 
 	const {
 		data: searchResults,
@@ -33,31 +46,98 @@ function Search() {
 		queryFn: () => getQueryResults(searchQuery as string),
 	});
 
-	useEffect(
-		function () {
-			window.document.title = title;
+	function handleFilterChange(value: string) {
+		setFilterByValue(value);
+		setParams((currentParams) => {
+			currentParams.set('filter', value);
+			return currentParams;
+		});
+	}
 
-			return () => {
-				window.document.title = 'Itihaas | The Front Page of Indian History';
-			};
-		},
-		[title]
-	);
+	function handleSortChange(value: string) {
+		setSortByValue(value);
+		setParams((currentParams) => {
+			currentParams.set('sort', value);
+			return currentParams;
+		});
+	}
 
-	useEffect(
-		function () {
-			if (searchResults && !(searchResults instanceof Error)) {
-				updateWindowTitle(setTitle, `Search '${searchQuery}'`);
+	function getCustomResultsContent(results: (Dynasty | Ruler)[]) {
+		if (results !== undefined && !(results instanceof Error)) {
+			return results.length < 10 && results.length !== 0
+				? `0${results.length}`
+				: results.length;
+		}
+	}
+
+	// Combined filtering + sorting
+	useEffect(() => {
+		if (!searchResults || searchResults instanceof Error) return;
+
+		let filtered = [...searchResults];
+
+		// Filter
+		if (filterQuery && filterQuery !== 'none') {
+			filtered = filtered.filter(
+				(item) => item.entity?.toLowerCase() === filterQuery.toLowerCase()
+			);
+		}
+
+		// Sort
+		if (sortQuery) {
+			const sortVal = sortQuery.toLowerCase();
+
+			if (sortVal === 'alphabetical-a-z') {
+				filtered.sort((a, b) =>
+					a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+				);
+			} else if (sortVal === 'alphabetical-z-a') {
+				filtered.sort((a, b) =>
+					b.name.toLowerCase().localeCompare(a.name.toLowerCase())
+				);
+			} else if (sortVal == 'chronological') {
+				// TODO: UPDATE THIS;
+			} else if (sortVal === 'created') {
+				filtered.sort(
+					(a, b) =>
+						new Date(a?.createdAt ?? 0).getTime() -
+						new Date(b?.createdAt ?? 0).getTime()
+				);
+			} else if (sortVal === 'last-updated') {
+				filtered.sort(
+					(a, b) =>
+						new Date(b?.updatedAt ?? 0).getTime() -
+						new Date(a?.updatedAt ?? 0).getTime()
+				);
 			}
+		}
 
-			return () => {
-				window.document.title = 'Itihaas | The Front Page of Indian History';
-			};
-		},
-		[searchResults, searchQuery]
-	);
+		setQueriedResults(filtered);
+	}, [searchResults, filterQuery, sortQuery]);
 
-	// Error State (API not working or other internal error)
+	// Set filter/sort dropdowns based on URL
+	useEffect(() => {
+		if (filterQuery) setFilterByValue(filterQuery);
+		if (sortQuery) setSortByValue(sortQuery);
+	}, [filterQuery, sortQuery]);
+
+	useEffect(() => {
+		window.document.title = title;
+		return () => {
+			window.document.title = 'Itihaas | The Front Page of Indian History';
+		};
+	}, [title]);
+
+	useEffect(() => {
+		if (searchResults && !(searchResults instanceof Error)) {
+			updateWindowTitle(setTitle, `Search '${searchQuery}'`);
+		}
+		return () => {
+			window.document.title = 'Itihaas | The Front Page of Indian History';
+		};
+	}, [searchResults, searchQuery]);
+
+	// Error State
 	if (error || searchResults instanceof Error) {
 		return (
 			<>
@@ -96,14 +176,71 @@ function Search() {
 						<AddingNewContentUI />
 						<PrimaryHeader>
 							Found{' '}
-							{searchResults.length < 10 && searchResults.length !== 0
-								? `0${searchResults.length}`
-								: searchResults.length}{' '}
+							{queriedResults == null
+								? getCustomResultsContent(searchResults)
+								: getCustomResultsContent(queriedResults)}{' '}
 							results for &lsquo;{searchQuery}&rsquo;
 						</PrimaryHeader>
+
+						<div className="mt-3 flex items-center justify-end">
+							<div className="inline-flex flex-col items-start">
+								<label
+									id="search-filter"
+									className="text-primary-20 flex items-center gap-2 font-bold uppercase"
+								>
+									<span>Filter By</span>
+									<span>
+										<SlidersHorizontal size={14} />
+									</span>
+								</label>
+								<Select
+									className="mt-1"
+									options={SearchFilterByOptions}
+									value={filterByValue}
+									onChange={handleFilterChange}
+									placeholder="Select an entity"
+									aria-label="search-filter"
+									name="search-filter"
+								/>
+							</div>
+
+							<div className="ml-3 inline-flex flex-col items-start">
+								<label
+									id="search-sort"
+									className="text-primary-20 flex items-center gap-2 font-bold uppercase"
+								>
+									<span>Sort By</span>
+									<span>
+										<ArrowDownNarrowWide size={14} />
+									</span>
+								</label>
+								<Select
+									className="mt-1 min-w-44"
+									options={SearchSortByOptions}
+									value={sortByValue}
+									onChange={handleSortChange}
+									placeholder="Sort results by"
+									aria-label="search-sort"
+									name="search-sort"
+								/>
+							</div>
+						</div>
 					</div>
 
-					{searchResults.length > 0 ? (
+					{queriedResults !== null && queriedResults.length > 0 && (
+						<ul className="mt-10">
+							{queriedResults.map(function (searchResult) {
+								return (
+									<SearchResult
+										key={searchResult._id}
+										entity={searchResult}
+									/>
+								);
+							})}
+						</ul>
+					)}
+
+					{queriedResults == null && searchResults.length > 0 && (
 						<ul className="mt-10">
 							{searchResults.map(function (searchResult) {
 								return (
@@ -114,7 +251,12 @@ function Search() {
 								);
 							})}
 						</ul>
-					) : (
+					)}
+
+					{queriedResults == null && searchResults.length === 0 && (
+						<EmptySearchResult />
+					)}
+					{queriedResults !== null && queriedResults.length === 0 && (
 						<EmptySearchResult />
 					)}
 				</MainContainer>

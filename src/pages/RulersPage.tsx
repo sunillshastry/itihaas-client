@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import Footer from '@/components/elements/Footer';
 import MainContainer from '@/components/elements/MainContainer';
@@ -13,12 +13,22 @@ import { useQuery } from '@tanstack/react-query';
 import getRulers from '@/api/getRulers';
 import AddingNewContentUI from '@/components/elements/AddingNewContentUI';
 import { Ruler } from '@/interfaces/Ruler';
+import { useSearchParams } from 'react-router-dom';
+import { ArrowDownNarrowWide } from 'lucide-react';
+import Select from '@/components/elements/Select';
+import SearchSortByOptions from '@/data/SearchSortByOptions';
 
 function RulersPage() {
+	// Query params
+	const [params, setParams] = useSearchParams();
+
 	// State
 	const [queriedRulers, setQueriedRulers] = useState<Ruler[]>([]);
 	const [searchQuery, setSearchQuery] = useState<string>('');
 	const [refetchCount, setRefetchCount] = useState(0);
+	const [sortByValue, setSortByValue] = useState<string>('');
+
+	const sortQuery = params.get('sort')?.trim();
 
 	// Data fetching (React Query)
 	const {
@@ -31,6 +41,14 @@ function RulersPage() {
 		queryFn: getRulers,
 	});
 
+	function handleSortChange(value: string) {
+		setSortByValue(value);
+		setParams((currentParams) => {
+			currentParams.set('sort', value);
+			return currentParams;
+		});
+	}
+
 	// Effects
 	useEffect(function () {
 		// Update document title field
@@ -41,6 +59,11 @@ function RulersPage() {
 			window.document.title = 'Itihaas | The Front Page of Indian History';
 		};
 	}, []);
+
+	// Sync initial sort param to select input
+	useEffect(() => {
+		if (sortQuery) setSortByValue(sortQuery);
+	}, [sortQuery]);
 
 	useEffect(
 		function () {
@@ -60,6 +83,47 @@ function RulersPage() {
 		},
 		[rulers, searchQuery]
 	);
+
+	// Final sorted dynasties list
+	const finalRulers = useMemo(() => {
+		if (!rulers || rulers instanceof Error) return [];
+
+		let result = [...rulers];
+
+		if (searchQuery.length >= 3) {
+			result = result.filter((dynasty) =>
+				dynasty.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
+			);
+		}
+
+		const sortVal = sortQuery?.toLowerCase();
+
+		if (sortVal === 'alphabetical-a-z') {
+			result.sort((a, b) =>
+				a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+			);
+		} else if (sortVal === 'alphabetical-z-a') {
+			result.sort((a, b) =>
+				b.name.toLowerCase().localeCompare(a.name.toLowerCase())
+			);
+		} else if (sortVal === 'created') {
+			result.sort(
+				(a, b) =>
+					new Date(a?.createdAt ?? 0).getTime() -
+					new Date(b?.createdAt ?? 0).getTime()
+			);
+		} else if (sortVal === 'last-updated') {
+			result.sort(
+				(a, b) =>
+					new Date(b?.updatedAt ?? 0).getTime() -
+					new Date(a?.updatedAt ?? 0).getTime()
+			);
+		} else if (sortVal === 'chronological') {
+			// TODO: Add actual chronological sorting logic here
+		}
+
+		return result;
+	}, [rulers, searchQuery, sortQuery]);
 
 	// Error State
 	if (error || (rulers instanceof Error && rulers?.name === 'TypeError')) {
@@ -98,25 +162,46 @@ function RulersPage() {
 				<div>
 					<AddingNewContentUI />
 					<PrimaryHeader>Rulers</PrimaryHeader>
-					<PageSearchBar
-						className="mt-5"
-						placeholder="Search all rulers..."
-						value={searchQuery}
-						onChange={setSearchQuery}
-						setSearchQuery={setSearchQuery}
-					/>
+					<div className="mt-5 flex items-end justify-between">
+						<PageSearchBar
+							placeholder="Search all rulers..."
+							value={searchQuery}
+							onChange={setSearchQuery}
+							setSearchQuery={setSearchQuery}
+						/>
+
+						<div>
+							<label
+								id="dynasties-sort"
+								className="text-primary-20 flex items-center gap-2 font-bold uppercase"
+							>
+								<span>Sort by</span>
+								<span>
+									<ArrowDownNarrowWide size={14} />
+								</span>
+							</label>
+							<Select
+								className="mt-1 min-w-44"
+								options={SearchSortByOptions}
+								value={sortByValue}
+								onChange={handleSortChange}
+								placeholder="Sort result by"
+								aria-label="dynasties-sort"
+								name="dynasties-sort"
+							/>
+						</div>
+					</div>
 				</div>
+
+				{finalRulers?.length === 0 && searchQuery?.length >= 3 && (
+					<EntitiesPageNoResult query={searchQuery} />
+				)}
 
 				{queriedRulers.length === 0 && searchQuery.length >= 3 && (
 					<EntitiesPageNoResult query={searchQuery} />
 				)}
-				<RulerPageList
-					rulers={
-						queriedRulers.length > 0
-							? (queriedRulers as Ruler[])
-							: (rulers as Ruler[])
-					}
-				/>
+
+				<RulerPageList rulers={finalRulers} />
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>

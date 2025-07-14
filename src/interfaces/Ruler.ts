@@ -36,8 +36,8 @@ interface Ruler {
 
 	articles?: Article[];
 
-	createdAt?: Date;
-	updatedAt?: Date;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 
 	__v?: string;
 }
