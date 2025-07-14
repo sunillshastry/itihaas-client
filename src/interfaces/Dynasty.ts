@@ -35,8 +35,8 @@ interface Dynasty {
 	entity?: string;
 	__v?: string;
 
-	createdAt?: Date;
-	updatedAt?: Date;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 }
 
 export type { Dynasty };
