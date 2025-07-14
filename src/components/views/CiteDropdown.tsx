@@ -106,23 +106,6 @@ function CiteDropdown({ pageTitle, updatedDate, url }: FunctionProps) {
 
 	useEffect(
 		function () {
-			const citationTab = params.get('citationTab');
-
-			if (citationTab) {
-				if (citationTab === 'open') {
-					setIsCiteTabOpen(true);
-				} else if (citationTab === 'close') {
-					setIsCiteTabOpen(false);
-				}
-			} else {
-				setIsCiteTabOpen(false);
-			}
-		},
-		[params]
-	);
-
-	useEffect(
-		function () {
 			const format = params.get('citationFormat');
 
 			if (format) {
@@ -168,18 +151,8 @@ function CiteDropdown({ pageTitle, updatedDate, url }: FunctionProps) {
 
 		if (opposite) {
 			dispatch({ type: 'open/true' });
-
-			setParams(function (current) {
-				current.set('citationTab', 'open');
-				return current;
-			});
 		} else {
 			dispatch({ type: 'open/false' });
-
-			setParams(function (current) {
-				current.set('citationTab', 'close');
-				return current;
-			});
 		}
 	}
 
