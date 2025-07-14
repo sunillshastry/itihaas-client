@@ -7,7 +7,7 @@ interface FunctionProps {
 function EntitiesPageNoResult({ query = 'query' }: FunctionProps) {
 	return (
 		<h2 className="text-primary mt-4 italic">
-			No search matches for &lsquo;{query}&rsquo;. Showing all available content
+			No search matches for &lsquo;{query}&rsquo;.
 		</h2>
 	);
 }
