@@ -33,6 +33,7 @@ function Search() {
 
 	const searchQuery = params.get('q')?.trim();
 	const filterQuery = params.get('filter')?.trim();
+	const sortQuery = params.get('sort')?.trim();
 
 	const {
 		data: searchResults,
@@ -47,30 +48,18 @@ function Search() {
 
 	function handleFilterChange(value: string) {
 		setFilterByValue(value);
-
-		if (searchResults !== undefined && !(searchResults instanceof Error)) {
-			if (value === 'none') {
-				setQueriedResults([...searchResults]);
-				setParams(function (currentParams) {
-					currentParams.set('filter', 'none');
-					return currentParams;
-				});
-			} else {
-				const filteredResults = searchResults.filter(function (searchResult) {
-					return searchResult?.entity?.toLowerCase() === value.toLowerCase();
-				});
-				setQueriedResults([...filteredResults]);
-
-				setParams(function (currentParams) {
-					currentParams.set('filter', value.toLowerCase());
-					return currentParams;
-				});
-			}
-		}
+		setParams((currentParams) => {
+			currentParams.set('filter', value);
+			return currentParams;
+		});
 	}
 
 	function handleSortChange(value: string) {
 		setSortByValue(value);
+		setParams((currentParams) => {
+			currentParams.set('sort', value);
+			return currentParams;
+		});
 	}
 
 	function getCustomResultsContent(results: (Dynasty | Ruler)[]) {
@@ -81,68 +70,74 @@ function Search() {
 		}
 	}
 
-	useEffect(
-		function () {
-			if (searchResults !== undefined && !(searchResults instanceof Error)) {
-				setQueriedResults([...searchResults]);
+	// Combined filtering + sorting
+	useEffect(() => {
+		if (!searchResults || searchResults instanceof Error) return;
+
+		let filtered = [...searchResults];
+
+		// Filter
+		if (filterQuery && filterQuery !== 'none') {
+			filtered = filtered.filter(
+				(item) => item.entity?.toLowerCase() === filterQuery.toLowerCase()
+			);
+		}
+
+		// Sort
+		if (sortQuery) {
+			const sortVal = sortQuery.toLowerCase();
+
+			if (sortVal === 'alphabetical-a-z') {
+				filtered.sort((a, b) =>
+					a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+				);
+			} else if (sortVal === 'alphabetical-z-a') {
+				filtered.sort((a, b) =>
+					b.name.toLowerCase().localeCompare(a.name.toLowerCase())
+				);
+			} else if (sortVal == 'chronological') {
+				// TODO: UPDATE THIS;
+			} else if (sortVal === 'created') {
+				filtered.sort(
+					(a, b) =>
+						new Date(a?.createdAt ?? 0).getTime() -
+						new Date(b?.createdAt ?? 0).getTime()
+				);
+			} else if (sortVal === 'last-updated') {
+				filtered.sort(
+					(a, b) =>
+						new Date(b?.updatedAt ?? 0).getTime() -
+						new Date(a?.updatedAt ?? 0).getTime()
+				);
 			}
-		},
-		[searchQuery, searchResults]
-	);
+		}
 
-	useEffect(
-		function () {
-			const allowedFilters = ['dynasty', 'ruler', 'war', 'none'];
+		setQueriedResults(filtered);
+	}, [searchResults, filterQuery, sortQuery]);
 
-			if (searchResults !== undefined && !(searchResults instanceof Error)) {
-				if (filterQuery && allowedFilters.includes(filterQuery)) {
-					if (filterQuery === 'none') {
-						setQueriedResults([...searchResults]);
-					} else {
-						const filteredResults = searchResults.filter(
-							function (searchResult) {
-								return (
-									searchResult?.entity?.toLowerCase() ===
-									filterQuery.toLowerCase()
-								);
-							}
-						);
-						setQueriedResults(() => [...filteredResults]);
-						setFilterByValue(filterQuery);
-					}
-				} else {
-					setQueriedResults([...searchResults]);
-				}
-			}
-		},
-		[filterQuery, searchResults]
-	);
+	// Set filter/sort dropdowns based on URL
+	useEffect(() => {
+		if (filterQuery) setFilterByValue(filterQuery);
+		if (sortQuery) setSortByValue(sortQuery);
+	}, [filterQuery, sortQuery]);
 
-	useEffect(
-		function () {
-			window.document.title = title;
+	useEffect(() => {
+		window.document.title = title;
+		return () => {
+			window.document.title = 'Itihaas | The Front Page of Indian History';
+		};
+	}, [title]);
 
-			return () => {
-				window.document.title = 'Itihaas | The Front Page of Indian History';
-			};
-		},
-		[title]
-	);
+	useEffect(() => {
+		if (searchResults && !(searchResults instanceof Error)) {
+			updateWindowTitle(setTitle, `Search '${searchQuery}'`);
+		}
+		return () => {
+			window.document.title = 'Itihaas | The Front Page of Indian History';
+		};
+	}, [searchResults, searchQuery]);
 
-	useEffect(
-		function () {
-			if (searchResults && !(searchResults instanceof Error)) {
-				updateWindowTitle(setTitle, `Search '${searchQuery}'`);
-			}
-
-			return () => {
-				window.document.title = 'Itihaas | The Front Page of Indian History';
-			};
-		},
-		[searchResults, searchQuery]
-	);
-
-	// Error State (API not working or other internal error)
+	// Error State
 	if (error || searchResults instanceof Error) {
 		return (
 			<>
@@ -259,6 +254,9 @@ function Search() {
 					)}
 
 					{queriedResults == null && searchResults.length === 0 && (
+						<EmptySearchResult />
+					)}
+					{queriedResults !== null && queriedResults.length === 0 && (
 						<EmptySearchResult />
 					)}
 				</MainContainer>
