@@ -12,6 +12,8 @@ import HashContainer from '@/components/elements/HashContainer';
 // MDX Docs
 import MDXGettingStartedSectionOne from '@/docs/getting-started/viewing-and-accessing-documentation.mdx';
 import MDXGettingStartedSectionTwo from '@/docs/getting-started/request-response-examples.mdx';
+import MDXGettingStartedSectionThree from '@/docs/getting-started/api-registration.mdx';
+
 /**
  * Main React.JSX page component for /docs: Documentation page
  *
@@ -58,6 +60,17 @@ function Docs() {
 									/>
 								</HashContainer>
 								<MDXGettingStartedSectionTwo components={mdxComponents} />
+							</div>
+
+							<div>
+								<HashContainer id="api-registration">
+									<MDXSubTitle
+										components={mdxComponents}
+										id="api-registration"
+										name="API Registration"
+									/>
+								</HashContainer>
+								<MDXGettingStartedSectionThree components={mdxComponents} />
 							</div>
 						</div>
 					</div>
