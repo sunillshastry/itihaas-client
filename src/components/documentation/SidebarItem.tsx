@@ -21,7 +21,7 @@ function SidebarItem({ title, subfields }: FunctionProps) {
 							key={subfieldId}
 							className="my-1 hover:underline"
 						>
-							<a href={subfield?.id ? subfield.id : subfieldId}>
+							<a href={subfield?.id ? `#${subfield.id}` : subfieldId}>
 								{subfield.content}
 							</a>
 						</li>
