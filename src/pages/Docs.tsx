@@ -7,6 +7,7 @@ import Sidebar from '@/components/documentation/Sidebar';
 import MDXTitle from '@/docs/title.mdx';
 import MDXSubTitle from '@/docs/sub-title.mdx';
 import MDXGettingStartedFirst from '@/docs/getting-started/first.mdx';
+import MDXGettingStartedSecond from '@/docs/getting-started/second.mdx';
 import { mdxComponents } from '@/mdx/config';
 import HashContainer from '@/components/elements/HashContainer';
 
@@ -20,7 +21,7 @@ function Docs() {
 		<>
 			<Navbar />
 			<MDXProvider>
-				<MainContainer className="relative mx-0 flex px-5">
+				<MainContainer className="relative mx-0 flex items-start px-5">
 					<Sidebar />
 
 					<div className="ml-3 w-full">
@@ -36,15 +37,27 @@ function Docs() {
 								/>
 							</HashContainer>
 
-							<HashContainer id="viewing-and-accessing-documentation">
-								<MDXSubTitle
-									components={mdxComponents}
-									id="viewing-and-accessing-documentation"
-									name="Viewing and accessing documentation"
-								/>
-							</HashContainer>
+							<div>
+								<HashContainer id="viewing-and-accessing-documentation">
+									<MDXSubTitle
+										components={mdxComponents}
+										id="viewing-and-accessing-documentation"
+										name="Viewing and accessing documentation"
+									/>
+								</HashContainer>
+								<MDXGettingStartedFirst components={mdxComponents} />
+							</div>
 
-							<MDXGettingStartedFirst components={mdxComponents} />
+							<div>
+								<HashContainer id="request-response-examples">
+									<MDXSubTitle
+										components={mdxComponents}
+										id="request-response-examples"
+										name="Request/Response Examples"
+									/>
+								</HashContainer>
+								<MDXGettingStartedSecond components={mdxComponents} />
+							</div>
 						</div>
 					</div>
 				</MainContainer>
