@@ -31,7 +31,7 @@ function CodeBlock({
 	}
 
 	return (
-		<div className="my-2 overflow-x-scroll">
+		<div className="my-2 max-w-full overflow-x-scroll">
 			<Highlight
 				theme={emptyDefaultTheme}
 				language={language}
