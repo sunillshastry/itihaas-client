@@ -1,3 +1,4 @@
+import BackButton from '@/components/elements/BackButton';
 import Footer from '@/components/elements/Footer';
 import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
@@ -8,6 +9,7 @@ function APIContribution() {
 		<>
 			<Navbar />
 			<MainContainer>
+				<BackButton />
 				<SubHeader>API and Documentation concerns</SubHeader>
 			</MainContainer>
 			<Footer className="mt-36" />
