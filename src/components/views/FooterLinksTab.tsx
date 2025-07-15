@@ -8,7 +8,7 @@ interface FunctionProps {
 function FooterLinksTab({ title, children }: FunctionProps) {
 	return (
 		<div>
-			<h4 className="font-heading text-primary-60 border-b-primary-60/20 border-b text-xl">
+			<h4 className="font-heading text-primary-60 border-b-primary-60/20 border-b text-lg">
 				{title}
 			</h4>
 			{children}
