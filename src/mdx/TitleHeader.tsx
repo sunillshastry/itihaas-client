@@ -7,7 +7,7 @@ interface FunctionProps {
 
 function TitleHeader({ children }: FunctionProps) {
 	return (
-		<h4 className="text-primary-500 group my-2 flex items-center gap-1 rounded-md py-2 text-lg font-medium">
+		<h4 className="text-primary-500 group border-primary-30/75 my-2 flex items-center gap-1 border-b py-2 text-lg font-medium">
 			<span className="text-primary-10 pointer-events-none">
 				<ChevronRight size={14} />
 			</span>
