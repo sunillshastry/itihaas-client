@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 
 import Footer from '@/components/elements/Footer';
 import MainContainer from '@/components/elements/MainContainer';
@@ -6,7 +6,6 @@ import Navbar from '@/components/elements/Navbar';
 import PageSearchBar from '@/components/elements/PageSearchBar';
 import PrimaryHeader from '@/components/elements/PrimaryHeader';
 import Loader from '@/components/elements/Loader';
-import RulerPageList from '@/components/ruler/RulerPageList';
 import FetchFailComponent from '@/components/elements/FetchFailComponent';
 import EntitiesPageNoResult from '@/components/views/EntitiesPageNoResult';
 import { useQuery } from '@tanstack/react-query';
@@ -17,6 +16,9 @@ import { useSearchParams } from 'react-router-dom';
 import { ArrowDownNarrowWide } from 'lucide-react';
 import Select from '@/components/elements/Select';
 import SearchSortByOptions from '@/data/SearchSortByOptions';
+
+// Code splitting (lazy loading)
+const RulerPageList = lazy(() => import('@/components/ruler/RulerPageList'));
 
 function RulersPage() {
 	// Query params
@@ -201,7 +203,9 @@ function RulersPage() {
 					<EntitiesPageNoResult query={searchQuery} />
 				)}
 
-				<RulerPageList rulers={finalRulers} />
+				<Suspense fallback={<Loader />}>
+					<RulerPageList rulers={finalRulers} />
+				</Suspense>
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>
