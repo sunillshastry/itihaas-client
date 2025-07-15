@@ -10,7 +10,7 @@ function FixContribution() {
 			<Navbar />
 			<MainContainer>
 				<BackButton />
-				<SubHeader>Correcting outdated and incorrect content</SubHeader>
+				<SubHeader>Fixing missing and incorrect content</SubHeader>
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>
