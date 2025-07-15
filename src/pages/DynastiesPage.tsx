@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 
 import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
 import PageSearchBar from '@/components/elements/PageSearchBar';
 import PrimaryHeader from '@/components/elements/PrimaryHeader';
 import Loader from '@/components/elements/Loader';
-import DynastyPageList from '@/components/dynasty/DynastyPageList';
 import Footer from '@/components/elements/Footer';
 import FetchFailComponent from '@/components/elements/FetchFailComponent';
 import EntitiesPageNoResult from '@/components/views/EntitiesPageNoResult';
@@ -16,6 +15,11 @@ import { useSearchParams } from 'react-router-dom';
 import Select from '@/components/elements/Select';
 import SearchSortByOptions from '@/data/SearchSortByOptions';
 import { ArrowDownNarrowWide } from 'lucide-react';
+
+// Code splitting (Lazy loading)
+const DynastyPageList = lazy(
+	() => import('@/components/dynasty/DynastyPageList')
+);
 
 /**
  * Main React.JSX page component for /dynasties: Dynasties page
@@ -183,7 +187,9 @@ function DynastiesPage() {
 					<EntitiesPageNoResult query={searchQuery} />
 				)}
 
-				<DynastyPageList dynasties={finalDynasties} />
+				<Suspense fallback={<Loader size="medium" />}>
+					<DynastyPageList dynasties={finalDynasties} />
+				</Suspense>
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>
