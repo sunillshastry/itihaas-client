@@ -1,3 +1,4 @@
+import Blockquote from './Blockquote';
 import Code from './Code';
 import Content from './Content';
 import Heading from './Heading';
@@ -16,6 +17,7 @@ const mdxComponents = {
 	li: ListItem,
 	code: Code,
 	a: Link,
+	blockquote: Blockquote,
 };
 
 export { mdxComponents };
