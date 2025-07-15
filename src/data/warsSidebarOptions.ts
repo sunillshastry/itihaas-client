@@ -7,23 +7,23 @@ const warsSidebarOptions: SidebarSubfield[] = [
 	},
 	{
 		content: 'By ID',
-		id: 'get-war-id',
+		id: 'get-war-by-id',
 	},
 	{
 		content: 'By Slug',
-		id: 'get-war-slug',
+		id: 'get-war-by-slug',
 	},
 	{
 		content: 'Find Search Titles',
-		id: 'war-search-titles',
+		id: 'get-war-search-titles',
 	},
 	{
 		content: 'Random',
-		id: 'war-random',
+		id: 'get-random-war',
 	},
 	{
 		content: 'Via Search Query',
-		id: 'war-search',
+		id: 'get-wars-by-query',
 	},
 ];
 
