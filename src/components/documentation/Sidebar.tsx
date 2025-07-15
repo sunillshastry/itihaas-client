@@ -3,7 +3,7 @@ import SidebarItem from './SidebarItem';
 
 function Sidebar() {
 	return (
-		<aside className="bg-primary-50 rounded-md px-6 py-2">
+		<aside className="bg-primary-50 sticky top-5 left-0 rounded-md px-6 py-2">
 			<h2 className="text-primary-700 border-primary-20 border-b pb-1 text-xl font-medium">
 				API Reference
 			</h2>
