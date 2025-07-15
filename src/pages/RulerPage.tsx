@@ -65,24 +65,6 @@ function RulerPage() {
 
 	useEffect(
 		function () {
-			const isCitationTabOpen = params.get('citationTab');
-
-			if (isCitationTabOpen) {
-				setParams(function (searchParams) {
-					searchParams.set('citationTab', isCitationTabOpen);
-					return searchParams;
-				});
-
-				dispatch({
-					type: `open/${isCitationTabOpen === 'open' ? 'true' : 'false'}`,
-				});
-			}
-		},
-		[params, setParams, dispatch]
-	);
-
-	useEffect(
-		function () {
 			const citationFormat = params.get('citationFormat');
 			const allowedFormats = ['harvard', 'chicago', 'apa', 'mla'];
 
