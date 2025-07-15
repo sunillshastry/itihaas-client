@@ -15,6 +15,9 @@ import NewContribution from './pages/contributions/NewContribution';
 import FixContribution from './pages/contributions/FixContribution';
 import APIContribution from './pages/contributions/APIContribution';
 import FeedbackContribution from './pages/contributions/FeedbackContribution';
+import Register from '@/pages/Register';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 /**
  * Base App component of the application, which is mounted on the 'root' div component
@@ -93,6 +96,24 @@ function App() {
 				<Route
 					path="/docs"
 					element={<Docs />}
+				/>
+
+				<Route
+					path="/register"
+					element={<Register />}
+				/>
+
+				<Route
+					path="/privacy"
+					element={<PrivacyPolicy />}
+				/>
+				<Route
+					path="/privacy-policy"
+					element={<PrivacyPolicy />}
+				/>
+				<Route
+					path="/terms-of-service"
+					element={<TermsOfService />}
 				/>
 
 				{/* Wildcard route(s) to handle all other routes as 404 state */}
