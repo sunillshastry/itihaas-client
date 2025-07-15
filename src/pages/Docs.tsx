@@ -6,11 +6,12 @@ import { MDXProvider } from '@mdx-js/react';
 import Sidebar from '@/components/documentation/Sidebar';
 import MDXTitle from '@/docs/title.mdx';
 import MDXSubTitle from '@/docs/sub-title.mdx';
-import MDXGettingStartedFirst from '@/docs/getting-started/first.mdx';
-import MDXGettingStartedSecond from '@/docs/getting-started/second.mdx';
 import { mdxComponents } from '@/mdx/config';
 import HashContainer from '@/components/elements/HashContainer';
 
+// MDX Docs
+import MDXGettingStartedSectionOne from '@/docs/getting-started/viewing-and-accessing-documentation.mdx';
+import MDXGettingStartedSectionTwo from '@/docs/getting-started/request-response-examples.mdx';
 /**
  * Main React.JSX page component for /docs: Documentation page
  *
@@ -45,7 +46,7 @@ function Docs() {
 										name="Viewing and accessing documentation"
 									/>
 								</HashContainer>
-								<MDXGettingStartedFirst components={mdxComponents} />
+								<MDXGettingStartedSectionOne components={mdxComponents} />
 							</div>
 
 							<div>
@@ -56,7 +57,7 @@ function Docs() {
 										name="Request/Response Examples"
 									/>
 								</HashContainer>
-								<MDXGettingStartedSecond components={mdxComponents} />
+								<MDXGettingStartedSectionTwo components={mdxComponents} />
 							</div>
 						</div>
 					</div>

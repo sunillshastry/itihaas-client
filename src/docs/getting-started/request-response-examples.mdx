@@ -1,0 +1,116 @@
+import CodeBlock from '@/mdx/CodeBlock.tsx';
+
+As mentioned, the Itihaas API adheres to RESTful principles and architecture, returning data in **JSON** format, and uses the standard HTTP status codes for success, not-found and error states; a helpful guide concerning HTTP status codes can be found [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status 'MDN Docs for HTTP Status Codes'). Additionally, Itihaas also follows the `lite-api` JSON specification; <span className="underline">[`lite-api`](https://github.com/sunillshastry/lite-api 'lite-api Specification')</span> is a simple JSON API-specification format used for web applications to build APIs in JSON format for a consistent and standardized way. Although we do not wish to delve deeper into `lite-api`, here is a basic (simplified) structure of how a JSON API would look with the `lite-api` specification:
+
+<CodeBlock
+	language="json"
+	copy={false}
+>
+	{`{
+		"success": true, // A boolean value indicating whether the request was successful or not
+		"state": "success", // Response type: "success" | "error" | "fail" | "forbidden" | "unauthorized"
+		"size": 5, // Length of 'data' field
+		"data": [{...}], // Actual content/data requested for
+		"entity": "users", // Endpoint entity
+		"status": 200, // HTTP Status Code of the response
+		"message": "success:get_all_users" // Optional message
+  }`}
+</CodeBlock>
+
+> A full guide to `lite-api` specification documentation can be viewed [here](https://github.com/sunillshastry/lite-api 'Full lite-api specification').
+
+With some familiarity to `lite-api` specification used for Itihaas API, we can now showcase an example request and response to display a mockup of how each request and response will look like for your reference.
+
+##### Sample Request
+
+Making a sample request to get a list of all dynasties. **Please know that the provided sample endpoint below does not work out-of-the-box**.To correctly use the Itihaas API, a free registration is required. Please view the [API Registration](http://localhost:3000/docs#api-registration) and the [Usage and other guidelines](http://localhost:3000/docs#usage-and-other-guidelines) sections.
+
+<CodeBlock language="http">
+	{`GET https://itihaas.dev/api/v1/dynasties/random`}
+</CodeBlock>
+
+##### Sample Response
+
+The following block is the official response for the request made above _(Sample Request)_.
+
+<CodeBlock language="json">
+	{`{
+		"success": true,
+		"state": "success",
+		"size": 1,
+		"data": {
+			"dynasty": {
+				"_id": "682cf76bfdee7d1389e2d2a5",
+				"slug": "kosala",
+				"name": "Kosala Dynasty",
+				"otherNames": [
+					"Uttara Kosala",
+					"Northern Kosala",
+					"Mahajanapada"
+				],
+				"timeline": {
+					"begin": "700 BCE",
+					"end": "500 BCE"
+				},
+				"capitals": [
+					"Ayodhya",
+					"Shravasti"
+				],
+				"languages": [
+					"Vedic Sanskrit",
+					"Sanskrit"
+				],
+				"religions": [
+					"Brahmanism",
+					"Vedic Religion",
+					"Vedic Hinduism",
+					"Jainism",
+					"Buddhism"
+				],
+				"sources": [
+					"https://en.wikipedia.org/wiki/Kosala_(Mahajanapada)",
+					"https://en.wikipedia.org/wiki/Kosala_kingdom",
+					"https://encyclopediaofbuddhism.org/wiki/Kosala"
+				],
+				"articles": [
+					{
+						"title": "Dakshin Kosala and Buddhist Art",
+						"authors": [
+						"Nitesh Kumar Mishra"
+						],
+						"publisher": "A&V Publications",
+						"link": "https://ijassonline.in/HTMLPaper.aspx?Journal=International%20Journal...",
+						"_id": "682cf76bfdee7d1389e2d2ab"
+					}
+				],
+				// ...and more fields!
+    		}
+    	},
+    	"entity": "dynasty",
+    	"status": 200,
+    	"message": "success:get_random_dynasty"
+}`}
+</CodeBlock>
+
+##### Error Response/State
+
+In case of a failed or not-found response, a sample response would look something like this:
+
+<CodeBlock language="json">
+	{`{
+		"success": false,
+		"state": "fail",
+		"size": 0,
+		"data": null,
+		"entity": "dynasty",
+		"status": 404,
+		"message": "fail:get_dynasty_by_id",
+		"log": {
+			"route": "https://itihaas.dev/api/v1/dynasties/unknown-dynasty",
+			"message": "Failed to locate specified resource in database",
+			"type": "error",
+			"method": "GET",
+			"name": "controllers.dynasties.getDynastyBySlugName"
+    	}
+}`}
+</CodeBlock>
