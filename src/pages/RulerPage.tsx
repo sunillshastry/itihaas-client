@@ -1,4 +1,4 @@
-import { lazy, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import BackButton from '@/components/elements/BackButton';
@@ -173,27 +173,29 @@ function RulerPage() {
 						</SecondaryHeader>
 					</div>
 
-					<QuickFacts>
-						<RulerQuickFieldsContainer ruler={ruler} />
-					</QuickFacts>
+					<Suspense fallback={<Loader />}>
+						<QuickFacts>
+							<RulerQuickFieldsContainer ruler={ruler} />
+						</QuickFacts>
 
-					<DescriptionContainer
-						descriptionList={ruler?.description?.long as string[]}
-					/>
+						<DescriptionContainer
+							descriptionList={ruler?.description?.long as string[]}
+						/>
 
-					<HashContainer id="sources">
-						<SourcesContainer sources={ruler?.sources} />
-					</HashContainer>
+						<HashContainer id="sources">
+							<SourcesContainer sources={ruler?.sources} />
+						</HashContainer>
 
-					<HashContainer id="reading">
-						<FurtherReadingContainer readings={ruler?.furtherReading} />
-					</HashContainer>
+						<HashContainer id="reading">
+							<FurtherReadingContainer readings={ruler?.furtherReading} />
+						</HashContainer>
 
-					{/* TODO: WARS CONTAINER */}
+						{/* TODO: WARS CONTAINER */}
 
-					<HashContainer id="articles">
-						<ArticlesContainer articles={ruler?.articles} />
-					</HashContainer>
+						<HashContainer id="articles">
+							<ArticlesContainer articles={ruler?.articles} />
+						</HashContainer>
+					</Suspense>
 
 					<MissingInfoDialog />
 
