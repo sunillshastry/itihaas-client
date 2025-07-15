@@ -1,4 +1,4 @@
-import { BookCheck } from 'lucide-react';
+import { BookCheck, KeyRound } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function UseAPI() {
@@ -21,15 +21,28 @@ function UseAPI() {
 					security and usage tracking. Start building today and bring the story
 					of India&apos;s past to life in your apps, websites, and tools.
 				</p>
-				<Link
-					to="/docs"
-					className="bg-primary-30 text-primary-400 hover:bg-primary-50 mt-4 inline-flex items-center justify-start rounded-sm px-3 py-2 transition-all duration-150 ease-in"
-				>
-					<span>View Docs</span>
-					<span className="ml-1">
-						<BookCheck size={18} />
-					</span>
-				</Link>
+
+				<div className="mt-4 flex items-center gap-2 text-sm font-medium">
+					<Link
+						to="/docs"
+						className="from-primary-30 to-primary-20 text-primary-700 hover:from-primary-40 hover:to-primary-40 inline-flex items-center justify-start gap-1 rounded-sm bg-linear-to-br px-3 py-2 shadow transition-all duration-150 ease-in"
+					>
+						<span>View Docs</span>
+						<span>
+							<BookCheck size={16} />
+						</span>
+					</Link>
+
+					<Link
+						to="/register"
+						className="from-primary-60 to-primary-50 text-primary-100 hover:from-primary-70 hover:to-primary-70 inline-flex items-center justify-start gap-1 rounded-sm bg-linear-to-br px-3 py-2 shadow transition-all duration-150 ease-in"
+					>
+						<span>Get API Key</span>
+						<span>
+							<KeyRound size={16} />
+						</span>
+					</Link>
+				</div>
 			</div>
 		</div>
 	);
