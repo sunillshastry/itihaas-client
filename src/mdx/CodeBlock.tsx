@@ -1,6 +1,6 @@
 import { Highlight, PrismTheme } from 'prism-react-renderer';
 import '@/styles/codeblock-theme.css';
-import { Copy, CopyCheck } from 'lucide-react';
+import { Check, Copy } from 'lucide-react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useState } from 'react';
 
@@ -27,7 +27,7 @@ function CodeBlock({
 		setCopied(true);
 		setTimeout(function () {
 			setCopied(false);
-		}, 1500);
+		}, 1000);
 	}
 
 	return (
@@ -61,7 +61,7 @@ function CodeBlock({
 									className="bg-primary-50 text-primary-700 hover:bg-primary-60 absolute top-2 right-2 rounded-md p-1.5 transition ease-in hover:cursor-pointer"
 									onClick={handleCopyClick}
 								>
-									{copied ? <CopyCheck size={18} /> : <Copy size={18} />}
+									{copied ? <Check size={18} /> : <Copy size={18} />}
 								</button>
 							</CopyToClipboard>
 						)}
@@ -71,20 +71,5 @@ function CodeBlock({
 		</div>
 	);
 }
-
-// <div
-// 	className={twMerge(
-// 		'bg-primary-90 relative my-1 rounded-md px-3 py-5 text-sm shadow-sm',
-// 		className
-// 	)}
-// >
-// 	<button className="bg-primary-60 hover:bg-primary-50 absolute top-1.5 right-1.5 rounded-md p-2 hover:cursor-pointer">
-// 		<Copy size={16} />
-// 	</button>
-
-// 	<pre>
-// 		<code>{children}</code>
-// 	</pre>
-// </div>
 
 export default CodeBlock;
