@@ -51,6 +51,8 @@ function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 						<FooterLink to="/dynasties">Dynasties</FooterLink>
 						<FooterLink to="/rulers">Rulers</FooterLink>
 						<FooterLink to="/wars">Wars</FooterLink>
+						<FooterLink to="/privacy">Privacy Policy</FooterLink>
+						<FooterLink to="/terms-of-service">Terms of Service</FooterLink>
 					</ul>
 				</FooterLinksTab>
 
@@ -58,14 +60,15 @@ function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 					<ul>
 						<FooterLink to="/issues">Contributions</FooterLink>
 						<FooterLink to="/docs">Docs</FooterLink>
+						<FooterLink to="/register">API Registration</FooterLink>
 						<a
 							href="https://github.com/sunillshastry/itihaas-api/"
 							target="_blank"
-							className="text-primary-30 hover:text-primary-60 mt-4 inline-flex items-center hover:underline"
+							className="text-primary-30 hover:text-primary-60 mt-4 inline-flex items-center text-sm hover:underline"
 						>
 							<span>GitHub</span>
 							<span className="ml-1">
-								<SquareArrowOutUpRight size={15} />
+								<SquareArrowOutUpRight size={12} />
 							</span>
 						</a>
 					</ul>
