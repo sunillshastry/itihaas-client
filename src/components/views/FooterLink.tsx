@@ -11,7 +11,7 @@ function FooterLink({ to, children }: FunctionProps) {
 		<li>
 			<Link
 				to={to}
-				className="text-primary-30 hover:text-primary-60 mt-4 inline-block hover:underline"
+				className="text-primary-30 hover:text-primary-60 mt-4 inline-block text-sm hover:underline"
 			>
 				{children}
 			</Link>
