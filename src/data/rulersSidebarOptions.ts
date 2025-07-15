@@ -7,23 +7,23 @@ const rulersSidebarOptions: SidebarSubfield[] = [
 	},
 	{
 		content: 'By ID',
-		id: 'get-ruler-id',
+		id: 'get-ruler-by-id',
 	},
 	{
 		content: 'By Slug',
-		id: 'get-ruler-slug',
+		id: 'get-ruler-by-slug',
 	},
 	{
 		content: 'Find Search Titles',
-		id: 'ruler-search-titles',
+		id: 'get-ruler-search-titles',
 	},
 	{
 		content: 'Random',
-		id: 'ruler-random',
+		id: 'get-random-ruler',
 	},
 	{
 		content: 'Via Search Query',
-		id: 'ruler-search',
+		id: 'get-rulers-by-query',
 	},
 ];
 
