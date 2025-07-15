@@ -7,23 +7,23 @@ const dynastiesSidebarOptions: SidebarSubfield[] = [
 	},
 	{
 		content: 'By ID',
-		id: 'get-dynasty-id',
+		id: 'get-dynasty-by-id',
 	},
 	{
 		content: 'By Slug',
-		id: 'get-dynasty-slug',
+		id: 'get-dynasty-by-slug',
 	},
 	{
 		content: 'Find Search Titles',
-		id: 'dynasty-search-titles',
+		id: 'get-dynasty-search-titles',
 	},
 	{
 		content: 'Random',
-		id: 'dynasty-random',
+		id: 'get-random-dynasty',
 	},
 	{
 		content: 'Via Search Query',
-		id: 'dynasty-search',
+		id: 'get-dynasties-by-query',
 	},
 ];
 
