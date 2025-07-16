@@ -21,7 +21,7 @@ function Label({
 			{...defaultProps}
 		>
 			{children}
-			{required && '*'}
+			&nbsp;{required && '*'}
 		</label>
 	);
 }
