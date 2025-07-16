@@ -13,6 +13,7 @@ interface FormInputs {
 	name: string;
 	email: string;
 	usage?: string;
+	privacyCheckbox: boolean;
 }
 
 function RegisterInfo() {
@@ -311,6 +312,36 @@ function RegisterInfo() {
 							defaultValue=""
 							{...register('usage')}
 						/>
+					</div>
+
+					<div className="mt-3">
+						<div className="flex items-center justify-start gap-1">
+							<input
+								type="checkbox"
+								id="register-privacy-check"
+								className="text-primary-100 accent-primary-200 h-4 w-4 rounded-md focus:ring-2"
+								{...register('privacyCheckbox', {
+									required: {
+										value: true,
+										message:
+											'You must check this box before submitting the form',
+									},
+								})}
+							/>
+							<Label
+								className="text-xs"
+								htmlFor="register-privacy-check"
+								required={true}
+							>
+								I understand and accept the Terms of Service and Privacy Policy
+								regarding the use of my data and API access.
+							</Label>
+						</div>
+						{errors.privacyCheckbox && (
+							<FormError className="mt-1">
+								{errors.privacyCheckbox.message}
+							</FormError>
+						)}
 					</div>
 
 					<div className="mt-3">
