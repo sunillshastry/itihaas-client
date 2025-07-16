@@ -1,17 +1,52 @@
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Volume2 } from 'lucide-react';
+import { useRef } from 'react';
 
 function About() {
+	const audioElementRef = useRef<HTMLAudioElement>(null);
+
+	function playAudio() {
+		audioElementRef.current?.play();
+	}
+
 	return (
 		<div className="text-primary-600 mt-4 text-base leading-10">
+			<audio
+				ref={audioElementRef}
+				src="https://en-audio.howtopronounce.com/68d6f9715d805875b057e760414259b5.mp3"
+				className="hidden"
+			></audio>
 			<p>
-				<strong>Itihaas</strong> is a comprehensive and accessible online
-				platform designed to showcase and help explore the rich and diverse
-				history of the Indian subcontinent to the fingertips of students,
-				researchers, educators, developers, and curious minds alike. Rooted in
-				the belief that history should be preserved, studied, and easily
-				explored, Itihaas provides a structured, credible, and engaging way to
-				learn about Indian history from its earliest civilizations to the dawn
-				of independence in 1947.
+				<strong>Itihaas</strong> (Sanskrit word that translates to "history" -
+				literally interpreted as <em>"thus it happened"</em>; pronounced{' '}
+				<span className="inline-flex items-center gap-1">
+					<code className="bg-primary-90 rounded-md p-1 text-xs">
+						/e-tea-haas/
+					</code>
+					<button
+						onClick={playAudio}
+						className="text-primary-400 hover:text-primary-200 transition hover:cursor-pointer"
+					>
+						<Volume2 />
+					</button>
+					,
+					<span>
+						<a
+							href="https://simple.wikipedia.org/wiki/Itihasa"
+							target="_blank"
+							className="text-primary-500 hover:text-primary-10 underline transition"
+							title="View etymology on Wikipedia"
+						>
+							see its etymology
+						</a>
+					</span>
+				</span>
+				) is a comprehensive and accessible online platform designed to showcase
+				and help explore the rich and diverse history of the Indian subcontinent
+				to the fingertips of students, researchers, educators, developers, and
+				curious minds alike. Rooted in the belief that history should be
+				preserved, studied, and easily explored, Itihaas provides a structured,
+				credible, and engaging way to learn about Indian history from its
+				earliest civilizations to the dawn of Indian independence in 1947.
 			</p>
 
 			<p className="mt-2">
