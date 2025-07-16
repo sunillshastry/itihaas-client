@@ -39,13 +39,21 @@ function RegisterInfo() {
 				<strong>
 					<u>daily request limit of 100</u>
 				</strong>{' '}
-				is set to avoid API abuse, misuse and server stability. The key uniquely
-				identifies you as a user and allows us to manage request limits, monitor
-				usage patterns, and ensure that our services remain fast, stable, and
-				secure for everyone.
+				is set to avoid API abuse, misuse and maintain server stability. The key
+				uniquely identifies you as a user and allows us to manage request
+				limits, monitor usage patterns, and ensure that our services remain
+				fast, stable, and secure for everyone.{' '}
+				<span className="font-medium">
+					We highly recommend that you do not share your unique API keys with
+					anyone. Please avoid exposing it in public Git repositories,
+					environment files (publicly), or anywhere that is publicly accessible
+					for misuse. The Itihaas API keys are sensitive credentials and should
+					be treated like passwords. Unauthorized use of your key may lead to
+					rate limiting, data abuse, or even revocation.
+				</span>
 			</p>
 
-			<p>
+			<p className="mt-2">
 				To ensure that all registrations are legitimate and secure, we have
 				implemented several steps in our registration flow:
 			</p>
@@ -86,15 +94,15 @@ function RegisterInfo() {
 				<p className="mt-1 ml-5">
 					Upon submitting your information from the form below, you will receive
 					a verification email at the email address you provided. This step adds
-					an extra layer of verification which confirms that you own the email
-					address and helps us prevent fake and/or incorrect registrations. This
-					also helps us keep our systems clean without cluttering unregistered
-					and unauthorized emails. To overcome this step, please provide a valid
-					email to us in the form below, a verification email will appear on
-					your inbox with a link provided, please click on the link. This will
-					generate your API Key. Following this step, a second email will be
-					sent to you containing your unique API Key. You can use this key for
-					all your API requests.
+					an extra layer of verification and authenticity, which confirms that
+					you own the email address and helps us prevent fake and/or incorrect
+					registrations. This also helps us keep our systems clean without
+					cluttering unregistered and unauthorized emails. To overcome this
+					step, please provide a valid email to us in the form below, a
+					verification email will appear on your inbox with a link provided,
+					please click on the link. This will generate your API Key. Following
+					this step, a second email will be sent to you containing your unique
+					API Key. You can use this key for all your API requests.
 				</p>
 
 				<p className="border-primary-300 mt-3 ml-5 border-l-4 pl-2 italic">
