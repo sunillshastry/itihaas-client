@@ -6,8 +6,29 @@ import Input from '../elements/Input';
 import Label from '../elements/Label';
 import TextArea from '../elements/TextArea';
 import BasicButton from '../elements/BasicButton';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import FormError from '../elements/FormError';
+
+interface FormInputs {
+	name: string;
+	email: string;
+	usage?: string;
+}
 
 function RegisterInfo() {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<FormInputs>();
+
+	const onSubmit: SubmitHandler<FormInputs> = (data) => {
+		console.log('Successfully submitted form!');
+		console.log(data);
+		// TODO: Update onSubmit function
+		// TODO: Make backend request for /register-api
+	};
+
 	return (
 		<div className="text-primary-500 leading-8">
 			<p>
@@ -229,24 +250,60 @@ function RegisterInfo() {
 					All fields marked with '*' are deemed required
 				</h5>
 
-				<div className="mt-6 flex flex-col items-start justify-start gap-1">
-					<Label required={true}>Full Name</Label>
-					<Input placeholder="John Doe" />
-				</div>
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<div className="mt-6 flex flex-col items-start justify-start gap-1">
+						<Label required={true}>Full Name</Label>
+						<Input
+							placeholder="John Doe"
+							defaultValue=""
+							{...register('name', {
+								required: {
+									value: true,
+									message: 'Full name is marked as a required field',
+								},
+								minLength: {
+									value: 5,
+									message:
+										'Your full name must be at least five characters long',
+								},
+							})}
+						/>
+						{errors.name && <FormError>{errors.name.message}</FormError>}
+					</div>
 
-				<div className="mt-3 flex flex-col items-start justify-start gap-1">
-					<Label required={true}>Email</Label>
-					<Input placeholder="john.doe@example.com" />
-				</div>
+					<div className="mt-3 flex flex-col items-start justify-start gap-1">
+						<Label required={true}>Email</Label>
+						<Input
+							placeholder="john.doe@example.com"
+							defaultValue=""
+							{...register('email', {
+								required: {
+									value: true,
+									message: 'Email is marked as a required field',
+								},
+								pattern: {
+									value:
+										/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+									message:
+										'Invalid email address format. Please provide a valid address.',
+								},
+							})}
+						/>
+						{errors.email && <FormError>{errors.email.message}</FormError>}
+					</div>
 
-				<div className="mt-3 flex flex-col items-start justify-start gap-1">
-					<Label>Reason for Usage</Label>
-					<TextArea />
-				</div>
+					<div className="mt-3 flex flex-col items-start justify-start gap-1">
+						<Label>Reason for Usage</Label>
+						<TextArea
+							defaultValue=""
+							{...register('usage')}
+						/>
+					</div>
 
-				<div className="mt-3">
-					<BasicButton>Get API Key</BasicButton>
-				</div>
+					<div className="mt-3">
+						<BasicButton type="submit">Get API Key</BasicButton>
+					</div>
+				</form>
 			</div>
 		</div>
 	);
