@@ -132,7 +132,7 @@ function Search() {
 
 	useEffect(() => {
 		if (searchResults && !(searchResults instanceof Error)) {
-			updateWindowTitle(setTitle, `Search '${searchQuery}'`);
+			updateWindowTitle(setTitle, `Results for '${searchQuery}'`);
 		}
 		return () => {
 			window.document.title = 'Itihaas | The Front Page of Indian History';
