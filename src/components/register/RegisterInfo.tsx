@@ -333,7 +333,20 @@ function RegisterInfo() {
 								htmlFor="register-privacy-check"
 								required={true}
 							>
-								I understand and accept the Terms of Service and Privacy Policy
+								I understand and accept the{' '}
+								<Link
+									to="/terms-of-service"
+									className="hover:text-primary-20 underline"
+								>
+									Terms of Service
+								</Link>{' '}
+								and{' '}
+								<Link
+									to="/privacy"
+									className="hover:text-primary-20 underline"
+								>
+									Privacy Policy
+								</Link>{' '}
 								regarding the use of my data and API access.
 							</Label>
 						</div>
