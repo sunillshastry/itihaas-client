@@ -54,7 +54,7 @@ function Issues() {
 					</IssueTypeLink>
 
 					<IssueTypeLink
-						title="Outdated or incorrect content?"
+						title="Missing or incorrect content?"
 						linkContent="Report a correction"
 						to="fix"
 					>

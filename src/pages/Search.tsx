@@ -6,6 +6,7 @@ import Loader from '@/components/elements/Loader';
 import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
 import PrimaryHeader from '@/components/elements/PrimaryHeader';
+import QueryLengthError from '@/components/elements/QueryLengthError';
 import SearchResult from '@/components/elements/SearchResult';
 import Select from '@/components/elements/Select';
 import EmptySearchResult from '@/components/views/EmptySearchResult';
@@ -44,6 +45,7 @@ function Search() {
 	} = useQuery({
 		queryKey: ['full-search', searchQuery],
 		queryFn: () => getQueryResults(searchQuery as string),
+		enabled: (searchQuery?.length as number) >= 3,
 	});
 
 	function handleFilterChange(value: string) {
@@ -130,14 +132,27 @@ function Search() {
 
 	useEffect(() => {
 		if (searchResults && !(searchResults instanceof Error)) {
-			updateWindowTitle(setTitle, `Search '${searchQuery}'`);
+			updateWindowTitle(setTitle, `Results for '${searchQuery}'`);
 		}
 		return () => {
 			window.document.title = 'Itihaas | The Front Page of Indian History';
 		};
 	}, [searchResults, searchQuery]);
 
-	// Error State
+	// Error State (Query Length)
+	if (!searchQuery || (searchQuery && searchQuery.length < 3)) {
+		return (
+			<>
+				<Navbar />
+				<MainContainer>
+					<QueryLengthError />
+				</MainContainer>
+				<Footer className="mt-36" />
+			</>
+		);
+	}
+
+	// Error State (Global)
 	if (error || searchResults instanceof Error) {
 		return (
 			<>

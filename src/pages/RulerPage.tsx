@@ -1,20 +1,15 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import BackButton from '@/components/elements/BackButton';
-import DescriptionContainer from '@/components/elements/DescriptionContainer';
 import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
 import PrimaryHeader from '@/components/elements/PrimaryHeader';
-import QuickFacts from '@/components/elements/QuickFacts';
 import RulerQuickFieldsContainer from '@/components/ruler/RulerQuickFieldsContainer';
 import SecondaryHeader from '@/components/elements/SecondaryHeader';
 import Loader from '@/components/elements/Loader';
 import FetchFailComponent from '@/components/elements/FetchFailComponent';
 import formatArrayToString from '@/utils/formatArrayToString';
-import SourcesContainer from '@/components/elements/SourcesContainer';
-import FurtherReadingContainer from '@/components/elements/FurtherReadingContainer';
-import ArticlesContainer from '@/components/elements/ArticlesContainer';
 import MissingInfoDialog from '@/components/views/MissingInfoDialog';
 import LastUpdateMessage from '@/components/views/LastUpdateMessage';
 import Footer from '@/components/elements/Footer';
@@ -27,6 +22,24 @@ import { useCitation } from '@/context/CitationContext';
 import usePageURL from '@/hooks/usePageURL';
 import NotFound from '@/pages/NotFound';
 import CopyURLButton from '@/components/views/CopyURLButton';
+
+// Code splitting (lazy loading)
+const ArticlesContainer = lazy(
+	() => import('@/components/elements/ArticlesContainer')
+);
+
+const FurtherReadingContainer = lazy(
+	() => import('@/components/elements/FurtherReadingContainer')
+);
+
+const SourcesContainer = lazy(
+	() => import('@/components/elements/SourcesContainer')
+);
+
+const DescriptionContainer = lazy(
+	() => import('@/components/elements/DescriptionContainer')
+);
+const QuickFacts = lazy(() => import('@/components/elements/QuickFacts'));
 
 function RulerPage() {
 	// State
@@ -160,27 +173,29 @@ function RulerPage() {
 						</SecondaryHeader>
 					</div>
 
-					<QuickFacts>
-						<RulerQuickFieldsContainer ruler={ruler} />
-					</QuickFacts>
+					<Suspense fallback={<Loader />}>
+						<QuickFacts>
+							<RulerQuickFieldsContainer ruler={ruler} />
+						</QuickFacts>
 
-					<DescriptionContainer
-						descriptionList={ruler?.description?.long as string[]}
-					/>
+						<DescriptionContainer
+							descriptionList={ruler?.description?.long as string[]}
+						/>
 
-					<HashContainer id="sources">
-						<SourcesContainer sources={ruler?.sources} />
-					</HashContainer>
+						<HashContainer id="sources">
+							<SourcesContainer sources={ruler?.sources} />
+						</HashContainer>
 
-					<HashContainer id="reading">
-						<FurtherReadingContainer readings={ruler?.furtherReading} />
-					</HashContainer>
+						<HashContainer id="reading">
+							<FurtherReadingContainer readings={ruler?.furtherReading} />
+						</HashContainer>
 
-					{/* TODO: WARS CONTAINER */}
+						{/* TODO: WARS CONTAINER */}
 
-					<HashContainer id="articles">
-						<ArticlesContainer articles={ruler?.articles} />
-					</HashContainer>
+						<HashContainer id="articles">
+							<ArticlesContainer articles={ruler?.articles} />
+						</HashContainer>
+					</Suspense>
 
 					<MissingInfoDialog />
 

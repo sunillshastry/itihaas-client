@@ -19,8 +19,8 @@ function DynastyPageItem({ dynasty }: FunctionProps) {
 	return (
 		<li className="my-10 first:my-5">
 			<Tooltip id={`dynasty-${dynasty._id}`}>
-				<p className="font-medium">Created: {createdDate}</p>
-				<p className="mt-1 font-medium">Last updated: {updatedDate}</p>
+				<p className="text-xs font-medium">Created: {createdDate}</p>
+				<p className="mt-1 text-xs font-medium">Last Updated: {updatedDate}</p>
 			</Tooltip>
 			<h3 className="text-primary-400 border-primary-40 relative flex items-center justify-start gap-2 border-b pb-2 text-xl font-bold">
 				<span>{dynasty?.name}</span>

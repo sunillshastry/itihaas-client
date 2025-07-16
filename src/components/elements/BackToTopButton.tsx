@@ -28,7 +28,7 @@ function BackToTopButton() {
 		visible && (
 			<button
 				onClick={scrollBackUp}
-				className="bg-primary-500 text-primary-50 hover:bg-primary-700 focus:outline-primary-30 fixed right-5 bottom-5 z-50 flex items-center rounded-sm px-3 py-2 text-sm hover:cursor-pointer focus:outline-3"
+				className="bg-primary-500 text-primary-50 hover:bg-primary-700 focus:outline-primary-30 fixed right-5 bottom-5 z-50 flex items-center rounded-sm px-3 py-2 text-sm transition ease-in hover:cursor-pointer focus:outline-3"
 			>
 				<span>Scroll Up</span>
 				<span className="ml-1">

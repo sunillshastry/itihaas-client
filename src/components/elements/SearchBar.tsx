@@ -1,4 +1,4 @@
-import { Search, X } from 'lucide-react';
+import { Binoculars, Search, X } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { FormEvent, useState } from 'react';
 import 'react-tooltip/dist/react-tooltip.css';
@@ -59,7 +59,16 @@ function SearchBar({
 				<X size={18} />
 			</button>
 
-			<Tooltip id="search-button-icon">Search more</Tooltip>
+			<Tooltip id="search-button-icon">
+				<div className="flex items-center gap-1">
+					<span className="text-xs font-medium uppercase">
+						Find more results
+					</span>
+					<span>
+						<Binoculars size={14} />
+					</span>
+				</div>
+			</Tooltip>
 			<button
 				className={twMerge(
 					'bg-primary-200 hover:bg-primary-500 text-primary-60 ml-1 rounded-lg px-1.5 py-1 transition ease-in hover:cursor-pointer',

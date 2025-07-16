@@ -1,20 +1,18 @@
-import BackButton from '@/components/elements/BackButton';
 import Footer from '@/components/elements/Footer';
 import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
-import SubHeader from '@/components/elements/SubHeader';
+import PrimaryHeader from '@/components/elements/PrimaryHeader';
 
-function APIContribution() {
+function TermsOfService() {
 	return (
 		<>
 			<Navbar />
 			<MainContainer>
-				<BackButton />
-				<SubHeader>API and Documentation concerns</SubHeader>
+				<PrimaryHeader>Terms of Service</PrimaryHeader>
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>
 	);
 }
 
-export default APIContribution;
+export default TermsOfService;

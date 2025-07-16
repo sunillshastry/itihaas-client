@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 
 import Navbar from '@/components/elements/Navbar';
@@ -7,13 +7,8 @@ import PrimaryHeader from '@/components/elements/PrimaryHeader';
 import SecondaryHeader from '@/components/elements/SecondaryHeader';
 import formatArrayToString from '@/utils/formatArrayToString';
 import Loader from '@/components/elements/Loader';
-import QuickFacts from '@/components/elements/QuickFacts';
 import Footer from '@/components/elements/Footer';
-import DescriptionContainer from '@/components/elements/DescriptionContainer';
-import SourcesContainer from '@/components/elements/SourcesContainer';
 import BackButton from '@/components/elements/BackButton';
-import ArticlesContainer from '@/components/elements/ArticlesContainer';
-import FurtherReadingContainer from '@/components/elements/FurtherReadingContainer';
 import LastUpdateMessage from '@/components/views/LastUpdateMessage';
 import MissingInfoDialog from '@/components/views/MissingInfoDialog';
 import FetchFailComponent from '@/components/elements/FetchFailComponent';
@@ -28,6 +23,22 @@ import usePageURL from '@/hooks/usePageURL';
 import NotFound from '@/pages/NotFound';
 import CopyURLButton from '@/components/views/CopyURLButton';
 import { Dynasty } from '@/interfaces/Dynasty';
+
+// Code splitting (Lazy loading)
+const FurtherReadingContainer = lazy(
+	() => import('@/components/elements/FurtherReadingContainer')
+);
+
+const ArticlesContainer = lazy(
+	() => import('@/components/elements/ArticlesContainer')
+);
+const SourcesContainer = lazy(
+	() => import('@/components/elements/SourcesContainer')
+);
+const QuickFacts = lazy(() => import('@/components/elements/QuickFacts'));
+const DescriptionContainer = lazy(
+	() => import('@/components/elements/DescriptionContainer')
+);
 
 function DynastyPage() {
 	// State
@@ -157,28 +168,30 @@ function DynastyPage() {
 						</SecondaryHeader>
 					</div>
 
-					<QuickFacts>
-						<DynastyQuickFieldsContainer dynasty={dynasty} />
-					</QuickFacts>
+					<Suspense fallback={<Loader size="medium" />}>
+						<QuickFacts>
+							<DynastyQuickFieldsContainer dynasty={dynasty} />
+						</QuickFacts>
 
-					<DescriptionContainer
-						descriptionList={dynasty?.description?.long as string[]}
-					/>
+						<DescriptionContainer
+							descriptionList={dynasty?.description?.long as string[]}
+						/>
 
-					<HashContainer id="sources">
-						<SourcesContainer sources={dynasty?.sources} />
-					</HashContainer>
+						<HashContainer id="sources">
+							<SourcesContainer sources={dynasty?.sources} />
+						</HashContainer>
 
-					<HashContainer id="reading">
-						<FurtherReadingContainer readings={dynasty?.furtherReading} />
-					</HashContainer>
-					{/* TODO: RULERS CONTAINER */}
+						<HashContainer id="reading">
+							<FurtherReadingContainer readings={dynasty?.furtherReading} />
+						</HashContainer>
+						{/* TODO: RULERS CONTAINER */}
 
-					{/* TODO: WARS CONTAINER */}
+						{/* TODO: WARS CONTAINER */}
 
-					<HashContainer id="articles">
-						<ArticlesContainer articles={dynasty?.articles} />
-					</HashContainer>
+						<HashContainer id="articles">
+							<ArticlesContainer articles={dynasty?.articles} />
+						</HashContainer>
+					</Suspense>
 
 					<MissingInfoDialog />
 

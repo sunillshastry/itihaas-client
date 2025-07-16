@@ -1,3 +1,4 @@
+import BackButton from '@/components/elements/BackButton';
 import Footer from '@/components/elements/Footer';
 import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
@@ -8,7 +9,8 @@ function FixContribution() {
 		<>
 			<Navbar />
 			<MainContainer>
-				<SubHeader>Correcting outdated and incorrect content</SubHeader>
+				<BackButton />
+				<SubHeader>Fixing missing and incorrect content</SubHeader>
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>

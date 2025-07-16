@@ -1,20 +1,18 @@
-import BackButton from '@/components/elements/BackButton';
 import Footer from '@/components/elements/Footer';
 import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
-import SubHeader from '@/components/elements/SubHeader';
+import PrimaryHeader from '@/components/elements/PrimaryHeader';
 
-function APIContribution() {
+function PrivacyPolicy() {
 	return (
 		<>
 			<Navbar />
 			<MainContainer>
-				<BackButton />
-				<SubHeader>API and Documentation concerns</SubHeader>
+				<PrimaryHeader>Privacy Policy</PrimaryHeader>
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>
 	);
 }
 
-export default APIContribution;
+export default PrivacyPolicy;
