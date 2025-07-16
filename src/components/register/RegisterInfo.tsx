@@ -244,7 +244,11 @@ function RegisterInfo() {
 				<SubHeader>Obtain API Key</SubHeader>
 				<p className="mt-3 text-sm">
 					Please use and submit the form below to gain access to your unique
-					Itihaas API key.
+					Itihaas API key.{' '}
+					<span className="font-semibold">
+						Your information is not shared with any third parties
+					</span>
+					.
 				</p>
 				<h5 className="text-primary-100 mt-1 text-sm font-bold uppercase">
 					All fields marked with '*' are deemed required
@@ -274,6 +278,7 @@ function RegisterInfo() {
 					<div className="mt-3 flex flex-col items-start justify-start gap-1">
 						<Label required={true}>Email</Label>
 						<Input
+							type="email"
 							placeholder="john.doe@example.com"
 							defaultValue=""
 							{...register('email', {
