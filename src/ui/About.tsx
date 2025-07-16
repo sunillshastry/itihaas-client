@@ -17,7 +17,16 @@ function About() {
 			></audio>
 			<p>
 				<strong>Itihaas</strong> (Sanskrit word that translates to "history" -
-				literally interpreted as <em>"thus it happened"</em>; pronounced{' '}
+				literally interpreted as <em>"thus it happened"</em>;{' '}
+				<a
+					href="https://en.wikipedia.org/wiki/Itihasa-Purana"
+					target="_blank"
+					className="text-primary-500 hover:text-primary-10 underline transition"
+					title="See additional interpretations on Wikipedia"
+				>
+					see other definitions
+				</a>
+				; pronounced{' '}
 				<span className="inline-flex items-center gap-1">
 					<code className="bg-primary-90 rounded-md p-1 text-xs">
 						/e-tea-haas/
@@ -36,7 +45,7 @@ function About() {
 							className="text-primary-500 hover:text-primary-10 underline transition"
 							title="View etymology on Wikipedia"
 						>
-							see its etymology
+							view its etymology
 						</a>
 					</span>
 				</span>
