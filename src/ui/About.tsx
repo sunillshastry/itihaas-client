@@ -1,4 +1,4 @@
-import { ExternalLink, Volume2 } from 'lucide-react';
+import { Volume2 } from 'lucide-react';
 import { useRef } from 'react';
 
 function About() {
@@ -81,17 +81,6 @@ function About() {
 				the principle that historical knowledge should be free, accessible, and
 				open to all.
 			</p>
-
-			<a
-				href="https://github.com/sunillshastry/itihaas-api/"
-				target="_blank"
-				className="text-primary-300 hover:text-primary-10 mt-1 inline-flex items-center underline"
-			>
-				<span>View on GitHub</span>
-				<span className="ml-1">
-					<ExternalLink size={16} />
-				</span>
-			</a>
 		</div>
 	);
 }
