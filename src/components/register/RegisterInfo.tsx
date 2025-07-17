@@ -37,6 +37,8 @@ function RegisterInfo() {
 	const captchaRef = useRef<ReCAPTCHA>(null);
 
 	const onSubmit: SubmitHandler<FormInputs> = (data) => {
+		setCaptchaState((current) => ({ ...current, error: false }));
+
 		if (!captchaState.value) {
 			setCaptchaState((current) => ({ ...current, error: true }));
 			captchaRef.current?.reset();
