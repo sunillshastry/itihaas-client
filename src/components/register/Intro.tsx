@@ -7,7 +7,7 @@ function Intro() {
 				API. For secure and authorized usage, all users are required to register
 				for an API key. The API Key itself is free to use, however, a{' '}
 				<strong>
-					<u>daily request limit of 100</u>
+					<u className="underline-offset-4">daily request limit of 100</u>
 				</strong>{' '}
 				is set to avoid API abuse, misuse and maintain server stability. The key
 				uniquely identifies you as a user and allows us to manage request
