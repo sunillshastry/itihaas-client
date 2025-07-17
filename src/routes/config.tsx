@@ -17,6 +17,7 @@ import Register from '@/pages/Register';
 import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import TermsOfService from '@/pages/TermsOfService';
 import NotFound from '@/pages/NotFound';
+import RecoverAPI from '@/pages/RecoverAPI';
 
 interface FileRoute {
 	path: string;
@@ -84,6 +85,10 @@ const RouterRoutes: FileRoute[] = [
 	{
 		path: '/register',
 		element: <Register />,
+	},
+	{
+		path: '/api-recovery',
+		element: <RecoverAPI />,
 	},
 	{
 		path: '/privacy',

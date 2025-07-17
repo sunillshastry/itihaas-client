@@ -64,12 +64,6 @@
 		background-position: center bottom;
 		background-size: cover;
 		background-repeat: no-repeat;
-
-		/* TODO: Remove the styles below */
-		min-height: 100vh;
-		overflow-y: scroll;
-		/* TODO: Remove the styles above */
-
 		background-size: cover;
 	}
 

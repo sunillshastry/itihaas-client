@@ -6,16 +6,22 @@ interface FunctionProps extends ComponentPropsWithoutRef<'label'> {
 	required?: boolean;
 }
 
-function Label({ children, className, required = false }: FunctionProps) {
+function Label({
+	children,
+	className,
+	required = false,
+	...defaultProps
+}: FunctionProps) {
 	return (
 		<label
 			className={twMerge(
 				'text-primary-100 text-sm font-bold uppercase',
 				className
 			)}
+			{...defaultProps}
 		>
 			{children}
-			{required && '*'}
+			&nbsp;{required && '*'}
 		</label>
 	);
 }
