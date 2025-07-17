@@ -8,12 +8,19 @@ import TextArea from '../elements/TextArea';
 import BasicButton from '../elements/BasicButton';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import FormError from '../elements/FormError';
+import { useRef, useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 interface FormInputs {
 	name: string;
 	email: string;
 	usage?: string;
 	privacyCheckbox: boolean;
+}
+
+interface Captcha {
+	value: string | null;
+	error: boolean;
 }
 
 function RegisterInfo() {
@@ -23,7 +30,19 @@ function RegisterInfo() {
 		formState: { errors },
 	} = useForm<FormInputs>();
 
+	const [captchaState, setCaptchaState] = useState<Captcha>({
+		value: null,
+		error: false,
+	});
+	const captchaRef = useRef<ReCAPTCHA>(null);
+
 	const onSubmit: SubmitHandler<FormInputs> = (data) => {
+		if (!captchaState.value) {
+			setCaptchaState((current) => ({ ...current, error: true }));
+			return;
+		}
+
+		console.log(captchaState);
 		console.log('Successfully submitted form!');
 		console.log(data);
 		// TODO: Update onSubmit function
@@ -65,7 +84,7 @@ function RegisterInfo() {
 						<ChevronsRight size={16} />
 					</span>
 					<span className="text-primary-600 text-lg font-medium">
-						CAPTCHA Verification
+						CAPTCHA (reCAPTCHA v2) Verification
 					</span>
 				</h4>
 
@@ -353,6 +372,41 @@ function RegisterInfo() {
 						{errors.privacyCheckbox && (
 							<FormError className="mt-1">
 								{errors.privacyCheckbox.message}
+							</FormError>
+						)}
+					</div>
+
+					<div className="mt-3">
+						<ReCAPTCHA
+							ref={captchaRef}
+							size="normal"
+							theme="light"
+							sitekey={import.meta.env.VITE_RECAPTCHA_V2_SITE_KEY}
+							onChange={(value) =>
+								setCaptchaState((current) => ({ ...current, value }))
+							}
+							onExpired={() => {
+								setCaptchaState((current) => ({ ...current, value: null }));
+								captchaRef?.current?.reset();
+							}}
+							onErrored={() => {
+								setCaptchaState((current) => ({
+									...current,
+									value: null,
+									error: true,
+								}));
+							}}
+							onError={() => {
+								setCaptchaState((current) => ({
+									...current,
+									value: null,
+									error: true,
+								}));
+							}}
+						/>
+						{captchaState.error && (
+							<FormError className="mt-2">
+								Please complete the reCAPTCHA to continue
 							</FormError>
 						)}
 					</div>
