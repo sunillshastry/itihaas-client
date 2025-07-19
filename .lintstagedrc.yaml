@@ -6,6 +6,9 @@
 '*.{ts, tsx, jsx, js}':
   - 'eslint  --fix'
 
+# Running tests
+'*.{ts, tsx, js, jsx, cts}':
+  - 'jest'
 # Re-stage all updated/changed files from Prettier and/or ESLint
-'*.{ts, tsx, jsx, js, json, md, yaml, cts, cjs, yml}':
-  - 'git add'
+# '*.{ts, tsx, jsx, js, json, md, yaml, cts, cjs, yml}':
+#   - 'git add'
