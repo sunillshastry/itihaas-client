@@ -1,0 +1,14 @@
+# Running Prettier on staged files
+'*.{ts, tsx, jsx, js, json, md, yaml, cts, cjs}':
+  - 'prettier --write'
+
+# Running ESLint on staged files
+'*.{ts, tsx, jsx, js}':
+  - 'eslint  --fix'
+
+# Running tests
+'*.{ts, tsx, js, jsx, cts}':
+  - 'jest'
+# Re-stage all updated/changed files from Prettier and/or ESLint
+# '*.{ts, tsx, jsx, js, json, md, yaml, cts, cjs, yml}':
+#   - 'git add'
