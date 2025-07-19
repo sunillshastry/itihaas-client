@@ -29,7 +29,8 @@
 		"format": "prettier --write .",
 		"format:check": "prettier --check .",
 		"test": "jest",
-		"prepare": "husky"
+		"prepare": "husky",
+		"stage": "lint-staged"
 	},
 	"dependencies": {
 		"@mdx-js/react": "^3.1.0",
