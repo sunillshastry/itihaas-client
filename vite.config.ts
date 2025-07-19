@@ -21,6 +21,7 @@ export default defineConfig({
 					router: ['react-router-dom'],
 					mdx: ['@mdx-js/react', '@mdx-js/rollup'],
 					form: ['react-hook-form'],
+					tailwindcss: ['tailwindcss', '@tailwindcss/vite', 'tailwind-merge'],
 				},
 			},
 		},
