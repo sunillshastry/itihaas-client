@@ -18,6 +18,8 @@ export default defineConfig({
 				manualChunks: {
 					react: ['react', 'react-dom'],
 					tanstack: ['@tanstack/react-query', '@tanstack/react-query-devtools'],
+					prism: ['prism-react-renderer'],
+					react_ui: ['lucide-react', 'react-select', 'react-tooltip'],
 					router: ['react-router-dom'],
 					mdx: ['@mdx-js/react', '@mdx-js/rollup'],
 					form: ['react-hook-form'],
