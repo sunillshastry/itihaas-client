@@ -19,12 +19,12 @@ function Recovery() {
 				</p>
 
 				<p className="mt-1 font-medium">
-					You can recover your API key and view more details about it{' '}
+					You can recover your API key and view more details about it at our{' '}
 					<Link
 						to="/api-recovery"
 						className="text-primary-600 hover:text-primary-10 underline"
 					>
-						here
+						recovery page
 					</Link>
 					.
 				</p>
@@ -35,7 +35,7 @@ function Recovery() {
 						to="/issues/api"
 						className="text-primary-600 hover:text-primary-10 underline"
 					>
-						here
+						API queries
 					</Link>
 					.
 				</p>

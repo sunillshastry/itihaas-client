@@ -25,12 +25,12 @@ function Contributing() {
 				</p>
 
 				<p className="mt-1 font-medium">
-					You can view the full guide about contributing to Itihaas{' '}
+					You can view the full guide about contributing to Itihaas on our{' '}
 					<Link
 						to="/issues"
 						className="text-primary-600 hover:text-primary-10 underline"
 					>
-						here
+						contributions page
 					</Link>
 					.
 				</p>

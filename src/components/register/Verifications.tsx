@@ -54,12 +54,13 @@ function Verifications() {
 				<p className="border-primary-300 mt-3 ml-5 border-l-4 pl-2 italic">
 					<strong>Important</strong>: If you do not see the verification or API
 					key email, be sure to check your spam/junk folder. If issues persist,
-					you can contact us for assistance. Any API related queries can be made{' '}
+					you can contact us for assistance. Any API related queries can be made
+					on the{' '}
 					<Link
 						to="/issues/api"
 						className="text-primary-600 hover:text-primary-10 underline"
 					>
-						here
+						issues page
 					</Link>
 					.
 				</p>

@@ -35,20 +35,20 @@ function Concerns() {
 
 				<p className="mt-1 font-medium">
 					If you wish to contact us regarding our API or documentation, please
-					use{' '}
+					use the{' '}
 					<Link
 						to="/issues/api"
 						className="text-primary-600 hover:text-primary-10 underline"
 					>
-						this form
+						API form
 					</Link>{' '}
 					to contact us. Alternatively, if you want to give us your general
-					feedback or any ideas, please use{' '}
+					feedback or any ideas, please use our{' '}
 					<Link
 						to="/issues/feedback"
 						className="text-primary-600 hover:text-primary-10 underline"
 					>
-						this form
+						feedback form
 					</Link>
 					.{' '}
 				</p>
