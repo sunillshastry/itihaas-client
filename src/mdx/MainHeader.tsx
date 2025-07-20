@@ -7,7 +7,7 @@ interface FunctionProps {
 
 function MainHeader({ children }: FunctionProps) {
 	return (
-		<h3 className="bg-primary-40 text-primary-90 group flex items-center gap-2 rounded-md p-3 text-xl font-medium">
+		<h3 className="bg-primary-200 text-primary-90 group flex items-center gap-2 rounded-md p-3 text-xl font-medium">
 			<span>{children}</span>
 
 			<span className="opacity-0 transition ease-in group-hover:opacity-75">
