@@ -44,7 +44,7 @@ function NotFound() {
 					</div>
 				</div>
 			</MainContainer>
-			<Footer className="mt-36" />
+			<Footer className="mt-36 max-md:mt-20" />
 		</>
 	);
 }
