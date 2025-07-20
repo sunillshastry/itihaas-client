@@ -85,6 +85,7 @@ function RegisterInfo() {
 						<Input
 							placeholder="John Doe"
 							defaultValue=""
+							className="max-sm:w-full"
 							{...register('name', {
 								required: {
 									value: true,
@@ -106,6 +107,7 @@ function RegisterInfo() {
 							type="email"
 							placeholder="john.doe@example.com"
 							defaultValue=""
+							className="max-sm:w-full"
 							{...register('email', {
 								required: {
 									value: true,
@@ -125,13 +127,14 @@ function RegisterInfo() {
 					<div className="mt-3 flex flex-col items-start justify-start gap-1">
 						<Label>Reason for Usage</Label>
 						<TextArea
+							className="max-sm:w-full"
 							defaultValue=""
 							{...register('usage')}
 						/>
 					</div>
 
 					<div className="mt-3">
-						<div className="flex items-center justify-start gap-1">
+						<div className="flex items-center justify-start gap-1 max-md:items-baseline">
 							<input
 								type="checkbox"
 								id="register-privacy-check"
@@ -211,7 +214,12 @@ function RegisterInfo() {
 					</div>
 
 					<div className="mt-3">
-						<BasicButton type="submit">Get API Key</BasicButton>
+						<BasicButton
+							type="submit"
+							className="font-semibold max-sm:block max-sm:w-full max-sm:py-3 max-sm:text-center"
+						>
+							Get API Key
+						</BasicButton>
 					</div>
 				</form>
 			</div>
