@@ -53,7 +53,7 @@ function NavbarHeader({ onSubmit }: FunctionProps) {
 			>
 				<Logo />
 			</Link>
-			<div className="relative min-w-sm max-md:min-w-xs max-md:px-2 max-sm:min-w-2xs">
+			<div className="relative min-w-sm max-md:px-2 max-sm:min-w-2xs">
 				<SearchBar
 					value={searchQuery}
 					onChange={toggleAutocomplete}
