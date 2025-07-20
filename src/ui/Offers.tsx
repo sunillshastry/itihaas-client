@@ -59,12 +59,12 @@ function Offers() {
 					and publisher for any article or reading based resource used on
 					Itihaas. We value all contributions and are grateful for it. If you
 					are an existing collaborator, or wish to add new resource or fix
-					missing content, you can do so{' '}
+					missing content, you can do so on our{' '}
 					<Link
 						to="/issues"
 						className="hover:text-primary-10 underline"
 					>
-						here
+						contributions page.
 					</Link>
 				</p>
 			</div>
