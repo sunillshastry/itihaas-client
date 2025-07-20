@@ -127,7 +127,7 @@ function DynastiesPage() {
 						refetchCountUpdate={setRefetchCount}
 					/>
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -140,7 +140,7 @@ function DynastiesPage() {
 				<MainContainer>
 					<Loader />
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
