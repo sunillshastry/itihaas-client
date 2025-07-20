@@ -7,7 +7,16 @@ interface FunctionProps extends ComponentPropsWithoutRef<'main'> {
 }
 
 function MainContainer({ children, className }: FunctionProps) {
-	return <main className={twMerge('mx-36 mt-5', className)}>{children}</main>;
+	return (
+		<main
+			className={twMerge(
+				'mx-36 mt-5 max-lg:mx-20 max-md:mx-10 max-sm:mx-5',
+				className
+			)}
+		>
+			{children}
+		</main>
+	);
 }
 
 MainContainer.propTypes = {
