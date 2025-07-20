@@ -15,18 +15,17 @@ function Docs() {
 	return (
 		<>
 			<Navbar />
-			<MDXProvider>
-				<MainContainer className="relative mx-0 flex items-start px-5">
-					<Sidebar />
+			<MainContainer className="relative mx-0 flex items-start px-5">
+				<Sidebar />
+				<section className="ml-3 w-full">
+					<PrimaryHeader>Documentation</PrimaryHeader>
 
-					<section className="ml-3 w-full">
-						<PrimaryHeader>Documentation</PrimaryHeader>
-
+					<MDXProvider>
 						{/* Getting Started  */}
 						<GettingStarted />
-					</section>
-				</MainContainer>
-			</MDXProvider>
+					</MDXProvider>
+				</section>
+			</MainContainer>
 			<Footer className="mt-36" />
 		</>
 	);
