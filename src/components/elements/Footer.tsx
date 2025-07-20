@@ -19,7 +19,7 @@ function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 			<section className="w-[60%] pr-8 max-lg:w-full max-lg:pr-0">
 				<div>
 					<h3 className="font-logo text-primary-90 text-3xl">Itihaas</h3>
-					<p className="text-primary-10 flex items-center text-sm">
+					<p className="text-primary-20 flex items-center text-sm">
 						<span>
 							<Copyright size={16} />
 						</span>
@@ -27,7 +27,7 @@ function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 						<a
 							href="https://github.com/sunillshastry/itihaas-client/blob/master/LICENSE"
 							target="_blank"
-							className="hover:text-primary-30 ml-1 underline"
+							className="hover:text-primary-50 ml-1 underline"
 						>
 							GNU GPL v3
 						</a>
