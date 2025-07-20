@@ -115,7 +115,7 @@ function DynastyPage() {
 						refetchCountUpdate={setRefetchCount}
 					/>
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -133,7 +133,7 @@ function DynastyPage() {
 				<MainContainer>
 					<Loader />
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -144,9 +144,9 @@ function DynastyPage() {
 				<Navbar />
 				<MainContainer>
 					<div>
-						<div className="flex items-baseline justify-between">
+						<div className="flex items-baseline justify-between max-md:flex-col max-md:items-start max-md:justify-start">
 							<BackButton />
-							<div className="flex items-baseline gap-2">
+							<div className="flex items-baseline gap-2 max-md:self-end">
 								<CopyURLButton />
 								<CiteDropdown
 									pageTitle={(dynasty as Dynasty) && (dynasty?.name as string)}
@@ -155,7 +155,9 @@ function DynastyPage() {
 								/>
 							</div>
 						</div>
-						<PrimaryHeader>{dynasty?.name}</PrimaryHeader>
+						<PrimaryHeader className="max-md:mt-4">
+							{dynasty?.name}
+						</PrimaryHeader>
 
 						<SecondaryHeader>
 							{dynasty?.otherNames &&
@@ -197,7 +199,7 @@ function DynastyPage() {
 
 					<LastUpdateMessage date={dynasty?.updatedAt} />
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}

@@ -11,12 +11,12 @@ interface FunctionProps {
 
 function Article({ title, link, publisher, authors = [] }: FunctionProps) {
 	return (
-		<li className="bg-primary-60 shadow-primary my-4 rounded-sm px-3 py-2 shadow-xs transition-all duration-150 ease-in hover:shadow-md">
+		<li className="bg-primary-60 shadow-primary my-4 w-full max-w-full rounded-sm px-3 py-2 shadow-xs transition-all duration-150 ease-in hover:shadow-md">
 			<a
 				href={link}
 				target="_blank"
 			>
-				<div>
+				<div className="w-full max-w-full break-words whitespace-normal">
 					<h4 className="text-primary-400 mb-2 text-base font-medium underline underline-offset-2">
 						{title}
 					</h4>
