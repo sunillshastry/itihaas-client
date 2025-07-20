@@ -1,5 +1,5 @@
 # Running Prettier on staged files
-'*.{ts, tsx, jsx, js, json, md, yaml, cts, cjs}':
+'*.{ts, tsx, jsx, js, json, md, yaml, cts, cjs, toml}':
   - 'prettier --write'
 
 # Running ESLint on staged files
