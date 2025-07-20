@@ -65,16 +65,18 @@ function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 						<FooterLink to="/register">API Registration</FooterLink>
 						<FooterLink to="/docs">Docs</FooterLink>
 						<FooterLink to="/api-recovery">API Key Recovery</FooterLink>
-						<a
-							href="https://github.com/sunillshastry/itihaas-api/"
-							target="_blank"
-							className="text-primary-30 hover:text-primary-60 mt-4 inline-flex items-center text-sm hover:underline max-lg:mt-2"
-						>
-							<span>GitHub</span>
-							<span className="ml-1">
-								<SquareArrowOutUpRight size={12} />
-							</span>
-						</a>
+						<li>
+							<a
+								href="https://github.com/sunillshastry/itihaas-api/"
+								target="_blank"
+								className="text-primary-30 hover:text-primary-60 mt-4 inline-flex items-center text-sm hover:underline max-lg:mt-2"
+							>
+								<span>GitHub</span>
+								<span className="ml-1">
+									<SquareArrowOutUpRight size={12} />
+								</span>
+							</a>
+						</li>
 					</ul>
 				</FooterLinksTab>
 			</section>
