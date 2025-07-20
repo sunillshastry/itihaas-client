@@ -24,6 +24,10 @@ export default tseslint.config(
 				{ allowConstantExport: true },
 			],
 			'react/jsx-no-target-blank': 'off',
+			'@typescript-eslint/no-unused-vars': [
+				'error',
+				{ argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+			],
 		},
 	}
 );
