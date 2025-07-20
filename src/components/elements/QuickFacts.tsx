@@ -11,7 +11,7 @@ function QuickFacts({ children }: FunctionProps) {
 				Quick Facts
 			</h2>
 
-			<ul className="mt-5 grid grid-cols-3 grid-rows-3 gap-y-5 max-md:grid-cols-2 max-sm:grid-cols-1">
+			<ul className="mt-5 grid grid-cols-3 gap-y-5 max-md:grid-cols-2 max-sm:grid-cols-1">
 				{children}
 			</ul>
 		</section>
