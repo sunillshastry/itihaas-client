@@ -52,7 +52,7 @@ function RulerPageItem({ ruler }: FunctionProps) {
 					to={`${ruler?.slug}`}
 					className="text-primary-200 hover:bg-primary-600 hover:text-primary-70 mt-2 inline-flex items-center underline"
 				>
-					<span>Read more</span>
+					<span>Explore more</span>
 					<span>
 						<MoveRight
 							size={16}
