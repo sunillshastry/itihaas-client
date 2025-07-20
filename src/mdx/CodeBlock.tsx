@@ -35,6 +35,8 @@ function CodeBlock({
 							<button
 								className="bg-primary-40 text-primary-700 hover:bg-primary-60 absolute top-2 right-2 z-40 rounded-md p-1.5 transition ease-in hover:cursor-pointer"
 								onClick={() => copyFn(children as string)}
+								aria-label="Copy contents"
+								role="button"
 							>
 								{copied ? <Check size={18} /> : <Copy size={18} />}
 							</button>
