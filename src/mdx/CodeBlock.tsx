@@ -1,8 +1,7 @@
 import { Highlight, PrismTheme } from 'prism-react-renderer';
 import '@/styles/codeblock-theme.css';
-import { useState } from 'react';
-import CopyToClipboard from 'react-copy-to-clipboard';
 import { Check, Copy } from 'lucide-react';
+import useCopy from '@/hooks/useCopy';
 
 interface FunctionProps {
 	children: Readonly<React.ReactNode> | string;
@@ -21,14 +20,7 @@ function CodeBlock({
 		styles: [],
 	} as PrismTheme;
 
-	const [copied, setCopied] = useState<boolean>(false);
-
-	function handleCopyClick() {
-		setCopied(true);
-		setTimeout(function () {
-			setCopied(false);
-		}, 1000);
-	}
+	const [copied, copyFn] = useCopy();
 
 	return (
 		<div className="my-2 max-w-full overflow-x-scroll">
@@ -40,14 +32,12 @@ function CodeBlock({
 				{({ style, tokens, getLineProps, getTokenProps }) => (
 					<div className="relative">
 						{copy && (
-							<CopyToClipboard text={children as string}>
-								<button
-									className="bg-primary-40 text-primary-700 hover:bg-primary-60 absolute top-2 right-2 z-40 rounded-md p-1.5 transition ease-in hover:cursor-pointer"
-									onClick={handleCopyClick}
-								>
-									{copied ? <Check size={18} /> : <Copy size={18} />}
-								</button>
-							</CopyToClipboard>
+							<button
+								className="bg-primary-40 text-primary-700 hover:bg-primary-60 absolute top-2 right-2 z-40 rounded-md p-1.5 transition ease-in hover:cursor-pointer"
+								onClick={() => copyFn(children as string)}
+							>
+								{copied ? <Check size={18} /> : <Copy size={18} />}
+							</button>
 						)}
 						<pre
 							style={style}
