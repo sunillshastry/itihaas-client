@@ -34,6 +34,8 @@ function About() {
 					<button
 						onClick={playAudio}
 						className="text-primary-400 hover:text-primary-200 transition hover:cursor-pointer"
+						aria-label="Itihaas Pronunciation"
+						role="button"
 					>
 						<Volume2 />
 					</button>
