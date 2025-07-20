@@ -60,7 +60,7 @@
 				rgba(118, 83, 56, 0.5),
 				rgba(118, 83, 56, 0.5)
 			),
-			url('/background.jpg');
+			url('./../assets/background.jpg');
 		background-position: center bottom;
 		background-size: cover;
 		background-repeat: no-repeat;

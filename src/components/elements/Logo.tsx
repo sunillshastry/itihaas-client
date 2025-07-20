@@ -1,8 +1,10 @@
+import logo from '@/assets/logo.png';
+
 function Logo() {
 	return (
 		<>
 			<img
-				src="/logo.png"
+				src={logo}
 				alt="Itihaas Logo"
 				width="50"
 				height="50"
