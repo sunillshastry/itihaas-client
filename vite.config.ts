@@ -4,10 +4,36 @@ import tailwindcss from '@tailwindcss/vite';
 import { ViteMinifyPlugin } from 'vite-plugin-minify';
 import path from 'path';
 import mdx from '@mdx-js/rollup';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
+
+const viteBuildImageQuality = 85;
 
 // https://vite.dev/config/
 export default defineConfig({
-	plugins: [react(), tailwindcss(), ViteMinifyPlugin(), mdx()],
+	plugins: [
+		react(),
+		tailwindcss(),
+		ViteMinifyPlugin(),
+		mdx(),
+		ViteImageOptimizer({
+			logStats: true,
+			png: {
+				quality: viteBuildImageQuality,
+			},
+			jpeg: {
+				quality: viteBuildImageQuality,
+			},
+			jpg: {
+				quality: viteBuildImageQuality,
+			},
+			webp: {
+				quality: viteBuildImageQuality,
+			},
+			avif: {
+				quality: viteBuildImageQuality,
+			},
+		}),
+	],
 	server: {
 		host: '0.0.0.0',
 		port: 3000,
