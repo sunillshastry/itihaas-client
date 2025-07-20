@@ -139,7 +139,7 @@ function RulersPage() {
 						refetchCountUpdate={setRefetchCount}
 					/>
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -152,7 +152,7 @@ function RulersPage() {
 				<MainContainer>
 					<Loader />
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -164,8 +164,9 @@ function RulersPage() {
 				<div>
 					<AddingNewContentUI />
 					<PrimaryHeader>Rulers</PrimaryHeader>
-					<div className="mt-5 flex items-end justify-between">
+					<div className="mt-5 flex items-end justify-between max-lg:flex-col max-lg:items-start max-lg:justify-start max-lg:gap-y-6">
 						<PageSearchBar
+							className="max-lg:w-full"
 							placeholder="Search all rulers..."
 							value={searchQuery}
 							onChange={setSearchQuery}
