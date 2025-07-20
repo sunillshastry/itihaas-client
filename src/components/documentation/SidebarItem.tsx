@@ -3,9 +3,10 @@ import { SidebarSubfield } from '@/interfaces/SidebarSubfield';
 interface FunctionProps {
 	title: string;
 	subfields: SidebarSubfield[];
+	sidebarClick?: () => void;
 }
 
-function SidebarItem({ title, subfields }: FunctionProps) {
+function SidebarItem({ title, subfields, sidebarClick }: FunctionProps) {
 	const titleId = `#${title.toLowerCase().split(' ').join('-')}`;
 
 	return (
@@ -21,7 +22,10 @@ function SidebarItem({ title, subfields }: FunctionProps) {
 							key={subfieldId}
 							className="hover:text-primary-200 my-1 hover:underline"
 						>
-							<a href={subfield?.id ? `#${subfield.id}` : subfieldId}>
+							<a
+								href={subfield?.id ? `#${subfield.id}` : subfieldId}
+								onClick={sidebarClick}
+							>
 								{subfield.content}
 							</a>
 						</li>
