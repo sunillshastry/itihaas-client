@@ -45,7 +45,6 @@ function RegisterInfo() {
 
 		if (!captchaState.value) {
 			setCaptchaState((current) => ({ ...current, error: true }));
-			captchaRef.current?.reset();
 			return;
 		}
 
@@ -195,7 +194,6 @@ function RegisterInfo() {
 									value: null,
 									error: true,
 								}));
-								captchaRef.current?.reset();
 							}}
 							onError={() => {
 								setCaptchaState((current) => ({
@@ -203,7 +201,6 @@ function RegisterInfo() {
 									value: null,
 									error: true,
 								}));
-								captchaRef.current?.reset();
 							}}
 						/>
 						{captchaState.error && (
