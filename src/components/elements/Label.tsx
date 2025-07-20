@@ -15,7 +15,7 @@ function Label({
 	return (
 		<label
 			className={twMerge(
-				'text-primary-100 text-sm font-bold uppercase',
+				'text-primary-300 text-sm font-bold uppercase',
 				className
 			)}
 			{...defaultProps}

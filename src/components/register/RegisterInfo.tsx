@@ -74,7 +74,7 @@ function RegisterInfo() {
 					</span>
 					.
 				</p>
-				<h5 className="text-primary-100 mt-1 text-sm font-bold uppercase">
+				<h5 className="text-primary-300 mt-1 text-sm font-bold uppercase opacity-80">
 					All fields marked with '*' are deemed required
 				</h5>
 
