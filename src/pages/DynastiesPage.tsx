@@ -127,7 +127,7 @@ function DynastiesPage() {
 						refetchCountUpdate={setRefetchCount}
 					/>
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -140,7 +140,7 @@ function DynastiesPage() {
 				<MainContainer>
 					<Loader />
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -152,8 +152,9 @@ function DynastiesPage() {
 				<div>
 					<AddingNewContentUI />
 					<PrimaryHeader>Dynasties</PrimaryHeader>
-					<div className="mt-5 flex items-end justify-between">
+					<div className="mt-5 flex items-end justify-between max-lg:flex-col max-lg:items-start max-lg:justify-start max-lg:gap-y-6">
 						<PageSearchBar
+							className="max-lg:w-full"
 							placeholder="Search all dynasties..."
 							value={searchQuery}
 							onChange={setSearchQuery}
@@ -191,7 +192,7 @@ function DynastiesPage() {
 					<DynastyPageList dynasties={finalDynasties} />
 				</Suspense>
 			</MainContainer>
-			<Footer className="mt-36" />
+			<Footer className="mt-36 max-md:mt-20" />
 		</>
 	);
 }

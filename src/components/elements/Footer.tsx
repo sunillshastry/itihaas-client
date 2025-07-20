@@ -12,11 +12,11 @@ function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 	return (
 		<footer
 			className={twMerge(
-				'bg-primary-700 flex justify-between px-14 pt-10 pb-8',
+				'bg-primary-700 flex justify-between px-14 pt-10 pb-10 max-lg:flex-col max-lg:px-8 max-md:px-4',
 				className
 			)}
 		>
-			<section className="w-[60%] pr-8">
+			<section className="w-[60%] pr-8 max-lg:w-full max-lg:pr-0">
 				<div>
 					<h3 className="font-logo text-primary-90 text-3xl">Itihaas</h3>
 					<p className="text-primary-10 flex items-center text-sm">
@@ -45,9 +45,9 @@ function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 				</p>
 			</section>
 
-			<section className="border-l-primary-10/15 flex w-[40%] items-start justify-around border-l-2">
+			<section className="border-l-primary-10/15 flex w-[40%] items-start justify-around border-l-2 max-lg:w-full max-lg:flex-col max-lg:items-start max-lg:justify-start max-lg:border-l-0 max-lg:pt-8">
 				<FooterLinksTab title="Product">
-					<ul>
+					<ul className="max-lg:flex max-lg:flex-wrap max-lg:items-start max-lg:justify-start max-lg:gap-x-4 max-md:flex-col">
 						<FooterLink to="/dynasties">Dynasties</FooterLink>
 						<FooterLink to="/rulers">Rulers</FooterLink>
 						<FooterLink to="/wars">Wars</FooterLink>
@@ -56,8 +56,11 @@ function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 					</ul>
 				</FooterLinksTab>
 
-				<FooterLinksTab title="Developer">
-					<ul>
+				<FooterLinksTab
+					title="Developer"
+					className="max-lg:mt-6"
+				>
+					<ul className="max-lg:flex max-lg:flex-wrap max-lg:items-start max-lg:justify-start max-lg:gap-x-4 max-md:flex-col">
 						<FooterLink to="/issues">Contributions</FooterLink>
 						<FooterLink to="/register">API Registration</FooterLink>
 						<FooterLink to="/docs">Docs</FooterLink>
@@ -65,7 +68,7 @@ function Footer({ className }: ComponentPropsWithoutRef<'footer'>) {
 						<a
 							href="https://github.com/sunillshastry/itihaas-api/"
 							target="_blank"
-							className="text-primary-30 hover:text-primary-60 mt-4 inline-flex items-center text-sm hover:underline"
+							className="text-primary-30 hover:text-primary-60 mt-4 inline-flex items-center text-sm hover:underline max-lg:mt-2"
 						>
 							<span>GitHub</span>
 							<span className="ml-1">

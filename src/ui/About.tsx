@@ -9,7 +9,7 @@ function About() {
 	}
 
 	return (
-		<div className="text-primary-600 mt-4 text-base leading-10">
+		<div className="text-primary-600 mt-4 text-base leading-10 max-sm:px-2">
 			<audio
 				ref={audioElementRef}
 				src="https://en-audio.howtopronounce.com/68d6f9715d805875b057e760414259b5.mp3"

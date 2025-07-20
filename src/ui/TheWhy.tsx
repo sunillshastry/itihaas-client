@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function TheWhy() {
 	return (
-		<div className="text-primary-400 mt-6">
+		<div className="text-primary-400 mt-6 max-sm:px-2">
 			<h2 className="border-primary-300/25 border-b text-xl font-semibold uppercase first-letter:text-3xl">
 				Why Itihaas?
 			</h2>

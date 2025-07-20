@@ -46,14 +46,14 @@ function NavbarHeader({ onSubmit }: FunctionProps) {
 	}
 
 	return (
-		<div className="flex min-w-4xl items-center justify-between">
+		<div className="flex w-4xl max-w-full items-center justify-between max-md:flex-col max-md:items-center max-md:justify-start max-md:gap-6">
 			<Link
 				to="/"
 				className="flex items-center justify-center transition-all duration-100 ease-in hover:brightness-150"
 			>
 				<Logo />
 			</Link>
-			<div className="relative">
+			<div className="relative min-w-sm max-md:px-2 max-sm:min-w-2xs">
 				<SearchBar
 					value={searchQuery}
 					onChange={toggleAutocomplete}

@@ -15,7 +15,7 @@ function Register() {
 					<RegisterInfo />
 				</section>
 			</MainContainer>
-			<Footer className="mt-36" />
+			<Footer className="mt-36 max-md:mt-20" />
 		</>
 	);
 }

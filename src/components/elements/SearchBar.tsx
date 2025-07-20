@@ -37,7 +37,7 @@ function SearchBar({
 			onSubmit={(e) => onSubmit(e, value)}
 		>
 			<input
-				className="font-primary text-primary-500 w-sm px-4 py-2 text-sm outline-0"
+				className="font-primary text-primary-500 w-full px-4 py-2 text-sm outline-0"
 				type="text"
 				placeholder="Search for dynasties, rulers..."
 				value={value}

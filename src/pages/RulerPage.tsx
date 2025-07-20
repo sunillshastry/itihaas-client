@@ -119,7 +119,7 @@ function RulerPage() {
 						refetchCountUpdate={setRefetchCount}
 					/>
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -138,7 +138,7 @@ function RulerPage() {
 				<MainContainer>
 					<Loader />
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -149,9 +149,9 @@ function RulerPage() {
 				<Navbar />
 				<MainContainer>
 					<div>
-						<div className="flex items-baseline justify-between">
+						<div className="flex items-baseline justify-between max-md:flex-col max-md:items-start max-md:justify-start">
 							<BackButton />
-							<div className="flex items-baseline gap-2">
+							<div className="flex items-baseline gap-2 max-md:self-end">
 								<CopyURLButton />
 								<CiteDropdown
 									pageTitle={ruler?.name}
@@ -160,7 +160,7 @@ function RulerPage() {
 								/>
 							</div>
 						</div>
-						<PrimaryHeader>{ruler?.name}</PrimaryHeader>
+						<PrimaryHeader className="max-md:mt-4">{ruler?.name}</PrimaryHeader>
 
 						<SecondaryHeader>
 							{ruler?.otherNames &&

@@ -7,7 +7,7 @@
   - 'eslint  --fix'
 
 # Running tests
-'*.{ts, tsx, js, jsx, cts}':
+'*.{test.ts}':
   - 'jest'
 # Re-stage all updated/changed files from Prettier and/or ESLint
 # '*.{ts, tsx, jsx, js, json, md, yaml, cts, cjs, yml}':

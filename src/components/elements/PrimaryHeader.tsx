@@ -1,12 +1,17 @@
 import PropTypes from 'prop-types';
 import { ComponentPropsWithoutRef } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface FunctionProps extends ComponentPropsWithoutRef<'h1'> {
 	children: Readonly<React.ReactNode>;
 }
 
-function PrimaryHeader({ children }: FunctionProps) {
-	return <h1 className="font-heading primary__header text-4xl">{children}</h1>;
+function PrimaryHeader({ children, className }: FunctionProps) {
+	return (
+		<h1 className={twMerge('font-heading primary__header text-4xl', className)}>
+			{children}
+		</h1>
+	);
 }
 
 PrimaryHeader.propTypes = {

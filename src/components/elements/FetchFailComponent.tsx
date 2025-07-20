@@ -68,7 +68,7 @@ function FetchFailComponent({
 			<h2 className="text-primary-600 mt-16 flex items-center justify-center text-center text-lg font-medium">
 				<span>{message}</span>
 
-				<span className="ml-1">
+				<span className="ml-1 max-md:hidden">
 					<TriangleAlert size={20} />
 				</span>
 			</h2>
