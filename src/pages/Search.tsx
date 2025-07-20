@@ -147,7 +147,7 @@ function Search() {
 				<MainContainer>
 					<QueryLengthError />
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -164,7 +164,7 @@ function Search() {
 						refetchCountUpdate={setRefetchCount}
 					/>
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -177,7 +177,7 @@ function Search() {
 				<MainContainer>
 					<Loader />
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
@@ -275,7 +275,7 @@ function Search() {
 						<EmptySearchResult />
 					)}
 				</MainContainer>
-				<Footer className="mt-36" />
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
