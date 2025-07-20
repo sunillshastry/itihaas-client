@@ -1,3 +1,5 @@
+const tomlPlugin = require('prettier-plugin-toml');
+
 module.exports = {
 	tabWidth: 2,
 	useTabs: true,
@@ -11,5 +13,5 @@ module.exports = {
 	arrowParens: 'always',
 	endOfLine: 'lf',
 	singleAttributePerLine: true,
-	plugins: ['prettier-plugin-tailwindcss'],
+	plugins: ['prettier-plugin-tailwindcss', tomlPlugin],
 };
