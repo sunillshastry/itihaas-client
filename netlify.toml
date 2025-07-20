@@ -10,4 +10,4 @@ status = 200
 [[headers]]
 for = "/*"
 [headers.values]
-Content-Security-Policy = "frame-ancestors 'self'; frame-src 'self' https://www.google.com/ https://www.gstatic.com/; script-src 'self' https://www.google.com/ https://www.gstatic.com/ 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+Content-Security-Policy = "default-src 'self'; frame-src 'self' https://www.google.com/ https://www.gstatic.com/; script-src 'self' https://www.google.com/ https://www.gstatic.com/ 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.google.com/ https://www.gstatic.com/;"
