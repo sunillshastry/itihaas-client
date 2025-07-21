@@ -43,7 +43,7 @@ function CodeBlock({
 						)}
 						<pre
 							style={style}
-							className="bg-primary-90 relative overflow-x-auto rounded-md p-3 text-sm shadow-sm"
+							className="bg-primary-90 relative overflow-x-auto rounded-md p-3 text-xs shadow-sm"
 						>
 							{tokens.map((line, i) => (
 								<div
