@@ -6,8 +6,14 @@ import type { Data } from '@/interfaces/APIData';
  * @returns A Promise consisting of the API response
  */
 async function getRuler(slug: string) {
-	const BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
+	let BASE_URL;
+	if (import.meta.env.VITE_APP_ENV === 'development') {
+		BASE_URL = import.meta.env.VITE_BASE_SERVER_URI;
+	} else {
+		BASE_URL = import.meta.env.VITE_BASE_PROD_URI;
+	}
 
+	if (!BASE_URL) return;
 	try {
 		// Get the initial response
 		const response: Response = await fetch(`${BASE_URL}/rulers/${slug}`);
