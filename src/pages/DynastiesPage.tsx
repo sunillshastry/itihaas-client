@@ -15,6 +15,7 @@ import { useSearchParams } from 'react-router-dom';
 import Select from '@/components/elements/Select';
 import SearchSortByOptions from '@/data/SearchSortByOptions';
 import { ArrowDownNarrowWide } from 'lucide-react';
+import BuildingContentBanner from '@/components/elements/BuildingContentBanner';
 
 // Code splitting (Lazy loading)
 const DynastyPageList = lazy(
@@ -190,6 +191,7 @@ function DynastiesPage() {
 
 				<Suspense fallback={<Loader size="medium" />}>
 					<DynastyPageList dynasties={finalDynasties} />
+					<BuildingContentBanner />
 				</Suspense>
 			</MainContainer>
 			<Footer className="mt-36 max-md:mt-20" />

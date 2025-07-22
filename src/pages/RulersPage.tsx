@@ -16,6 +16,7 @@ import { useSearchParams } from 'react-router-dom';
 import { ArrowDownNarrowWide } from 'lucide-react';
 import Select from '@/components/elements/Select';
 import SearchSortByOptions from '@/data/SearchSortByOptions';
+import BuildingContentBanner from '@/components/elements/BuildingContentBanner';
 
 // Code splitting (lazy loading)
 const RulerPageList = lazy(() => import('@/components/ruler/RulerPageList'));
@@ -206,6 +207,7 @@ function RulersPage() {
 
 				<Suspense fallback={<Loader />}>
 					<RulerPageList rulers={finalRulers} />
+					<BuildingContentBanner />
 				</Suspense>
 			</MainContainer>
 			<Footer className="mt-36" />
