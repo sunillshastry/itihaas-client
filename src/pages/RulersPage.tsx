@@ -197,11 +197,7 @@ function RulersPage() {
 					</div>
 				</div>
 
-				{finalRulers?.length === 0 && searchQuery?.length >= 3 && (
-					<EntitiesPageNoResult query={searchQuery} />
-				)}
-
-				{queriedRulers.length === 0 && searchQuery.length >= 3 && (
+				{finalRulers?.length === 0 && queriedRulers.length === 0 && (
 					<EntitiesPageNoResult query={searchQuery} />
 				)}
 
