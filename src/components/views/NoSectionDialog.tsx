@@ -16,7 +16,7 @@ function NoSectionDialog({ name, id }: FunctionProps) {
 			<SubHeader>
 				<SubHeaderLink to={`#${id}`}>{name}</SubHeaderLink>
 			</SubHeader>
-			<p className="text-primary-500 mt-2 flex font-medium italic">
+			<p className="text-primary-500 mt-2 flex font-medium italic max-sm:flex-col max-sm:gap-y-1.5">
 				Nothing here for now. Got something to share?&nbsp;
 				<Link
 					to="/issues"
