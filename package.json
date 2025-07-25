@@ -52,6 +52,7 @@
 		"react-tooltip": "^5.29.1",
 		"tailwind-merge": "^3.3.1",
 		"tailwindcss": "^4.1.5",
+		"ts-node": "^10.9.2",
 		"uuid": "^11.1.0"
 	},
 	"devDependencies": {
