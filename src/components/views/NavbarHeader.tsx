@@ -45,6 +45,11 @@ function NavbarHeader({ onSubmit }: FunctionProps) {
 		setIsAutocompleteEnabled(false);
 	}
 
+	function handleFormSubmit(e: FormEvent) {
+		setIsAutocompleteEnabled(false);
+		onSubmit(e, searchQuery);
+	}
+
 	return (
 		<div className="flex w-4xl max-w-full items-center justify-between max-md:flex-col max-md:items-center max-md:justify-start max-md:gap-6">
 			<Link
@@ -59,7 +64,7 @@ function NavbarHeader({ onSubmit }: FunctionProps) {
 					onChange={toggleAutocomplete}
 					setSearchQuery={setSearchQuery}
 					setIsAutocompleteEnabled={setIsAutocompleteEnabled}
-					onSubmit={onSubmit}
+					onSubmit={(e) => handleFormSubmit(e)}
 				/>
 				<SearchSuggestionTab
 					displayed={isAutocompleteEnabled}
