@@ -70,14 +70,18 @@ Create a local build/development setup with Node using the following steps.
 Alternative to running the project in development mode, you can perform a full build and view the production mode result by a few different steps. Follow the above guide and install all package dependencies using `npm install` and then follow the provided steps below to mimic a production build mode.
 
 1. After running the `npm install` command and with a successful `node_modules` directory at the root level of the project directory, run the following command:
+
    ```bash
    npm run build # Making a full build over a dev server
    ```
+
 2. This will build the project for production (using [Vite's](https://vite.dev/guide/build.html) build configuration), and create a dedicated folder titled `dist` which will contain the optimized and minified codebase with dependent assets.
 3. To preview/serve the `dist` directory locally and view, run the following command
+
    ```bash
    npm run preview
    ```
+
 4. The `preview` command will also start and spin up a server at port `3001`. You can access and view the build at `http://localhost:3001/`
 
 ### Using Docker
