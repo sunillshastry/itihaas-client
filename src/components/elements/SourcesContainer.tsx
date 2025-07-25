@@ -12,7 +12,12 @@ interface FunctionProps {
 
 function SourcesContainer({ sources }: FunctionProps) {
 	if (sources && sources.length === 0) {
-		return <NoSectionDialog name="Sources" />;
+		return (
+			<NoSectionDialog
+				name="Sources"
+				id="sources"
+			/>
+		);
 	}
 
 	return (

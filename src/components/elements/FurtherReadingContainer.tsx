@@ -12,7 +12,12 @@ interface FunctionProps {
 
 function FurtherReadingContainer({ readings }: FunctionProps) {
 	if (readings && readings.length === 0) {
-		return <NoSectionDialog name="Further Readings" />;
+		return (
+			<NoSectionDialog
+				name="Further Readings"
+				id="reading"
+			/>
+		);
 	}
 
 	return (
