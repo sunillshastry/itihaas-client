@@ -26,9 +26,9 @@ function AddingNewContentUI() {
 
 					<Link
 						to="/issues"
-						className="from-primary-40 to-primary-60 text-primary-700 hover:from-primary-50 hover:to-primary-70 mt-3 inline-flex items-center justify-start gap-x-1 rounded-md bg-linear-to-r px-2 py-1.5 text-sm font-medium shadow-sm hover:shadow-md"
+						className="from-primary-40 to-primary-60 text-primary-700 hover:from-primary-50 hover:to-primary-70 mt-3 inline-flex items-center justify-start gap-x-1 rounded-md bg-linear-to-r px-2 py-1.5 text-xs font-medium shadow-sm hover:shadow-md"
 					>
-						<span>View contribution guide</span>
+						<span>View Contribution Guide</span>
 						<span>
 							<BookText size={15} />
 						</span>
