@@ -3,15 +3,19 @@ import PropTypes from 'prop-types';
 import { ArrowRight } from 'lucide-react';
 
 import SubHeader from '@/components/elements/SubHeader';
+import SubHeaderLink from './SubHeaderLink';
 
 interface FunctionProps {
 	name: string;
+	id: string;
 }
 
-function NoSectionDialog({ name }: FunctionProps) {
+function NoSectionDialog({ name, id }: FunctionProps) {
 	return (
 		<section className="mt-5">
-			<SubHeader>{name}</SubHeader>
+			<SubHeader>
+				<SubHeaderLink to={`#${id}`}>{name}</SubHeaderLink>
+			</SubHeader>
 			<p className="text-primary-500 mt-2 flex font-medium italic">
 				Nothing here for now. Got something to share?&nbsp;
 				<Link
