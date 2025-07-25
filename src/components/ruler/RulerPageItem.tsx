@@ -41,23 +41,20 @@ function RulerPageItem({ ruler }: FunctionProps) {
 
 				<p className="text-primary mt-1">{ruler?.description?.oneline}</p>
 
-				<p className="text-primary-20 mt-2 flex items-baseline">
+				<p className="text-primary-20 mt-2 flex items-baseline text-sm">
 					<span>
-						<Network size={18} />
+						<Network size={14} />
 					</span>
 					<span className="ml-2">{ruler?.dynasty}</span>
 				</p>
 
 				<Link
 					to={`${ruler?.slug}`}
-					className="text-primary-200 hover:bg-primary-600 hover:text-primary-70 mt-2 inline-flex items-center underline"
+					className="bg-primary-400 text-primary-70 hover:bg-primary-100 mt-2 inline-flex items-center gap-x-1 rounded-sm px-1.5 py-1 text-sm font-medium transition ease-in"
 				>
 					<span>Explore more</span>
 					<span>
-						<MoveRight
-							size={16}
-							className="ml-1"
-						/>
+						<MoveRight size={14} />
 					</span>
 				</Link>
 			</div>
