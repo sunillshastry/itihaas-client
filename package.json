@@ -30,7 +30,8 @@
 		"format:check": "prettier --check .",
 		"test": "jest",
 		"prepare": "husky",
-		"stage": "lint-staged"
+		"stage": "lint-staged",
+		"test/report": "open coverage/lcov-report/index.html || xdg-open coverage/lcov-report/index.html || start coverage/lcov-report/index.html"
 	},
 	"dependencies": {
 		"@mdx-js/react": "^3.1.0",
