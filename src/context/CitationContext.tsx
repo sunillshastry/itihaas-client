@@ -47,6 +47,7 @@ function useCitation(): Context {
 	return context;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export { useCitation };
 export default CitationContextProvider;
 
