@@ -12,7 +12,12 @@ interface FunctionProps {
 
 function ArticlesContainer({ articles }: FunctionProps) {
 	if (articles && articles.length === 0) {
-		return <NoSectionDialog name="Articles" />;
+		return (
+			<NoSectionDialog
+				name="Articles"
+				id="articles"
+			/>
+		);
 	}
 
 	return (

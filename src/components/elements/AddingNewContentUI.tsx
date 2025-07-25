@@ -1,5 +1,6 @@
 import PlatformGrowthButton from '@/components/views/PlatformGrowthButton';
 import { usePlatformGrowth } from '@/context/PlatformGrowthContext';
+import { BookText } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function AddingNewContentUI() {
@@ -25,9 +26,12 @@ function AddingNewContentUI() {
 
 					<Link
 						to="/issues"
-						className="text-primary-70 hover:text-primary-90 mt-2 inline-block text-sm underline"
+						className="from-primary-40 to-primary-60 text-primary-700 hover:from-primary-50 hover:to-primary-70 mt-3 inline-flex items-center justify-start gap-x-1 rounded-md bg-linear-to-r px-2 py-1.5 text-sm font-medium shadow-sm hover:shadow-md"
 					>
-						View contribution guide
+						<span>View contribution guide</span>
+						<span>
+							<BookText size={15} />
+						</span>
 					</Link>
 				</div>
 			)}
