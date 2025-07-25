@@ -80,6 +80,54 @@ Alternative to running the project in development mode, you can perform a full b
    ```
 4. The `preview` command will also start and spin up a server at port `3001`. You can access and view the build at `http://localhost:3001/`
 
+### Using Docker
+
+If you do not have `Node` installed, or prefer not to install it. You can run and setup the project in development mode using Docker. This method requires to have Docker installed. You can install Docker for your device and OS from the official [Docker](https://www.docker.com/) website. Once you have it installed successfully, you can run the following command to make sure Docker is correctly installed on your system.
+
+```bash
+docker --version
+```
+
+With Docker installed, you can run the project in development mode by following the provides steps below:
+
+1. Clone the project, and navigate into the directory.
+
+   ```bash
+   git clone https://github.com/sunillshastry/itihaas-client.git
+   ```
+
+   ```bash
+   cd itihaas-client
+   ```
+
+2. Using `docker-compose` tool (which is also installed with Docker), run the following command
+
+   ```bash
+   docker compose up --build
+   ```
+
+   Or
+
+   ```bash
+   docker-compose up --build
+   ```
+
+3. This will spin up a new [Docker Container](https://www.docker.com/resources/what-container/) using the base image configuration provided with the project's `Dockerfile` (You can view the project's `Dockerfile` [here](https://github.com/sunillshastry/itihaas-client/blob/master/Dockerfile)).
+4. With successful Docker build, you can now access and view the project on `localhost` at port `3000`, i.e., at `http://localhost:3000/`.
+5. Once you have finished viewing the project, you should run the following command:
+
+   ```bash
+   docker compose down
+   ```
+
+   Or
+
+   ```bash
+   docker-compose down
+   ```
+
+6. The above command will stop the running container, optional network connections used by the project and free up used resources.
+
 ## Developer
 
 The following information may be beneficial to developers wishing to consume the Itihaas API for personal use.
