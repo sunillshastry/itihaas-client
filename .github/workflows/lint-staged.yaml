@@ -1,0 +1,34 @@
+name: itihaas-client-stage
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - closed
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  build-and-test:
+    if: github.head_ref == 'beta' # For 'beta' branch only (for now...)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      # Install all dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run staging build
+        run: npm run stage
