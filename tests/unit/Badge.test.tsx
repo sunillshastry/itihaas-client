@@ -19,4 +19,15 @@ describe('Component testing: Badge', () => {
 
 		expect(element.classList.contains('uppercase')).toBe(true);
 	});
+
+	// Test Case 3
+	test("Test Case: Checking for Badge's HTML tag name", function () {
+		const id = 'my-badge';
+		const { container } = render(<Badge id={id}>This is a badge</Badge>);
+
+		const element = container.querySelector(`#${id}`);
+		if (element && element.tagName) {
+			expect(element.tagName).toEqual('span');
+		}
+	});
 });
