@@ -11,6 +11,8 @@ const useGoogleAnalytics = () => {
 				import.meta.env.VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID,
 				{
 					page_path: location.pathname,
+					cookie_domain: 'auto',
+					cookie_flags: 'SameSite=None;Secure',
 				}
 			);
 		}
