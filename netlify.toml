@@ -13,9 +13,10 @@ for = "/*"
 Content-Security-Policy = '''
   default-src 'self';
   frame-src 'self' https://www.google.com https://www.gstatic.com;
-  script-src 'self' https://www.google.com https://www.gstatic.com 'unsafe-inline' 'unsafe-eval';
+  script-src 'self' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com 'unsafe-inline' 'unsafe-eval';
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   font-src 'self' https://fonts.gstatic.com;
-  connect-src 'self' https://www.google.com https://www.gstatic.com https://itihaas-api.onrender.com;
+  connect-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com https://www.googletagmanager.com https://itihaas-api.onrender.com;
+  img-src 'self' data: https://www.google-analytics.com;
   media-src 'self' https://en-audio.howtopronounce.com;
 '''
