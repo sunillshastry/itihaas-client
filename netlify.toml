@@ -16,7 +16,7 @@ Content-Security-Policy = '''
   script-src 'self' https://www.google.com https://www.gstatic.com https://www.googletagmanager.com https://cloud.umami.is 'unsafe-inline' 'unsafe-eval';
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
   font-src 'self' https://fonts.gstatic.com;
-  connect-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com https://www.googletagmanager.com https://cloud.umami.is https://itihaas-api.onrender.com;
+  connect-src 'self' https://www.google.com https://www.gstatic.com https://www.google-analytics.com https://www.googletagmanager.com https://cloud.umami.is https://api-gateway.umami.dev https://itihaas-api.onrender.com;
   img-src 'self' data: https://www.google-analytics.com;
   media-src 'self' https://en-audio.howtopronounce.com;
 '''
