@@ -14,7 +14,7 @@ function FormError({
 	return (
 		<p
 			className={twMerge(
-				'flex items-center gap-1 text-sm font-medium text-red-600',
+				'text-primary-600 flex items-center gap-1 text-sm font-medium',
 				className
 			)}
 			{...defaultProps}
