@@ -14,6 +14,7 @@ import Concerns from './Concerns';
 import PrivacyAndTerms from './PrivacyAndTerms';
 import Contributing from './Contributing';
 import Recovery from './Recovery';
+import { APIRegisterSchema } from '@/schemas/apiRegisterSchema';
 
 interface FormInputs {
 	name: string;
@@ -48,11 +49,21 @@ function RegisterInfo() {
 			return;
 		}
 
-		console.log(captchaState);
-		console.log('Successfully submitted form!');
-		console.log(data);
-		// TODO: Update onSubmit function
-		// TODO: Make backend request for /register-api
+		try {
+			if (APIRegisterSchema.safeParse(data)?.success) {
+				console.log(data);
+
+				console.log(captchaState);
+				console.log('Successfully submitted form!');
+				console.log(data);
+				// TODO: Update onSubmit function
+				// TODO: Make backend request for /register-api
+			} else {
+				// Display error
+			}
+		} catch {
+			console.log('Incorrect');
+		}
 	};
 
 	return (
