@@ -27,7 +27,7 @@ export default function AddNewContribution() {
 	);
 
 	return (
-		<section className="from-primary-400 to-primary-700 text-primary-70 my-6 rounded-xl bg-linear-to-br p-8">
+		<section className="from-primary-400 to-primary-700 text-primary-70 my-6 rounded-xl bg-linear-to-br p-8 max-md:px-4">
 			<div>
 				<Tabs
 					defaultValue={tabValue}
