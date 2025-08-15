@@ -24,7 +24,9 @@ export default function InputFormControl({
 		<div className="my-3 flex flex-col items-start justify-start">
 			{info && (
 				<Tooltip id={tooltipId}>
-					<p className="text-sm font-medium">{info}</p>
+					<p className="w-[250px] text-sm font-medium max-md:w-[180px]">
+						{info}
+					</p>
 				</Tooltip>
 			)}
 			<label
