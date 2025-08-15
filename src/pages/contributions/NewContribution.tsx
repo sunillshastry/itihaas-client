@@ -4,6 +4,7 @@ import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
 import SubHeader from '@/components/elements/SubHeader';
 import AccuracyBlockquote from '@/components/issues/AccuracyBlockquote';
+import AddNewContribution from '@/sections/AddNewContribution';
 
 function NewContribution() {
 	return (
@@ -19,6 +20,7 @@ function NewContribution() {
 					</p>
 					<AccuracyBlockquote className="mt-4" />
 				</div>
+				<AddNewContribution />
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>
