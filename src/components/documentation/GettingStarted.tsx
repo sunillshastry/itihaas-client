@@ -5,6 +5,7 @@ import MDXSubTitle from '@/docs/sub-title.mdx';
 import MDXGettingStartedSectionOne from '@/docs/getting-started/viewing-and-accessing-documentation.mdx';
 import MDXGettingStartedSectionTwo from '@/docs/getting-started/request-response-examples.mdx';
 import MDXGettingStartedSectionThree from '@/docs/getting-started/api-registration.mdx';
+import MDXGettingStartedSectionFour from '@/docs/getting-started/usage-and-other-guidelines.mdx';
 
 function GettingStarted() {
 	return (
@@ -49,6 +50,17 @@ function GettingStarted() {
 						/>
 					</HashContainer>
 					<MDXGettingStartedSectionThree components={mdxComponents} />
+				</div>
+
+				<div>
+					<HashContainer id="usage-and-other-guidelines">
+						<MDXSubTitle
+							components={mdxComponents}
+							id="usage-and-other-guidelines"
+							name="Usage and other guidelines"
+						/>
+					</HashContainer>
+					<MDXGettingStartedSectionFour components={mdxComponents} />
 				</div>
 			</div>
 		</>
