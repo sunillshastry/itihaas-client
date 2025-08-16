@@ -151,6 +151,15 @@ const newDynastyFields: NewDynastyFieldOptions[] = [
 		placeholder: 'Written articles related to the dynasty (web)',
 		info: 'Leave links to any available and accessible articles written about or mentioning the dynasty',
 	},
+	{
+		id: 17,
+		htmlId: 'new-dynasty-comments',
+		type: 'textarea',
+		label: 'Additional Comments',
+		required: false,
+		placeholder: 'Include anything that is closely relevant to this entity',
+		info: 'You can mention any new ideas and suggestions or provide any comments or context here',
+	},
 ];
 
 export default newDynastyFields;
