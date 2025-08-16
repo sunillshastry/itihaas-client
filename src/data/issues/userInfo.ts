@@ -31,7 +31,8 @@ const userInfo: UserInfo[] = [
 		type: 'textarea',
 		label: 'Location',
 		required: false,
-		placeholder: 'Your city or country',
+		placeholder: 'Your city and/or country (Optional)',
+		info: 'You can include your city and/or country. This is an optional field and we ask this for demographic analytics purpose',
 	},
 ];
 
