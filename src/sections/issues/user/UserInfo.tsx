@@ -22,6 +22,7 @@ export default function UserInfo() {
 								placeholder={field.placeholder}
 								required={field.required}
 								id={field.htmlId}
+								info={field.info}
 							/>
 						);
 					} else if (field.type === 'textarea') {
@@ -32,6 +33,7 @@ export default function UserInfo() {
 								placeholder={field.placeholder}
 								required={field.required}
 								id={field.htmlId}
+								info={field.info}
 							/>
 						);
 					}

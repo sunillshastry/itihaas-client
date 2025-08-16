@@ -24,7 +24,7 @@ export default function TextAreaFormControl({
 		<div className="my-3 flex flex-col items-start justify-start">
 			{info && (
 				<Tooltip id={tooltipId}>
-					<p className="w-[250px] text-sm font-medium max-md:w-[180px]">
+					<p className="max-w-[250px] text-sm font-medium max-md:max-w-[180px]">
 						{info}
 					</p>
 				</Tooltip>
