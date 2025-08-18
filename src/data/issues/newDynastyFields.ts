@@ -1,14 +1,6 @@
-interface NewDynastyFieldOptions {
-	id: number;
-	required?: boolean;
-	label: string;
-	placeholder?: string;
-	type: 'input' | 'textarea' | 'select';
-	htmlId?: string;
-	info?: string;
-}
+import { IssuesFormControlOptions } from '@/interfaces/IssuesFormControlOptions';
 
-const newDynastyFields: NewDynastyFieldOptions[] = [
+const newDynastyFields: IssuesFormControlOptions[] = [
 	{
 		id: 1,
 		htmlId: 'new-dynasty-name',

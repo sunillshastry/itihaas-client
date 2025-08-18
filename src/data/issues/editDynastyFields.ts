@@ -1,14 +1,6 @@
-interface EditDynastyFieldOptions {
-	id: number;
-	required?: boolean;
-	label: string;
-	placeholder?: string;
-	type: 'input' | 'textarea' | 'select';
-	htmlId?: string;
-	info?: string;
-}
+import { IssuesFormControlOptions } from '@/interfaces/IssuesFormControlOptions';
 
-const editDynastyFields: EditDynastyFieldOptions[] = [
+const editDynastyFields: IssuesFormControlOptions[] = [
 	{
 		id: 1,
 		required: true,

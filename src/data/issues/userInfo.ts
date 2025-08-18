@@ -1,14 +1,6 @@
-interface UserInfo {
-	id: number;
-	required?: boolean;
-	label: string;
-	placeholder?: string;
-	type: 'input' | 'textarea' | 'select';
-	htmlId?: string;
-	info?: string;
-}
+import { IssuesFormControlOptions } from '@/interfaces/IssuesFormControlOptions';
 
-const userInfo: UserInfo[] = [
+const userInfo: IssuesFormControlOptions[] = [
 	{
 		id: 1,
 		htmlId: 'user-info-name',

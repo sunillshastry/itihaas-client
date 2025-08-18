@@ -1,14 +1,6 @@
-interface NewRulerFieldOptions {
-	id: number;
-	required?: boolean;
-	label: string;
-	placeholder?: string;
-	type: 'input' | 'textarea' | 'select';
-	htmlId?: string;
-	info?: string;
-}
+import { IssuesFormControlOptions } from '@/interfaces/IssuesFormControlOptions';
 
-const newRulerFields: NewRulerFieldOptions[] = [
+const newRulerFields: IssuesFormControlOptions[] = [
 	{
 		id: 1,
 		htmlId: 'new-ruler-name',
