@@ -15,7 +15,7 @@ function NewContribution() {
 					<BackButton />
 					<SubHeader>New additions</SubHeader>
 					<p className="text-primary-600 mt-1 text-sm font-medium">
-						Use this form recommend new entity additions or having any
+						Use this form to recommend new entity additions or having any
 						additional sub-fields within existing entities.
 					</p>
 					<AccuracyBlockquote className="mt-4" />
