@@ -47,6 +47,15 @@ const editDynastyFields: EditDynastyFieldOptions[] = [
 	},
 	{
 		id: 5,
+		required: true,
+		label: 'Source(s)',
+		placeholder: 'One or more sources backing your response',
+		type: 'textarea',
+		htmlId: 'edit-dynasty-sources',
+		info: 'Include links to one or more sources that proves credibility about your response/answer to be factually correct',
+	},
+	{
+		id: 6,
 		htmlId: 'edit-dynasty-comments',
 		type: 'textarea',
 		label: 'Additional Comments',
