@@ -9,12 +9,23 @@ import { Send } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+const DEFAULT_NEW_CONTRIBUTION_TAB = 'new';
+
 export default function AddNewContribution() {
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const tabType = searchParams.get('type') || 'new';
+	const tabType = searchParams.get('type') || DEFAULT_NEW_CONTRIBUTION_TAB;
 	console.log(tabType);
 	const [tabValue, setTabValue] = useState<string>(tabType);
+
+	function changeTab(e: string) {
+		setTabValue(e);
+
+		setSearchParams(function (currentParams) {
+			currentParams.set('type', e);
+			return currentParams;
+		});
+	}
 
 	useEffect(
 		function () {
@@ -23,7 +34,7 @@ export default function AddNewContribution() {
 				return currentParams;
 			});
 		},
-		[tabValue, setSearchParams]
+		[tabValue]
 	);
 
 	return (
@@ -32,7 +43,7 @@ export default function AddNewContribution() {
 				<Tabs
 					defaultValue={tabValue}
 					value={tabValue}
-					onValueChange={setTabValue}
+					onValueChange={changeTab}
 				>
 					<TabsList className="w-sm max-md:w-full">
 						<TabsTrigger value="new">New</TabsTrigger>
