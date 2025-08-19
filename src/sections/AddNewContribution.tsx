@@ -9,12 +9,23 @@ import { Send } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+const DEFAULT_NEW_CONTRIBUTION_TAB = 'new';
+
 export default function AddNewContribution() {
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const tabType = searchParams.get('type') || 'new';
+	const tabType = searchParams.get('type') || DEFAULT_NEW_CONTRIBUTION_TAB;
 	console.log(tabType);
 	const [tabValue, setTabValue] = useState<string>(tabType);
+
+	function changeTab(e: string) {
+		setTabValue(e);
+
+		setSearchParams(function (currentParams) {
+			currentParams.set('type', e);
+			return currentParams;
+		});
+	}
 
 	useEffect(
 		function () {
@@ -23,7 +34,9 @@ export default function AddNewContribution() {
 				return currentParams;
 			});
 		},
-		[tabValue, setSearchParams]
+		// WARNING: Do not remove eslint comment on the line below, the dependency list for useEffect is currently accurate
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[tabValue]
 	);
 
 	return (
@@ -32,7 +45,7 @@ export default function AddNewContribution() {
 				<Tabs
 					defaultValue={tabValue}
 					value={tabValue}
-					onValueChange={setTabValue}
+					onValueChange={changeTab}
 				>
 					<TabsList className="w-sm max-md:w-full">
 						<TabsTrigger value="new">New</TabsTrigger>
@@ -52,7 +65,7 @@ export default function AddNewContribution() {
 
 				<BasicButton
 					variant="light"
-					className="mt-6 flex items-center justify-center gap-x-1 text-center font-medium max-md:w-full max-md:py-3"
+					className="mt-6 flex w-xs items-center justify-center gap-x-1 py-3 text-center font-medium max-md:w-full"
 				>
 					<span>Submit</span>
 					<span>
