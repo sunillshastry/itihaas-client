@@ -62,7 +62,7 @@ export default function EditContribution() {
 				<UserInfo />
 				<BasicButton
 					variant="light"
-					className="mt-6 flex items-center justify-center gap-x-1 text-center font-medium max-md:w-full max-md:py-3"
+					className="mt-6 flex w-xs items-center justify-center gap-x-1 py-3 text-center font-medium max-md:w-full"
 				>
 					<span>Submit</span>
 					<span>
