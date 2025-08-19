@@ -33,6 +33,8 @@ export default function EditContribution() {
 				return currentParams;
 			});
 		},
+		// WARNING: Do not remove eslint comment on the line below, the dependency list for useEffect is currently accurate
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 		[tabValue]
 	);
 
