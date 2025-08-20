@@ -3,7 +3,6 @@ import NewEntityTabsContent from './issues/new/NewEntityTabsContent';
 import NewDynastyTabsContent from './issues/new/NewDynastyTabsContent';
 import NewRulerTabsContent from './issues/new/NewRulerTabsContent';
 import NewWarTabsContent from './issues/new/NewWarTabsContent';
-import UserInfo from './issues/user/UserInfo';
 import BasicButton from '@/components/elements/BasicButton';
 import { Send } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -15,7 +14,6 @@ export default function AddNewContribution() {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const tabType = searchParams.get('type') || DEFAULT_NEW_CONTRIBUTION_TAB;
-	console.log(tabType);
 	const [tabValue, setTabValue] = useState<string>(tabType);
 
 	function changeTab(e: string) {
@@ -61,7 +59,7 @@ export default function AddNewContribution() {
 						<NewWarTabsContent />
 					</div>
 				</Tabs>
-				<UserInfo />
+				{/* <UserInfo /> */}
 
 				<BasicButton
 					variant="light"

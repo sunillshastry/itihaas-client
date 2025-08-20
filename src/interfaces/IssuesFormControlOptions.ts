@@ -6,6 +6,7 @@ interface IssuesFormControlOptions {
 	type: 'input' | 'textarea' | 'select';
 	htmlId?: string;
 	info?: string;
+	registerHookForm?: string;
 }
 
 export type { IssuesFormControlOptions };

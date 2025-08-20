@@ -17,6 +17,7 @@ export default function InputFormControl({
 	id,
 	info,
 	placeholder = '',
+	...defaultProps
 }: FunctionProps) {
 	const tooltipId = `${label}-${id}`;
 
@@ -47,7 +48,7 @@ export default function InputFormControl({
 				placeholder={placeholder}
 				className="mt-0.5 w-lg py-2 placeholder:text-sm max-md:w-full"
 				id={id}
-				required={required}
+				{...defaultProps}
 			/>
 		</div>
 	);

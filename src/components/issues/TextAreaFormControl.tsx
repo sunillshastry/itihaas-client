@@ -17,6 +17,7 @@ export default function TextAreaFormControl({
 	id,
 	info,
 	placeholder = '',
+	...defaultProps
 }: FunctionProps) {
 	const tooltipId = `${label}-${id}`;
 
@@ -47,6 +48,7 @@ export default function TextAreaFormControl({
 				placeholder={placeholder}
 				className="mt-0.5 w-lg py-2 placeholder:text-sm max-md:w-full"
 				id={id}
+				{...defaultProps}
 			/>
 		</div>
 	);
