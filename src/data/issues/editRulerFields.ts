@@ -1,6 +1,16 @@
 import { IssuesFormControlOptions } from '@/interfaces/IssuesFormControlOptions';
 
-const editRulerFields: IssuesFormControlOptions[] = [
+type EditRulerOptions = IssuesFormControlOptions & {
+	registerHookForm:
+		| 'name'
+		| 'link'
+		| 'fieldName'
+		| 'fieldContent'
+		| 'sources'
+		| 'comments';
+};
+
+const editRulerFields: EditRulerOptions[] = [
 	{
 		id: 1,
 		required: true,
@@ -8,6 +18,7 @@ const editRulerFields: IssuesFormControlOptions[] = [
 		placeholder: 'Name of the ruler you wish to edit',
 		type: 'input',
 		htmlId: 'edit-ruler-name',
+		registerHookForm: 'name',
 	},
 	{
 		id: 2,
@@ -17,6 +28,7 @@ const editRulerFields: IssuesFormControlOptions[] = [
 		type: 'input',
 		htmlId: 'edit-ruler-link',
 		info: `Please make sure the provided link is not broken and correct; you can get the ruler page link using the 'Copy URL' button on its page`,
+		registerHookForm: 'link',
 	},
 	{
 		id: 3,
@@ -27,6 +39,7 @@ const editRulerFields: IssuesFormControlOptions[] = [
 		type: 'input',
 		htmlId: 'edit-ruler-field-name',
 		info: 'Only provide the name of the field that currently holds an empty value or has incorrect content',
+		registerHookForm: 'fieldName',
 	},
 	{
 		id: 4,
@@ -36,6 +49,7 @@ const editRulerFields: IssuesFormControlOptions[] = [
 		type: 'textarea',
 		htmlId: 'edit-ruler-field-content',
 		info: 'Provide the appropriate value (answer) for the previously mentioned field that holds incorrect or missing content',
+		registerHookForm: 'fieldContent',
 	},
 	{
 		id: 5,
@@ -45,6 +59,7 @@ const editRulerFields: IssuesFormControlOptions[] = [
 		type: 'textarea',
 		htmlId: 'edit-ruler-sources',
 		info: 'Include links to one or more sources that proves credibility about your response/answer to be factually correct',
+		registerHookForm: 'sources',
 	},
 	{
 		id: 6,
@@ -55,6 +70,7 @@ const editRulerFields: IssuesFormControlOptions[] = [
 		placeholder:
 			'Include any additional comments that is closely relevant to this entity',
 		info: 'You can mention any new ideas and suggestions or provide any comments or context here',
+		registerHookForm: 'comments',
 	},
 ];
 
