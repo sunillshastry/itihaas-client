@@ -1,9 +1,11 @@
 import convertToTwelveHours from '@/utils/convertToTwelveHours';
 import formattedMonthName from '@/utils/formattedMonthName';
-import { useState } from 'react';
 
-function useUpdateDate(date: Date | string) {
-	const [newDate] = useState(new Date(date));
+function useUpdateDate(date: Date | string | null | undefined) {
+	if (!date) return 'Unknown';
+
+	const newDate = new Date(date);
+	if (isNaN(newDate.getTime())) return 'Unknown';
 
 	const rawMonth = newDate.getUTCMonth() + 1;
 	const rawHour = newDate.getUTCHours();
@@ -14,7 +16,9 @@ function useUpdateDate(date: Date | string) {
 	const minutes = newDate.getUTCMinutes();
 	const month = formattedMonthName(rawMonth);
 
-	return `${month} ${updatedDate}, ${year} at ${hours[0] < 10 ? `0${hours[0]}` : hours[0]}:${minutes} ${hours[1]} UTC`;
+	return `${month} ${updatedDate}, ${year} at ${
+		hours[0] < 10 ? `0${hours[0]}` : hours[0]
+	}:${minutes < 10 ? `0${minutes}` : minutes} ${hours[1]} UTC`;
 }
 
 export default useUpdateDate;

@@ -59,15 +59,17 @@ export default function RandomEntityView({
 	return (
 		<div className="bg-primary-400 text-primary-60 my-4 rounded-md px-6 py-4 text-sm">
 			<div className="flex items-center justify-between">
-				<Link
-					to={seeMoreLinkUrl}
-					className="hover:text-primary-80 hover:bg-primary-100 bg-primary-200/75 inline-flex items-center gap-x-1 rounded-sm p-2 text-right text-sm transition"
-				>
-					<span>See more</span>
-					<span>
-						<ArrowRight size={14} />
-					</span>
-				</Link>
+				{!loading && (
+					<Link
+						to={seeMoreLinkUrl}
+						className="hover:text-primary-80 hover:bg-primary-100 bg-primary-200/75 inline-flex items-center gap-x-1 rounded-sm p-2 text-right text-sm transition"
+					>
+						<span>See more</span>
+						<span>
+							<ArrowRight size={14} />
+						</span>
+					</Link>
+				)}
 
 				<Tooltip id={`refetch-${entity?.slug}`}>Refetch Random</Tooltip>
 
@@ -82,9 +84,9 @@ export default function RandomEntityView({
 			</div>
 
 			{loading ? (
-				<>
-					<Loader size="large" />
-				</>
+				<div className="py-4">
+					<Loader size="medium" />
+				</div>
 			) : (
 				<>
 					<div
