@@ -1,9 +1,10 @@
 import { Binoculars, Search, X } from 'lucide-react';
 import PropTypes from 'prop-types';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import 'react-tooltip/dist/react-tooltip.css';
 import { Tooltip } from 'react-tooltip';
 import { twMerge } from 'tailwind-merge';
+import { Kbd, KbdKey } from '../ui/shadcn-io/kbd';
 
 interface FunctionProps {
 	value: string;
@@ -31,10 +32,43 @@ function SearchBar({
 		onChange(e);
 	}
 
+	const searchBarInputRef = useRef<HTMLInputElement>(null);
+	const formRef = useRef<HTMLFormElement>(null);
+
+	// Effect to focus SearchBar (CMD + K)
+	useEffect(function () {
+		function focusOnKeyPress(e: KeyboardEvent) {
+			if (e.metaKey && e.key.toLowerCase() === 'k') {
+				formRef?.current?.focus();
+				searchBarInputRef?.current?.focus();
+			}
+		}
+
+		window.addEventListener('keydown', focusOnKeyPress);
+
+		return () => window.removeEventListener('keydown', focusOnKeyPress);
+	}, []);
+
+	// Effect to blur SearchBar (Escape)
+	useEffect(function () {
+		function blurOnEscape(e: KeyboardEvent) {
+			if (e.key.toLowerCase() === 'escape') {
+				formRef?.current?.blur();
+				searchBarInputRef?.current?.blur();
+			}
+		}
+
+		window.addEventListener('keyup', blurOnEscape);
+
+		return () => window.removeEventListener('keyup', blurOnEscape);
+	}, []);
+
 	return (
 		<form
 			className="bg-primary-90 focus-within:outline-primary-20 relative flex items-center rounded-sm pr-1 shadow-md focus-within:outline-3"
 			onSubmit={(e) => onSubmit(e, value)}
+			ref={formRef}
+			tabIndex={-1}
 		>
 			<input
 				className="font-primary text-primary-500 w-full px-4 py-2 text-sm outline-0"
@@ -42,7 +76,17 @@ function SearchBar({
 				placeholder="Search for dynasties, rulers..."
 				value={value}
 				onChange={(e) => handleOnChange(e)}
+				ref={searchBarInputRef}
 			/>
+
+			{value.length === 0 && (
+				<div className="absolute right-2 flex items-center justify-start">
+					<Kbd className="bg-primary-80 text-primary-600">
+						<KbdKey aria-label="Meta">⌘</KbdKey>
+						<KbdKey aria-label="K">K</KbdKey>
+					</Kbd>
+				</div>
+			)}
 
 			<button
 				className={twMerge(
