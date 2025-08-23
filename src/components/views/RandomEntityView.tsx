@@ -159,13 +159,8 @@ export default function RandomEntityView({
 								<></>
 							)}
 
-							{type === 'rulers' && entity?.born ? (
-								<p>{entity?.born}&nbsp;-</p>
-							) : (
-								<></>
-							)}
-							{type === 'rulers' && entity?.died ? (
-								<p>{entity?.died}</p>
+							{type === 'rulers' && entity?.dynasty ? (
+								<p>{entity?.dynasty}</p>
 							) : (
 								<></>
 							)}
