@@ -57,7 +57,7 @@ export default function RandomEntityView({
 	const date = useUpdateDate(entity?.updatedAt as string);
 
 	return (
-		<div className="bg-primary-400 text-primary-60 my-4 rounded-md px-6 py-4 text-sm">
+		<div className="bg-primary-500 text-primary-70 my-4 rounded-md px-6 py-4 text-sm">
 			<div className="flex items-center justify-between">
 				{!loading && (
 					<Link
@@ -78,6 +78,7 @@ export default function RandomEntityView({
 					onClick={() => performRefetchAnimation()}
 					data-tooltip-id={`refetch-${entity?.slug}`}
 					data-tooltip-place="top"
+					aria-label="Refetch Random Entity"
 				>
 					<RefreshCcw size={16} />
 				</BasicButton>
@@ -99,23 +100,23 @@ export default function RandomEntityView({
 
 						<div className="mt-1.5 flex gap-x-1 text-sm font-medium">
 							{type === 'dynasties' && entity?.timeline?.begin ? (
-								<h5>{entity?.timeline?.begin}&nbsp;-</h5>
+								<p>{entity?.timeline?.begin}&nbsp;-</p>
 							) : (
 								<></>
 							)}
 							{type === 'dynasties' && entity?.timeline?.end ? (
-								<h5>{entity?.timeline?.end}</h5>
+								<p>{entity?.timeline?.end}</p>
 							) : (
 								<></>
 							)}
 
 							{type === 'rulers' && entity?.born ? (
-								<h5>{entity?.born}&nbsp;-</h5>
+								<p>{entity?.born}&nbsp;-</p>
 							) : (
 								<></>
 							)}
 							{type === 'rulers' && entity?.died ? (
-								<h5>{entity?.died}</h5>
+								<p>{entity?.died}</p>
 							) : (
 								<></>
 							)}
