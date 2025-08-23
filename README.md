@@ -53,17 +53,43 @@ Create a local build/development setup with Node using the following steps.
    cd itihaas-client
    ```
 
-4. Run the following command at root level of the project to install all package dependencies for the project. This step may take a moment, depending on your network. (`npm` is part of `Node` and is installed automatically with `Node`)
+4. In the root directory of the project, create a `.env` file. This `.env` file will contain our environment variables that are necessary to get the app started and running smoothly.
+
+   ```bash
+   touch .env
+   ```
+
+5. With the `.env` file created at the root directory level, you can now add the necessary environment variables for the app to run, you can find a template example of the `.env` in this GitHub repository, you can see the example template from the project's [`env.example`](https://github.com/sunillshastry/itihaas-client/blob/master/.env.example). The snippet below is what your `.env` file must look like.
+
+   ```bash
+   VITE_SERVER_HOST=0.0.0.0
+   VITE_SERVER_PORT=3000
+
+   VITE_PREVIEW_HOST=0.0.0.0
+   VITE_PREVIEW_PORT=3001
+
+   VITE_APP_ENV=development
+
+   VITE_BASE_SERVER_URI=http://localhost:8080/api/v1
+   VITE_BASE_PROD_URI=http://localhost:6500/api/v1
+
+   VITE_RECAPTCHA_V2_SITE_KEY=abcd1234
+
+   VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID=abcd1234
+
+   ```
+
+6. With the `.env` file successfully created and filled with the content provided from the [`.env.example`](https://github.com/sunillshastry/itihaas-client/blob/master/.env.example) template, run the following command at root level of the project to install all package dependencies for the project. This step may take a moment, depending on your network. (`npm` is part of `Node` and is installed automatically with `Node`)
    ```bash
    npm install # At project's root level (Ex: /itihaas-client/)
    ```
-5. Upon successful installation with `npm`, you will see a new directory created in the project folder, titled `node_modules`, this directory contains all the code for the project's dependencies.
-6. Finally, to setup a local development view of the project, run the following command.
+7. Upon successful installation with `npm`, you will see a new directory created in the project folder, titled `node_modules`, this directory contains all the code for the project's dependencies.
+8. Finally, to setup a local development view of the project, run the following command.
    ```bash
    npm run dev
    ```
-7. The `dev` command will start and run the project in development mode and can be accessed to view at `http://localhost:3000/`
-8. You can now access and view the project in development mode at `http://localhost:3000/`
+9. The `dev` command will start and run the project in development mode and can be accessed to view at `http://localhost:3000/`
+10. You can now access and view the project in development mode at `http://localhost:3000/`
 
 #### Build Method
 
@@ -104,7 +130,33 @@ With Docker installed, you can run the project in development mode by following 
    cd itihaas-client
    ```
 
-2. Using `docker-compose` tool (which is also installed with Docker), run the following command
+2. In the root directory of the project, create a `.env` file. This `.env` file will contain our environment variables that are necessary to get the app started and running smoothly.
+
+   ```bash
+   touch .env
+   ```
+
+3. With the `.env` file created at the root directory level, you can now add the necessary environment variables for the app to run, you can find a template example of the `.env` in this GitHub repository, you can see the example template from the project's [`env.example`](https://github.com/sunillshastry/itihaas-client/blob/master/.env.example). The snippet below is what your `.env` file must look like.
+
+   ```bash
+   VITE_SERVER_HOST=0.0.0.0
+   VITE_SERVER_PORT=3000
+
+   VITE_PREVIEW_HOST=0.0.0.0
+   VITE_PREVIEW_PORT=3001
+
+   VITE_APP_ENV=development
+
+   VITE_BASE_SERVER_URI=http://localhost:8080/api/v1
+   VITE_BASE_PROD_URI=http://localhost:6500/api/v1
+
+   VITE_RECAPTCHA_V2_SITE_KEY=abcd1234
+
+   VITE_GOOGLE_ANALYTICS_MEASUREMENT_ID=abcd1234
+
+   ```
+
+4. Upon correctly creating the `.env` file and filling it with the content provided from the [`.env.example`](https://github.com/sunillshastry/itihaas-client/blob/master/.env.example) template; Using `docker-compose` tool (which is also installed with Docker), run the following command
 
    ```bash
    docker compose up --build
@@ -116,9 +168,9 @@ With Docker installed, you can run the project in development mode by following 
    docker-compose up --build
    ```
 
-3. This will spin up a new [Docker Container](https://www.docker.com/resources/what-container/) using the base image configuration provided with the project's `Dockerfile` (You can view the project's `Dockerfile` [here](https://github.com/sunillshastry/itihaas-client/blob/master/Dockerfile)).
-4. With successful Docker build, you can now access and view the project on `localhost` at port `3000`, i.e., at `http://localhost:3000/`.
-5. Once you have finished viewing the project, you should run the following command:
+5. This will spin up a new [Docker Container](https://www.docker.com/resources/what-container/) using the base image configuration provided with the project's `Dockerfile` (You can view the project's `Dockerfile` [here](https://github.com/sunillshastry/itihaas-client/blob/master/Dockerfile)).
+6. With successful Docker build, you can now access and view the project on `localhost` at port `3000`, i.e., at `http://localhost:3000/`.
+7. Once you have finished viewing the project, you should run the following command:
 
    ```bash
    docker compose down
@@ -130,7 +182,7 @@ With Docker installed, you can run the project in development mode by following 
    docker-compose down
    ```
 
-6. The above command will stop the running container, optional network connections used by the project and free up used resources.
+8. The above command will stop the running container, optional network connections used by the project and free up used resources.
 
 ## Developer
 
