@@ -2,6 +2,7 @@ import { Dynasty } from '@/interfaces/Dynasty';
 import { Ruler } from '@/interfaces/Ruler';
 import {
 	ArrowRight,
+	BadgeCheck,
 	BookOpenText,
 	Newspaper,
 	RefreshCcw,
@@ -13,6 +14,7 @@ import BasicButton from '../elements/BasicButton';
 import { useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Tooltip } from 'react-tooltip';
+import useUpdateDate from '@/hooks/useUpdateDate';
 
 interface FunctionProps {
 	type: 'dynasties' | 'rulers' | 'wars';
@@ -51,6 +53,8 @@ export default function RandomEntityView({
 			setIsAnimating(false);
 		}, 400);
 	}
+
+	const date = useUpdateDate(entity?.updatedAt as string);
 
 	return (
 		<div className="bg-primary-400 text-primary-60 my-4 rounded-md px-6 py-4 text-sm">
@@ -142,8 +146,11 @@ export default function RandomEntityView({
 							</p>
 						</div>
 
-						<p className="border-primary-60/25 mt-4 border-t pt-2">
-							Last updated at {entity?.updatedAt as string}
+						<p className="border-primary-60/25 mt-4 flex items-center gap-x-1 border-t pt-2">
+							<span>
+								<BadgeCheck size={16} />
+							</span>
+							<span>Last updated on {date}</span>
 						</p>
 					</div>
 				</>
