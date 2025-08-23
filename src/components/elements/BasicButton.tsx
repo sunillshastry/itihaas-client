@@ -12,6 +12,7 @@ function BasicButton({
 	onClick,
 	className,
 	variant = 'dark',
+	...defaultProps
 }: FunctionProps) {
 	const styles = {
 		dark: 'from-primary-200 to-primary-600 text-primary-70 hover:from-primary-400 hover:to-primary-700 focus:outline-primary-10',
@@ -27,6 +28,7 @@ function BasicButton({
 				'flex items-center rounded-sm bg-linear-to-b px-3 py-2 text-sm shadow-md transition hover:cursor-pointer focus:outline-3',
 				className
 			)}
+			{...defaultProps}
 		>
 			{children}
 		</button>
