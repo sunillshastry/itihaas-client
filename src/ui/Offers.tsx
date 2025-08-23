@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 function Offers() {
 	// Fetch random dynasty
 	const {
+		error: randomDynastyError,
 		data: randomDynasty,
 		isPending: randomDynastyLoading,
 		refetch: refetchDynasty,
@@ -21,6 +22,7 @@ function Offers() {
 
 	// Fetch random ruler
 	const {
+		error: randomRulerError,
 		data: randomRuler,
 		isPending: randomRulerLoading,
 		refetch: refetchRuler,
@@ -59,6 +61,7 @@ function Offers() {
 							entity={randomDynasty as Dynasty & Ruler}
 							loading={randomDynastyLoading}
 							refetch={refetchDynasty}
+							error={randomDynastyError as Error}
 						/>
 
 						<Link
@@ -87,6 +90,7 @@ function Offers() {
 							entity={randomRuler as Dynasty & Ruler}
 							loading={randomRulerLoading}
 							refetch={refetchRuler}
+							error={randomRulerError as Error}
 						/>
 
 						<Link

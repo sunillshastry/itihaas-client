@@ -11,7 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 import Loader from '../elements/Loader';
 import BasicButton from '../elements/BasicButton';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Tooltip } from 'react-tooltip';
 import useUpdateDate from '@/hooks/useUpdateDate';
@@ -21,13 +21,17 @@ interface FunctionProps {
 	entity: Dynasty & Ruler;
 	loading: boolean;
 	refetch: () => void;
+	error?: Error | null;
 }
+
+const ENTITY_AUTO_REFETCH_ALIVE_DURATION = 15000;
 
 export default function RandomEntityView({
 	type,
 	entity,
 	loading,
 	refetch,
+	error,
 }: FunctionProps) {
 	const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
@@ -44,7 +48,7 @@ export default function RandomEntityView({
 	}
 
 	// Simple fading animation
-	function performRefetchAnimation() {
+	const performRefetchAnimation = useCallback(() => {
 		setIsAnimating(true);
 		setTimeout(function () {
 			refetch();
@@ -52,13 +56,70 @@ export default function RandomEntityView({
 		setTimeout(function () {
 			setIsAnimating(false);
 		}, 400);
-	}
+	}, [refetch]);
+
+	useEffect(
+		function () {
+			const interval = setInterval(function () {
+				performRefetchAnimation();
+			}, ENTITY_AUTO_REFETCH_ALIVE_DURATION);
+
+			return () => clearInterval(interval);
+		},
+		[performRefetchAnimation]
+	);
 
 	const date = useUpdateDate(entity?.updatedAt as string);
+
+	// Error State
+	if (error || (entity instanceof Error && entity?.name === 'TypeError')) {
+		return (
+			<div className="bg-primary-500 text-primary-70 my-4 rounded-md px-6 py-4 text-sm">
+				<div className="flex items-center justify-between">
+					<div>
+						<p className="text-lg font-medium">
+							Unable to fetch entity information
+						</p>
+						<p className="mt-2">
+							We are currently facing issues while fetching required
+							information, please try again.
+						</p>
+					</div>
+					<Tooltip id={`refetch-${entity?.slug}`}>Retry</Tooltip>
+					<BasicButton
+						variant="light"
+						onClick={() => performRefetchAnimation()}
+						data-tooltip-id={`refetch-${entity?.slug}`}
+						data-tooltip-place="top"
+						aria-label="Refetch Random Entity"
+					>
+						<RefreshCcw size={16} />
+					</BasicButton>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="bg-primary-500 text-primary-70 my-4 rounded-md px-6 py-4 text-sm">
 			<div className="flex items-center justify-between">
+				<div className="flex items-center gap-x-1.5">
+					<Tooltip id={`refetch-${entity?.slug}`}>Shuffle Entity</Tooltip>
+
+					<BasicButton
+						variant="light"
+						onClick={() => performRefetchAnimation()}
+						data-tooltip-id={`refetch-${entity?.slug}`}
+						data-tooltip-place="top"
+						aria-label="Refetch Random Entity"
+					>
+						<RefreshCcw size={16} />
+					</BasicButton>
+					<span className="text-primary-60 text-xs">
+						Refreshes every 15 seconds
+					</span>
+				</div>
+
 				{!loading && (
 					<Link
 						to={seeMoreLinkUrl}
@@ -70,18 +131,6 @@ export default function RandomEntityView({
 						</span>
 					</Link>
 				)}
-
-				<Tooltip id={`refetch-${entity?.slug}`}>Refetch Random</Tooltip>
-
-				<BasicButton
-					variant="light"
-					onClick={() => performRefetchAnimation()}
-					data-tooltip-id={`refetch-${entity?.slug}`}
-					data-tooltip-place="top"
-					aria-label="Refetch Random Entity"
-				>
-					<RefreshCcw size={16} />
-				</BasicButton>
 			</div>
 
 			{loading ? (
