@@ -80,7 +80,7 @@ function SearchBar({
 			/>
 
 			{value.length === 0 && (
-				<div className="absolute right-2 flex items-center justify-start">
+				<div className="absolute right-2 flex items-center justify-start max-md:hidden">
 					<Kbd className="bg-primary-80 text-primary-600">
 						<KbdKey aria-label="Meta">⌘</KbdKey>
 						<KbdKey aria-label="K">K</KbdKey>
