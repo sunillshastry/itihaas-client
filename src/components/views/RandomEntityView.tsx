@@ -64,7 +64,7 @@ export default function RandomEntityView({
 						to={seeMoreLinkUrl}
 						className="hover:text-primary-80 hover:bg-primary-100 bg-primary-200/75 inline-flex items-center gap-x-1 rounded-sm p-2 text-right text-sm transition"
 					>
-						<span>See more</span>
+						<span>Explore more</span>
 						<span>
 							<ArrowRight size={14} />
 						</span>
