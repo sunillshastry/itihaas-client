@@ -35,6 +35,7 @@ function SearchBar({
 	const searchBarInputRef = useRef<HTMLInputElement>(null);
 	const formRef = useRef<HTMLFormElement>(null);
 
+	// Effect to focus SearchBar (CMD + K)
 	useEffect(function () {
 		function focusOnKeyPress(e: KeyboardEvent) {
 			if (e.metaKey && e.key.toLowerCase() === 'k') {
@@ -46,6 +47,20 @@ function SearchBar({
 		window.addEventListener('keydown', focusOnKeyPress);
 
 		return () => window.removeEventListener('keydown', focusOnKeyPress);
+	}, []);
+
+	// Effect to blur SearchBar (Escape)
+	useEffect(function () {
+		function blurOnEscape(e: KeyboardEvent) {
+			if (e.key.toLowerCase() === 'escape') {
+				formRef?.current?.blur();
+				searchBarInputRef?.current?.blur();
+			}
+		}
+
+		window.addEventListener('keyup', blurOnEscape);
+
+		return () => window.removeEventListener('keyup', blurOnEscape);
 	}, []);
 
 	return (
