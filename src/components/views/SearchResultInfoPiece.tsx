@@ -1,3 +1,4 @@
+import useFormattedNumber from '@/hooks/useFormattedNumber';
 import { twMerge } from 'tailwind-merge';
 
 interface FunctionProps {
@@ -24,7 +25,7 @@ function SearchResultInfoPiece({
 		>
 			<span>{children}</span>
 			<span className="font-medium">
-				{field < 10 && field !== 0 ? `0${field}` : field} {formattedFieldName}
+				{useFormattedNumber(field)} {formattedFieldName}
 			</span>
 		</div>
 	);

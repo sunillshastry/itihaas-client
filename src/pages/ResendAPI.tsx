@@ -3,20 +3,19 @@ import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
 import PrimaryHeader from '@/components/elements/PrimaryHeader';
 
-function RecoverAPI() {
+export default function ResendAPI() {
 	return (
 		<>
 			<Navbar />
 			<MainContainer>
-				<PrimaryHeader>API Recovery</PrimaryHeader>
+				<PrimaryHeader>Resend Verification Link</PrimaryHeader>
 				<p>
-					Misplaced or lost your API Key? No reason to worry! Recover it back
-					here with only a single step
+					On this page, you will find resources to help you get your API Key
+					through a new verification link with your previously registered email
+					address.
 				</p>
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>
 	);
 }
-
-export default RecoverAPI;

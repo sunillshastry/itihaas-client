@@ -18,6 +18,7 @@ import PrivacyPolicy from '@/pages/PrivacyPolicy';
 import TermsOfService from '@/pages/TermsOfService';
 import NotFound from '@/pages/NotFound';
 import RecoverAPI from '@/pages/RecoverAPI';
+import ResendAPI from '@/pages/ResendAPI';
 
 interface FileRoute {
 	path: string;
@@ -89,6 +90,10 @@ const RouterRoutes: FileRoute[] = [
 	{
 		path: '/api-recovery',
 		element: <RecoverAPI />,
+	},
+	{
+		path: '/api-resend',
+		element: <ResendAPI />,
 	},
 	{
 		path: '/privacy',
