@@ -15,6 +15,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Tooltip } from 'react-tooltip';
 import useUpdateDate from '@/hooks/useUpdateDate';
+import useFormattedNumber from '@/hooks/useFormattedNumber';
 
 interface FunctionProps {
 	type: 'dynasties' | 'rulers' | 'wars';
@@ -70,6 +71,11 @@ export default function RandomEntityView({
 	);
 
 	const date = useUpdateDate(entity?.updatedAt as string);
+	const totalSources = useFormattedNumber(entity?.sources?.length as number);
+	const totalArticles = useFormattedNumber(entity?.articles?.length as number);
+	const totalReadings = useFormattedNumber(
+		entity?.furtherReading?.length as number
+	);
 
 	// Error State
 	if (error || (entity instanceof Error && entity?.name === 'TypeError')) {
@@ -175,21 +181,21 @@ export default function RandomEntityView({
 								<span>
 									<ScrollText size={14} />
 								</span>
-								<span>{entity?.sources?.length} Sources</span>
+								<span>{totalSources} Sources</span>
 							</p>
 
 							<p className="flex items-center gap-x-1">
 								<span>
 									<Newspaper size={14} />
 								</span>
-								<span>{entity?.articles?.length} Articles</span>
+								<span>{totalArticles} Articles</span>
 							</p>
 
 							<p className="flex items-center gap-x-1">
 								<span>
 									<BookOpenText size={14} />
 								</span>
-								<span>{entity?.furtherReading?.length} Readings</span>
+								<span>{totalReadings} Readings</span>
 							</p>
 						</div>
 
