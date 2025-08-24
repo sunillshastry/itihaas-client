@@ -9,6 +9,10 @@ function RecoverAPI() {
 			<Navbar />
 			<MainContainer>
 				<PrimaryHeader>API Recovery</PrimaryHeader>
+				<p>
+					Misplaced or lost your API Key? No reason to worry! Recover it back
+					here with only a single step
+				</p>
 			</MainContainer>
 			<Footer className="mt-36" />
 		</>
