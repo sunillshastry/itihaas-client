@@ -323,10 +323,11 @@ Below, you will find the full, transparent tech stack used for the frontend appl
 > To view the tech stack for the backend, please visit [here](https://github.com/sunillshastry/itihaas-api).
 
 - **Core**: React, TypeScript, Vite Build Tool.
-- **Libraries**: TanStack Query, React Hook Form, React Router.
-- **Styling**: CSS, Tailwind.
-- **Linting and Formatting**: ESLint, TSLint, Prettier, Babel.
-- **Tests**: Jest.
+- **Libraries**: TanStack Query, React Hook Form, React Router, Zod, Context API.
+- **Styling**: CSS, Tailwind, shadcn-ui.
+- **Linting and Formatting**: ESLint, TSLint, Prettier, Babel, Husky, lint-staged.
+- **Tests**: Jest, React Testing Library.
+- **Containerization/Infrastructure**: Docker, docker-compose.
 
 ## License
 

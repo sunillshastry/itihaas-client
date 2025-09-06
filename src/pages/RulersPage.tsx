@@ -195,6 +195,11 @@ function RulersPage() {
 							/>
 						</div>
 					</div>
+					{searchQuery.length == 0 && (
+						<p className="text-primary-10 my-1 mt-3 text-sm font-semibold uppercase">
+							Total results: {finalRulers.length}
+						</p>
+					)}
 				</div>
 
 				{finalRulers?.length === 0 && queriedRulers.length === 0 && (
