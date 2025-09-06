@@ -205,6 +205,11 @@ function DynastiesPage() {
 							/>
 						</div>
 					</div>
+					{searchQuery.length == 0 && (
+						<p className="text-primary-10 my-1 mt-3 text-sm font-semibold uppercase">
+							Total results: {finalDynasties.length}
+						</p>
+					)}
 				</div>
 
 				{finalDynasties?.length === 0 && searchQuery?.length >= 3 && (
