@@ -1,6 +1,22 @@
+/**
+ * Copyright (C) 2025 Itihaas | Sunil Shastry
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version
+ *
+ * To view full licensing and usage information, visit: https://github.com/sunillshastry/itihaas-api/blob/master/LICENSE
+ */
+
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+/**
+ * A React component implementing the user interface and content for the *the-why* section within the home page
+ *
+ * @returns React JSX for the component level implementation
+ */
 function TheWhy() {
 	return (
 		<div className="text-primary-400 mt-6 max-sm:px-2">

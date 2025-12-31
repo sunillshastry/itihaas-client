@@ -1,9 +1,31 @@
+/**
+ * Copyright (C) 2025 Itihaas | Sunil Shastry
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version
+ *
+ * To view full licensing and usage information, visit: https://github.com/sunillshastry/itihaas-api/blob/master/LICENSE
+ */
+
 import { Volume2 } from 'lucide-react';
 import { useRef } from 'react';
 
+/**
+ * A React component implementing the user interface and content for the *about* section within the home page
+ *
+ * @returns React JSX for the component level implementation
+ */
 function About() {
+	/**
+	 * A React `useRef` hook to connect to a `<audio>` element within the DOM
+	 */
 	const audioElementRef = useRef<HTMLAudioElement>(null);
 
+	/**
+	 * Helper function that uses the pre-made audio `useRef` to play (if it is not `null`)
+	 */
 	function playAudio() {
 		audioElementRef.current?.play();
 	}

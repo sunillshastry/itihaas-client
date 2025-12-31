@@ -1,3 +1,14 @@
+/**
+ * Copyright (C) 2025 Itihaas | Sunil Shastry
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version
+ *
+ * To view full licensing and usage information, visit: https://github.com/sunillshastry/itihaas-api/blob/master/LICENSE
+ */
+
 import getRandomDynasty from '@/api/getRandomDynasty';
 import getRandomRuler from '@/api/getRandomRuler';
 import RandomEntityView from '@/components/views/RandomEntityView';
@@ -7,8 +18,15 @@ import { useQuery } from '@tanstack/react-query';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
+/**
+ * A React component implementing the user interface and content for the *offers* section within the home page
+ *
+ * @returns React JSX for the component level implementation
+ */
 function Offers() {
-	// Fetch random dynasty
+	/**
+	 * An instance of Tanstack Query's `useQuery` hook with the `'random-dynasty'` key and `getRandomDynasty` callback function to fetch a random dynasty from the database
+	 */
 	const {
 		error: randomDynastyError,
 		data: randomDynasty,
@@ -20,7 +38,9 @@ function Offers() {
 		refetchOnWindowFocus: false,
 	});
 
-	// Fetch random ruler
+	/**
+	 * An instance of Tanstack Query's `useQuery` hook with the `'random-ruler'` key and `getRandomRuler` callback function to fetch a random ruler from the database
+	 */
 	const {
 		error: randomRulerError,
 		data: randomRuler,
