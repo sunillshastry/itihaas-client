@@ -54,7 +54,11 @@ function DynastyQuickFieldsContainer({ dynasty }: FunctionProps) {
 
 			<QuickFactField
 				title="population"
-				content={dynasty?.population || <QuickFactsNoField />}
+				content={
+					(dynasty?.population && `~${dynasty?.population}`) || (
+						<QuickFactsNoField />
+					)
+				}
 			/>
 
 			<QuickFactField
