@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2025 Itihaas | Sunil Shastry
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version
+ *
+ * To view full licensing and usage information, visit: https://github.com/sunillshastry/itihaas-api/blob/master/LICENSE
+ */
+
+/**
+ * Custom type defined that supports a 2-sized tuple of type 'number' and 'string' in the respective order
+ * Defined and used locally within the present module file
+ */
 type FuncReturnType = [number, string];
 
 /**

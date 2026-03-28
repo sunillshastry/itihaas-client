@@ -54,14 +54,18 @@ function DynastyQuickFieldsContainer({ dynasty }: FunctionProps) {
 
 			<QuickFactField
 				title="population"
-				content={dynasty?.population || <QuickFactsNoField />}
+				content={
+					(dynasty?.population && `~${dynasty?.population}`) || (
+						<QuickFactsNoField />
+					)
+				}
 			/>
 
 			<QuickFactField
 				title="area"
 				content={
 					(dynasty?.area &&
-						`${dynasty?.area?.lowest} to ${dynasty?.area?.highest}`) || (
+						`~${dynasty?.area?.lowest} to ~${dynasty?.area?.highest}`) || (
 						<QuickFactsNoField />
 					)
 				}
