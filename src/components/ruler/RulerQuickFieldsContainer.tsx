@@ -43,13 +43,21 @@ function RulerQuickFieldsContainer({ ruler }: FunctionProps) {
 			<QuickFactField
 				title="reign"
 				content={
-					ruler?.timeline?.begin ? ruler.timeline.begin : <QuickFactsNoField />
+					ruler?.timeline?.begin ? (
+						`~${ruler.timeline.begin}`
+					) : (
+						<QuickFactsNoField />
+					)
 				}
 			/>
 			<QuickFactField
 				title="reign end"
 				content={
-					ruler?.timeline?.end ? ruler.timeline.end : <QuickFactsNoField />
+					ruler?.timeline?.end ? (
+						`~${ruler.timeline.end}`
+					) : (
+						<QuickFactsNoField />
+					)
 				}
 			/>
 		</>
