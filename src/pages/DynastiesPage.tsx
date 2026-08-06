@@ -73,6 +73,8 @@ function DynastiesPage() {
 		if (sortQuery) setSortByValue(sortQuery);
 	}, [sortQuery]);
 
+	// Automatically update the cold start flag to ensure if the page is loading initially
+	// while fetching or connecting to the database for the first time
 	useEffect(
 		function () {
 			const timeout = setTimeout(function () {
