@@ -13,6 +13,7 @@ import { QueryObserverResult, RefetchOptions } from '@tanstack/react-query';
 import { Dynasty } from '@/interfaces/Dynasty';
 import { Ruler } from '@/interfaces/Ruler';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { War } from '@/interfaces/War';
 
 interface FunctionProps {
 	children?: Readonly<React.ReactNode> | string;
@@ -20,7 +21,7 @@ interface FunctionProps {
 		options?: RefetchOptions
 	) => Promise<
 		QueryObserverResult<
-			(Dynasty | Ruler)[] | Dynasty | Ruler | Error | undefined,
+			(Dynasty | Ruler | War)[] | Dynasty | Ruler | War | Error | undefined,
 			Error
 		>
 	>;
