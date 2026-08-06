@@ -12,9 +12,11 @@ import Select from '@/components/elements/Select';
 import SearchSortByOptions from '@/data/SearchSortByOptions';
 import { useQuery } from '@tanstack/react-query';
 import { ArrowDownNarrowWide } from 'lucide-react';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 function WarsPage() {
+	const [params, setParams] = useSearchParams();
 	const [initialColdStart, setInitialColdStart] = useState(false);
 
 	// States
@@ -22,6 +24,9 @@ function WarsPage() {
 	const [refetchCount, setRefetchCount] = useState(0);
 	const [sortByValue, setSortByValue] = useState<string>('');
 
+	const sortQuery = params.get('sort')?.trim();
+
+	// Data fetching from the backend API (Tanstack Query)
 	const {
 		data: wars,
 		isPending,
@@ -34,6 +39,10 @@ function WarsPage() {
 
 	function handleSortChange(value: string) {
 		setSortByValue(value);
+		setParams((currentParams) => {
+			currentParams.set('sort', value);
+			return currentParams;
+		});
 	}
 
 	// Set the page title on mount
@@ -43,7 +52,12 @@ function WarsPage() {
 		return () => {
 			window.document.title = 'Itihaas | The Front Page of Indian History';
 		};
-	});
+	}, []);
+
+	// Sync initial sort param to select input
+	useEffect(() => {
+		if (sortQuery) setSortByValue(sortQuery);
+	}, [sortQuery]);
 
 	// Automatically update the cold start flag to ensure if the page is loading initially
 	// while fetching or connecting to the database for the first time
@@ -61,6 +75,46 @@ function WarsPage() {
 		},
 		[isPending]
 	);
+
+	const finalWars = useMemo(() => {
+		if (!wars || wars instanceof Error) return [];
+
+		let result = [...wars];
+
+		if (searchQuery.length >= 3) {
+			result = result.filter((war) =>
+				war.name.toLowerCase().includes(searchQuery.trim().toLowerCase())
+			);
+		}
+
+		const sortVal = sortQuery?.toLowerCase();
+
+		if (sortVal === 'alphabetical-a-z') {
+			result.sort((a, b) =>
+				a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+			);
+		} else if (sortVal === 'alphabetical-z-a') {
+			result.sort((a, b) =>
+				b.name.toLowerCase().localeCompare(a.name.toLowerCase())
+			);
+		} else if (sortVal === 'created') {
+			result.sort(
+				(a, b) =>
+					new Date(a?.createdAt ?? 0).getTime() -
+					new Date(b?.createdAt ?? 0).getTime()
+			);
+		} else if (sortVal === 'last-updated') {
+			result.sort(
+				(a, b) =>
+					new Date(b?.updatedAt ?? 0).getTime() -
+					new Date(a?.updatedAt ?? 0).getTime()
+			);
+		} else if (sortVal === 'chronological') {
+			// TODO: Add actual chronological sorting logic here
+		}
+
+		return result;
+	}, [wars, searchQuery, sortQuery]);
 
 	// Error State
 	if (error || (wars instanceof Error && wars?.name === 'TypeError')) {
@@ -140,7 +194,7 @@ function WarsPage() {
 
 					{searchQuery.length === 0 && (
 						<p className="text-primary-10 my-1 mt-3 text-sm font-semibold uppercase">
-							Total results: 0
+							Total results: {finalWars.length}
 						</p>
 					)}
 				</div>
