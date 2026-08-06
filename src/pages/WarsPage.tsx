@@ -13,8 +13,11 @@ import EntitiesPageNoResult from '@/components/views/EntitiesPageNoResult';
 import SearchSortByOptions from '@/data/SearchSortByOptions';
 import { useQuery } from '@tanstack/react-query';
 import { ArrowDownNarrowWide } from 'lucide-react';
-import { Suspense, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
+// Code splitting (Lazy loading)
+const WarPageList = lazy(() => import('@/components/war/WarPageList'));
 
 function WarsPage() {
 	const [params, setParams] = useSearchParams();
@@ -205,6 +208,7 @@ function WarsPage() {
 				)}
 
 				<Suspense fallback={<Loader size="medium" />}>
+					<WarPageList wars={finalWars} />
 					<BuildingContentBanner />
 				</Suspense>
 			</MainContainer>
