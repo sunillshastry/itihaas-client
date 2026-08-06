@@ -1,6 +1,7 @@
 import { ValidKeys } from '@/types/APISearchDataValidKeys';
 import { Dynasty } from './Dynasty';
 import { Ruler } from './Ruler';
+import { War } from './War';
 
 interface DataValue {
 	dynasties?: Dynasty[];
@@ -8,6 +9,9 @@ interface DataValue {
 
 	ruler?: Ruler;
 	rulers?: Ruler[];
+
+	war?: War;
+	wars: War[];
 }
 
 interface Data {
