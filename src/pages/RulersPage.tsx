@@ -24,6 +24,7 @@ const RulerPageList = lazy(() => import('@/components/ruler/RulerPageList'));
 function RulersPage() {
 	// Query params
 	const [params, setParams] = useSearchParams();
+	const [initialColdStart, setInitialColdStart] = useState(false);
 
 	// State
 	const [queriedRulers, setQueriedRulers] = useState<Ruler[]>([]);
@@ -67,6 +68,18 @@ function RulersPage() {
 	useEffect(() => {
 		if (sortQuery) setSortByValue(sortQuery);
 	}, [sortQuery]);
+
+	useEffect(function () {
+		const timeout = setTimeout(function () {
+			if (isPending) {
+				setInitialColdStart(true);
+			} else {
+				setInitialColdStart(false);
+			}
+		}, 7000);
+
+		return () => clearTimeout(timeout);
+	});
 
 	useEffect(
 		function () {
@@ -146,12 +159,18 @@ function RulersPage() {
 	}
 
 	// Loading State
-	if (isPending) {
+	if (isPending || initialColdStart) {
 		return (
 			<>
 				<Navbar />
 				<MainContainer>
 					<Loader />
+					{initialColdStart && (
+						<p className="text-primary-200 mt-5 animate-pulse text-lg font-medium">
+							Making initial connection to the server and database. This may
+							take a moment, please wait...
+						</p>
+					)}
 				</MainContainer>
 				<Footer className="mt-36 max-md:mt-20" />
 			</>
