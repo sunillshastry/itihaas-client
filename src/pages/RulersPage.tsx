@@ -71,17 +71,20 @@ function RulersPage() {
 
 	// Automatically update the cold start flag to ensure if the page is loading initially
 	// while fetching or connecting to the database for the first time
-	useEffect(function () {
-		const timeout = setTimeout(function () {
-			if (isPending) {
-				setInitialColdStart(true);
-			} else {
-				setInitialColdStart(false);
-			}
-		}, 7000);
+	useEffect(
+		function () {
+			const timeout = setTimeout(function () {
+				if (isPending) {
+					setInitialColdStart(true);
+				} else {
+					setInitialColdStart(false);
+				}
+			}, 7000);
 
-		return () => clearTimeout(timeout);
-	});
+			return () => clearTimeout(timeout);
+		},
+		[isPending]
+	);
 
 	useEffect(
 		function () {
