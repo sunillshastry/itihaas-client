@@ -9,6 +9,7 @@ import Navbar from '@/components/elements/Navbar';
 import PageSearchBar from '@/components/elements/PageSearchBar';
 import PrimaryHeader from '@/components/elements/PrimaryHeader';
 import Select from '@/components/elements/Select';
+import EntitiesPageNoResult from '@/components/views/EntitiesPageNoResult';
 import SearchSortByOptions from '@/data/SearchSortByOptions';
 import { useQuery } from '@tanstack/react-query';
 import { ArrowDownNarrowWide } from 'lucide-react';
@@ -198,6 +199,10 @@ function WarsPage() {
 						</p>
 					)}
 				</div>
+
+				{finalWars?.length === 0 && searchQuery?.length >= 3 && (
+					<EntitiesPageNoResult query={searchQuery} />
+				)}
 
 				<Suspense fallback={<Loader size="medium" />}>
 					<BuildingContentBanner />
