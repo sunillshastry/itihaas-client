@@ -13,6 +13,7 @@ interface War {
 	name: string;
 	slug: string;
 	otherNames: string[];
+	entity?: string;
 	outcome: {
 		result: string;
 		winners: string[];
