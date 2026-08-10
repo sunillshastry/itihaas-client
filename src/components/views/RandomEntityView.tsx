@@ -16,10 +16,11 @@ import { twMerge } from 'tailwind-merge';
 import { Tooltip } from 'react-tooltip';
 import useUpdateDate from '@/hooks/useUpdateDate';
 import useFormattedNumber from '@/hooks/useFormattedNumber';
+import { War } from '@/interfaces/War';
 
 interface FunctionProps {
 	type: 'dynasties' | 'rulers' | 'wars';
-	entity: Dynasty & Ruler;
+	entity: Dynasty & Ruler & War;
 	loading: boolean;
 	refetch: () => void;
 	error?: Error | null;
