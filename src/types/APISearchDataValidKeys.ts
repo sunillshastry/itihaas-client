@@ -1,3 +1,3 @@
-type ValidKeys = 'dynasties' | 'rulers';
+type ValidKeys = 'dynasties' | 'rulers' | 'wars';
 
 export type { ValidKeys };

@@ -1,6 +1,7 @@
 import getDynastiesTitles from '@/api/getDynastiesTitles';
 import getRulersTitles from '@/api/getRulersTitles';
 import type { SearchTitle } from '@/interfaces/SearchTitle';
+import getWarsTitles from './getWarsTitles';
 
 /**
  * Get all search titles from the server API
@@ -19,6 +20,9 @@ async function getSearchResults(
 
 		// Get ruler search titles
 		const rulers = (await getRulersTitles()) as SearchTitle[];
+
+		// Get war search titles
+		const wars = (await getWarsTitles()) as SearchTitle[];
 
 		// Final search results
 		let searchResults: SearchTitle[] = [];
@@ -40,6 +44,16 @@ async function getSearchResults(
 				...searchResults,
 				...rulers.filter((ruler) =>
 					ruler.name.toLowerCase().includes(query.toLowerCase())
+				),
+			];
+		}
+
+		// Filter and append war search results
+		if (wars?.length > 0) {
+			searchResults = [
+				...searchResults,
+				...wars.filter((war) =>
+					war.name.toLowerCase().includes(query.toLowerCase())
 				),
 			];
 		}
