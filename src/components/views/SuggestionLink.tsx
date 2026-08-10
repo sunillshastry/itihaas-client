@@ -19,6 +19,8 @@ function SuggestionLink({ queryResult, handleLinkClick }: FunctionProps) {
 			navigate(`/dynasties/${queryResult.slug}`);
 		} else if (queryResult?.type === 'ruler') {
 			navigate(`/rulers/${queryResult.slug}`);
+		} else if (queryResult?.type === 'war') {
+			navigate(`/wars/${queryResult?.slug}`);
 		}
 	}
 
