@@ -11,9 +11,11 @@
 
 import getRandomDynasty from '@/api/getRandomDynasty';
 import getRandomRuler from '@/api/getRandomRuler';
+import getRandomWar from '@/api/getRandomWar';
 import RandomEntityView from '@/components/views/RandomEntityView';
 import { Dynasty } from '@/interfaces/Dynasty';
 import { Ruler } from '@/interfaces/Ruler';
+import { War } from '@/interfaces/War';
 import { useQuery } from '@tanstack/react-query';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -52,6 +54,17 @@ function Offers() {
 		refetchOnWindowFocus: false,
 	});
 
+	const {
+		error: randomWarError,
+		data: randomWar,
+		refetch: refetchWar,
+		isPending: randomWarLoading,
+	} = useQuery({
+		queryKey: ['random-war'],
+		queryFn: getRandomWar,
+		refetchOnWindowFocus: false,
+	});
+
 	return (
 		<div className="text-primary-400 mt-6 max-sm:px-2">
 			<h2 className="border-primary-300/25 border-b text-xl font-semibold uppercase first-letter:text-3xl">
@@ -78,7 +91,7 @@ function Offers() {
 
 						<RandomEntityView
 							type="dynasties"
-							entity={randomDynasty as Dynasty & Ruler}
+							entity={randomDynasty as Dynasty & Ruler & War}
 							loading={randomDynastyLoading}
 							refetch={refetchDynasty}
 							error={randomDynastyError as Error}
@@ -107,7 +120,7 @@ function Offers() {
 						</p>
 						<RandomEntityView
 							type="rulers"
-							entity={randomRuler as Dynasty & Ruler}
+							entity={randomRuler as Dynasty & Ruler & War}
 							loading={randomRulerLoading}
 							refetch={refetchRuler}
 							error={randomRulerError as Error}
@@ -134,8 +147,14 @@ function Offers() {
 								content might look like.
 							</span>
 						</p>
-						{/* TODO: Uncomment and setup request to Wars when implemented */}
-						{/* <RandomEntityView /> */}
+
+						<RandomEntityView
+							type="wars"
+							entity={randomWar as Dynasty & Ruler & War}
+							loading={randomWarLoading}
+							refetch={refetchWar}
+							error={randomWarError as Error}
+						/>
 
 						<Link
 							to="/wars"
