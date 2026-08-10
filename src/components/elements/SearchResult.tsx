@@ -19,6 +19,10 @@ function SearchResult({ entity }: FunctionProps) {
 		if (entity?.entity == 'ruler') {
 			return `/rulers/${entity?.slug}`;
 		}
+
+		if (entity?.entity === 'war') {
+			return `/wars/${entity?.slug}`;
+		}
 		return null;
 	}
 
