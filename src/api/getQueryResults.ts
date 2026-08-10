@@ -2,6 +2,8 @@ import getDynastyByQuery from './getDynastyByQuery';
 import getRulerByQuery from './getRulerByQuery';
 import { Ruler } from '@/interfaces/Ruler';
 import { Dynasty } from '@/interfaces/Dynasty';
+import getWarByQuery from './getWarByQuery';
+import { War } from '@/interfaces/War';
 
 async function getQueryResults(query: string) {
 	try {
@@ -11,8 +13,14 @@ async function getQueryResults(query: string) {
 		// Ruler fetch response
 		const rulerResponse = (await getRulerByQuery(query)) as Ruler[];
 
-		// Combine both response into one single array and return the result
-		const searchResults = [...dynastyResponse, ...rulerResponse];
+		const warResponse = (await getWarByQuery(query)) as War[];
+
+		// Combine all responses into one single array and return the result
+		const searchResults = [
+			...dynastyResponse,
+			...rulerResponse,
+			...warResponse,
+		];
 
 		return searchResults;
 	} catch (e) {
