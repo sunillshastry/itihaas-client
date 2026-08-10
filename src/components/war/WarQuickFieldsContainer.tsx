@@ -61,7 +61,7 @@ export default function WarQuickFieldsContainer({ war }: FunctionProps) {
 			<QuickFactField
 				title={`Leaders (${firstBelligerent.name})`}
 				content={
-					firstBelligerent ? (
+					firstBelligerent?.leaders?.length !== 0 ? (
 						formatArrayToString(firstBelligerent?.leaders)
 					) : (
 						<QuickFactsNoField />
@@ -72,7 +72,7 @@ export default function WarQuickFieldsContainer({ war }: FunctionProps) {
 			<QuickFactField
 				title={`Leaders (${secondBelligerent.name})`}
 				content={
-					secondBelligerent ? (
+					secondBelligerent?.leaders?.length !== 0 ? (
 						formatArrayToString(secondBelligerent.leaders)
 					) : (
 						<QuickFactsNoField />
