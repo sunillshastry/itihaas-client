@@ -20,6 +20,13 @@ import SecondaryHeader from '@/components/elements/SecondaryHeader';
 import formatArrayToString from '@/utils/formatArrayToString';
 import QuickFacts from '@/components/elements/QuickFacts';
 import WarQuickFieldsContainer from '@/components/war/WarQuickFieldsContainer';
+import DescriptionContainer from '@/components/elements/DescriptionContainer';
+import HashContainer from '@/components/elements/HashContainer';
+import SourcesContainer from '@/components/elements/SourcesContainer';
+import FurtherReadingContainer from '@/components/elements/FurtherReadingContainer';
+import ArticlesContainer from '@/components/elements/ArticlesContainer';
+import MissingInfoDialog from '@/components/views/MissingInfoDialog';
+import LastUpdateMessage from '@/components/views/LastUpdateMessage';
 
 function WarPage() {
 	const { warSlug: slug } = useParams();
@@ -151,8 +158,33 @@ function WarPage() {
 						<QuickFacts>
 							<WarQuickFieldsContainer war={war} />
 						</QuickFacts>
+
+						<DescriptionContainer
+							descriptionList={war?.description?.long as string[]}
+						/>
+
+						<HashContainer id="sources">
+							<SourcesContainer sources={war?.sources} />
+						</HashContainer>
+
+						<HashContainer id="reading">
+							<FurtherReadingContainer readings={war?.furtherReading} />
+						</HashContainer>
+
+						{/* TODO: DYNASTIES CONTAINER */}
+
+						{/* TODO: RULERS CONTAINER */}
+
+						<HashContainer id="articles">
+							<ArticlesContainer articles={war?.articles} />
+						</HashContainer>
 					</Suspense>
+
+					<MissingInfoDialog />
+
+					<LastUpdateMessage date={war?.updatedAt} />
 				</MainContainer>
+				<Footer className="mt-36 max-md:mt-20" />
 			</>
 		);
 	}
