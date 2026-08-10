@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 import SearchResultInfo from '../views/SearchResultInfo';
 import { Ruler } from '@/interfaces/Ruler';
 import { Dynasty } from '@/interfaces/Dynasty';
+import { War } from '@/interfaces/War';
 
 interface FunctionProps {
-	entity: Dynasty | Ruler;
+	entity: Dynasty | Ruler | War;
 }
 
 function SearchResult({ entity }: FunctionProps) {
