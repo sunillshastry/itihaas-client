@@ -14,6 +14,7 @@ import SearchFilterByOptions from '@/data/SearchFilterByOptions';
 import SearchSortByOptions from '@/data/SearchSortByOptions';
 import { Dynasty } from '@/interfaces/Dynasty';
 import { Ruler } from '@/interfaces/Ruler';
+import { War } from '@/interfaces/War';
 import updateWindowTitle from '@/utils/updateWindowTitle';
 import { useQuery } from '@tanstack/react-query';
 import { ArrowDownNarrowWide, SlidersHorizontal } from 'lucide-react';
@@ -29,7 +30,7 @@ function Search() {
 	const [filterByValue, setFilterByValue] = useState<string>('');
 	const [sortByValue, setSortByValue] = useState<string>('');
 	const [queriedResults, setQueriedResults] = useState<
-		(Dynasty | Ruler)[] | null
+		(Dynasty | Ruler | War)[] | null
 	>(null);
 
 	const searchQuery = params.get('q')?.trim();
@@ -64,7 +65,7 @@ function Search() {
 		});
 	}
 
-	function getCustomResultsContent(results: (Dynasty | Ruler)[]) {
+	function getCustomResultsContent(results: (Dynasty | Ruler | War)[]) {
 		if (results !== undefined && !(results instanceof Error)) {
 			return results.length < 10 && results.length !== 0
 				? `0${results.length}`
