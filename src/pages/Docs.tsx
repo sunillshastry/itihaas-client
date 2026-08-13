@@ -8,6 +8,7 @@ import GettingStarted from '@/components/documentation/GettingStarted';
 import BasicButton from '@/components/elements/BasicButton';
 import { useState } from 'react';
 import { ScrollText } from 'lucide-react';
+import MetaInformation from '@/components/documentation/MetaInformation';
 
 /**
  * Main React.JSX page component for /docs: Documentation page
@@ -42,6 +43,7 @@ function Docs() {
 					<MDXProvider>
 						{/* Getting Started  */}
 						<GettingStarted />
+						<MetaInformation />
 					</MDXProvider>
 				</section>
 			</MainContainer>
