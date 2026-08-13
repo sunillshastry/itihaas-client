@@ -4,6 +4,7 @@ import MDXTitle from '@/docs/title.mdx';
 import MDXSubTitle from '@/docs/sub-title.mdx';
 import MDXApiHealthCheckSection from '@/docs/meta-information/api-health-check.mdx';
 import MDXApiVersion from '@/docs/meta-information/api-version.mdx';
+import MDXApiInfo from '@/docs/meta-information/api-info.mdx';
 
 export default function MetaInformation() {
 	return (
@@ -39,6 +40,18 @@ export default function MetaInformation() {
 					</HashContainer>
 
 					<MDXApiVersion components={mdxComponents} />
+				</div>
+
+				<div>
+					<HashContainer id="api-info">
+						<MDXSubTitle
+							components={mdxComponents}
+							id="api-info"
+							name="API Info"
+						/>
+					</HashContainer>
+
+					<MDXApiInfo components={mdxComponents} />
 				</div>
 			</div>
 		</>
