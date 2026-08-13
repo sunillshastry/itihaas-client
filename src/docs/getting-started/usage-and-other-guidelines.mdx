@@ -1,0 +1,36 @@
+The Itihaas API is intended to be simple and accessible for developers, researchers, students, educators, and anyone interested in building applications around Indian history. While there are no complicated requirements for using the API, following a few guidelines will help ensure a reliable experience for both you and other users.
+
+##### API Keys
+
+- Keep your API key private and treat it like a password.
+- Do not hard-code API keys into publicly accessible source code or commit them to public Git repositories.
+- For applications, it is recommended to store API keys in environment variables or another secure configuration mechanism.
+- If you believe your API key has been exposed or misused, consider recovering or replacing it as soon as possible.
+
+##### Request Limits and Responsible Usage
+
+Each API key is subject to a daily request limit of 100 requests. Please avoid making unnecessary or repeated requests, particularly when the same data can be reused. Where appropriate, consider caching responses locally rather than requesting the same resource repeatedly. This can reduce unnecessary API traffic and improve the performance of your own application as well.
+
+Automated scripts or applications that generate excessive traffic, intentionally bypass request limits, or otherwise negatively affect the availability of the API may be restricted.
+
+##### Handling Responses and Errors
+
+Not every request will result in a successful response. Applications consuming the Itihaas API should handle common HTTP status codes and the `state` and `success` fields returned by the API appropriately.
+
+For example, a `404` response indicates that the requested resource could not be found, while other `4xx` or `5xx` responses may indicate authentication, request, or server-related issues. Do not assume that every successful HTTP request will contain the exact data you expected. Always validate the response before using it in your application.
+
+##### Data and Sources
+
+The historical information provided by Itihaas is intended for educational, research, and general informational purposes. Historical interpretations and available information may change as additional research and sources become available. Where applicable, Itihaas records include references to external sources. If you use Itihaas data in a project, article, application, or other publicly available work, we encourage you to provide appropriate attribution to Itihaas and, where relevant, the original sources associated with the data.
+
+Itihaas should not be treated as a substitute for primary historical sources or scholarly research.
+
+##### API Versioning
+
+The API uses versioned paths, such as `/api/v1/`, to help maintain compatibility as the project evolves. When building an application, use the appropriate API version consistently. Future versions may introduce changes to response structures, fields, endpoints, or behavior. Check the documentation before migrating to a newer API version.
+
+##### Availability and Changes
+
+Although efforts are made to keep the API available and reliable, uninterrupted availability cannot be guaranteed. Endpoints, response structures, limits, or other API behavior may change as the project develops.
+
+If you encounter unexpected behavior, errors, missing data, or other issues, please report them through the [API Issues](/issues) form.

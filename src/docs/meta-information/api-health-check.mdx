@@ -1,0 +1,13 @@
+import CodeBlock from '@/mdx/CodeBlock.tsx';
+
+The Itihaas API provides a small set of endpoints for retrieving information about the API itself. These endpoints do not require an API key and can be useful for monitoring availability, checking the currently deployed version, or retrieving general information about the API.
+
+The health check endpoint can be used to determine whether the Itihaas API is currently available and responding to requests.
+
+##### Endpoint
+
+<CodeBlock language="http">
+	{`GET https://itihaas-api.onrender.com/api/health`}
+</CodeBlock>
+
+This endpoint is particularly useful for monitoring services, automated checks, or troubleshooting connectivity issues. A successful response indicates that the API server is running and able to respond to requests. This endpoint does not verify the availability of individual resources or guarantee that every API endpoint is functioning correctly.
