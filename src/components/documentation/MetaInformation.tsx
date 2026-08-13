@@ -3,6 +3,7 @@ import HashContainer from '../elements/HashContainer';
 import MDXTitle from '@/docs/title.mdx';
 import MDXSubTitle from '@/docs/sub-title.mdx';
 import MDXApiHealthCheckSection from '@/docs/meta-information/api-health-check.mdx';
+import MDXApiVersion from '@/docs/meta-information/api-version.mdx';
 
 export default function MetaInformation() {
 	return (
@@ -26,6 +27,18 @@ export default function MetaInformation() {
 					</HashContainer>
 
 					<MDXApiHealthCheckSection components={mdxComponents} />
+				</div>
+
+				<div>
+					<HashContainer id="api-version">
+						<MDXSubTitle
+							components={mdxComponents}
+							id="api-version"
+							name="API Version"
+						/>
+					</HashContainer>
+
+					<MDXApiVersion components={mdxComponents} />
 				</div>
 			</div>
 		</>
