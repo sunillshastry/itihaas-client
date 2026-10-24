@@ -51,15 +51,22 @@ function RegisterInfo() {
 
 		try {
 			if (APIRegisterSchema.safeParse(data)?.success) {
-				console.log(data);
+				const formattedData = {
+					name: data?.name,
+					privacyAgreement: data?.privacyCheckbox,
+					captcha: captchaState?.value,
+					email: data?.email,
+					usageReason: data?.usage,
+				};
+				console.log('Successfully sent the registration request!');
+				console.log(formattedData);
 
-				console.log(captchaState);
-				console.log('Successfully submitted form!');
-				console.log(data);
 				// TODO: Update onSubmit function
 				// TODO: Make backend request for /register-api
+				// TODO: Upon a successful request to the backend and registration, display a success message to the user
 			} else {
 				// Display error
+				// TODO: Implement a proper error handling situation
 			}
 		} catch {
 			console.log('Incorrect');
