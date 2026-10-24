@@ -98,10 +98,16 @@ function RegisterInfo() {
 
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className="mt-6 flex flex-col items-start justify-start gap-1">
-						<Label required={true}>Full Name</Label>
+						<Label
+							required={true}
+							htmlFor="api-register-name"
+						>
+							Full Name
+						</Label>
 						<Input
 							placeholder="John Doe"
 							defaultValue=""
+							id="api-register-name"
 							className="max-sm:w-full"
 							{...register('name', {
 								required: {
@@ -119,11 +125,17 @@ function RegisterInfo() {
 					</div>
 
 					<div className="mt-3 flex flex-col items-start justify-start gap-1">
-						<Label required={true}>Email</Label>
+						<Label
+							required={true}
+							htmlFor="api-register-email"
+						>
+							Email
+						</Label>
 						<Input
 							type="email"
 							placeholder="john.doe@example.com"
 							defaultValue=""
+							id="api-register-email"
 							className="max-sm:w-full"
 							{...register('email', {
 								required: {
@@ -142,10 +154,11 @@ function RegisterInfo() {
 					</div>
 
 					<div className="mt-3 flex flex-col items-start justify-start gap-1">
-						<Label>Reason for Usage</Label>
+						<Label htmlFor="api-register-usage-reason">Reason for Usage</Label>
 						<TextArea
 							className="max-sm:w-full"
 							defaultValue=""
+							id="api-register-usage-reason"
 							{...register('usage')}
 						/>
 					</div>
@@ -154,7 +167,7 @@ function RegisterInfo() {
 						<div className="flex items-center justify-start gap-1 max-md:items-baseline">
 							<input
 								type="checkbox"
-								id="register-privacy-check"
+								id="api-register-privacy-check"
 								className="text-primary-100 accent-primary-200 h-4 w-4 rounded-md focus:ring-2"
 								{...register('privacyCheckbox', {
 									required: {
@@ -166,7 +179,7 @@ function RegisterInfo() {
 							/>
 							<Label
 								className="text-xs"
-								htmlFor="register-privacy-check"
+								htmlFor="api-register-privacy-check"
 								required={true}
 							>
 								I understand and accept the{' '}
