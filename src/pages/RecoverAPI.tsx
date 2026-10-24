@@ -85,6 +85,7 @@ function RecoverAPI() {
 								id="api-recovery-email"
 								defaultValue=""
 								className="max-sm:w-full"
+								// TODO: Include a better regex pattern for email matching ensuring only and exactly an email is validated
 								{...register('email', {
 									required: {
 										value: true,

@@ -79,11 +79,18 @@ export default function ResendAPI() {
 				<div className="mt-6">
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className="flex flex-col items-start justify-start gap-1">
-							<Label required={true}>Email</Label>
+							<Label
+								required={true}
+								htmlFor="api-resend-email"
+							>
+								Email
+							</Label>
 							<Input
 								placeholder="john.doe@example.com"
 								defaultValue=""
 								className="max-sm:w-full"
+								id="api-resend-email"
+								// TODO: Include a better regex pattern for email matching ensuring only and exactly an email is validated
 								{...register('email', {
 									required: {
 										value: true,
