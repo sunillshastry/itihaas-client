@@ -19,6 +19,7 @@ import TermsOfService from '@/pages/TermsOfService';
 import NotFound from '@/pages/NotFound';
 import RecoverAPI from '@/pages/RecoverAPI';
 import ResendAPI from '@/pages/ResendAPI';
+import Verification from '@/pages/Verification';
 
 interface FileRoute {
 	path: string;
@@ -106,6 +107,10 @@ const RouterRoutes: FileRoute[] = [
 	{
 		path: '/terms-of-service',
 		element: <TermsOfService />,
+	},
+	{
+		path: '/verify/:verificationCode',
+		element: <Verification />,
 	},
 
 	// Not Found (Wildcard route)
