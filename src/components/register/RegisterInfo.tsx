@@ -257,14 +257,24 @@ function RegisterInfo() {
 					</div>
 
 					<div className="mt-3">
-						{mutation.isSuccess && mutation?.data?.success && (
-							<p>
-								Registration is complete! Please check your email for a
-								verification code that will expire in fifteen minutes.
+						{mutation.isSuccess && (
+							<p className="text-primary-200 text-sm">
+								Registration submission is complete! You can expect to receive a
+								verification email from us, provided that{' '}
+								<strong>you have not registered before</strong>. If you have
+								already registered with this email and did not verify, please
+								use our{' '}
+								<Link
+									to="/api-resend"
+									className="text-primary-300 underline"
+								>
+									Resend Verification
+								</Link>{' '}
+								service.
 							</p>
 						)}
 
-						{(mutation.isError || mutation.error) && (
+						{mutation.isError && (
 							<FormError>Unable to register the email</FormError>
 						)}
 
