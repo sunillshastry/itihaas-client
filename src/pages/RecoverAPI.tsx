@@ -1,3 +1,4 @@
+import postApiKeyRecovery from '@/api/postApiKeyRecovery';
 import BasicButton from '@/components/elements/BasicButton';
 import Footer from '@/components/elements/Footer';
 import FormError from '@/components/elements/FormError';
@@ -6,6 +7,7 @@ import Label from '@/components/elements/Label';
 import MainContainer from '@/components/elements/MainContainer';
 import Navbar from '@/components/elements/Navbar';
 import PrimaryHeader from '@/components/elements/PrimaryHeader';
+import { useMutation } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
@@ -17,13 +19,19 @@ function RecoverAPI() {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<FormInputs>();
 
+	const mutation = useMutation({
+		mutationFn: postApiKeyRecovery,
+		onSuccess: () => {
+			reset();
+		},
+	});
+
 	const onSubmit: SubmitHandler<FormInputs> = (data) => {
-		// TODO: Include the actual implementation to send the request to the backend API Recovery email
-		console.log('Submitted!');
-		console.log(data);
+		mutation.mutate(data?.email);
 	};
 
 	return (
@@ -85,6 +93,7 @@ function RecoverAPI() {
 								id="api-recovery-email"
 								defaultValue=""
 								className="max-sm:w-full"
+								disabled={mutation.isPending}
 								// TODO: Include a better regex pattern for email matching ensuring only and exactly an email is validated
 								{...register('email', {
 									required: {
@@ -102,12 +111,24 @@ function RecoverAPI() {
 							{errors?.email && <FormError>{errors?.email?.message}</FormError>}
 						</div>
 
-						<BasicButton
-							type="submit"
-							className="mt-4 font-semibold max-sm:block max-sm:w-full max-sm:py-3 max-sm:text-center"
-						>
-							Recover API
-						</BasicButton>
+						<div className="mt-3">
+							{mutation.isSuccess && (
+								<p className="text-primary-100 text-sm">
+									If an <strong>account exists with the provided email</strong>{' '}
+									and is <strong>verified</strong>, an email will be sent out
+									containing the API key. Please check your email including the
+									Spam folder.
+								</p>
+							)}
+
+							<BasicButton
+								type="submit"
+								className="mt-2 font-semibold max-sm:block max-sm:w-full max-sm:py-3 max-sm:text-center"
+								disabled={mutation.isPending}
+							>
+								Recover API
+							</BasicButton>
+						</div>
 					</form>
 				</div>
 			</MainContainer>
