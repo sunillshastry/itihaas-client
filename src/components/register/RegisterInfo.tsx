@@ -74,11 +74,7 @@ function RegisterInfo() {
 					email: data?.email,
 					usageReason: data?.usage || '',
 				};
-				console.log('Successfully sent the registration request!');
 
-				// TODO: Update onSubmit function
-				// TODO: Make backend request for /register-api
-				// TODO: Upon a successful request to the backend and registration, display a success message to the user
 				mutation.mutate(formattedData);
 			} else {
 				// Display error
