@@ -25,7 +25,7 @@ function BasicButton({
 			onClick={onClick}
 			className={twMerge(
 				variant === 'dark' ? styles.dark : styles.light,
-				'flex items-center rounded-sm bg-linear-to-b px-3 py-2 text-sm shadow-md transition hover:cursor-pointer focus:outline-3',
+				'flex items-center rounded-sm bg-linear-to-b px-3 py-2 text-sm shadow-md transition hover:cursor-pointer focus:outline-3 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
 				className
 			)}
 			{...defaultProps}
