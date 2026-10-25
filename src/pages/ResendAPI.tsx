@@ -128,7 +128,7 @@ export default function ResendAPI() {
 								disabled={mutation.isPending}
 								className="mt-2 font-semibold max-sm:block max-sm:w-full max-sm:py-3 max-sm:text-center"
 							>
-								Send Link
+								{mutation.isPending ? 'Submitting...' : 'Send Link'}
 							</BasicButton>
 						</div>
 					</form>

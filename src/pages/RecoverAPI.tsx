@@ -126,7 +126,7 @@ function RecoverAPI() {
 								className="mt-2 font-semibold max-sm:block max-sm:w-full max-sm:py-3 max-sm:text-center"
 								disabled={mutation.isPending}
 							>
-								Recover API
+								{mutation.isPending ? 'Submitting...' : 'Recover API'}
 							</BasicButton>
 						</div>
 					</form>
