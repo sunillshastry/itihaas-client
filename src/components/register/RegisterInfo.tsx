@@ -15,6 +15,8 @@ import PrivacyAndTerms from './PrivacyAndTerms';
 import Contributing from './Contributing';
 import Recovery from './Recovery';
 import { APIRegisterSchema } from '@/schemas/apiRegisterSchema';
+import { useMutation } from '@tanstack/react-query';
+import postApiKeyRegistration from '@/api/postApiKeyRegistration';
 
 interface FormInputs {
 	name: string;
@@ -32,6 +34,7 @@ function RegisterInfo() {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<FormInputs>();
 
@@ -40,6 +43,19 @@ function RegisterInfo() {
 		error: false,
 	});
 	const captchaRef = useRef<ReCAPTCHA>(null);
+
+	const mutation = useMutation({
+		mutationFn: postApiKeyRegistration,
+		onSuccess: () => {
+			reset();
+			captchaRef.current?.reset();
+			setCaptchaState({ value: null, error: false });
+		},
+		onError: () => {
+			captchaRef?.current?.reset();
+			setCaptchaState({ value: null, error: false });
+		},
+	});
 
 	const onSubmit: SubmitHandler<FormInputs> = (data) => {
 		setCaptchaState((current) => ({ ...current, error: false }));
@@ -56,14 +72,14 @@ function RegisterInfo() {
 					privacyAgreement: data?.privacyCheckbox,
 					captcha: captchaState?.value,
 					email: data?.email,
-					usageReason: data?.usage,
+					usageReason: data?.usage || '',
 				};
 				console.log('Successfully sent the registration request!');
-				console.log(formattedData);
 
 				// TODO: Update onSubmit function
 				// TODO: Make backend request for /register-api
 				// TODO: Upon a successful request to the backend and registration, display a success message to the user
+				mutation.mutate(formattedData);
 			} else {
 				// Display error
 				// TODO: Implement a proper error handling situation
@@ -109,6 +125,7 @@ function RegisterInfo() {
 							defaultValue=""
 							id="api-register-name"
 							className="max-sm:w-full"
+							disabled={mutation.isPending}
 							{...register('name', {
 								required: {
 									value: true,
@@ -137,6 +154,7 @@ function RegisterInfo() {
 							defaultValue=""
 							id="api-register-email"
 							className="max-sm:w-full"
+							disabled={mutation.isPending}
 							{...register('email', {
 								required: {
 									value: true,
@@ -159,6 +177,7 @@ function RegisterInfo() {
 							className="max-sm:w-full"
 							defaultValue=""
 							id="api-register-usage-reason"
+							disabled={mutation.isPending}
 							{...register('usage')}
 						/>
 					</div>
@@ -242,11 +261,23 @@ function RegisterInfo() {
 					</div>
 
 					<div className="mt-3">
+						{mutation.isSuccess && mutation?.data?.success && (
+							<p>
+								Registration is complete! Please check your email for a
+								verification code that will expire in fifteen minutes.
+							</p>
+						)}
+
+						{(mutation.isError || mutation.error) && (
+							<FormError>Unable to register the email</FormError>
+						)}
+
 						<BasicButton
 							type="submit"
-							className="font-semibold max-sm:block max-sm:w-full max-sm:py-3 max-sm:text-center"
+							className="mt-2 font-semibold max-sm:block max-sm:w-full max-sm:py-3 max-sm:text-center"
+							disabled={mutation.isPending}
 						>
-							Get API Key
+							{mutation.isPending ? 'Submitting...' : 'Get API Key'}
 						</BasicButton>
 					</div>
 				</form>
