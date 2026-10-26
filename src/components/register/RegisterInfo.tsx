@@ -128,9 +128,9 @@ function RegisterInfo() {
 									message: 'Full name is marked as a required field',
 								},
 								minLength: {
-									value: 5,
+									value: 2,
 									message:
-										'Your full name must be at least five characters long',
+										'Your full name must be at least two characters long',
 								},
 							})}
 						/>
@@ -158,9 +158,16 @@ function RegisterInfo() {
 								},
 								pattern: {
 									value:
-										/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+										/^[A-Za-z0-9_%+-]+(?:\.[A-Za-z0-9_%+-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,63}$/,
 									message:
 										'Invalid email address format. Please provide a valid address.',
+								},
+								validate: (value) => {
+									const local = value.split('@')[0] ?? '';
+									return (
+										(value.length <= 254 && local.length <= 64) ||
+										'Email address is too long.'
+									);
 								},
 							})}
 						/>

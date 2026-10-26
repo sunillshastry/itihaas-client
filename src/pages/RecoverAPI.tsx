@@ -102,9 +102,16 @@ function RecoverAPI() {
 									},
 									pattern: {
 										value:
-											/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+											/^[A-Za-z0-9_%+-]+(?:\.[A-Za-z0-9_%+-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,63}$/,
 										message:
 											'Invalid email address format. Please provide a valid email address',
+									},
+									validate: (value) => {
+										const local = value.split('@')[0] ?? '';
+										return (
+											(value.length <= 254 && local.length <= 64) ||
+											'Email address is too long.'
+										);
 									},
 								})}
 							/>
@@ -126,7 +133,7 @@ function RecoverAPI() {
 								className="mt-2 font-semibold max-sm:block max-sm:w-full max-sm:py-3 max-sm:text-center"
 								disabled={mutation.isPending}
 							>
-								{mutation.isPending ? 'Submitting...' : 'Recover API'}
+								{mutation.isPending ? 'Submitting...' : 'Recover Key'}
 							</BasicButton>
 						</div>
 					</form>
