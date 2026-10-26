@@ -2,15 +2,22 @@ import InputFormControl from '@/components/issues/InputFormControl';
 import TextAreaFormControl from '@/components/issues/TextAreaFormControl';
 import FormErrorLabel from '@/components/views/FormErrorLabel';
 import userInfo from '@/data/issues/userInfo';
-import { EditFormInputs } from '@/interfaces/EditFormInputs';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import {
+	FieldErrors,
+	FieldValues,
+	Path,
+	UseFormRegister,
+} from 'react-hook-form';
 
-interface FunctionProps {
-	register: UseFormRegister<EditFormInputs> | null;
-	errors: FieldErrors<EditFormInputs> | null;
+interface FunctionProps<T extends FieldValues> {
+	register: UseFormRegister<T> | null;
+	errors: FieldErrors<T> | null;
 }
 
-export default function UserInfo({ register, errors }: FunctionProps) {
+export default function UserInfo<T extends FieldValues>({
+	register,
+	errors,
+}: FunctionProps<T>) {
 	return (
 		<div className="border-primary-70/35 mt-5 border-t pt-2">
 			<h3 className="text-xl font-medium">User Info</h3>
@@ -23,6 +30,8 @@ export default function UserInfo({ register, errors }: FunctionProps) {
 			<div>
 				{userInfo.map(function (field) {
 					if (field.type === 'input' && register !== null && errors !== null) {
+						const fieldError =
+							errors[field.registerHookForm as keyof FieldErrors<T>];
 						return (
 							<>
 								<InputFormControl
@@ -32,7 +41,7 @@ export default function UserInfo({ register, errors }: FunctionProps) {
 									required={field.required}
 									id={field.htmlId}
 									info={field.info}
-									{...register(field.registerHookForm, {
+									{...register(field.registerHookForm as Path<T>, {
 										required: {
 											value: field.required as boolean,
 											message: `${field.label} is a required field`,
@@ -45,9 +54,9 @@ export default function UserInfo({ register, errors }: FunctionProps) {
 										},
 									})}
 								/>
-								{errors[field.registerHookForm] && (
+								{fieldError && (
 									<FormErrorLabel>
-										{errors[field.registerHookForm]?.message}
+										{fieldError.message?.toString()}
 									</FormErrorLabel>
 								)}
 							</>
@@ -57,6 +66,8 @@ export default function UserInfo({ register, errors }: FunctionProps) {
 						register !== null &&
 						errors !== null
 					) {
+						const fieldError =
+							errors[field.registerHookForm as keyof FieldErrors<T>];
 						return (
 							<>
 								<TextAreaFormControl
@@ -66,16 +77,16 @@ export default function UserInfo({ register, errors }: FunctionProps) {
 									required={field.required}
 									id={field.htmlId}
 									info={field.info}
-									{...register(field.registerHookForm, {
+									{...register(field.registerHookForm as Path<T>, {
 										required: {
 											value: field.required as boolean,
 											message: `${field.label} is a required field`,
 										},
 									})}
 								/>
-								{errors[field.registerHookForm] && (
+								{fieldError && (
 									<FormErrorLabel>
-										{errors[field.registerHookForm]?.message}
+										{fieldError.message?.toString()}
 									</FormErrorLabel>
 								)}
 							</>

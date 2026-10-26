@@ -15,6 +15,8 @@ import PrivacyAndTerms from './PrivacyAndTerms';
 import Contributing from './Contributing';
 import Recovery from './Recovery';
 import { APIRegisterSchema } from '@/schemas/apiRegisterSchema';
+import { useMutation } from '@tanstack/react-query';
+import postApiKeyRegistration from '@/api/postApiKeyRegistration';
 
 interface FormInputs {
 	name: string;
@@ -32,6 +34,7 @@ function RegisterInfo() {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<FormInputs>();
 
@@ -40,6 +43,19 @@ function RegisterInfo() {
 		error: false,
 	});
 	const captchaRef = useRef<ReCAPTCHA>(null);
+
+	const mutation = useMutation({
+		mutationFn: postApiKeyRegistration,
+		onSuccess: () => {
+			reset();
+			captchaRef.current?.reset();
+			setCaptchaState({ value: null, error: false });
+		},
+		onError: () => {
+			captchaRef?.current?.reset();
+			setCaptchaState({ value: null, error: false });
+		},
+	});
 
 	const onSubmit: SubmitHandler<FormInputs> = (data) => {
 		setCaptchaState((current) => ({ ...current, error: false }));
@@ -51,15 +67,18 @@ function RegisterInfo() {
 
 		try {
 			if (APIRegisterSchema.safeParse(data)?.success) {
-				console.log(data);
+				const formattedData = {
+					name: data?.name,
+					privacyAgreement: data?.privacyCheckbox,
+					captcha: captchaState?.value,
+					email: data?.email,
+					usageReason: data?.usage || '',
+				};
 
-				console.log(captchaState);
-				console.log('Successfully submitted form!');
-				console.log(data);
-				// TODO: Update onSubmit function
-				// TODO: Make backend request for /register-api
+				mutation.mutate(formattedData);
 			} else {
 				// Display error
+				// TODO: Implement a proper error handling situation
 			}
 		} catch {
 			console.log('Incorrect');
@@ -91,20 +110,27 @@ function RegisterInfo() {
 
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className="mt-6 flex flex-col items-start justify-start gap-1">
-						<Label required={true}>Full Name</Label>
+						<Label
+							required={true}
+							htmlFor="api-register-name"
+						>
+							Full Name
+						</Label>
 						<Input
 							placeholder="John Doe"
 							defaultValue=""
+							id="api-register-name"
 							className="max-sm:w-full"
+							disabled={mutation.isPending}
 							{...register('name', {
 								required: {
 									value: true,
 									message: 'Full name is marked as a required field',
 								},
 								minLength: {
-									value: 5,
+									value: 2,
 									message:
-										'Your full name must be at least five characters long',
+										'Your full name must be at least two characters long',
 								},
 							})}
 						/>
@@ -112,12 +138,19 @@ function RegisterInfo() {
 					</div>
 
 					<div className="mt-3 flex flex-col items-start justify-start gap-1">
-						<Label required={true}>Email</Label>
+						<Label
+							required={true}
+							htmlFor="api-register-email"
+						>
+							Email
+						</Label>
 						<Input
 							type="email"
 							placeholder="john.doe@example.com"
 							defaultValue=""
+							id="api-register-email"
 							className="max-sm:w-full"
+							disabled={mutation.isPending}
 							{...register('email', {
 								required: {
 									value: true,
@@ -125,9 +158,16 @@ function RegisterInfo() {
 								},
 								pattern: {
 									value:
-										/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+										/^[A-Za-z0-9_%+-]+(?:\.[A-Za-z0-9_%+-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,63}$/,
 									message:
 										'Invalid email address format. Please provide a valid address.',
+								},
+								validate: (value) => {
+									const local = value.split('@')[0] ?? '';
+									return (
+										(value.length <= 254 && local.length <= 64) ||
+										'Email address is too long.'
+									);
 								},
 							})}
 						/>
@@ -135,10 +175,12 @@ function RegisterInfo() {
 					</div>
 
 					<div className="mt-3 flex flex-col items-start justify-start gap-1">
-						<Label>Reason for Usage</Label>
+						<Label htmlFor="api-register-usage-reason">Reason for Usage</Label>
 						<TextArea
 							className="max-sm:w-full"
 							defaultValue=""
+							id="api-register-usage-reason"
+							disabled={mutation.isPending}
 							{...register('usage')}
 						/>
 					</div>
@@ -147,7 +189,7 @@ function RegisterInfo() {
 						<div className="flex items-center justify-start gap-1 max-md:items-baseline">
 							<input
 								type="checkbox"
-								id="register-privacy-check"
+								id="api-register-privacy-check"
 								className="text-primary-100 accent-primary-200 h-4 w-4 rounded-md focus:ring-2"
 								{...register('privacyCheckbox', {
 									required: {
@@ -159,7 +201,7 @@ function RegisterInfo() {
 							/>
 							<Label
 								className="text-xs"
-								htmlFor="register-privacy-check"
+								htmlFor="api-register-privacy-check"
 								required={true}
 							>
 								I understand and accept the{' '}
@@ -222,11 +264,33 @@ function RegisterInfo() {
 					</div>
 
 					<div className="mt-3">
+						{mutation.isSuccess && (
+							<p className="text-primary-200 text-sm">
+								Registration submission is complete! You can expect to receive a
+								verification email from us, provided that{' '}
+								<strong>you have not registered before</strong>. If you have
+								already registered with this email and did not verify, please
+								use our{' '}
+								<Link
+									to="/api-resend"
+									className="text-primary-300 underline"
+								>
+									Resend Verification
+								</Link>{' '}
+								service.
+							</p>
+						)}
+
+						{mutation.isError && (
+							<FormError>Unable to register the email</FormError>
+						)}
+
 						<BasicButton
 							type="submit"
-							className="font-semibold max-sm:block max-sm:w-full max-sm:py-3 max-sm:text-center"
+							className="mt-2 font-semibold max-sm:block max-sm:w-full max-sm:py-3 max-sm:text-center"
+							disabled={mutation.isPending}
 						>
-							Get API Key
+							{mutation.isPending ? 'Submitting...' : 'Get API Key'}
 						</BasicButton>
 					</div>
 				</form>
