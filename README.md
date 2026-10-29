@@ -16,11 +16,11 @@ API Documentation: [itihaas.dev/docs/](https://itihaas.netlify.app/docs/)
 
 Community Contributions: [itihaas.dev/issues/](https://itihaas.netlify.app/issues/)
 
-![Itihaas Landing Page](/readme/images/image_landing.png)
+![Itihaas Landing Page](/public/readme/images/image_landing.png)
 
-![Itihaas Docs Page](/readme/images/image_docs.png)
+![Itihaas Docs Page](/public/readme/images/image_docs.png)
 
-![Itihaas Search Page](/readme/images/image_search.png)
+![Itihaas Search Page](/public/readme/images/image_search.png)
 
 ## Information Categories
 
