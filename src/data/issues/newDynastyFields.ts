@@ -1,6 +1,27 @@
 import { IssuesFormControlOptions } from '@/interfaces/IssuesFormControlOptions';
 
-const newDynastyFields: IssuesFormControlOptions[] = [
+type NewDynastyOptions = IssuesFormControlOptions & {
+	registerHookForm:
+		| 'name'
+		| 'otherNames'
+		| 'reignBegin'
+		| 'reignEnd'
+		| 'capitals'
+		| 'currencies'
+		| 'locations'
+		| 'languages'
+		| 'population'
+		| 'area'
+		| 'religions'
+		| 'descShort'
+		| 'descLong'
+		| 'sources'
+		| 'readings'
+		| 'articles'
+		| 'comments';
+};
+
+const newDynastyFields: NewDynastyOptions[] = [
 	{
 		id: 1,
 		htmlId: 'new-dynasty-name',
@@ -9,6 +30,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: true,
 		placeholder: '',
 		info: 'Provide the most popular or well-known name of the dynasty',
+		registerHookForm: 'name',
 	},
 	{
 		id: 2,
@@ -18,6 +40,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'Other known names',
 		info: 'Any other potential names or titles given to the dynasty in addition to its most well-known name',
+		registerHookForm: 'otherNames',
 	},
 	{
 		id: 3,
@@ -27,6 +50,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: true,
 		placeholder: '',
 		info: 'Indicate the exact or approximate timeline of when the dynasty began',
+		registerHookForm: 'reignBegin',
 	},
 	{
 		id: 4,
@@ -36,6 +60,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: true,
 		placeholder: '',
 		info: 'Indicate the exact or approximate timeline of when the dynasty ended',
+		registerHookForm: 'reignEnd',
 	},
 	{
 		id: 5,
@@ -45,6 +70,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'One or more city capitals of the dynasty',
 		info: 'Mention one or more territorial capitals established by the dynasty',
+		registerHookForm: 'capitals',
 	},
 	{
 		id: 6,
@@ -54,6 +80,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: '',
 		info: 'Any conventional or unconventional methods of currencies established and used during the dynasty reign',
+		registerHookForm: 'currencies',
 	},
 	{
 		id: 7,
@@ -63,6 +90,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: '',
 		info: 'Modern day geographical locations of where the dynasty was established and/or ruled',
+		registerHookForm: 'locations',
 	},
 	{
 		id: 8,
@@ -71,6 +99,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		label: 'Languages',
 		required: false,
 		placeholder: 'Spoken and other linguistic methods',
+		registerHookForm: 'languages',
 	},
 	{
 		id: 9,
@@ -80,6 +109,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: '',
 		info: "An approximate estimation of the population in the location(s) of the dynasty's reign",
+		registerHookForm: 'population',
 	},
 	{
 		id: 10,
@@ -88,6 +118,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		label: 'Area',
 		required: false,
 		placeholder: 'Total land area in sq. km.',
+		registerHookForm: 'area',
 	},
 	{
 		id: 11,
@@ -97,6 +128,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: '',
 		info: 'Mention all growing, known, and practiced religions during this age by the dynasty members',
+		registerHookForm: 'religions',
 	},
 	{
 		id: 12,
@@ -106,6 +138,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: true,
 		placeholder: 'A 30-50 word(s) short description of the dynasty',
 		info: 'Provide a brief introduction of the dynasty; this piece of information is used to display minimal dynasty data on pages',
+		registerHookForm: 'descShort',
 	},
 	{
 		id: 13,
@@ -115,6 +148,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'A comprehensive 250-300 word(s) description',
 		info: 'Provide a detailed summary of the dynasty. Include all relevant topics and points regarding its formation, ruling and its end',
+		registerHookForm: 'descLong',
 	},
 	{
 		id: 14,
@@ -124,6 +158,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: true,
 		placeholder: 'Include all links to your credible and available sources',
 		info: 'Provide as many sources as possible separated by commas; Make sure your source(s) links are accurate and available to view',
+		registerHookForm: 'sources',
 	},
 	{
 		id: 15,
@@ -133,6 +168,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'Any additional readings related to the dynasty',
 		info: 'You can include links to any additional online resources, books, movies, related to the dynasty',
+		registerHookForm: 'readings',
 	},
 	{
 		id: 16,
@@ -142,6 +178,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'Written articles related to the dynasty (web)',
 		info: 'Leave links to any available and accessible articles written about or mentioning the dynasty',
+		registerHookForm: 'articles',
 	},
 	{
 		id: 17,
@@ -151,6 +188,7 @@ const newDynastyFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'Include anything that is closely relevant to this entity',
 		info: 'You can mention any new ideas and suggestions or provide any comments or context here',
+		registerHookForm: 'comments',
 	},
 ];
 
