@@ -1,9 +1,20 @@
 import InputFormControl from '@/components/issues/InputFormControl';
 import TextAreaFormControl from '@/components/issues/TextAreaFormControl';
 import { TabsContent } from '@/components/ui/tabs';
+import FormErrorLabel from '@/components/views/FormErrorLabel';
 import newRulerFields from '@/data/issues/newRulerFields';
+import { NewRulerContributionForm } from '@/interfaces/new-contributions/NewRulerContributionForm';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-export default function NewRulerTabsContent() {
+interface FunctionProps {
+	register: UseFormRegister<NewRulerContributionForm>;
+	errors: FieldErrors<NewRulerContributionForm>;
+}
+
+export default function NewRulerTabsContent({
+	register,
+	errors,
+}: FunctionProps) {
 	return (
 		<>
 			<TabsContent value="ruler">
@@ -20,25 +31,51 @@ export default function NewRulerTabsContent() {
 					{newRulerFields.map(function (field) {
 						if (field.type === 'input') {
 							return (
-								<InputFormControl
-									key={field.id}
-									label={field.label}
-									required={field.required}
-									placeholder={field.placeholder}
-									id={field.htmlId}
-									info={field.info}
-								/>
+								<>
+									<InputFormControl
+										key={field.id}
+										id={field.htmlId}
+										label={field.label}
+										required={field.required}
+										placeholder={field.placeholder}
+										info={field.info}
+										{...register(field.registerHookForm, {
+											required: {
+												value: field.required as boolean,
+												message: `${field.label} is a required field`,
+											},
+										})}
+									/>
+									{errors[field.registerHookForm] && (
+										<FormErrorLabel>
+											{errors[field.registerHookForm]?.message}
+										</FormErrorLabel>
+									)}
+								</>
 							);
 						} else if (field.type === 'textarea') {
 							return (
-								<TextAreaFormControl
-									key={field.id}
-									label={field.label}
-									required={field.required}
-									placeholder={field.placeholder}
-									id={field.htmlId}
-									info={field.info}
-								/>
+								<>
+									<TextAreaFormControl
+										key={field.id}
+										id={field.htmlId}
+										label={field.label}
+										placeholder={field.placeholder}
+										info={field.info}
+										required={field.required}
+										{...register(field.registerHookForm, {
+											required: {
+												value: field.required as boolean,
+												message: `${field.label} is a required field`,
+											},
+										})}
+									/>
+									{errors[field.registerHookForm] && (
+										<FormErrorLabel>
+											{errors[field.registerHookForm]?.message}
+										</FormErrorLabel>
+									)}
+								</>
 							);
 						}
 					})}

@@ -1,8 +1,20 @@
 import InputFormControl from '@/components/issues/InputFormControl';
 import TextAreaFormControl from '@/components/issues/TextAreaFormControl';
 import { TabsContent } from '@/components/ui/tabs';
+import FormErrorLabel from '@/components/views/FormErrorLabel';
+import newEntityFields from '@/data/issues/newEntityFields';
+import { NewEntityContributionForm } from '@/interfaces/new-contributions/NewEntityContributionForm';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
-export default function NewEntityTabsContent() {
+interface FunctionProps {
+	register: UseFormRegister<NewEntityContributionForm>;
+	errors: FieldErrors<NewEntityContributionForm>;
+}
+
+export default function NewEntityTabsContent({
+	register,
+	errors,
+}: FunctionProps) {
 	return (
 		<>
 			<TabsContent value="new">
@@ -15,12 +27,57 @@ export default function NewEntityTabsContent() {
 				</div>
 
 				<div>
-					<InputFormControl
-						label="Entity Name"
-						required
-					/>
-
-					<TextAreaFormControl label="Description" />
+					{newEntityFields.map(function (field) {
+						if (field.type === 'input') {
+							return (
+								<>
+									<InputFormControl
+										key={field.id}
+										id={field.htmlId}
+										label={field.label}
+										required={field.required}
+										placeholder={field.placeholder}
+										info={field.info}
+										{...register(field.registerHookForm, {
+											required: {
+												value: field.required as boolean,
+												message: `${field.label} is a required field`,
+											},
+										})}
+									/>
+									{errors[field.registerHookForm] && (
+										<FormErrorLabel>
+											{errors[field.registerHookForm]?.message}
+										</FormErrorLabel>
+									)}
+								</>
+							);
+						} else if (field.type === 'textarea') {
+							return (
+								<>
+									<TextAreaFormControl
+										key={field.id}
+										id={field.htmlId}
+										label={field.label}
+										placeholder={field.placeholder}
+										info={field.info}
+										required={field.required}
+										{...register(field.registerHookForm, {
+											required: {
+												value: field.required as boolean,
+												message: `${field.label} is a required field`,
+											},
+										})}
+									/>
+									{errors[field.registerHookForm] && (
+										<FormErrorLabel>
+											{errors[field.registerHookForm]?.message}
+										</FormErrorLabel>
+									)}
+								</>
+							);
+						}
+					})}
 				</div>
 			</TabsContent>
 		</>

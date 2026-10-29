@@ -3,7 +3,7 @@ interface IssuesFormControlOptions {
 	required?: boolean;
 	label: string;
 	placeholder?: string;
-	type: 'input' | 'textarea' | 'select';
+	type: 'input' | 'textarea' | 'select' | 'checkbox';
 	htmlId?: string;
 	info?: string;
 	registerHookForm?: string;

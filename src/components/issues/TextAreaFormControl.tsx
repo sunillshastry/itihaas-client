@@ -1,8 +1,9 @@
 import { Info } from 'lucide-react';
 import TextArea from '../elements/TextArea';
 import { Tooltip } from 'react-tooltip';
+import { ComponentPropsWithoutRef } from 'react';
 
-interface FunctionProps {
+interface FunctionProps extends ComponentPropsWithoutRef<'textarea'> {
 	required?: boolean;
 	placeholder?: string;
 	id?: string;

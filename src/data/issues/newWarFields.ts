@@ -1,6 +1,27 @@
 import { IssuesFormControlOptions } from '@/interfaces/IssuesFormControlOptions';
 
-const newWarFields: IssuesFormControlOptions[] = [
+type NewWarOptions = IssuesFormControlOptions & {
+	registerHookForm:
+		| 'name'
+		| 'otherNames'
+		| 'begin'
+		| 'end'
+		| 'winners'
+		| 'losers'
+		| 'casualties'
+		| 'locations'
+		| 'leadersA'
+		| 'leadersB'
+		| 'causes'
+		| 'descShort'
+		| 'descLong'
+		| 'sources'
+		| 'readings'
+		| 'articles'
+		| 'comments';
+};
+
+const newWarFields: NewWarOptions[] = [
 	{
 		id: 1,
 		htmlId: 'new-war-name',
@@ -9,6 +30,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: true,
 		placeholder: '',
 		info: 'Provide the most popular or well-known name of the war',
+		registerHookForm: 'name',
 	},
 	{
 		id: 2,
@@ -18,6 +40,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'Other known names',
 		info: 'Any other potential names or titles given to the war in addition to its most well-known name',
+		registerHookForm: 'otherNames',
 	},
 	{
 		id: 3,
@@ -26,6 +49,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		label: 'Begin Timeline (Year)',
 		required: false,
 		placeholder: 'Approximate year when the war took place',
+		registerHookForm: 'begin',
 	},
 	{
 		id: 4,
@@ -34,6 +58,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		label: 'End Timeline (Year)',
 		required: false,
 		placeholder: 'Approximate year when the war ended',
+		registerHookForm: 'end',
 	},
 	{
 		id: 5,
@@ -42,6 +67,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		label: 'Winners',
 		required: false,
 		placeholder: 'Mention the name of the ruler(s)/dynasty that won the war',
+		registerHookForm: 'winners',
 	},
 	{
 		id: 6,
@@ -50,6 +76,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		label: 'Losers',
 		required: false,
 		placeholder: 'Mention the name of the ruler(s)/dynasty that lost the war',
+		registerHookForm: 'losers',
 	},
 	{
 		id: 7,
@@ -58,6 +85,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		label: 'Casualties',
 		required: false,
 		placeholder: 'Estimate of total casualties that took place in this war',
+		registerHookForm: 'casualties',
 	},
 	{
 		id: 8,
@@ -67,6 +95,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: '',
 		info: 'Modern day geographical locations of where the dynasty was established and/or ruled',
+		registerHookForm: 'locations',
 	},
 	{
 		id: 9,
@@ -76,6 +105,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: '',
 		info: 'List of all prominent leaders from the winning side/dynasties (can include multiple names, separated by commas)',
+		registerHookForm: 'leadersA',
 	},
 	{
 		id: 10,
@@ -85,6 +115,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: '',
 		info: 'List of all prominent leaders from the losing side/dynasties (can include multiple names, separated by commas)',
+		registerHookForm: 'leadersB',
 	},
 	{
 		id: 11,
@@ -94,6 +125,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: '',
 		info: 'List of all reasons that caused the war between the two sides (can include multiple, separated by commas)',
+		registerHookForm: 'causes',
 	},
 	{
 		id: 12,
@@ -103,6 +135,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: true,
 		placeholder: 'A 30-50 word(s) short description of the war',
 		info: 'Provide a brief introduction of the war; this piece of information is used to display minimal war data on pages',
+		registerHookForm: 'descShort',
 	},
 	{
 		id: 13,
@@ -112,6 +145,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'A comprehensive 250-300 word(s) description',
 		info: 'Provide a detailed summary of the war. Include all relevant topics and points regarding its formation, ruling and its end',
+		registerHookForm: 'descLong',
 	},
 	{
 		id: 14,
@@ -121,6 +155,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: true,
 		placeholder: 'Include all links to your credible and available sources',
 		info: 'Provide as many sources as possible separated by commas; Make sure your source(s) links are accurate and available to view',
+		registerHookForm: 'sources',
 	},
 	{
 		id: 15,
@@ -130,6 +165,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'Any additional readings related to the war',
 		info: 'You can include links to any additional online resources, books, movies, related to the dynasty (can include multiple, separated by commas)',
+		registerHookForm: 'readings',
 	},
 	{
 		id: 16,
@@ -139,6 +175,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'Written articles related to the war (web)',
 		info: 'Leave links to any publicly available and accessible articles written about or mentioning the dynasty (can include multiple, separated by commas)',
+		registerHookForm: 'articles',
 	},
 	{
 		id: 17,
@@ -148,6 +185,7 @@ const newWarFields: IssuesFormControlOptions[] = [
 		required: false,
 		placeholder: 'Include anything that is closely relevant to this entity',
 		info: 'You can mention any new ideas and suggestions or provide any comments or context here',
+		registerHookForm: 'comments',
 	},
 ];
 

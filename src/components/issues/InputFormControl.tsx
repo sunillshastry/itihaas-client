@@ -1,8 +1,9 @@
 import { Info } from 'lucide-react';
 import Input from '../elements/Input';
 import { Tooltip } from 'react-tooltip';
+import { ComponentPropsWithoutRef } from 'react';
 
-interface FunctionProps {
+interface FunctionProps extends ComponentPropsWithoutRef<'input'> {
 	required?: boolean;
 	placeholder?: string;
 	id?: string;
