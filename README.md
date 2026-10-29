@@ -4,7 +4,23 @@
 
 ## About Itihaas
 
-Itihaas is a comprehensive application where users can view/read/learn and cite about Indian History. The application will cover all relevant events within the geographical extent of the Indian subcontinent and in the timeline between 7000 BCE (Mehrgarh Civilization, Indus Valley Civilization) and 1947 (Indian Independence). The entire process for the consequent fully functional application is divided into the following steps, in the written order.
+Itihaas is a structured, community-driven Indian history platform designed to help students, researchers, and curious minds explore the vast history of the Indian subcontinent. Discover detailed profiles of dynasties, rulers, and wars - search specific entities, navigate the historical timeline chronologically, or contribute credible research to expand the growing catalog. Whether you're studying, researching, exploring out of curiosity, or building applications using historical data, Itihaas makes the history of the Indian subcontinent accessible, informative, and engaging.
+
+Itihaas offers an extensively curated platform where users can study and cite information about the Indian subcontinent’s history. Itihaas will cover all relevant events within the geographical extent of the Indian subcontinent and in the timelines between 7000 BCE (accounting the first civilization, Mehrgarh Civilization, Indus Valley Civilization, and more), and 1947 (Indian independence).
+
+**Demo and Deployment**
+
+Live platform: [itihaas.dev/](https://itihaas.netlify.app/)
+
+API Documentation: [itihaas.dev/docs/](https://itihaas.netlify.app/docs/)
+
+Community Contributions: [itihaas.dev/issues/](https://itihaas.netlify.app/issues/)
+
+![Itihaas Landing Page](/readme/images/image_landing.png)
+
+![Itihaas Docs Page](/readme/images/image_docs.png)
+
+![Itihaas Search Page](/readme/images/image_search.png)
 
 ## Information Categories
 
