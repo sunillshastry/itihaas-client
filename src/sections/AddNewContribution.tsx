@@ -5,8 +5,14 @@ import NewRulerTabsContent from './issues/new/NewRulerTabsContent';
 import NewWarTabsContent from './issues/new/NewWarTabsContent';
 import BasicButton from '@/components/elements/BasicButton';
 import { Send } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { FormEventHandler, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import UserInfo from './issues/user/UserInfo';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { NewEntityContributionForm } from '@/interfaces/new-contributions/NewEntityContributionForm';
+import { NewDynastyContributionForm } from '@/interfaces/new-contributions/NewDynastyContributionForm';
+import { NewRulerContributionForm } from '@/interfaces/new-contributions/NewRulerContributionForm';
+import { NewWarContributionForm } from '@/interfaces/new-contributions/NewWarContributionForm';
 
 const DEFAULT_NEW_CONTRIBUTION_TAB = 'new';
 
@@ -37,9 +43,116 @@ export default function AddNewContribution() {
 		[tabValue]
 	);
 
+	// Dedicated useForm clients for each tab
+	// New Entity tab useForm
+	const {
+		register: newEntityRegister,
+		handleSubmit: newEntityHandleSubmit,
+		formState: { errors: newEntityErrors },
+	} = useForm<NewEntityContributionForm>();
+
+	// New Dynasty tab useForm
+	const {
+		register: dynastyRegister,
+		handleSubmit: dynastyHandleSubmit,
+		formState: { errors: dynastyErrors },
+	} = useForm<NewDynastyContributionForm>();
+
+	// New Ruler tab useForm
+	const {
+		register: rulerRegister,
+		handleSubmit: rulerHandleSubmit,
+		formState: { errors: rulerErrors },
+	} = useForm<NewRulerContributionForm>();
+
+	// New War tab useForm
+	const {
+		register: warRegister,
+		handleSubmit: warHandleSubmit,
+		formState: { errors: warErrors },
+	} = useForm<NewWarContributionForm>();
+
+	// Submit handlers
+	const newEntitySubmitForm: SubmitHandler<NewEntityContributionForm> = (
+		results
+	) => {
+		const data = {
+			...results,
+			type: 'new',
+			entity: 'new',
+			date: new Date().toString(),
+		};
+
+		console.log(data);
+		// TODO: Make the request to the backend to submit the contribution form
+	};
+
+	const dynastySubmitForm: SubmitHandler<NewDynastyContributionForm> = (
+		results
+	) => {
+		const data = {
+			...results,
+			type: 'new',
+			entity: 'dynasty',
+			date: new Date().toString(),
+		};
+
+		console.log(data);
+		// TODO: Make the request to the backend to submit the contribution form
+	};
+
+	const rulerSubmitForm: SubmitHandler<NewRulerContributionForm> = (
+		results
+	) => {
+		const data = {
+			...results,
+			type: 'new',
+			entity: 'ruler',
+			date: new Date().toString(),
+		};
+
+		console.log(data);
+		// TODO: Make the request to the backend to submit the contribution form
+	};
+
+	const warSubmitForm: SubmitHandler<NewWarContributionForm> = (results) => {
+		const data = {
+			...results,
+			type: 'new',
+			entity: 'war',
+			date: new Date().toString(),
+		};
+
+		console.log(data);
+		// TODO: Make the request to the backend to submit the contribution form
+	};
+
 	return (
 		<section className="from-primary-400 to-primary-700 text-primary-70 my-6 rounded-xl bg-linear-to-br p-8 max-md:px-4">
-			<div>
+			<form
+				onSubmit={
+					// New Entity
+					((tabValue === 'new' &&
+						newEntityHandleSubmit(
+							newEntitySubmitForm
+						)) as FormEventHandler<HTMLFormElement>) ||
+					// New Dynasty
+					((tabValue === 'dynasty' &&
+						dynastyHandleSubmit(
+							dynastySubmitForm
+						)) as FormEventHandler<HTMLFormElement>) ||
+					// New Ruler
+					((tabValue === 'ruler' &&
+						rulerHandleSubmit(
+							rulerSubmitForm
+						)) as FormEventHandler<HTMLFormElement>) ||
+					// New War
+					((tabValue === 'war' &&
+						warHandleSubmit(
+							warSubmitForm
+						)) as FormEventHandler<HTMLFormElement>)
+				}
+			>
 				<Tabs
 					defaultValue={tabValue}
 					value={tabValue}
@@ -53,24 +166,61 @@ export default function AddNewContribution() {
 					</TabsList>
 
 					<div className="mt-2">
-						<NewEntityTabsContent />
-						<NewDynastyTabsContent />
-						<NewRulerTabsContent />
-						<NewWarTabsContent />
+						<NewEntityTabsContent
+							register={newEntityRegister}
+							errors={newEntityErrors}
+						/>
+						<NewDynastyTabsContent
+							register={dynastyRegister}
+							errors={dynastyErrors}
+						/>
+						<NewRulerTabsContent
+							register={rulerRegister}
+							errors={rulerErrors}
+						/>
+						<NewWarTabsContent
+							register={warRegister}
+							errors={warErrors}
+						/>
 					</div>
 				</Tabs>
-				{/* <UserInfo /> */}
+
+				{(tabValue === 'new' && (
+					<UserInfo
+						register={newEntityRegister}
+						errors={newEntityErrors}
+					/>
+				)) ||
+					(tabValue === 'dynasty' && (
+						<UserInfo
+							register={dynastyRegister}
+							errors={dynastyErrors}
+						/>
+					)) ||
+					(tabValue === 'ruler' && (
+						<UserInfo
+							register={rulerRegister}
+							errors={rulerErrors}
+						/>
+					)) ||
+					(tabValue === 'war' && (
+						<UserInfo
+							register={warRegister}
+							errors={warErrors}
+						/>
+					))}
 
 				<BasicButton
 					variant="light"
 					className="mt-6 flex w-xs items-center justify-center gap-x-1 py-3 text-center font-medium max-md:w-full"
+					type="submit"
 				>
 					<span>Submit</span>
 					<span>
 						<Send size={15} />
 					</span>
 				</BasicButton>
-			</div>
+			</form>
 		</section>
 	);
 }
