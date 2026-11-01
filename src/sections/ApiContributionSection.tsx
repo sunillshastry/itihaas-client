@@ -1,11 +1,13 @@
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ApiFormInputs } from '@/interfaces/ApiFormInputs';
 import { FormEventHandler, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
 import ApiIssuesTabsContent from './issues/api/ApiIssuesTabsContent';
 import DocsIssuesTabsContent from './issues/api/DocsIssuesTabsContent';
 import UserInfo from './issues/user/UserInfo';
+import BasicButton from '@/components/elements/BasicButton';
+import { Send } from 'lucide-react';
+import { ApiDocsContributionInputs } from '@/interfaces/ApiDocsContributionInputs';
 
 const DEFAULT_EDIT_CONTRIBUTION_TAB = 'api';
 
@@ -43,33 +45,31 @@ export default function ApiContributionSection() {
 		register: apiRegister,
 		handleSubmit: apiHandleSubmit,
 		formState: { errors: apiErrors },
-	} = useForm<ApiFormInputs>();
+	} = useForm<ApiDocsContributionInputs>();
 
 	// Docs issues useForm
 	const {
 		register: docsRegister,
 		handleSubmit: docsHandleSubmit,
 		formState: { errors: docsErrors },
-	} = useForm<ApiFormInputs>();
+	} = useForm<ApiDocsContributionInputs>();
 
 	// Separate form submit handlers
-	const apiSubmitForm: SubmitHandler<ApiFormInputs> = (results) => {
+	const apiSubmitForm: SubmitHandler<ApiDocsContributionInputs> = (results) => {
 		const data = {
 			...results,
 			type: 'api',
-			entity: 'api',
-			date: new Date().toString(),
 		};
 		console.log(data);
 		// TODO: Make a request to backend to send this form details
 	};
 
-	const docsSubmitForm: SubmitHandler<ApiFormInputs> = (results) => {
+	const docsSubmitForm: SubmitHandler<ApiDocsContributionInputs> = (
+		results
+	) => {
 		const data = {
 			...results,
-			type: 'api',
-			entity: 'docs',
-			date: new Date().toString(),
+			type: 'docs',
 		};
 		console.log(data);
 		// TODO: Make a request to backend to send this form details
@@ -103,8 +103,14 @@ export default function ApiContributionSection() {
 						</TabsList>
 
 						<div className="mt-2">
-							<ApiIssuesTabsContent />
-							<DocsIssuesTabsContent />
+							<ApiIssuesTabsContent
+								register={apiRegister}
+								errors={apiErrors}
+							/>
+							<DocsIssuesTabsContent
+								register={docsRegister}
+								errors={docsErrors}
+							/>
 						</div>
 					</Tabs>
 
@@ -118,6 +124,17 @@ export default function ApiContributionSection() {
 							(tabValue === 'docs' ? docsErrors : null)
 						}
 					/>
+
+					<BasicButton
+						variant="light"
+						className="mt-6 flex w-xs items-center justify-center gap-x-1 py-3 text-center font-medium max-md:w-full"
+						type="submit"
+					>
+						<span>Submit</span>
+						<span>
+							<Send size={15} />
+						</span>
+					</BasicButton>
 				</form>
 			</div>
 		</section>

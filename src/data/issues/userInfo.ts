@@ -2,7 +2,7 @@ import { IssuesFormControlOptions } from '@/interfaces/IssuesFormControlOptions'
 
 type UserInfoOptions = IssuesFormControlOptions & {
 	registerHookForm:
-		| 'userFullName'
+		| 'userName'
 		| 'userLocation'
 		| 'userEmail'
 		| 'userEnablePublicCredentials';
@@ -17,7 +17,7 @@ const userInfo: UserInfoOptions[] = [
 		label: 'Full Name',
 		required: true,
 		placeholder: 'John Doe',
-		registerHookForm: 'userFullName',
+		registerHookForm: 'userName',
 	},
 	{
 		id: 2,
