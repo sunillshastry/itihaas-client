@@ -27,6 +27,7 @@ import FurtherReadingContainer from '@/components/elements/FurtherReadingContain
 import ArticlesContainer from '@/components/elements/ArticlesContainer';
 import MissingInfoDialog from '@/components/views/MissingInfoDialog';
 import LastUpdateMessage from '@/components/views/LastUpdateMessage';
+import RelatedEntities from '@/components/elements/RelatedEntitiesList';
 
 function WarPage() {
 	const { warSlug: slug } = useParams();
@@ -163,6 +164,20 @@ function WarPage() {
 							descriptionList={war?.description?.long as string[]}
 						/>
 
+						<HashContainer id="related-dynasty">
+							<RelatedEntities
+								type="dynasty"
+								list={war?.relatedDynasties as string[]}
+							/>
+						</HashContainer>
+
+						<HashContainer id="related-ruler">
+							<RelatedEntities
+								type="ruler"
+								list={war?.relatedRulers as string[]}
+							/>
+						</HashContainer>
+
 						<HashContainer id="sources">
 							<SourcesContainer sources={war?.sources} />
 						</HashContainer>
@@ -170,10 +185,6 @@ function WarPage() {
 						<HashContainer id="reading">
 							<FurtherReadingContainer readings={war?.furtherReading} />
 						</HashContainer>
-
-						{/* TODO: DYNASTIES CONTAINER */}
-
-						{/* TODO: RULERS CONTAINER */}
 
 						<HashContainer id="articles">
 							<ArticlesContainer articles={war?.articles} />
