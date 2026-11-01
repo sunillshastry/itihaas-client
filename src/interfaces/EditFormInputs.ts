@@ -7,7 +7,7 @@ interface EditFormInputs {
 	comments: string;
 
 	// User Info
-	userFullName: string;
+	userName: string;
 	userLocation: string;
 	userEmail: string;
 }

@@ -3,7 +3,7 @@ interface NewEntityContributionForm {
 	description: string;
 
 	// User info
-	userFullName: string;
+	userName: string;
 	userLocation: string;
 	userEmail: string;
 }
